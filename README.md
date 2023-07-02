@@ -1,3 +1,12 @@
+# TODO
+
+- [] 增加浏览人数功能
+- [] 本地安装jekyll 然后本地完成后再upload
+- [] 把上一个博客的文章同步过来
+- [] 把算法的一些文章再重新润色，重新写的更好
+- [] 修改github主页的链接
+- [] 等算法的文章弄好后，可以搞一个纯算法的wiki版本?
+
 # Blog
 
 ## Golang
@@ -26,3 +35,15 @@
 [回溯法](https://github.com/jiujiujiujiujiuaia/leetcode_golang/blob/main/document/BackTracking.md)
 
 [动态规划实战](https://github.com/jiujiujiujiujiuaia/leetcode_golang/blob/main/document/DynamicProgrammingTip.md)
+
+## 大纲
+* [Leetcode](leetcode/leetcode.md)
+    * [Golang](leetcode/golang/golang.md)
+        * [基本语法](leetcode/golang_syntax/golang_syntax.md)
+        * [常用数据结构](leetcode/golang_structure/golang_structure.md)
+        * [常用库](leetcode/golang_common_lib/golang_common_lib.md)
+    * [Array](leetcode/array/introduction.md)
+        * [数组](leetcode/array/array.md)
+* [分布式]()
+* [简历]()
+* [日常博客]()
