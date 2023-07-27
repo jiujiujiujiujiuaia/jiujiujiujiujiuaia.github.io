@@ -7,7 +7,7 @@
 - [] 修改github主页的链接
 - [] 等算法的文章弄好后，可以搞一个纯算法的wiki版本?
 - [] 增加置顶功能
-- 
+- [] 仿照这个文章解决大部分的问题https://lemonchann.github.io/create_blog_with_github_pages/
 
 # Blog
 
