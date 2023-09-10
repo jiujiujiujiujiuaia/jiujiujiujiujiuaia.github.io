@@ -1,7 +1,8 @@
 param(
     [string]$filename,    # 给定文件的文件名
     [string]$oldText = "(img",        # 目标替换的字符
-    [string]$newText      # 替换的字符
+    [string]$newText,      # 替换的字符
+    [string]$comments = ""
 )
 
 # 基础路径
@@ -13,7 +14,7 @@ $fullFilePath = Join-Path $fullFilePath $filename
 
 # 确保文件存在
 if (-not (Test-Path $fullFilePath)) {
-    Write-Error "文件 $fullFilePath 不存在!"
+    Write-Error "file $fullFilePath doesn't exsit!"
     exit
 }
 
@@ -28,4 +29,13 @@ $fileContent = $fileContent.Replace($oldText, $content)
 # 写入修改后的内容回文件
 $fileContent | Set-Content $fullFilePath -Encoding utf8
 
-Write-Output "文件 $fullFilePath 中的文本已替换!"
+Write-Output "file $fullFilePath has been replaced!"
+
+if ($comments -ne "") {
+   git add .
+   git commit -m $comments
+   git push
+   Write-Output "push with $comments"
+}
+
+
