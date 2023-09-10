@@ -210,49 +210,33 @@
              </span>
           {% endif %}
 
-          {% if site.busuanzi_count.enable and site.busuanzi_count.page_pv and is_index == false or is_index == nil%}
             <span class="post-meta-divider">|</span>
-            <span class="page-pv">{{ site.busuanzi_count.page_pv_header }}
-            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>{{ site.busuanzi_count.page_pv_footer }}
+            <span class="page-pv" id="busuanzi_container_page_pv">{{ site.busuanzi_count.page_pv_header }}
+            本文总阅读量<span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>{{ site.busuanzi_count.page_pv_footer }}次
             </span>
-          {% endif %}
 
-          {% if site.post_wordcount.wordcount or site.post_wordcount.min2read %}
             {% assign source = post.content %}
             {% include _helper/wordcount.html %}
             <div class="post-wordcount">
-              {% if site.post_wordcount.wordcount %}
-                {% unless site.post_wordcount.separated_meta %}
                   <span class="post-meta-divider">|</span>
-                {% endunless %}
                 <span class="post-meta-item-icon">
                   <i class="fa fa-file-word-o"></i>
                 </span>
-                {% if site.post_wordcount.item_text %}
                   <span class="post-meta-item-text">{{ __.post.wordcount }}</span>
-                {% endif %}
                 <span title="{{ __.post.wordcount }}">
                   {{ wordcount }}
                 </span>
-              {% endif %}
 
-              {% if site.post_wordcount.wordcount and site.post_wordcount.min2read %}
                 <span class="post-meta-divider">|</span>
-              {% endif %}
 
-              {% if site.post_wordcount.min2read %}
                 <span class="post-meta-item-icon">
                   <i class="fa fa-clock-o"></i>
                 </span>
-                {% if site.post_wordcount.item_text %}
                   <span class="post-meta-item-text">{{ __.post.min2read }}</span>
-                {% endif %}
                 <span title="{{ __.post.min2read }}">
                   {{ wordcount | divided_by: 200 }}
                 </span>
-              {% endif %}
             </div>
-          {% endif %}
 
           {% unless site.excerpt_description and is_index %}
             {% if site.description %}
