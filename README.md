@@ -57,4 +57,4 @@
 * [日常博客]()
 
 ## 脚本使用
-.\replaceImg.ps1 -filename "2023-09-09-博客搭建(2).md" -newText "blog2" -comments "完成一按替换脚本"
+.\replaceImg.ps1 -filename "2023-09-09-博客搭建(2).md" -imageFolder "blog2" -comments "完成一按替换脚本"
