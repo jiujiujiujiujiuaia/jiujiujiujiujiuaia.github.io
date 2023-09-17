@@ -6,7 +6,7 @@ param(
 )
 
 # 基础路径
-$baseFilePath = ".\_posts\"
+$baseFilePath = "\_posts\"
 $currentDirectory = $pwd.Path
 $fullFilePath = Join-Path $currentDirectory $baseFilePath
 # 构造完整文件路径
@@ -28,6 +28,7 @@ $fileContent = $fileContent.Replace($oldText, $content)
 
 # 写入修改后的内容回文件
 $fileContent | Set-Content $fullFilePath -Encoding utf8
+
 
 Write-Output "file $fullFilePath has been replaced!"
 
