@@ -1,4 +1,4 @@
----
+﻿---
 title: Teams Bot 和Azure Web App体验之旅
 date: 2023-09-22 21:30:09
 categories:
@@ -139,4 +139,7 @@ az webapp config container set --resource-group xxx --name xxx --docker-custom-i
 把bot的endpoint重新填写成ngrok的，然后这bot就可以在本地收到任何来自Teams的消息拉~
 
 ![img_16.png](pic/bot/img_16.png)
+
+
+
 
