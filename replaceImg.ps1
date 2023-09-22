@@ -25,6 +25,9 @@ $templateUrl = "(https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiuj
 $content = $templateUrl.Replace("{placeholder}", $imageFolder)
 
 # 读取文件内容并替换文本
+Write-Output "old content $oldText"
+Write-Output "new content $content"
+
 $fileContent = Get-Content $fullFilePath -Raw -Encoding utf8
 $fileContent = $fileContent.Replace($oldText, $content)
 
