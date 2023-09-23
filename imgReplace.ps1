@@ -33,7 +33,8 @@ function Replace-Content {
 
 function Move-ImagesToFolder {
     param(
-        [string]$imageFolder
+        [string]$imageFolder,
+        [string]$dateString
     )
 
     # 确定基础路径
@@ -43,6 +44,7 @@ function Move-ImagesToFolder {
 
     $picDir = Join-Path $baseDir "pic"
     $targetDir = Join-Path $picDir $imageFolder
+    $targetDir = Join-Path $targetDir $dateString
 
     # 检查目标文件夹是否存在，如果不存在则创建
     if (-not (Test-Path $targetDir)) {
@@ -81,19 +83,26 @@ function Submit-Commit {
     Write-Output "[Completed] Pushed with comments: $comments"
 }
 
-# 基础路径
+# 获取当前时间
+$currentDate = Get-Date
+
+# 格式化时间为 "yyyyMMddHHmmss" 格式
+$dateString = $currentDate.ToString("yyyyMMddHHmmss")
+
+# 构造markdown file路径
 $baseFilePath = "_posts\"
 $currentDirectory = $pwd.Path
 $fullFilePath = Join-Path $currentDirectory $baseFilePath
 $fullFilePath = Join-Path $fullFilePath $filename
 
 # 构造替换内容
-$templateUrl = "(https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/master/_posts/pic/{placeholder}/img"
+$templateUrl = "(https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/master/_posts/pic/{placeholder}/{datetime}/img"
 $newContent = $templateUrl.Replace("{placeholder}", $imageFolder)
+$newContent = $newContent.Replace("{datetime}", $dateString)
 
 # 如果filename不为空，执行字符替换函数
 if ($filename -ne "" -and $imageFolder -ne "") {
-    Move-ImagesToFolder -imageFolder $imageFolder
+    Move-ImagesToFolder -imageFolder $imageFolder -dateString $dateString
     Replace-Content -filePath $fullFilePath -oldText $oldText -newText $newContent
 }
 
