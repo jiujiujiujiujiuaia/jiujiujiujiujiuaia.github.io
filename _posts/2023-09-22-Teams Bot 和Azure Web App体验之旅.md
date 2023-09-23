@@ -141,7 +141,7 @@ az webapp config container set --resource-group xxx --name xxx --docker-custom-i
 ![img_16.png](https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/master/_posts/pic/bot/img_16.png)
 
 
-
+TODO 把code上传到github，两个版本，一个接受message，没有回复的，另外一个是有回复的版本。
 
 
 

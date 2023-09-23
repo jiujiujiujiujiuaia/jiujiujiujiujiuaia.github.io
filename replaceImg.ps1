@@ -1,46 +1,63 @@
 param(
-    [string]$filename,    # 给定文件的文件名
-    [string]$oldText = "(img",        # 目标替换的字符
-    [string]$imageFolder,      # 替换的字符
-    [string]$comments = ""
+    [Alias('f')] [string]$filename,
+    [string]$oldText = "(img",
+    [Alias('image')] [string]$imageFolder,
+    [Alias('c')] [string]$comments = ""
 )
 
-# TODO 1.把所有img移动到一个新的目录 2.更新本地的时间或者文件的时间 3.脚本有多个模式 提交代码 替换图片 替换文章时间等等模块，可以自由的组合
+function Replace-Content {
+    param(
+        [string]$filePath,
+        [string]$oldText,
+        [string]$newText
+    )
+
+    # 确保文件存在
+    if (-not (Test-Path $filePath)) {
+        Write-Error "File $filePath doesn't exist!"
+        return
+    }
+
+    # 读取文件内容并替换文本
+    Write-Output "Old content: $oldText"
+    Write-Output "New content: $newText"
+
+    $fileContent = Get-Content $filePath -Raw -Encoding utf8
+    $fileContent = $fileContent.Replace($oldText, $newText)
+
+    # 写入修改后的内容回文件
+    $fileContent | Set-Content $filePath -Encoding utf8
+
+    Write-Output "File $filePath has been replaced!"
+}
+
+function Submit-Commit {
+    param(
+        [Alias('c')] [string]$comments
+    )
+
+    git add .
+    git commit -m $comments
+    git push
+    Write-Output "Pushed with comments: $comments"
+}
 
 # 基础路径
-$baseFilePath = "\_posts\"
+$baseFilePath = "_posts\"
 $currentDirectory = $pwd.Path
 $fullFilePath = Join-Path $currentDirectory $baseFilePath
-# 构造完整文件路径
 $fullFilePath = Join-Path $fullFilePath $filename
 
-# 确保文件存在
-if (-not (Test-Path $fullFilePath)) {
-    Write-Error "file $fullFilePath doesn't exsit!"
-    exit
-}
-
-# 替换 {placeholder} 变量
+# 构造替换内容
 $templateUrl = "(https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/master/_posts/pic/{placeholder}/img"
-$content = $templateUrl.Replace("{placeholder}", $imageFolder)
+$newContent = $templateUrl.Replace("{placeholder}", $imageFolder)
 
-# 读取文件内容并替换文本
-Write-Output "old content $oldText"
-Write-Output "new content $content"
-
-$fileContent = Get-Content $fullFilePath -Raw -Encoding utf8
-$fileContent = $fileContent.Replace($oldText, $content)
-
-# 写入修改后的内容回文件
-$fileContent | Set-Content $fullFilePath -Encoding utf8
-
-Write-Output "file $fullFilePath has been replaced!"
-
-if ($comments -ne "") {
-   git add .
-   git commit -m $comments
-   git push
-   Write-Output "push with $comments"
+# 如果filename不为空，执行字符替换函数
+if ($filename -ne "") {
+    Replace-Content -filePath $fullFilePath -oldText $oldText -newText $newContent
 }
 
-
+# 如果comments变量不为空，执行提交commit函数
+if ($comments -ne "") {
+    Submit-Commit -comments $comments
+}
