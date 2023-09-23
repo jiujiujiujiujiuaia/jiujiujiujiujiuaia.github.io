@@ -61,6 +61,7 @@
 1. 把所有_posts的图片移动到指定目录，确保唯一性，该目录有时间戳
 2. 由于goland复制不会有重复的图片名，所以时间戳目录内的图片文件是唯一的
 3. 把markdown内所有的带有(img全部替换成指定的带有域名和时间戳的地址
+4. 使用简写参数, 如-c
 
 .\imgReplace.ps1 -f "2023-06-01-sample.md" -i "test"
 .\imgReplace.ps1 -c "comments"
