@@ -9,7 +9,8 @@ function Replace-Content {
     param(
         [string]$filePath,
         [string]$oldText,
-        [string]$newText
+        [string]$newText,
+        [string]$fileName
     )
 
     # 确保文件存在
@@ -22,13 +23,18 @@ function Replace-Content {
     Write-Output "Old content: $oldText"
     Write-Output "New content: $newText"
 
+    # 使用正则表达式查找 $oldText 在 $fileContent 中出现的次数
     $fileContent = Get-Content $filePath -Raw -Encoding utf8
+    $matches = [System.Text.RegularExpressions.Regex]::Matches($fileContent, [regex]::Escape($oldText))
+    $occurrencesCount = $matches.Count
+
+    # 替换
     $fileContent = $fileContent.Replace($oldText, $newText)
 
     # 写入修改后的内容回文件
     $fileContent | Set-Content $filePath -Encoding utf8
 
-    Write-Output "[Completed] File $filePath has been replaced!"
+    Write-Output "[Completed] [$fileName] contains [$occurrencesCount] of [$oldText], has been replaced"
 }
 
 function Move-ImagesToFolder {
@@ -48,7 +54,8 @@ function Move-ImagesToFolder {
 
     # 检查目标文件夹是否存在，如果不存在则创建
     if (-not (Test-Path $targetDir)) {
-        New-Item -ItemType Directory -Path $targetDir
+        New-Item -ItemType Directory -Path $targetDir  > $null
+        Write-Output "[Completed] created directory $targetDir"
     }
 
     # 查找所有 png 图片
@@ -68,7 +75,8 @@ function Move-ImagesToFolder {
         Move-Item -Path $file.FullName -Destination $targetFile
     }
 
-    Write-Output "[Completed] moving pictures to pic\$imageFolder"
+    $imageCount = $pngFiles.Count
+    Write-Output "[Completed] moving [$imageCount] pictures to pic\$imageFolder"
 }
 
 
@@ -103,7 +111,7 @@ $newContent = $newContent.Replace("{datetime}", $dateString)
 # 如果filename不为空，执行字符替换函数
 if ($filename -ne "" -and $imageFolder -ne "") {
     Move-ImagesToFolder -imageFolder $imageFolder -dateString $dateString
-    Replace-Content -filePath $fullFilePath -oldText $oldText -newText $newContent
+    Replace-Content -filePath $fullFilePath -oldText $oldText -newText $newContent -filename $filename
 }
 
 # 如果comments变量不为空，执行提交commit函数
