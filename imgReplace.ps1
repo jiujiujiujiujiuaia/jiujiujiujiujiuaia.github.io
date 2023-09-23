@@ -5,6 +5,8 @@ param(
     [Alias('c')] [string]$comments = ""
 )
 
+// TODO file name只需要写部分文件名，就可以补全整个文件 2）代码格式写的更好一些 都封装成函数
+
 function Replace-Content {
     param(
         [string]$filePath,
