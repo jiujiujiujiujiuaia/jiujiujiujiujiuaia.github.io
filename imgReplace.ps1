@@ -27,12 +27,9 @@ function Replace-Content {
     }elseif ($matchingFiles.Count -gt 1) {
          Write-Error "Multiple matching files found."
          return
-    }else{
-        $completeFileName = $matchingFiles.Name
-        Write-Host "Complete file name is:" $completeFileName
-        return
     }
 
+    $fileName = $matchingFiles.Name
     $fullFilePath = Join-Path $fullFilePath $fileName
 
     # 构造替换内容
