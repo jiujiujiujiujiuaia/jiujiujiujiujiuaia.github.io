@@ -1,9 +1,13 @@
 ---
-title: TODO prompt
+title: prompt
 date: 2023-09-17 22:30:09
 categories:
 - 音视频
 ---
+
+
+https://www.deeplearning.ai/short-courses/langchain-for-llm-application-development/
+https://www.deeplearning.ai/short-courses/chatgpt-prompt-engineering-for-developers/
 
 下面这个文章告诉我们利用GPT可以干哪些有趣的事情？
 
