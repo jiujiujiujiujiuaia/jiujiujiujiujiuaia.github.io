@@ -31,6 +31,7 @@ function Replace-Content {
 
     $fileName = $matchingFiles.Name
     $fullFilePath = Join-Path $fullFilePath $fileName
+    Write-Host "the file name is:" $fileName
 
     # 构造替换内容
     $templateUrl = "(https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/master/_posts/pic/{placeholder}/{datetime}/img"
