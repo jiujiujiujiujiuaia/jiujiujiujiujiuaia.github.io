@@ -19,6 +19,20 @@ function Replace-Content {
     $baseFilePath = "_posts\"
     $currentDirectory = $pwd.Path
     $fullFilePath = Join-Path $currentDirectory $baseFilePath
+    $matchingFiles = Get-ChildItem -Path $fullFilePath -Filter "*$fileName*"
+
+    if ($matchingFiles.Count -eq 0) {
+        Write-Error "No matching files found."
+        return
+    }elseif ($matchingFiles.Count -gt 1) {
+         Write-Error "Multiple matching files found."
+         return
+    }else{
+        $completeFileName = $matchingFiles.Name
+        Write-Host "Complete file name is:" $completeFileName
+        return
+    }
+
     $fullFilePath = Join-Path $fullFilePath $fileName
 
     # 构造替换内容
