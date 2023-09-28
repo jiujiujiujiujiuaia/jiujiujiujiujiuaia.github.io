@@ -9,15 +9,26 @@ param(
 
 function Replace-Content {
     param(
-        [string]$filePath,
-        [string]$oldText,
-        [string]$newText,
-        [string]$fileName
+        [string]$fileName,
+        [string]$imageFolder,
+        [string]$dateString,
+        [string]$oldText
     )
 
+    # 构造markdown file路径
+    $baseFilePath = "_posts\"
+    $currentDirectory = $pwd.Path
+    $fullFilePath = Join-Path $currentDirectory $baseFilePath
+    $fullFilePath = Join-Path $fullFilePath $fileName
+
+    # 构造替换内容
+    $templateUrl = "(https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/master/_posts/pic/{placeholder}/{datetime}/img"
+    $newContent = $templateUrl.Replace("{placeholder}", $imageFolder)
+    $newText = $newContent.Replace("{datetime}", $dateString)
+
     # 确保文件存在
-    if (-not (Test-Path $filePath)) {
-        Write-Error "[Error]File $filePath doesn't exist!"
+    if (-not (Test-Path $fullFilePath)) {
+        Write-Error "[Error]File $fullFilePath doesn't exist!"
         return
     }
 
@@ -26,7 +37,7 @@ function Replace-Content {
     Write-Output "New content: $newText"
 
     # 使用正则表达式查找 $oldText 在 $fileContent 中出现的次数
-    $fileContent = Get-Content $filePath -Raw -Encoding utf8
+    $fileContent = Get-Content $fullFilePath -Raw -Encoding utf8
     $matches = [System.Text.RegularExpressions.Regex]::Matches($fileContent, [regex]::Escape($oldText))
     $occurrencesCount = $matches.Count
 
@@ -34,7 +45,7 @@ function Replace-Content {
     $fileContent = $fileContent.Replace($oldText, $newText)
 
     # 写入修改后的内容回文件
-    $fileContent | Set-Content $filePath -Encoding utf8
+    $fileContent | Set-Content $fullFilePath -Encoding utf8
 
     Write-Output "[Completed] [$fileName] contains [$occurrencesCount] of [$oldText], has been replaced"
 }
@@ -99,21 +110,10 @@ $currentDate = Get-Date
 # 格式化时间为 "yyyyMMddHHmmss" 格式
 $dateString = $currentDate.ToString("yyyyMMddHHmmss")
 
-# 构造markdown file路径
-$baseFilePath = "_posts\"
-$currentDirectory = $pwd.Path
-$fullFilePath = Join-Path $currentDirectory $baseFilePath
-$fullFilePath = Join-Path $fullFilePath $filename
-
-# 构造替换内容
-$templateUrl = "(https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/master/_posts/pic/{placeholder}/{datetime}/img"
-$newContent = $templateUrl.Replace("{placeholder}", $imageFolder)
-$newContent = $newContent.Replace("{datetime}", $dateString)
-
 # 如果filename不为空，执行字符替换函数
 if ($filename -ne "" -and $imageFolder -ne "") {
     Move-ImagesToFolder -imageFolder $imageFolder -dateString $dateString
-    Replace-Content -filePath $fullFilePath -oldText $oldText -newText $newContent -filename $filename
+    Replace-Content -FileName $filename -oldText $oldText -dateString $dateString -imageFolder $imageFolder
 }
 
 # 如果comments变量不为空，执行提交commit函数
