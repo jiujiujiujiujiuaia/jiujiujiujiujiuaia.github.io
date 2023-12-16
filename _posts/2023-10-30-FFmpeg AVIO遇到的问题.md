@@ -145,6 +145,9 @@ ffprobe -i .\file.webM
 
 ### 比较内存中字节的内容
 
+![git](https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/master/_posts/pic/avio/20231216155645/Animation.gif)
+
+
 我所看到的是真实的吗？内存中两端的字节是否完全相同？除了顺序错误之外，还会有更多的问题吗？
 
 我没去看这个错误，我只是很奇怪，为什么文件是一样的， 使用Lib的方式是一样的，但是两个不同的结局，所以我已经不相信我设想的或者我看到的，我要重新验证每一步。
