@@ -5,6 +5,8 @@ categories:
 - System Design
 ---
 
+写简历，如何用通用词汇去描述
+
 * System requirements (functional and non-functional requirements)
 * Functional requirements (how to define, working backwards approach)
 * High availability (time-based and count-based availability, design principles behind high availability, processes behind high availability, SLO, SLA)
