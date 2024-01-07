@@ -78,6 +78,7 @@ https://medium.com/slalom-technology/azure-messaging-when-to-use-what-and-why-po
 ![img_7.png](https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/master/_posts/pic/mq/20231223201308/img_7.png)
 
 ## Reference
+* 0.https://blog.bytebytego.com/p/why-do-we-need-a-message-queue
 * 1.https://blog.bytebytego.com/p/how-to-choose-a-message-queue-kafka
 * 2.https://medium.com/slalom-technology/azure-messaging-when-to-use-what-and-why-post-1-c643e43052ed
 * 3.https://medium.com/slalom-technology/azure-messaging-when-to-use-what-and-why-post-2-81d164cc838e
