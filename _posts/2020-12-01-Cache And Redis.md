@@ -1,6 +1,6 @@
 ﻿---
 title: Cache
-date: 2023-12-23 17:30:09
+date: 2020-12-23 17:30:09
 categories:
 - Redis
 - Cache
@@ -82,30 +82,7 @@ categories:
 
 ## 缓存和数据库的一致性
 
-### Cache-Aside & Write-Around
-
-读取操作（Cache-Aside）:
-
-* 假设用户请求读取一个商品的详情信息。
-* 系统首先在Redis缓存中查找该商品的信息。
-* 如果缓存中有这个商品的信息（缓存命中），直接返回这些信息。
-* 如果缓存中没有（缓存未命中），系统从数据库中读取商品信息，将这些信息写入Redis缓存，并返回给用户。
-
-写入操作（Write-Around）:
-
-* 当用户更新了商品的价格。
-* 系统直接将新价格写入数据库，而不更新Redis缓存中的商品信息。
-* 两种种情况: 
-  * 对一致性要求特别高: 那么这个时候负责更新Redis，因为如果TTL没有过期的话，有可能用户读到older value
-  * 对写入操作的性能要求特别高: 可以依赖TTL使其过期或者用EXPIRE指令让Redis过期，读取的时候会更新值
-
-缺点：
-* 当数据频繁更新和读取时，存储系统会被多次访问，导致缓存操作效率较低。
-
-TODO 
-* https://blog.bytebytego.com/i/110550235/writing-order-of-cache-and-storage
-* Read-Through & Write-Through
-* Read-Through & Write-Back
+Refere 系统设计常见问题
 
 ## TODO 缓存的挑战
 

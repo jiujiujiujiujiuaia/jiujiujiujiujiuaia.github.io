@@ -1,6 +1,6 @@
 ﻿---
 title: Message queue and service bus
-date: 2023-12-23 17:30:09
+date: 2020-12-23 17:30:09
 categories:
 - Message Queue
 - Serivce Bus
