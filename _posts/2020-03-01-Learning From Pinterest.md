@@ -1,4 +1,4 @@
----
+﻿---
 title: Learning From Pinterest(Shard)
 date: 2020-03-01 17:30:09
 categories:
@@ -26,7 +26,7 @@ categories:
 * Type用于表示对象类型，例如：User, Photo comments。
 * Local ID在分片内部用于唯一识别对象。这是一个由mysql 提供的自增id。
 
-![img.png](img.png)
+![img.png](https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/master/_posts/pic/pinterest/20240303130331/img.png)
 
 ### 写入场景
 
@@ -66,7 +66,7 @@ categories:
 * 把一个DB sharding拆分称多个DB shard，可以分担写入的压力
 * 加入监控，实时的监控分片的容量和性能
 
-![img_1.png](img_1.png)
+![img_1.png](https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/master/_posts/pic/pinterest/20240303130331/img_1.png)
 
 3.高可用
 
@@ -75,7 +75,7 @@ categories:
 
 ### 主页的渲染
 
-![img_2.png](img_2.png)
+![img_2.png](https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/master/_posts/pic/pinterest/20240303130331/img_2.png)
 
 在我们前面的id structure的设计中，shardid-type-localId，type就是分表了，对于不同的数据用不同的表处理: 
 * type = user, user表
@@ -107,7 +107,7 @@ SELECT body FROM boards WHERE id IN (<board_ids>)
   * 好处： 1.join性能很慢，变成join一旦复杂了，写起来难以维护 
   * 坏处： 2.维护额外的冗余表，增加复杂性和负担
 
-![img_3.png](img_3.png)
+![img_3.png](https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/master/_posts/pic/pinterest/20240303130331/img_3.png)
 
 
 ## Reference
