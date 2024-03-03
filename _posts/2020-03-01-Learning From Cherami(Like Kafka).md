@@ -1,6 +1,6 @@
 ﻿---
-title: Learning From Cherami
-date: 2020-03-02 17:30:09
+title: Learning From Cherami(Like Kafka)
+date: 2020-03-01 17:30:09
 categories:
 - System Design
 ---
