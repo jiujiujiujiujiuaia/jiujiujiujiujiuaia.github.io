@@ -25,6 +25,8 @@ categories:
 * Shard ID确定数据存储在哪个分片上, 通过这个shardId可以直接拼接出来sharding db的地址。
 * Type用于表示对象类型，例如：User, Photo comments。
 * Local ID在分片内部用于唯一识别对象。这是一个由mysql 提供的自增id。
+  * (Note: 全局自增在分布式数据库中不是支持的很多，常见的是依赖3rd party例如snowflake，UUID)
+  * 但是这个方案解决了这个问题！
 
 ![img.png](https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/master/_posts/pic/pinterest/20240303130331/img.png)
 
@@ -113,3 +115,4 @@ SELECT body FROM boards WHERE id IN (<board_ids>)
 ## Reference
 
 * 1.https://www.youtube.com/watch?v=dSk-SWLJ2g0
+* 2.(别人的总结)[https://highscalability.com/scaling-pinterest-from-0-to-10s-of-billions-of-page-views-a/]

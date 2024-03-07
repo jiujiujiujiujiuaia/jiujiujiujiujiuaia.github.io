@@ -26,7 +26,7 @@ categories:
 
 ![img.png](https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/master/_posts/pic/mq/20231223201308/img.png)
 
-## 两种场景
+## 两种架构
 
 一种是在线业务模式的场景,又称pub-sub的模式, 消息broker知道消费者或订阅者，并且消息仅发布一次并且永远无法重播。
 
@@ -40,6 +40,22 @@ categories:
 * 需要提供消息的长期持久，允许多次读取。类似于DP的业务场景。(Kafka也是这样的)
 
 ![img_2.png](https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/master/_posts/pic/mq/20231223201308/img_2.png)
+
+## 适合场景
+
+* 在线执行足够的工作，让用户看到任务已经完成，然后将悬而未决的事情延后执行
+  * （在 Twitter 或 Facebook 上发布消息可能会遵循这种模式，更新时间线中的推文/消息，但更新你的关注者' 时间线带外；实时更新 Scobleizer 的所有关注者是不可行的）。
+* 在消费者中几乎不执行任何工作（仅安排任务）并通知用户该任务将离线发生，通常使用轮询机制在任务完成后更新界面
+  * （例如，在 Slicehost 上配置新的 VM 遵循此图案
+
+
+## Message queue缺点
+
+* Queue能够同步操作改为异步操作，让客户端不必要一直等待，提高响应性能。
+* 代价就是，如果客户端是一个写入操作，然后加入队列，客户端得到一个200。
+* 如果恰巧客户端立马查询，实质上数据并没有写入成功（因为数据只是在队列中而没有真正的持久化）
+* 最终发生了不一致的事情。
+* 总结：如果业务场景可以容忍短时间内的数据不一致（即最终一致性），使用队列是合适的。然而，如果业务流程依赖于即时数据一致性，这种异步处理方式可能就不太适用了。
 
 ## Azure Service Bus vs Azure Event Hub
 
@@ -78,6 +94,8 @@ https://medium.com/slalom-technology/azure-messaging-when-to-use-what-and-why-po
 ![img_7.png](https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/master/_posts/pic/mq/20231223201308/img_7.png)
 
 ## Reference
+* https://lethain.com/introduction-to-architecting-systems-for-scale/
+* https://www.freecodecamp.org/news/a-dummys-guide-to-distributed-queues-2cd358d83780/
 * 0.https://blog.bytebytego.com/p/why-do-we-need-a-message-queue
 * 1.https://blog.bytebytego.com/p/how-to-choose-a-message-queue-kafka
 * 2.https://medium.com/slalom-technology/azure-messaging-when-to-use-what-and-why-post-1-c643e43052ed

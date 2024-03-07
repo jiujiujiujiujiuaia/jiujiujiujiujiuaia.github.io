@@ -55,6 +55,8 @@ categories:
 
 ### Consistent hashing
 
+TODO: 下面的一致性hash写的太浅了，这个很好(https://acodersjourney.com/system-design-interview-consistent-hashing/)
+
 ![img_4.png](https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/master/_posts/pic/redis/20231229135150/img_4.png)
 
 通过举一个例子来理解一致性hash
@@ -90,6 +92,7 @@ https://blog.bytebytego.com/p/a-crash-course-in-caching-final-part
 
 ## Reference
 
+* 1.https://acodersjourney.com/system-design-interview-consistent-hashing/
 * https://blog.bytebytego.com/p/a-crash-course-in-caching-part-1
 * https://blog.bytebytego.com/p/a-crash-course-in-caching-part-2
 * https://blog.bytebytego.com/p/a-crash-course-in-caching-final-part
