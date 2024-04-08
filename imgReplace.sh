@@ -2,10 +2,6 @@
 
 # Define function to replace content
 Replace_Content() {
-    local fileName="$1"
-    local imageFolder="$2"
-    local dateString="$3"
-    local oldText="$4"
 
     # Construct markdown file path
     baseFilePath="_posts/"
@@ -23,11 +19,11 @@ Replace_Content() {
 
     fileName=$(basename "$matchingFiles")
     fullFilePath="$fullFilePath$fileName"
+    echo "the full file name is: $fullFilePath"
     echo "the file name is: $fileName"
 
     # Construct replacement content
-    templateUrl="(https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/master/_posts/pic/{placeholder}/{datetime}/img"
-    newContent=$(echo "$templateUrl" | sed "s/{placeholder}/$imageFolder/g" | sed "s/{datetime}/$dateString/g")
+    newContent="(https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/master/_posts/pic/$imageFolder/$dateString/img"
 
     # Ensure file exists
     if [[ ! -f "$fullFilePath" ]]; then
@@ -39,16 +35,24 @@ Replace_Content() {
     echo "Old content: $oldText"
     echo "New content: $newContent"
 
-    # Replace
-    sed -i "s/$(echo "$oldText" | sed 's/[^^]/[&]/g;s/\^/\\^/g')/$newContent/g" "$fullFilePath"
+    # 读取文件内容
+    fileContent=$(<"$fullFilePath")
 
-    echo "[Completed] [$fileName] has been replaced"
+    # 使用 grep 命令统计匹配次数
+    occurrencesCount=$(echo "$fileContent" | grep -o -F "$oldText" | wc -l )
+
+    # 使用 sed 命令进行文本替换
+    fileContent=$(echo "$fileContent" | sed "s/$oldText/${newContent//\//\\/}/g")
+
+    # 写入修改后的内容到文件
+    echo "$fileContent" > "$fullFilePath"
+    echo "[Completed] [$fileName] contains [$occurrencesCount] of [$oldText], has been replaced"
+
+
 }
 
 # Define function to move images to folder
 Move_Images_To_Folder() {
-    local imageFolder="$1"
-    local dateString="$2"
 
     # Determine base path
     baseDir="_posts"
@@ -65,9 +69,10 @@ Move_Images_To_Folder() {
     fi
 
     # Find all PNG images
-    pngFiles=$(find "$baseDir" -type f -name "*.png")
+    pngFiles=$(find "$baseDir" -maxdepth 1 -type f -name "*.png")
 
     for file in $pngFiles; do
+        echo "$pngFiles"
         # Build target file path
         targetFile="$targetDir/$(basename "$file")"
 
@@ -81,14 +86,12 @@ Move_Images_To_Folder() {
         mv "$file" "$targetFile"
     done
 
-    imageCount=$(echo "$pngFiles" | wc -l)
+    imageCount=$(echo -n "$pngFiles" | wc -l )
     echo "[Completed] moving [$imageCount] pictures to pic/$imageFolder"
 }
 
 # Define function to submit commit
 Submit_Commit() {
-    local comments="$1"
-
     git add .
     git commit -m "$comments"
     git push
@@ -96,15 +99,65 @@ Submit_Commit() {
 }
 
 # Get current date
-currentDate=$(date +"%Y%m%d%H%M%S")
+
+
+
+#!/bin/bash
+
+# Initialize variables with default values
+fileName=""
+imageFolder=""
+comments=""
+oldText="(img"
+dateString=$(date +"%Y%m%d%H%M%S")
+
+# Parse command line options
+while getopts ":f:i:c:" opt; do
+  case ${opt} in
+    f )
+      fileName="$OPTARG"
+      ;;
+    i )
+      imageFolder="$OPTARG"
+      ;;
+    c )
+      comments="$OPTARG"
+      ;;
+    \? )
+      echo "Invalid option: $OPTARG" 1>&2
+      exit 1
+      ;;
+    : )
+      echo "Option -$OPTARG requires an argument." 1>&2
+      exit 1
+      ;;
+  esac
+done
+shift $((OPTIND -1))
+
+# Now you can use $filename and $imageFolder variables in your script
+echo "===arguments==="
+echo "Filename: $fileName"
+echo "Image Folder: $imageFolder"
+echo "$dateString"
+echo ""
+
 
 # If filename and imageFolder are not empty, execute Replace_Content function
-if [[ ! -z "$filename" && ! -z "$imageFolder" ]]; then
-    Move_Images_To_Folder "$imageFolder" "$currentDate"
-    Replace_Content "$filename" "$imageFolder" "$currentDate" "$oldText"
+if [[ ! -z "$fileName" && ! -z "$imageFolder" ]]; then
+    echo "===move images==="
+    Move_Images_To_Folder
+    echo ""
+
+    echo "===replace content==="
+    Replace_Content
+    echo ""
 fi
 
 # If comments variable is not empty, execute Submit_Commit function
 if [[ ! -z "$comments" ]]; then
+    echo "===replace content==="
     Submit_Commit "$comments"
+    echo ""
 fi
+
