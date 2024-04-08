@@ -39,7 +39,8 @@ Replace_Content() {
     fileContent=$(<"$fullFilePath")
 
     # 使用 grep 命令统计匹配次数
-    occurrencesCount=$(echo "$fileContent" | grep -o -F "$oldText" | wc -l )
+    occurrencesCount=$(expr $(echo "$fileContent" | grep -o -F "$oldText" | wc -l) - 1)
+
 
     # 使用 sed 命令进行文本替换
     fileContent=$(echo "$fileContent" | sed "s/$oldText/${newContent//\//\\/}/g")
@@ -72,7 +73,7 @@ Move_Images_To_Folder() {
     pngFiles=$(find "$baseDir" -maxdepth 1 -type f -name "*.png")
 
     for file in $pngFiles; do
-        echo "$pngFiles"
+        echo "$file"
         # Build target file path
         targetFile="$targetDir/$(basename "$file")"
 
@@ -86,7 +87,7 @@ Move_Images_To_Folder() {
         mv "$file" "$targetFile"
     done
 
-    imageCount=$(echo -n "$pngFiles" | wc -l )
+    imageCount=$(expr $(echo  "$pngFiles" | wc -l ))
     echo "[Completed] moving [$imageCount] pictures to pic/$imageFolder"
 }
 
