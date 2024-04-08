@@ -156,7 +156,7 @@ fi
 
 # If comments variable is not empty, execute Submit_Commit function
 if [[ ! -z "$comments" ]]; then
-    echo "===replace content==="
+    echo "===git push==="
     Submit_Commit "$comments"
     echo ""
 fi
