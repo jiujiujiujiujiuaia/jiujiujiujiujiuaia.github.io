@@ -1,0 +1,1010 @@
+<!--不算子网站访客统计-->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-M7QXLLL8YX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-M7QXLLL8YX');
+</script>
+
+
+<!doctype html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/assets/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/assets/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/assets/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="三山的编程之旅" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="常用代码库(TODO 看已有的onenote常用库)">
+<meta name="keywords" content="Jekyll, NexT">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Csharp常用snippets">
+<meta property="og:url" content="https://jiujiujiujiujiuaia.github.io/leetcode/2020/06/01/Csharp%E5%B8%B8%E7%94%A8snippets/">
+<meta property="og:site_name" content="三山的编程之旅">
+<meta property="og:description" content="常用代码库(TODO 看已有的onenote常用库)">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/snippets/20240106124505/img.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/snippets/20240106124505/img_6.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/snippets/20240106124505/img_7.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Csharp常用snippets">
+<meta name="twitter:description" content="常用代码库(TODO 看已有的onenote常用库)">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/snippets/20240106124505/img.png">
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://jiujiujiujiujiuaia.github.io"/>
+
+
+
+
+
+  <title>Csharp常用snippets | 三山的编程之旅</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'G-M7QXLLL8YX', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">三山的编程之旅</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+<div id="posts" class="posts-expand">
+  
+  
+
+  
+
+  
+  
+  
+
+  <article class="post post-type- " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://jiujiujiujiujiuaia.github.io/leetcode/2020/06/01/Csharp%E5%B8%B8%E7%94%A8snippets/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="三山">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="assets/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="三山的编程之旅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+          
+          
+            Csharp常用snippets
+          
+        </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-01T23:30:09+00:00">
+                2020-06-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/category/#/Leetcode" itemprop="url" rel="index">
+                    <span itemprop="name">Leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+                
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv" id="busuanzi_container_page_pv">
+            本文总阅读量<span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+                
+
+            
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <div class="post-wordcount">
+                  <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                  <span class="post-meta-item-text">字数统计</span>
+                <span title="字数统计">
+                  235字
+                </span>
+
+                <span class="post-meta-divider">|</span>
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                  <span class="post-meta-item-text">阅读时长</span>
+                <span title="阅读时长">
+                  1分钟
+                </span>
+            </div>
+
+          
+            
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 id="常用代码库todo-看已有的onenote常用库">常用代码库(TODO 看已有的onenote常用库)</h2>
+
+<h3 id="1排序">1.排序</h3>
+
+<h4 id="array-sort">Array Sort</h4>
+
+<p>使用Array.sort for string数组和char数组</p>
+
+<div class="language-csharp highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13</pre></td><td class="code"><pre class="highlight"><code><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+
+<span class="kt">char</span><span class="p">[]</span> <span class="n">array</span> <span class="p">=</span> <span class="p">{</span> <span class="sc">'z'</span><span class="p">,</span> <span class="sc">'a'</span><span class="p">,</span> <span class="sc">'b'</span> <span class="p">};</span>
+<span class="c1">// Convert array to a string and print it.</span>
+<span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">"UNSORTED: "</span> <span class="p">+</span> <span class="k">new</span> <span class="kt">string</span><span class="p">(</span><span class="n">array</span><span class="p">));</span>
+
+<span class="c1">// Sort the char array.</span>
+<span class="n">Array</span><span class="p">.</span><span class="n">Sort</span><span class="p">&lt;</span><span class="kt">char</span><span class="p">&gt;(</span><span class="n">array</span><span class="p">);</span>
+<span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">"SORTED: "</span> <span class="p">+</span> <span class="k">new</span> <span class="kt">string</span><span class="p">(</span><span class="n">array</span><span class="p">));</span>
+
+<span class="p">====</span>
+<span class="n">UNSORTED</span><span class="p">:</span> <span class="n">zab</span>
+<span class="n">SORTED</span><span class="p">:</span> <span class="n">abz</span>
+</code></pre></td></tr></tbody></table></div></div>
+
+<div class="language-csharp highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17<br/>18<br/>19<br/>20<br/>21</pre></td><td class="code"><pre class="highlight"><code><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+
+<span class="kt">string</span><span class="p">[]</span> <span class="n">pets</span> <span class="p">=</span> <span class="k">new</span> <span class="kt">string</span><span class="p">[]</span>
+<span class="p">{</span>
+    <span class="s">"dog"</span><span class="p">,</span>
+    <span class="s">"bird"</span><span class="p">,</span>
+    <span class="s">"cat"</span>
+<span class="p">};</span>
+<span class="c1">// Step 1: invoke Array.Sort method on string array.</span>
+<span class="n">Array</span><span class="p">.</span><span class="nf">Sort</span><span class="p">(</span><span class="n">pets</span><span class="p">);</span>
+
+<span class="c1">// Step 2: loop over strings in array and print them.</span>
+<span class="k">foreach</span> <span class="p">(</span><span class="kt">string</span> <span class="n">pet</span> <span class="k">in</span> <span class="n">pets</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="n">pet</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="p">====</span>
+<span class="n">bird</span>
+<span class="n">cat</span>
+<span class="n">dog</span>
+</code></pre></td></tr></tbody></table></div></div>
+
+<h4 id="orderbylinq">OrderBy(Linq)</h4>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/snippets/20240106124505/img.png" alt="img.png" /></p>
+
+<h4 id="list-sort">List Sort</h4>
+
+<p>使用List.sort</p>
+<div class="language-csharp highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17<br/>18<br/>19<br/>20<br/>21<br/>22<br/>23<br/>24<br/>25<br/>26</pre></td><td class="code"><pre class="highlight"><code><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
+
+<span class="n">List</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;</span> <span class="n">fruitNames</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;()</span>
+<span class="p">{</span>
+    <span class="s">"mango"</span><span class="p">,</span>
+    <span class="s">"pineapple"</span><span class="p">,</span>
+    <span class="s">"kiwi"</span><span class="p">,</span>
+    <span class="s">"apple"</span><span class="p">,</span>
+    <span class="s">"tomato"</span>
+<span class="p">};</span>
+<span class="c1">// Sort the fruit in alphabetical order.</span>
+<span class="n">fruitNames</span><span class="p">.</span><span class="nf">Sort</span><span class="p">();</span>
+
+<span class="c1">// Print the sorted fruit.</span>
+<span class="k">foreach</span> <span class="p">(</span><span class="kt">string</span> <span class="n">fruit</span> <span class="k">in</span> <span class="n">fruitNames</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="n">fruit</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="p">====</span>
+<span class="n">apple</span>
+<span class="n">kiwi</span>
+<span class="n">mango</span>
+<span class="n">pineapple</span>
+<span class="n">tomato</span>
+</code></pre></td></tr></tbody></table></div></div>
+
+<p>自定义排序</p>
+<div class="language-csharp highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9</pre></td><td class="code"><pre class="highlight"><code>            <span class="kt">var</span> <span class="n">meetings</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">[</span><span class="k">]&gt;</span><span class="p">();</span>
+            <span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">item</span> <span class="k">in</span> <span class="n">intervals</span><span class="p">)</span> <span class="p">{</span>
+                <span class="kt">var</span> <span class="n">begin</span> <span class="p">=</span> <span class="k">new</span> <span class="kt">int</span><span class="p">[]</span> <span class="p">{</span> <span class="n">item</span><span class="p">[</span><span class="m">0</span><span class="p">],</span> <span class="m">1</span> <span class="p">};</span>
+                <span class="kt">var</span> <span class="n">end</span> <span class="p">=</span> <span class="k">new</span> <span class="kt">int</span><span class="p">[]</span> <span class="p">{</span> <span class="n">item</span><span class="p">[</span><span class="m">1</span><span class="p">],</span> <span class="p">-</span><span class="m">1</span> <span class="p">};</span>
+                <span class="n">meetings</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="n">begin</span><span class="p">);</span>
+                <span class="n">meetings</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="n">end</span><span class="p">);</span>
+            <span class="p">}</span>
+
+            <span class="n">meetings</span><span class="p">.</span><span class="nf">Sort</span><span class="p">((</span><span class="n">o1</span><span class="p">,</span> <span class="n">o2</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="n">o1</span><span class="p">[</span><span class="m">0</span><span class="p">]</span> <span class="p">!=</span> <span class="n">o2</span><span class="p">[</span><span class="m">0</span><span class="p">]</span> <span class="p">?</span> <span class="n">o1</span><span class="p">[</span><span class="m">0</span><span class="p">].</span><span class="nf">CompareTo</span><span class="p">(</span><span class="n">o2</span><span class="p">[</span><span class="m">0</span><span class="p">])</span> <span class="p">:</span> <span class="n">o1</span><span class="p">[</span><span class="m">1</span><span class="p">].</span><span class="nf">CompareTo</span><span class="p">(</span><span class="n">o2</span><span class="p">[</span><span class="m">1</span><span class="p">]));</span>
+</code></pre></td></tr></tbody></table></div></div>
+
+<h3 id="2返回多个value">2.返回多个value</h3>
+
+<p>https://www.dotnetperls.com/multiple-return-values</p>
+
+<h3 id="3stringbuilder">3.StringBuilder</h3>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/snippets/20240106124505/img_6.png" alt="img_6.png" /></p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/snippets/20240106124505/img_7.png" alt="img_7.png" /></p>
+
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+      
+      
+
+      
+      
+        <div class="post-nav" id="post-nav-id">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/leetcode/2020/06/01/Golang-%E5%88%B7%E9%A2%98%E5%B8%B8%E7%94%A8%E5%BA%93/" rel="next" title="Golang 刷题常用库">
+                <i class="fa fa-chevron-left"></i> Golang 刷题常用库
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/system%20design/2020/03/02/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/" rel="prev" title="系统设计常见问题">
+                系统设计常见问题 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+      
+
+      
+    </footer>
+  </article>
+
+  <div class="post-spread">
+    
+  </div>
+</div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        
+        
+        
+
+
+
+
+
+
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/assets/images/avatar.gif"
+               alt="三山" />
+          <p class="site-author-name" itemprop="name">三山</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">77</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/">
+                <span class="site-state-item-count">48</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+        
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+
+
+
+
+
+
+
+            
+              <div class="post-toc-content">
+    <ol class=nav>
+      <li class="nav-item nav-level-2"> <a class="nav-link" href="#常用代码库todo-看已有的onenote常用库"> <span class="nav-number">1</span> <span class="nav-text">常用代码库(TODO 看已有的onenote常用库)</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-3"> <a class="nav-link" href="#1排序"> <span class="nav-number">1.1</span> <span class="nav-text">1.排序</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-4"> <a class="nav-link" href="#array-sort"> <span class="nav-number">1.1.1</span> <span class="nav-text">Array Sort</span> </a> </li> <li class="nav-item nav-level-4"> <a class="nav-link" href="#orderbylinq"> <span class="nav-number">1.1.2</span> <span class="nav-text">OrderBy(Linq)</span> </a> </li> <li class="nav-item nav-level-4"> <a class="nav-link" href="#list-sort"> <span class="nav-number">1.1.3</span> <span class="nav-text">List Sort</span> </a> </li> </ol> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#2返回多个value"> <span class="nav-number">1.2</span> <span class="nav-text">2.返回多个value</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#3stringbuilder"> <span class="nav-number">1.3</span> <span class="nav-text">3.StringBuilder</span> </a> </li> </ol> </li>
+    </ol>
+  </div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">三山</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://jekyllrb.com">Jekyll</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/simpleyyt/jekyll-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+   
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/assets/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  <script type="text/javascript" src="/assets/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/assets/js/src/post-details.js?v=5.1.1"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+    
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
+
+

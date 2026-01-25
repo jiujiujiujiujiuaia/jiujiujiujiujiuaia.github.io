@@ -1,0 +1,1096 @@
+<!--不算子网站访客统计-->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-M7QXLLL8YX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-M7QXLLL8YX');
+</script>
+
+
+<!doctype html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/assets/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/assets/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/assets/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="三山的编程之旅" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="1.什么是KEDA KEDA(Kubernetes-based Event Driven Autoscaler)是一种基于事件驱动对 K8S 资源对象扩缩容的组件。非常轻量、简单、功能强大，不仅支持基于 CPU / MEM 资源和基于 Cron 定时 HPA 方式，">
+<meta name="keywords" content="Jekyll, NexT">
+<meta property="og:type" content="article">
+<meta property="og:title" content="KEDA脚手架">
+<meta property="og:url" content="https://jiujiujiujiujiuaia.github.io/%E6%8A%80%E6%9C%AF/keda/2023/08/05/%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AAKEDA%E6%B5%8B%E8%AF%95%E9%9B%86%E7%BE%A4/">
+<meta property="og:site_name" content="三山的编程之旅">
+<meta property="og:description" content="1.什么是KEDA KEDA(Kubernetes-based Event Driven Autoscaler)是一种基于事件驱动对 K8S 资源对象扩缩容的组件。非常轻量、简单、功能强大，不仅支持基于 CPU / MEM 资源和基于 Cron 定时 HPA 方式，">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/KEDA/img_3.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/KEDA/img_11.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/KEDA/img_12.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/KEDA/img.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/KEDA/img_1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/KEDA/img_2.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/KEDA/img_5.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/KEDA/img_6.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/KEDA/img_9.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/KEDA/img_10.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/KEDA/img_7.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/KEDA/img_8.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="KEDA脚手架">
+<meta name="twitter:description" content="1.什么是KEDA KEDA(Kubernetes-based Event Driven Autoscaler)是一种基于事件驱动对 K8S 资源对象扩缩容的组件。非常轻量、简单、功能强大，不仅支持基于 CPU / MEM 资源和基于 Cron 定时 HPA 方式，">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/KEDA/img_3.png">
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://jiujiujiujiujiuaia.github.io"/>
+
+
+
+
+
+  <title>KEDA脚手架 | 三山的编程之旅</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'G-M7QXLLL8YX', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">三山的编程之旅</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+<div id="posts" class="posts-expand">
+  
+  
+
+  
+
+  
+  
+  
+
+  <article class="post post-type- " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://jiujiujiujiujiuaia.github.io/%E6%8A%80%E6%9C%AF/keda/2023/08/05/%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AAKEDA%E6%B5%8B%E8%AF%95%E9%9B%86%E7%BE%A4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="三山">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="assets/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="三山的编程之旅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+          
+          
+            KEDA脚手架
+          
+        </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-08-05T23:30:09+00:00">
+                2023-08-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/category/#/%E6%8A%80%E6%9C%AF" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/category/#/KEDA" itemprop="url" rel="index">
+                    <span itemprop="name">KEDA</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+                
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv" id="busuanzi_container_page_pv">
+            本文总阅读量<span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+                
+
+            
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <div class="post-wordcount">
+                  <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                  <span class="post-meta-item-text">字数统计</span>
+                <span title="字数统计">
+                  986字
+                </span>
+
+                <span class="post-meta-divider">|</span>
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                  <span class="post-meta-item-text">阅读时长</span>
+                <span title="阅读时长">
+                  4分钟
+                </span>
+            </div>
+
+          
+            
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 id="1什么是keda">1.什么是KEDA</h2>
+<p>KEDA(Kubernetes-based Event Driven Autoscaler)是一种基于事件驱动对 K8S 资源对象扩缩容的组件。非常轻量、简单、功能强大，不仅支持基于 CPU / MEM 资源和基于 Cron 定时 HPA 方式，</p>
+
+<p>同时也支持各种事件驱动型 HPA，比如 MQ 、Kafka 等消息队列长度事件，Redis 、URL Metric 、Promtheus 数值阀值事件等等事件源(Scalers)</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/KEDA/img_3.png" alt="img_3.png" /></p>
+
+<h2 id="2为什么需要keda">2.为什么需要KEDA</h2>
+
+<p>k8s 官方早就推出了 HPA，为什么我们还需要 KEDA 呢？</p>
+
+<p>HPA 在经过三个大版本的演进后当前支持了Resource、Object、External、Pods 等四种类型的指标，演进历程如下：</p>
+
+<ul>
+  <li>autoscaling/v1：只支持基于CPU指标的缩放</li>
+  <li>autoscaling/v2beta1：支持Resource Metrics（资源指标，如pod的CPU）和Custom Metrics（自定义指标）的缩放</li>
+  <li>autoscaling/v2beta2：支持Resource Metrics（资源指标，如pod的CPU）和Custom Metrics（自定义指标）和 ExternalMetrics（额外指标）的缩放。</li>
+</ul>
+
+<p>如果需要基于其他地方如 Prometheus、Kafka、云供应商或其他事件上的指标进行伸缩，那么可以通过 v2beta2 版本提供的 external metrics 来实现，具体如下：</p>
+
+<ul>
+  <li>1）通过 Prometheus-adaptor 将从 prometheus 中拿到的指标转换为 HPA 能够识别的格式，以此来实现基于 prometheus 指标的弹性伸缩</li>
+  <li>2）然后应用需要实现 metrics 接口或者对应的 exporter 来将指标暴露给 Prometheus</li>
+</ul>
+
+<p>可以看到， HPA v2beta2 版本就可以实现基于外部指标弹性伸缩，只是实现上比较麻烦，KEDA 的出现主要是为了解决 HPA 无法基于灵活的事件源进行伸缩的这个问题。</p>
+
+<p>因此，KEDA通过提供一些列开箱即用的scaler，增加了HPA的能力，使得用户可以很方便的根据自定义指标进行扩缩容。</p>
+
+<h2 id="3部署">3.部署</h2>
+
+<h3 id="权限鉴权">权限鉴权</h3>
+<p>那么，KEDA以及KEDA所在的K8S集群，是如何从外部的存储（Kafka，Eventhub)中读到数据，解决权限问题的呢？</p>
+
+<p>在KEDA的官网中以及TriggerAuthentication这个CRD中，有下面这几种办法:</p>
+<ol>
+  <li>Environment variable</li>
+  <li>Secret(写在yaml中)</li>
+  <li>Azure Key Vault secret</li>
+  <li>Identity providers</li>
+</ol>
+
+<p>我在这里利用的就是Azure Managed Identity来实现无密代码访问，简单来说就是：</p>
+<ul>
+  <li>1.让identity有读取LA的resource group的权限</li>
+  <li>2.然后把这个identity绑定到VMSS上，这样VMSS就可以通过无密码的方式，访问到Azure的resource</li>
+</ul>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/KEDA/img_11.png" alt="" /></p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/KEDA/img_12.png" alt="" /></p>
+
+<h3 id="1创建一个aks-cluster">(1).创建一个AKS cluster</h3>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7</pre></td><td class="code"><pre class="highlight"><code>az login
+
+az group create <span class="nt">--name</span> myResourceGroup <span class="nt">--location</span> eastus
+
+az aks create <span class="nt">-g</span> myResourceGroup <span class="nt">-n</span> myAKSCluster <span class="nt">--enable-managed-identity</span> <span class="nt">--node-count</span> 3 <span class="nt">--enable-addons</span> monitoring <span class="nt">--generate-ssh-keys</span>
+
+az aks get-credentials <span class="nt">--resource-group</span> myResourceGroup <span class="nt">--name</span> myAKSCluster
+</code></pre></td></tr></tbody></table></div></div>
+
+<h3 id="2部署micmanaged-identity-controller">(2).部署MIC(Managed Identity Controller)</h3>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5</pre></td><td class="code"><pre class="highlight"><code>kubectl apply <span class="nt">-f</span> https://raw.githubusercontent.com/Azure/aad-pod-identity/v1.8.17/deploy/infra/deployment-rbac.yaml
+
+kubectl apply <span class="nt">-f</span> https://raw.githubusercontent.com/Azure/aad-pod-identity/v1.8.17/deploy/infra/deployment.yaml
+
+kubectl apply <span class="nt">-f</span> https://raw.githubusercontent.com/Azure/aad-pod-identity/v1.8.17/deploy/infra/mic-exception.yaml
+</code></pre></td></tr></tbody></table></div></div>
+
+<h3 id="3部署keda">(3).部署KEDA</h3>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1</pre></td><td class="code"><pre class="highlight"><code>kubectl apply <span class="nt">-f</span> https://github.com/kedacore/keda/releases/download/v2.9.3/keda-2.9.3.yaml
+</code></pre></td></tr></tbody></table></div></div>
+
+<h3 id="4创建一个lalog-analytics">(4).创建一个LA(Log Analytics)</h3>
+
+<p>LA将会是KEDA的external metric source，作为信号来源。KEDA Metric server会周期性的去读取LA获取最新的metric来决定是否要
+扩容或者缩容。</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1</pre></td><td class="code"><pre class="highlight"><code>az monitor log-analytics workspace create <span class="nt">-g</span> MyResourceGroup <span class="nt">-n</span> MyWorkspace
+</code></pre></td></tr></tbody></table></div></div>
+
+<h3 id="5授予aks默认的managed-identity访问la的权限">(5).授予AKS默认的Managed Identity访问LA的权限</h3>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7</pre></td><td class="code"><pre class="highlight"><code><span class="c">## get the managed identity id</span>
+<span class="nv">$ManagedIdentityId</span> <span class="o">=</span> az aks show <span class="nt">-g</span> myResourceGroup <span class="nt">-n</span> myAKSCluster <span class="nt">--query</span> identityProfile.kubeletidentity.clientId <span class="nt">-otsv</span>
+
+<span class="nv">$LASubscriptionId</span> <span class="o">=</span> <span class="s2">""</span> <span class="c">## required fill yours</span>
+<span class="nv">$LAResourceGroupName</span> <span class="o">=</span> <span class="s2">"MyResourceGroup"</span> <span class="c">## required fill yours</span>
+
+az role assignment create <span class="nt">--role</span> <span class="s2">"Reader"</span> <span class="nt">--assignee</span> <span class="s2">"</span><span class="k">${</span><span class="nv">ManagedIdentityId</span><span class="k">}</span><span class="s2">"</span> <span class="nt">--scope</span> <span class="s2">"/subscriptions/</span><span class="k">${</span><span class="nv">LASubscriptionId</span><span class="k">}</span><span class="s2">/resourcegroups/</span><span class="k">${</span><span class="nv">LAResourceGroupName</span><span class="k">}</span><span class="s2">"</span> 
+</code></pre></td></tr></tbody></table></div></div>
+
+<h3 id="6部署identity-k8s-yaml">(6).部署Identity K8S yaml</h3>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1</pre></td><td class="code"><pre class="highlight"><code><span class="nv">$IdentityResourceId</span><span class="o">=</span><span class="n">az</span><span class="w"> </span><span class="nx">identity</span><span class="w"> </span><span class="nx">show</span><span class="w"> </span><span class="nt">-g</span><span class="w"> </span><span class="nv">${RESOURCE_GROUP}</span><span class="w"> </span><span class="nt">-n</span><span class="w"> </span><span class="nv">${IDENTITY_NAME}</span><span class="w"> </span><span class="nt">--query</span><span class="w"> </span><span class="nx">id</span><span class="w"> </span><span class="nt">-otsv</span><span class="w">
+</span></code></pre></td></tr></tbody></table></div></div>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16</pre></td><td class="code"><pre class="highlight"><code><span class="na">apiVersion</span><span class="pi">:</span> <span class="s2">"</span><span class="s">aadpodidentity.k8s.io/v1"</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">AzureIdentity</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">myidentity</span>
+<span class="na">spec</span><span class="pi">:</span>
+  <span class="na">type</span><span class="pi">:</span> <span class="m">0</span>
+  <span class="na">resourceID</span><span class="pi">:</span> <span class="pi">{</span><span class="nv">$IdentityResourceId</span><span class="pi">}</span>
+  <span class="na">clientID</span><span class="pi">:</span> <span class="s">${$ManagedIdentityId}</span>
+<span class="nn">---</span>
+<span class="na">apiVersion</span><span class="pi">:</span> <span class="s2">"</span><span class="s">aadpodidentity.k8s.io/v1"</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">AzureIdentityBinding</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">myidentity-binding</span>
+<span class="na">spec</span><span class="pi">:</span>
+  <span class="na">azureIdentity</span><span class="pi">:</span> <span class="s">myidentity</span>
+  <span class="na">selector</span><span class="pi">:</span> <span class="s">myidentity</span>
+</code></pre></td></tr></tbody></table></div></div>
+<p>kubectl apply -f xx.yaml</p>
+
+<h3 id="7授予keda-pod权限访问la">(7).授予KEDA pod权限访问LA</h3>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3</pre></td><td class="code"><pre class="highlight"><code>kubectl patch deployment keda-operator <span class="nt">-n</span> keda <span class="nt">--type</span> json <span class="nt">-p</span><span class="o">=</span><span class="s1">'[{"op": "add", "path": "/spec/template/metadata/labels/aadpodidbinding", "value": "'</span><span class="k">${</span><span class="nv">IDENTITY_NAME</span><span class="k">}</span><span class="s1">'"}]'</span>
+
+kubectl patch deployment keda-metrics-apiserver <span class="nt">-n</span> keda <span class="nt">--type</span> json <span class="nt">-p</span><span class="o">=</span><span class="s1">'[{"op": "add", "path": "/spec/template/metadata/labels/aadpodidbinding", "value": "'</span><span class="k">${</span><span class="nv">IDENTITY_NAME</span><span class="k">}</span><span class="s1">'"}]'</span>
+</code></pre></td></tr></tbody></table></div></div>
+<h2 id="4测试">4.测试</h2>
+
+<h3 id="1发送metric到la">(1).发送Metric到LA</h3>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/KEDA/img.png" alt="img.png" /></p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/KEDA/img_1.png" alt="img_1.png" /></p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/KEDA/img_2.png" alt="img_2.png" /></p>
+
+<p>大概等一个五分钟左右</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/KEDA/img_5.png" alt="img_5.png" /></p>
+
+<h3 id="2部署demo-deployment和scaled-objectcrd">(2).部署demo deployment和scaled object(CRD)</h3>
+
+<p>kubectl apply -f deployment.yaml</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/KEDA/img_6.png" alt="img_6.png" /></p>
+
+<p>kubectl apply -f scaledobject.yaml</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/KEDA/img_9.png" alt="img_9.png" /></p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/KEDA/img_10.png" alt="img_10.png" /></p>
+
+<h3 id="3获取metric">(3).获取metric</h3>
+<p>kubectl get –raw “/apis/external.metrics.k8s.io/v1beta1”</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/KEDA/img_7.png" alt="img_7.png" /></p>
+
+<p>kubectl get –raw “/apis/external.metrics.k8s.io/v1beta1/namespaces/example/s0-azure-log-analytics-10c097e6-9e38-4c0a-aaf8-60e8e57d7047?labelSelector=scaledobject.keda.sh%2Fname%3Dkedaloganalytics-scaled-object”</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/KEDA/img_8.png" alt="img_8.png" /></p>
+
+<h2 id="reference">Reference</h2>
+<p>1.https://www.lixueduan.com/posts/kubernetes/18-keda/
+2.https://keda.sh/docs/2.11/concepts/scaling-deployments/
+3.https://learn.microsoft.com/en-us/azure/azure-monitor/logs/data-collector-api?tabs=powershell
+4.https://azure.github.io/aad-pod-identity/docs/getting-started/installation/
+5.https://www.qinglite.cn/doc/58576474bdbb697ea</p>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+      
+      
+
+      
+      
+        <div class="post-nav" id="post-nav-id">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/%E6%8A%80%E6%9C%AF/c%23/2023/08/06/%E5%9C%A8-C-%E4%B8%AD%E4%BC%98%E9%9B%85%E5%A4%84%E7%90%86-null-%E5%80%BC%E7%9A%84%E4%BA%94%E7%A7%8D%E6%96%B9%E5%BC%8F/" rel="next" title="在C#中优雅处理 null 值的五种方式">
+                <i class="fa fa-chevron-left"></i> 在C#中优雅处理 null 值的五种方式
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/%E5%8D%9A%E5%AE%A2/2023/07/01/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA(1)/" rel="prev" title="博客搭建过程">
+                博客搭建过程 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+      
+
+      
+    </footer>
+  </article>
+
+  <div class="post-spread">
+    
+  </div>
+</div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        
+        
+        
+
+
+
+
+
+
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/assets/images/avatar.gif"
+               alt="三山" />
+          <p class="site-author-name" itemprop="name">三山</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">77</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/">
+                <span class="site-state-item-count">48</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+        
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+
+
+
+
+
+
+
+            
+              <div class="post-toc-content">
+    <ol class=nav>
+      <li class="nav-item nav-level-2"> <a class="nav-link" href="#1什么是keda"> <span class="nav-number">1</span> <span class="nav-text">1.什么是KEDA</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#2为什么需要keda"> <span class="nav-number">2</span> <span class="nav-text">2.为什么需要KEDA</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#3部署"> <span class="nav-number">3</span> <span class="nav-text">3.部署</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-3"> <a class="nav-link" href="#权限鉴权"> <span class="nav-number">3.1</span> <span class="nav-text">权限鉴权</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#1创建一个aks-cluster"> <span class="nav-number">3.2</span> <span class="nav-text">(1).创建一个AKS cluster</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#2部署micmanaged-identity-controller"> <span class="nav-number">3.3</span> <span class="nav-text">(2).部署MIC(Managed Identity Controller)</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#3部署keda"> <span class="nav-number">3.4</span> <span class="nav-text">(3).部署KEDA</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#4创建一个lalog-analytics"> <span class="nav-number">3.5</span> <span class="nav-text">(4).创建一个LA(Log Analytics)</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#5授予aks默认的managed-identity访问la的权限"> <span class="nav-number">3.6</span> <span class="nav-text">(5).授予AKS默认的Managed Identity访问LA的权限</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#6部署identity-k8s-yaml"> <span class="nav-number">3.7</span> <span class="nav-text">(6).部署Identity K8S yaml</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#7授予keda-pod权限访问la"> <span class="nav-number">3.8</span> <span class="nav-text">(7).授予KEDA pod权限访问LA</span> </a> </li> </ol> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#4测试"> <span class="nav-number">4</span> <span class="nav-text">4.测试</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-3"> <a class="nav-link" href="#1发送metric到la"> <span class="nav-number">4.1</span> <span class="nav-text">(1).发送Metric到LA</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#2部署demo-deployment和scaled-objectcrd"> <span class="nav-number">4.2</span> <span class="nav-text">(2).部署demo deployment和scaled object(CRD)</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#3获取metric"> <span class="nav-number">4.3</span> <span class="nav-text">(3).获取metric</span> </a> </li> </ol> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#reference"> <span class="nav-number">5</span> <span class="nav-text">Reference</span> </a> </li>
+    </ol>
+  </div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">三山</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://jekyllrb.com">Jekyll</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/simpleyyt/jekyll-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+   
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/assets/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  <script type="text/javascript" src="/assets/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/assets/js/src/post-details.js?v=5.1.1"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+    
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
+
+

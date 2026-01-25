@@ -1,0 +1,1175 @@
+<!--不算子网站访客统计-->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-M7QXLLL8YX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-M7QXLLL8YX');
+</script>
+
+
+<!doctype html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/assets/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/assets/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/assets/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="三山的编程之旅" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="1.技巧">
+<meta name="keywords" content="Jekyll, NexT">
+<meta property="og:type" content="article">
+<meta property="og:title" content="树">
+<meta property="og:url" content="https://jiujiujiujiujiuaia.github.io/leetcode/2020/07/03/%E6%A0%91/">
+<meta property="og:site_name" content="三山的编程之旅">
+<meta property="og:description" content="1.技巧">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/tree/20231119112832/img.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/tree/20231111095657/img_6.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/tree/img_44.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/tree/20231126155746/img.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/tree/img_41.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/tree/img_42.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/tree/img_43.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/tree/20231005204348/img.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/tree/20231005204348/img_1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/tree/20231005204348/img_2.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/tree/20231005204348/img_3.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/tree/20231005204348/img_4.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/tree/20231005204348/img_5.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/tree/20231111095657/img_2.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/tree/20231111095657/img_3.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/tree/20231111095657/img_4.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/tree/20231111095657/img_1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/tree/20231111095657/img_5.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/tree/20231119112832/img_1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/tree/20231119112832/img_2.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/tree/20231119112832/img_3.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="树">
+<meta name="twitter:description" content="1.技巧">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/tree/20231119112832/img.png">
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://jiujiujiujiujiuaia.github.io"/>
+
+
+
+
+
+  <title>树 | 三山的编程之旅</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'G-M7QXLLL8YX', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">三山的编程之旅</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+<div id="posts" class="posts-expand">
+  
+  
+
+  
+
+  
+  
+  
+
+  <article class="post post-type- " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://jiujiujiujiujiuaia.github.io/leetcode/2020/07/03/%E6%A0%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="三山">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="assets/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="三山的编程之旅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+          
+          
+            树
+          
+        </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-03T23:30:09+00:00">
+                2020-07-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/category/#/Leetcode" itemprop="url" rel="index">
+                    <span itemprop="name">Leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+                
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv" id="busuanzi_container_page_pv">
+            本文总阅读量<span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+                
+
+            
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <div class="post-wordcount">
+                  <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                  <span class="post-meta-item-text">字数统计</span>
+                <span title="字数统计">
+                  2782字
+                </span>
+
+                <span class="post-meta-divider">|</span>
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                  <span class="post-meta-item-text">阅读时长</span>
+                <span title="阅读时长">
+                  13分钟
+                </span>
+            </div>
+
+          
+            
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 id="1技巧">1.技巧</h2>
+
+<ul>
+  <li>二叉树
+    <ul>
+      <li>路径问题：从根节点出发的路径 vs 任意节点出发的路径</li>
+      <li>遍历树
+        <ul>
+          <li>前中后序遍历(dfs)</li>
+          <li>迭代遍历(不利用递归)</li>
+          <li>层序遍历(bfs，利用queue or 递归法)</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>二叉搜索树
+    <ul>
+      <li>搜索树查找</li>
+      <li>搜索树插入</li>
+      <li>搜索树删除</li>
+      <li>中序遍历是升序</li>
+      <li>实在没辙转换成有序数组</li>
+      <li>依靠前一个的要利用pre指针</li>
+      <li>二叉搜索树和数组和链表的相互转换</li>
+    </ul>
+  </li>
+  <li>公共祖先问题</li>
+</ul>
+
+<p>6一定要小于8，如何把6和8关联起来呢？就是中序+pre
+<img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/tree/20231119112832/img.png" alt="img.png" /></p>
+
+<h3 id="遍历树">遍历树</h3>
+
+<ul>
+  <li>前序遍历：先访问根节点，再前序遍历左子树，再前序遍历右子树</li>
+  <li>中序遍历：先中序遍历左子树，再访问根节点，再中序遍历右子树</li>
+  <li>后序遍历：先后序遍历左子树，再后序遍历右子树，再访问根节点</li>
+  <li>层序遍历</li>
+</ul>
+
+<p>值得一提的是，<strong>前中后序遍历实际上都是dfs</strong>，它体现了一种“先走到尽头，再回溯继续”的遍历方式。</p>
+
+<p>深度优先遍历就像是绕着整个二叉树的外围“走”一圈，</p>
+
+<p>怎么看下面的图呢？跟着线走，对于橙色的前序，跟着线走一遍。</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/tree/20231111095657/img_6.png" alt="img_6.png" /></p>
+
+<p>TODO 前中后序是不是都是把整棵树遍历一边，因此其实在不讲顺序的题目中区别不大，比如236</p>
+
+<p>前中后序的总结：</p>
+<ul>
+  <li>以根访问顺序决定是什么遍历</li>
+  <li>左子树都是优先右子树</li>
+</ul>
+
+<p>迭代遍历:https://github.com/greyireland/algorithm-pattern/blob/master/data_structure/binary_tree.md</p>
+
+<h3 id="公共祖先问题">公共祖先问题</h3>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/tree/img_44.png" alt="img_44.png" /></p>
+
+<h2 id="2corner-cases">2.Corner cases</h2>
+
+<h2 id="3题解">3.题解</h2>
+
+<h3 id="94145144">94/145/144</h3>
+
+<p>二叉树的迭代遍历，如果硬写十分复杂，相当于用人脑去模拟函数栈的过程。有一种双色法的模板可以简单的把这个问题解决。</p>
+
+<p>这个方法是用迭代的方式去模拟递推函数栈的方式，任意一个节点，第一次启动函数栈的时候不会访问（入栈），第二次才会访问其值（出栈）。</p>
+
+<p>回忆一下中序递归一个棵树的过程，假设1，2，3:</p>
+
+<p>每个节点会被“访问”两次：</p>
+
+<ol>
+  <li>第一次访问（加载到内存）: 当递归函数到达节点1时，这个节点被加载到内存中，函数栈start。这是递归算法的一部分，但在这一步并没有进行任何处理或读取节点的值。这个步骤主要是为了确定是否需要进一步向左递归（访问左子树）。</li>
+  <li>第二次访问（读取值）: 在中序遍历中，当从左子树返回后（或者如果没有左子树），返回到节点1的函数栈，节点的值会被读取并添加到遍历结果中。然后，算法会继续递归遍历右子树（如果有的话）。</li>
+  <li>这个时候，就是读取这个节点了。</li>
+</ol>
+
+<p>因此，尽管每个节点在递归过程中会被“访问”两次，但只有在第二次访问时，节点的值才会被实际处理或记录。</p>
+
+<p>假设我们有两种颜色”1”和”0”：</p>
+<ul>
+  <li>“0”就表示的是递归中的第一次进入过程，这个时候是为了访问左节点 or 右节点</li>
+  <li>“1”则表示递归中的从叶子节点返回时候，真正把这个值加入到list中。</li>
+</ul>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/tree/20231126155746/img.png" alt="img.png" /></p>
+
+<h3 id="100104226">100/104/226</h3>
+
+<p>这三道题可以用同一个思路:</p>
+
+<ul>
+  <li>把任意一颗树抽象成一个根节点，和左右两个子树，思考这三者的关系。</li>
+  <li>不写代码，用自然语言描述这三者的关系。</li>
+  <li>这类题目只需要思考两层，根节点这一层和左右子树层，然后剩下的层无论多复杂，只需要交给递归就好，不用人脑模拟。</li>
+  <li>比如104这道题，本来是计算根节点的高度，根节点的高度又和左右子树挂钩了，左右子树又和子树挂钩，问题是重复的。</li>
+  <li>也就是说，子问题是重复的，解决一个抽象的问题（根左右的关系），就把所有子问题解决了。</li>
+</ul>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/tree/img_41.png" alt="img_41.png" /></p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/tree/img_42.png" alt="img_42.png" /></p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/tree/img_43.png" alt="img_43.png" /></p>
+
+<p>104: 左子树的深度和右子树深度的最大值，加1，那就是根节点的最大深度
+100: 对于两个根节点p和q，如果p的左子树和q的左子树相同，p的右子树和q的右子树相同，且p和q相同，那就相同。
+226: 对于任意根节点，把左右节点反转过来</p>
+
+<h3 id="124-二叉树中的最大路径和">124. 二叉树中的最大路径和</h3>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/tree/20231005204348/img.png" alt="img.png" /></p>
+
+<p>一开始对这道题目理解错了，题目很清楚的定义了<strong>路径</strong></p>
+
+<ul>
+  <li>路径是由边组成的，每个边有两个点，一个路径不能是同一个点重复出现两次。</li>
+  <li>不一定从根节点开始(112就是从根节点开始的)</li>
+</ul>
+
+<p>从1到2，再到3是可以的，一笔可以画出这个路径。</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/tree/20231005204348/img_1.png" alt="img_1.png" /></p>
+
+<p>但是从1到2的时候，没办法一笔连起来3和4，因此到2这个节点，只能选择左边或者右边。</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/tree/20231005204348/img_2.png" alt="img_2.png" /></p>
+
+<p>因此，对于下图这个子树，需要计算两个东西:</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/tree/20231005204348/img_3.png" alt="img_3.png" /></p>
+
+<ul>
+  <li>case1:a节点可以给它的父节点贡献多大的值？(a+b or a+c)</li>
+  <li>case2:不联络父节点的情况下，以a为父节点的最大值(a+b+c)</li>
+</ul>
+
+<p>由于有了case2，这种全局最优，但是不会返回给上级的情况，我们就需要一个全局变量来不断的计算maximum。</p>
+
+<p>示例2就是在描述这种情况，不能单纯地只计算左右子树的最大值，然后累加，</p>
+
+<p>根节点为-10，因此15-&gt;20-&gt;7是最优解，如果根节点是100，那么最优解就不是局部的了。</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/tree/20231005204348/img_4.png" alt="img_4.png" /></p>
+
+<p><strong>总结: 这道题不一定从根节点开始，因此不能简单地计算’左子树的最大值和右子树的最大值，然后和根节点相加’，而是再每一次递归中要计算任意节点也在路径中的情况</strong></p>
+
+<p>任意节点 vs 从根节点出发</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/tree/20231005204348/img_5.png" alt="img_5.png" /></p>
+
+<h3 id="236二叉树的最近公共祖先">236.二叉树的最近公共祖先</h3>
+
+<p>做题是不是没头绪的时候，先给自己举一些例子？</p>
+
+<p>一个根节点，两边各有一个p和q
+一个根节点，两边都没有
+一个根节点，只有右边有节点，有可能是两个节点都在右边，有可能是只有一个节点在右边。</p>
+
+<h4 id="解法一">解法一</h4>
+<p>我们一分为二的看这道题，首先你要找到p和q这两个点。</p>
+
+<p>通过遍历分别找两个节点，<strong>无论是先序后序还是中序遍历</strong>，都是遍历每一个节点，我们遍历每一个节点找到p和q。</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/tree/20231111095657/img_2.png" alt="img_2.png" /></p>
+
+<p>然后呢，如何通过找到的节点来得到最近祖先呢？这里我们当然不会用list(注释掉)，而是直接返回找到的点。</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/tree/20231111095657/img_3.png" alt="img_3.png" /></p>
+
+<p>以7是p，8是q为例子，TODO 给6下面再补充两个节点</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/tree/20231111095657/img_4.png" alt="img_4.png" /></p>
+
+<p>那么，对于任意一个根节点，有四种情况</p>
+<ul>
+  <li>当遍历到6时，符合<strong>left 和 right 同时为空的情况</strong> ：说明 root 的左 / 右子树中都不包含 p,q，应该返回null；</li>
+  <li>当遍历回溯到3时， 符合<strong>left 和 right 同时不为空的情况</strong> ：说明 p,q 分列在 root 的 异侧 （分别在 左 / 右子树），因此 root 为最近公共祖先，返回 root ；</li>
+  <li>当 left 为空 ，right 不为空 ：p,q 都不在 root 的左子树中，直接返回 right 。具体可分为两种情况：
+    <ul>
+      <li>当遍历回溯到1时，符合p,q 其中一个在 root 的 右子树的情况，此时 right 指向 p（假设为 p ）；</li>
+      <li>p,q 两节点都在 root 的 右子树 中，此时的 right 指向 最近公共祖先节点 ；</li>
+    </ul>
+  </li>
+  <li>当 left 不为空 ， right 为空 ：与情况 3. 同理；</li>
+</ul>
+
+<p>同样的，这道题的思考模式是，问题变成了子问题，在递归中解决了。因此只需要列举几个例子自证一下，分别是最简单的情况以及任意N层的情况</p>
+<ul>
+  <li>1，2，3一共三个节点，p和q是2和3</li>
+  <li>1，2，3一共三个节点，p和q是1和2</li>
+  <li>1，2，3是树中的一个小子树，p=2（任意深的情况）</li>
+</ul>
+
+<p>题示已经暗示了这道题成立的条件</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/tree/20231111095657/img_1.png" alt="img_1.png" /></p>
+
+<h4 id="解法二">解法二</h4>
+
+<p>树的结构是很特殊的，是从上到下的。也就是说，给你任意一点，你可以很方便的获得左右子节点。</p>
+
+<p>但是相反，给你任意一个子节点，你很难直接获得父节点，这个时候就需要额外的数据结构来帮助实现。（这也是为什么公共祖先问题的递归不好理解的原因把）</p>
+
+<p>具体怎么做呢？树没有节点到根的关系，因此可以用额外的内存存下来。由于子节点到根节点是一对一，而根节点到子节点是一对多。</p>
+
+<p>因此，遍历每一个节点，如果子节点不为空，把子节点为key，父节点为value保存起来。</p>
+
+<p>当获得了这样一个dic，如果找到最近公共祖先呢？p的祖先，一定是q的祖先，那么我们先把p所有的祖先保存在一个hashset中。</p>
+
+<p>然后对q及其祖先依次迭代，越靠近的，就是最近的祖先。</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/tree/20231111095657/img_5.png" alt="img_5.png" /></p>
+
+<h3 id="230-二叉搜索树中第k小的元素">230 二叉搜索树中第k小的元素</h3>
+
+<h4 id="解法一-1">解法一</h4>
+<p>二叉搜索树的性质是<strong>中序遍历可以把所有元素从小到大的依次访问</strong>，这样用一个count进行计数，就可以找到第K小的。</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/tree/20231119112832/img_1.png" alt="img_1.png" /></p>
+
+<h4 id="解法二-1">解法二</h4>
+
+<p>解法一的时间复杂度是o(N),因为是遍历整棵树。</p>
+
+<p><strong>如果二叉搜索树经常被修改（插入/删除操作）并且你需要频繁地查找第 k 小的值</strong>，你将如何优化 kthSmallest 函数？</p>
+
+<p>对于一颗BST，查找，插入，删除都是O(h)，是否能够通过修改BST的数据结构，让查询也变成O(h)呢？</p>
+
+<p>查询或者修改，都是通过BST的性质-&gt;树是有序的，来缩短时间复杂度的，因此，解法一是没有利用这个性质的。</p>
+
+<p>那么，新增了另外两个变量leftchilds和rightchilds，分别记录了该结点左子树和右子树中结点的数量。</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/tree/20231119112832/img_2.png" alt="img_2.png" /></p>
+
+<p>然后，对于左节点，它的排名就是左子节点+1，对于右节点，是父节点的排名+节点左节点+1</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/tree/20231119112832/img_3.png" alt="img_3.png" /></p>
+
+<h2 id="4刷题顺序">4.刷题顺序</h2>
+
+<h2 id="5刷题列表">5.刷题列表</h2>
+<p>TODO 总结万能模板和万能思路</p>
+
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+      
+      
+
+      
+      
+        <div class="post-nav" id="post-nav-id">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/leetcode/2020/07/04/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%AE%97%E6%B3%95%E4%BB%8B%E7%BB%8D/" rel="next" title="动态规划算法介绍">
+                <i class="fa fa-chevron-left"></i> 动态规划算法介绍
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/leetcode/2020/07/03/%E5%8C%BA%E9%97%B4%E9%97%AE%E9%A2%98/" rel="prev" title="区间问题">
+                区间问题 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+      
+
+      
+    </footer>
+  </article>
+
+  <div class="post-spread">
+    
+  </div>
+</div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        
+        
+        
+
+
+
+
+
+
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/assets/images/avatar.gif"
+               alt="三山" />
+          <p class="site-author-name" itemprop="name">三山</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">77</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/">
+                <span class="site-state-item-count">48</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+        
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+
+
+
+
+
+
+
+            
+              <div class="post-toc-content">
+    <ol class=nav>
+      <li class="nav-item nav-level-2"> <a class="nav-link" href="#1技巧"> <span class="nav-number">1</span> <span class="nav-text">1.技巧</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-3"> <a class="nav-link" href="#遍历树"> <span class="nav-number">1.1</span> <span class="nav-text">遍历树</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#公共祖先问题"> <span class="nav-number">1.2</span> <span class="nav-text">公共祖先问题</span> </a> </li> </ol> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#2corner-cases"> <span class="nav-number">2</span> <span class="nav-text">2.Corner cases</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#3题解"> <span class="nav-number">3</span> <span class="nav-text">3.题解</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-3"> <a class="nav-link" href="#94145144"> <span class="nav-number">3.1</span> <span class="nav-text">94/145/144</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#100104226"> <span class="nav-number">3.2</span> <span class="nav-text">100/104/226</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#124-二叉树中的最大路径和"> <span class="nav-number">3.3</span> <span class="nav-text">124. 二叉树中的最大路径和</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#236二叉树的最近公共祖先"> <span class="nav-number">3.4</span> <span class="nav-text">236.二叉树的最近公共祖先</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-4"> <a class="nav-link" href="#解法一"> <span class="nav-number">3.4.1</span> <span class="nav-text">解法一</span> </a> </li> <li class="nav-item nav-level-4"> <a class="nav-link" href="#解法二"> <span class="nav-number">3.4.2</span> <span class="nav-text">解法二</span> </a> </li> </ol> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#230-二叉搜索树中第k小的元素"> <span class="nav-number">3.5</span> <span class="nav-text">230 二叉搜索树中第k小的元素</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-4"> <a class="nav-link" href="#解法一-1"> <span class="nav-number">3.5.1</span> <span class="nav-text">解法一</span> </a> </li> <li class="nav-item nav-level-4"> <a class="nav-link" href="#解法二-1"> <span class="nav-number">3.5.2</span> <span class="nav-text">解法二</span> </a> </li> </ol> </li> </ol> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#4刷题顺序"> <span class="nav-number">4</span> <span class="nav-text">4.刷题顺序</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#5刷题列表"> <span class="nav-number">5</span> <span class="nav-text">5.刷题列表</span> </a> </li>
+    </ol>
+  </div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">三山</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://jekyllrb.com">Jekyll</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/simpleyyt/jekyll-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+   
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/assets/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  <script type="text/javascript" src="/assets/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/assets/js/src/post-details.js?v=5.1.1"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+    
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
+
+

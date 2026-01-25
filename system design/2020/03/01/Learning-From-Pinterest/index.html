@@ -1,0 +1,1062 @@
+<!--不算子网站访客统计-->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-M7QXLLL8YX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-M7QXLLL8YX');
+</script>
+
+
+<!doctype html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/assets/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/assets/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/assets/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="三山的编程之旅" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Why Sharding">
+<meta name="keywords" content="Jekyll, NexT">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Learning From Pinterest(Shard)">
+<meta property="og:url" content="https://jiujiujiujiujiuaia.github.io/system%20design/2020/03/01/Learning-From-Pinterest/">
+<meta property="og:site_name" content="三山的编程之旅">
+<meta property="og:description" content="Why Sharding">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/pinterest/20240303130331/img.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/pinterest/20240303130331/img_1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/pinterest/20240303130331/img_2.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/pinterest/20240303130331/img_3.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Learning From Pinterest(Shard)">
+<meta name="twitter:description" content="Why Sharding">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/pinterest/20240303130331/img.png">
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://jiujiujiujiujiuaia.github.io"/>
+
+
+
+
+
+  <title>Learning From Pinterest(Shard) | 三山的编程之旅</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'G-M7QXLLL8YX', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">三山的编程之旅</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+<div id="posts" class="posts-expand">
+  
+  
+
+  
+
+  
+  
+  
+
+  <article class="post post-type- " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://jiujiujiujiujiuaia.github.io/system%20design/2020/03/01/Learning-From-Pinterest/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="三山">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="assets/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="三山的编程之旅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+          
+          
+            Learning From Pinterest(Shard)
+          
+        </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-01T17:30:09+00:00">
+                2020-03-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/category/#/System%20Design" itemprop="url" rel="index">
+                    <span itemprop="name">System Design</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+                
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv" id="busuanzi_container_page_pv">
+            本文总阅读量<span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+                
+
+            
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <div class="post-wordcount">
+                  <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                  <span class="post-meta-item-text">字数统计</span>
+                <span title="字数统计">
+                  1405字
+                </span>
+
+                <span class="post-meta-divider">|</span>
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                  <span class="post-meta-item-text">阅读时长</span>
+                <span title="阅读时长">
+                  7分钟
+                </span>
+            </div>
+
+          
+            
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 id="why-sharding">Why Sharding</h2>
+
+<ul>
+  <li>更高的扩展性：单机的存储是有上限的， 分sharding能够存储下更多的数据</li>
+  <li>更好的性能：把请求分散到多个DB/服务器，限制了每个服务器的负载，性能得到了提升</li>
+  <li>更简单：比较Cluster的方案，sharding之间通常不需要复杂的算法同步和意识到其他sharding的存在，一般是由中间层分配请求和决定存储和读取</li>
+  <li>高可用：如何部分分片发生故障，只会影响这个分片上的数据，其他分片依旧可以正常工作。</li>
+</ul>
+
+<h2 id="how-pinterest-sharding">How Pinterest Sharding</h2>
+
+<ul>
+  <li>多master（好处和坏处）</li>
+  <li>如何知道任意的user id store在哪个shard(db)?
+    <ul>
+      <li>Option1: 把User id -&gt; DB Url的关系映射起来，然后存在某个metedata数据库中，提供lookup service</li>
+      <li>Option2: 设计合理的ID structure，直接从id读到look up的信息（优点：避免额外的开销，查询lookup service）</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="id-structure设计">ID Structure设计</h3>
+
+<ul>
+  <li>64位的ID被分为三个部分：Shard ID、Type和Local ID。</li>
+  <li>Shard ID确定数据存储在哪个分片上, 通过这个shardId可以直接拼接出来sharding db的地址。</li>
+  <li>Type用于表示对象类型，例如：User, Photo comments。</li>
+  <li>Local ID在分片内部用于唯一识别对象。这是一个由mysql 提供的自增id。
+    <ul>
+      <li>(Note: 全局自增在分布式数据库中不是支持的很多，常见的是依赖3rd party例如snowflake，UUID)</li>
+      <li>但是这个方案解决了这个问题！</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/pinterest/20240303130331/img.png" alt="img.png" /></p>
+
+<h3 id="写入场景">写入场景</h3>
+
+<p>对于任意的新数据，例如新用户，新评论</p>
+
+<ul>
+  <li>应用层服务从默认范围内，随机选择一个shard id</li>
+  <li>插入数据库，得到一个local id，通过自增字段来实现的</li>
+  <li>然后就得到了一个完成的用户id shardid-type-localId</li>
+</ul>
+
+<h3 id="读取场景">读取场景</h3>
+
+<ul>
+  <li>用户请求: 用户在应用中发起请求时（比如登陆），应用知道用户的完整64位ID，因为这是在用户注册时生成并分配给用户的，通常也会被用作系统内部表示用户身份的一部分。</li>
+  <li>解析ID: 应用或中间件层会解析这个64位ID，提取Shard ID、Type和Local ID。</li>
+  <li>定位数据: 通过Shard ID，应用或中间件可以查询查找结构来确定数据存储在哪个物理服务器上。这个查找结构就像一个路由表，它告诉系统每个Shard ID对应的数据库服务器。</li>
+  <li>读取操作: 一旦确定了物理服务器，应用会连接到该服务器的数据库实例，并使用Local ID作为查询参数来检索用户信息。</li>
+</ul>
+
+<h3 id="总结">总结</h3>
+
+<ul>
+  <li>新用户和新数据会倍随机的分布在不同的shards中
+    <ul>
+      <li>好处: 1.避免某个分片过载 2.简单的扩展</li>
+      <li>坏处： 1. 由于是随机分配，可能某个分片的用户恰好非常的活跃，导致负载失衡 2.跨分片的操作复杂和低效（follow up: 让用户的数据和用户在一起是一个手段）</li>
+    </ul>
+  </li>
+  <li>对于该用户后续的数据，会尽量分配在同一个shard中，尽量减少跨shard的读取</li>
+  <li>Local id依靠mysql的自增机制完成
+    <ul>
+      <li>好处 1.简单高效，比其他负责的ID generate算法简单 2.递进顺序，可以优化索引和方便数据检索</li>
+      <li>坏处 1.写入高峰时性能会下降</li>
+    </ul>
+  </li>
+  <li>Shard id space可以很大，我们一开始可以是先在初始范围，例如0-4000，一旦这个范围基本上满了，我们就开辟新的range，例如4001-8000选取。（好处是什么？）</li>
+</ul>
+
+<h3 id="bottle-neck">Bottle Neck?</h3>
+
+<p>1.用户规模增大了X倍，如何扩展？</p>
+
+<p>通过开辟新的shard的range来解决</p>
+
+<p>2.单个shard的负载变得很大，如何解决性能问题？</p>
+
+<ul>
+  <li>多个shard复制分摊读取的压力</li>
+  <li>把一个DB sharding拆分称多个DB shard，可以分担写入的压力</li>
+  <li>加入监控，实时的监控分片的容量和性能</li>
+</ul>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/pinterest/20240303130331/img_1.png" alt="img_1.png" /></p>
+
+<p>3.高可用</p>
+
+<ul>
+  <li>分片副本: 对每个分片保持一个或多个副本，以便在主分片出现故障时快速故障转移。</li>
+  <li>定期备份和恢复策略: 确保可以从数据丢失中恢复，减少意外发生时的影响。</li>
+</ul>
+
+<h3 id="主页的渲染">主页的渲染</h3>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/pinterest/20240303130331/img_2.png" alt="img_2.png" /></p>
+
+<p>在我们前面的id structure的设计中，shardid-type-localId，type就是分表了，对于不同的数据用不同的表处理:</p>
+<ul>
+  <li>type = user, user表</li>
+  <li>type = board, board表</li>
+  <li>因此一个用户的数据可以这样表示
+    <ul>
+      <li>001-user-001</li>
+      <li>001-board-001</li>
+      <li>两个自增id在不同的table，因此可以相同</li>
+    </ul>
+  </li>
+</ul>
+
+<p>假设我们有两张表:</p>
+
+<p>Table: User Row: User id, User name, email,…
+Table: Board: board id, board name, board video…</p>
+
+<ul>
+  <li>我们可以通过主键和外键之间的关系，通过join，把不同的数据关联起来</li>
+  <li>也可以通过mapping table，避免join操作
+    <ul>
+      <li>Local ID(user id) -&gt; MySQL blob(user information)</li>
+      <li>Local Id(user id) -&gt; Local Id(board id)</li>
+    </ul>
+  </li>
+</ul>
+
+<p>需要的查询语句就类似下面：</p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3</pre></td><td class="code"><pre class="highlight"><code><span class="k">SELECT</span> <span class="n">body</span> <span class="k">FROM</span> <span class="n">users</span> <span class="k">WHERE</span> <span class="n">id</span><span class="o">=&lt;</span><span class="n">local_user_id</span><span class="o">&gt;</span>
+<span class="k">SELECT</span> <span class="n">board_id</span> <span class="k">FROM</span> <span class="n">user_has_boards</span> <span class="k">WHERE</span> <span class="n">user_id</span><span class="o">=&lt;</span><span class="n">user_id</span><span class="o">&gt;</span>
+<span class="k">SELECT</span> <span class="n">body</span> <span class="k">FROM</span> <span class="n">boards</span> <span class="k">WHERE</span> <span class="n">id</span> <span class="k">IN</span> <span class="p">(</span><span class="o">&lt;</span><span class="n">board_ids</span><span class="o">&gt;</span><span class="p">)</span>
+</code></pre></td></tr></tbody></table></div></div>
+
+<p>总结：</p>
+<ul>
+  <li>使用PK（主键）或者index 查找比join更快更简单
+    <ul>
+      <li>好处： 1.join性能很慢，变成join一旦复杂了，写起来难以维护</li>
+      <li>坏处： 2.维护额外的冗余表，增加复杂性和负担</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/pinterest/20240303130331/img_3.png" alt="img_3.png" /></p>
+
+<h2 id="reference">Reference</h2>
+
+<ul>
+  <li>1.https://www.youtube.com/watch?v=dSk-SWLJ2g0</li>
+  <li>2.(别人的总结)[https://highscalability.com/scaling-pinterest-from-0-to-10s-of-billions-of-page-views-a/]</li>
+</ul>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+      
+      
+
+      
+      
+        <div class="post-nav" id="post-nav-id">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/system%20design/2020/03/01/Learning-From-Promotion-Email/" rel="next" title="Learning From Promotion Email">
+                <i class="fa fa-chevron-left"></i> Learning From Promotion Email
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/system%20design/2020/03/01/Learning-From-Payment/" rel="prev" title="Learning From Payment System">
+                Learning From Payment System <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+      
+
+      
+    </footer>
+  </article>
+
+  <div class="post-spread">
+    
+  </div>
+</div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        
+        
+        
+
+
+
+
+
+
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/assets/images/avatar.gif"
+               alt="三山" />
+          <p class="site-author-name" itemprop="name">三山</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">77</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/">
+                <span class="site-state-item-count">48</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+        
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+
+
+
+
+
+
+
+            
+              <div class="post-toc-content">
+    <ol class=nav>
+      <li class="nav-item nav-level-2"> <a class="nav-link" href="#why-sharding"> <span class="nav-number">1</span> <span class="nav-text">Why Sharding</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#how-pinterest-sharding"> <span class="nav-number">2</span> <span class="nav-text">How Pinterest Sharding</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-3"> <a class="nav-link" href="#id-structure设计"> <span class="nav-number">2.1</span> <span class="nav-text">ID Structure设计</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#写入场景"> <span class="nav-number">2.2</span> <span class="nav-text">写入场景</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#读取场景"> <span class="nav-number">2.3</span> <span class="nav-text">读取场景</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#总结"> <span class="nav-number">2.4</span> <span class="nav-text">总结</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#bottle-neck"> <span class="nav-number">2.5</span> <span class="nav-text">Bottle Neck?</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#主页的渲染"> <span class="nav-number">2.6</span> <span class="nav-text">主页的渲染</span> </a> </li> </ol> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#reference"> <span class="nav-number">3</span> <span class="nav-text">Reference</span> </a> </li>
+    </ol>
+  </div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">三山</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://jekyllrb.com">Jekyll</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/simpleyyt/jekyll-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+   
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/assets/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  <script type="text/javascript" src="/assets/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/assets/js/src/post-details.js?v=5.1.1"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+    
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
+
+

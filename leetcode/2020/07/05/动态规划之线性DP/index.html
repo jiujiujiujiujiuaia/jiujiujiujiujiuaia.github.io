@@ -1,0 +1,1077 @@
+<!--不算子网站访客统计-->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-M7QXLLL8YX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-M7QXLLL8YX');
+</script>
+
+
+<!doctype html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/assets/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/assets/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/assets/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="三山的编程之旅" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="动态规划解题技巧 Tip1 文章侧重点在于为什么状态是以nums[i]为结尾的，这篇文章重点讲解法和类别">
+<meta name="keywords" content="Jekyll, NexT">
+<meta property="og:type" content="article">
+<meta property="og:title" content="动态规划之线性DP">
+<meta property="og:url" content="https://jiujiujiujiujiuaia.github.io/leetcode/2020/07/05/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E4%B9%8B%E7%BA%BF%E6%80%A7DP/">
+<meta property="og:site_name" content="三山的编程之旅">
+<meta property="og:description" content="动态规划解题技巧 Tip1 文章侧重点在于为什么状态是以nums[i]为结尾的，这篇文章重点讲解法和类别">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/dynamicprogramming/img_45.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/dynamicprogramming/img_46.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/dynamicprogramming/img_47.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/dynamicprogramming/img_48.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/dynamicprogramming/img_49.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/dynamicprogramming/img_50.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/dynamicprogramming/img_51.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/dynamicprogramming/img_52.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/dynamicprogramming/img_53.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/dynamicprogramming/img_54.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="动态规划之线性DP">
+<meta name="twitter:description" content="动态规划解题技巧 Tip1 文章侧重点在于为什么状态是以nums[i]为结尾的，这篇文章重点讲解法和类别">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/dynamicprogramming/img_45.png">
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://jiujiujiujiujiuaia.github.io"/>
+
+
+
+
+
+  <title>动态规划之线性DP | 三山的编程之旅</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'G-M7QXLLL8YX', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">三山的编程之旅</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+<div id="posts" class="posts-expand">
+  
+  
+
+  
+
+  
+  
+  
+
+  <article class="post post-type- " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://jiujiujiujiujiuaia.github.io/leetcode/2020/07/05/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E4%B9%8B%E7%BA%BF%E6%80%A7DP/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="三山">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="assets/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="三山的编程之旅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+          
+          
+            动态规划之线性DP
+          
+        </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-05T23:30:09+00:00">
+                2020-07-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/category/#/Leetcode" itemprop="url" rel="index">
+                    <span itemprop="name">Leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+                
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv" id="busuanzi_container_page_pv">
+            本文总阅读量<span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+                
+
+            
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <div class="post-wordcount">
+                  <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                  <span class="post-meta-item-text">字数统计</span>
+                <span title="字数统计">
+                  2272字
+                </span>
+
+                <span class="post-meta-divider">|</span>
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                  <span class="post-meta-item-text">阅读时长</span>
+                <span title="阅读时长">
+                  11分钟
+                </span>
+            </div>
+
+          
+            
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <h1 id="动态规划解题技巧">动态规划解题技巧</h1>
+<p>Tip1 文章侧重点在于为什么状态是以nums[i]为结尾的，这篇文章重点讲解法和类别</p>
+
+<h1 id="以numsi结尾的最大值和前i个元素的最大值有什么区别">以nums[i]结尾的最大值和前i个元素的最大值有什么区别？</h1>
+
+<p>以nums[i]结尾的状态定义，意味dp[len(nums)]不是极值，因为极值可能出现在dp[j] 或者dp[j-1]也就是部分数组构成的集合中，代表题目为300或者53</p>
+
+<p>以前i个元素的状态定义，意味dp[len(nums)]就是结果，代表题目是打家劫舍，最大的偷盗结果肯定是把数组走完</p>
+
+<h1 id="那么如何知道是选择numsi结尾的还是前i个元素呢">那么如何知道是选择nums[i]结尾的还是前i个元素呢？</h1>
+
+<p>以下面的题目举例，这个选择和数组/字符串是子序列还是子数组是无关的。</p>
+
+<p>如果选择只看<strong>当前状态</strong>比如nums[i] == nums[j] 或者str[i] == str[j]，那么dp状态表示前i个元素的极值</p>
+
+<p>如果选择要看nums[i]和nums[i-1]，甚至是nums[j]的话，那么dp的状态表示的是以i元素的结尾的子序列/子数组的极值</p>
+
+<h2 id="1单串线性-dp-问题">1.单串线性 DP 问题</h2>
+
+<p>单串线性 DP 问题：问题的输入为单个数组或单个字符串的线性 DP 问题。状态一般可定义为dp[i]，表示为以nums[i]为结尾的相关解</p>
+
+<h3 id="11-300最长递增子序列">1.1 300最长递增子序列</h3>
+
+<p>定义状态dp[i]表示为：以nums[i]结尾的最长递增子序列长度。</p>
+
+<p>状态转移：由于是子序列而不是子数组（序列意味着不间隔），因此以nums[i]为结尾，应该和0-j区间每一个元素去比较，如果nums[i]&gt;nums[j],那么dp[i]=dp[j]+1，否则就是dp[i]</p>
+
+<p>初始状态：由于每个元素都可以是子序列,所以dp数组的value为1</p>
+
+<p>复杂度：时间复杂度O(N^2),空间复杂度O(N)</p>
+
+<p>优化：无，滚动数组的优化只能是递推关系式是dp[i]和dp[i-1]之间，然后数组不需要存那么多才可以优化，这个是dp[i]和dp[j]之间</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/dynamicprogramming/img_45.png" alt="img_45.png" /></p>
+
+<h3 id="12-53最大子数组和">1.2 53最大子数组和</h3>
+
+<p>定义状态dp[i]表示为：以nums[i]结尾的最大子数组和</p>
+
+<p>状态转移：由于是子数组，这意味着有相邻元素的性质，因此，如果dp[i-1]&lt;0,那么dp[i]=nums[i]，无论nums[i]是正数还是负数，如果dp[i-1]&gt;0，那么dp[i]=dp[i-1]+nums[i]</p>
+
+<p>初始状态：因为会看i-1,所以要考虑dp[0]的情况，dp[0]=0，意味着以nums[0]为结尾的子数组最大就是自己</p>
+
+<p>复杂度：时间复杂度O(N),空间复杂度O(N)</p>
+
+<p>优化: 由于只有dp[i+1]和dp[i]有关系推导，因此可以用一个变量表示dp[i]</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/dynamicprogramming/img_46.png" alt="img_46.png" /></p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/dynamicprogramming/img_47.png" alt="img_47.png" /></p>
+
+<h2 id="2双串线性-dp-问题">2.双串线性 DP 问题</h2>
+
+<p>问题的输入为两个数组或两个字符串的线性 DP 问题。状态一般可定义为dp[i][j]</p>
+
+<p>同样的，有两种状态表示，一种是nums[i]和nums[j]结尾，另外一种是前i个元素和前j个元素</p>
+
+<h3 id="21-1143-最长公共子路列">2.1 1143 最长公共子路列</h3>
+
+<p>状态定义：dp[i][j]表示以text1中的前i个元素组成的str1和text2中组成的子字符串str2的最长公共序列为dp[i][j]</p>
+
+<p>状态转移讨论: 如果str[i] == str[j]，那么dp[i][j] == dp[i-1][j-1]+1,如果str[i] != str[j], 那么dp[i][j] = max(dp[i-1][j],max[i][j-1])</p>
+
+<p>初始状态：因为会看i-1,所以要看dp[0][j]和dp[i][0]的情况，任何一个字符为空，那么公共子序列都是0。</p>
+
+<h4 id="问题">问题</h4>
+
+<p>同样是子序列的题目，为什么不像300一样，定义成以i和j结尾的最长公共序列呢？</p>
+
+<p>因为如果300定义的是前i个元素，那么nums[i+1]和nums[i]之间没有递推关系，哪怕nums[i+1]&gt;nums[i],由于dp[i]中是前i个最长的，有可能是以nums[j]结尾的子序列，那么nums[i]不一定大于nums[j]，</p>
+
+<p>因此300不能这样定义状态。如果53定义成前i个元素，那么即使dp[i-1]&gt;0,但是由于nums[i]和dp[i-1]所代表的子数组，不一定连续，所以也不能递推。</p>
+
+<p>而1143不同，它不需要比较str1[i]和str[i-1]（str2[j]和str[j-1]）的关系，只要str[i] == str[j]，那么就可以直接递推了。</p>
+
+<h3 id="22-718-最长重复数组">2.2 718 最长重复数组</h3>
+
+<p>状态定义：dp[i][j]表示以nums1中的前i个元素和nums2中的前j个元素的最长公共子数组为dp[i][j]</p>
+
+<p>状态转移讨论：如果nums[i] == nums[j]，那么dp[i][j] == dp[i-1][j-1]+1,如果nums[i] != nums[j]，那么dp[i][j] = 0</p>
+
+<p>初始状态: 因为会看i-1,所以要看dp[0][j]和dp[i][0]的情况，任何一个数组为空，那么两个公共子数组都为0</p>
+
+<p>优化：可以用滚筒数组</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/dynamicprogramming/img_48.png" alt="img_48.png" /></p>
+
+<h3 id="23-104472-没有时间写了">2.3 10/44/72 没有时间写了</h3>
+
+<p>好像字符串的这种题都是str1和前i个和str2的前j的状态定义，基本上只看当前的字符串（10是例外，我不知道为什么）</p>
+
+<p>所以到时候分类讨论就好了</p>
+
+<h3 id="24-115最长子序列问题">2.4 115最长子序列问题</h3>
+
+<h2 id="3路径问题">3.路径问题</h2>
+
+<h3 id="31-120-三角形最小路径和">3.1 120 三角形最小路径和</h3>
+
+<p>状态定义：dp[i][j]表示从(i,j)到底边的最小路径和,当i=0,j=0的时候，就是题解了。</p>
+
+<p>状态转移: dp[i][j] = min(dp[i+1][j],dp[i+1][j+1]) + nums[i][j],如果i=len(nums),也就是最后一层的话，dp[i][j] = nums[i][j]</p>
+
+<p>初始状态：无，最后一层的dp[i][j] = nums[i][j]</p>
+
+<p>优化:滚筒数组，你会发现无论是dp[i+1][j]还是dp[i+1][j+1],i+1都是一个固定的，所以可以从二维数组改成一维数组，然后保留上一层的dp[j]</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/dynamicprogramming/img_49.png" alt="img_49.png" /></p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/dynamicprogramming/img_50.png" alt="img_50.png" /></p>
+
+<p>值得一提：可以发现，这道题是从数组最后一层开始遍历的，而不是传统的i=0.j=0起手，为什么呢？因为dp本来就没有什么自顶向下或者自底向上的说法。迭代法喝递归法的顺序是相反的，</p>
+
+<p>这道题递归是从i=0,j=0,不断递归到最后一层，迭代法就是从最后一层开始，遍历到i,j =0,0</p>
+
+<h3 id="32-64最小路径和">3.2 64.最小路径和</h3>
+
+<p>状态定义：dp[i][j]表示从(i,j)到右下角终点的最小路径和,当i=0,j=0的时候，就是题解了。</p>
+
+<p>状态转移: dp[i][j] = min(dp[i][j+1],dp[i+1][j]) + nums[i][j],如果是最后一列,  dp[i][j] = nums[i][j] + dp[i+1][j]，如果是最后一行 dp[i][j] = nums[i][j] + dp[i][j+1]</p>
+
+<p>初始状态：无</p>
+
+<p>优化：滚筒数组，每个点只和自己的右边和下边的点有关系，从二维下降到一维，每次只存下一行的dp数组</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/dynamicprogramming/img_51.png" alt="img_51.png" /></p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/dynamicprogramming/img_52.png" alt="img_52.png" /></p>
+
+<p>值得一提：这种路径问题，有两种状态定义，一种是从起点到任意一点i,j的最小路径，另外一种是从任意一点到终点的最小路径。两种都可以，所以证明了DP题目没有范式。120最好是从任意一点到底边，因为这样
+状态好推导。</p>
+
+<h3 id="33-62-不同路径">3.3 62 不同路径</h3>
+
+<p>状态定义：dp[i][j]表示从起点到i,j的不同路径个数</p>
+
+<p>状态转移：如果i==len(nums) or j == len(nums[0])，dp[i][j]=1,因为只能向右或者向左。其他的，那么dp[i][j] = dp[i-1][j] + dp[i][j-1]</p>
+
+<p>优化：滚筒数组，从二维先下降成一维。每个点只和自己的左边和上边的点有关系。</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/dynamicprogramming/img_53.png" alt="img_53.png" /></p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/dynamicprogramming/img_54.png" alt="img_54.png" /></p>
+
+<h3 id="34-63-不同路径ii">3.4 63 不同路径II</h3>
+
+<p>不讲了，区别只有一个，如果有石头，那么那个点的dp[i][j] == 0</p>
+
+<h2 id="4其他问题">4.其他问题</h2>
+
+<p>其他问题分为两类，一类是选或不选的情况讨论，比如盗窃问题，另外一类是非常规的221 最大矩形问题，还有一类是非串型，比如279 343</p>
+
+<p>https://algo.itcharge.cn/10.Dynamic-Programming/03.Linear-DP/03.Linear-DP-List/</p>
+
+<h2 id="5背包问题">5.背包问题</h2>
+
+<p>01 背包
+完全背包</p>
+
+<p>4.01背包和完全背包的区别？01背包是选或者不选，完全背包是可以重复选</p>
+
+<p>5.对于求方案数的题目，就有恰好，至多，至少3种情况，494是恰好，如果是至多为target，只需要if target/capacity&gt;=0就好，capacity还能够剩下。
+比如从1,2,3中有多少种方法最多为target，如果target=8，那么最多就有8种办法（1,2,3有8个子集），都达不到8</p>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+      
+      
+
+      
+      
+        <div class="post-nav" id="post-nav-id">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/leetcode/2020/07/06/%E5%9B%9E%E6%BA%AF/" rel="next" title="回溯">
+                <i class="fa fa-chevron-left"></i> 回溯
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/leetcode/2020/07/04/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%AE%97%E6%B3%95%E4%BB%8B%E7%BB%8D/" rel="prev" title="动态规划算法介绍">
+                动态规划算法介绍 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+      
+
+      
+    </footer>
+  </article>
+
+  <div class="post-spread">
+    
+  </div>
+</div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        
+        
+        
+
+
+
+
+
+
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/assets/images/avatar.gif"
+               alt="三山" />
+          <p class="site-author-name" itemprop="name">三山</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">77</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/">
+                <span class="site-state-item-count">48</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+        
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+
+
+
+
+
+
+
+            
+              <div class="post-toc-content">
+    <ol class=nav>
+      <li class="nav-item nav-level-1"> <a class="nav-link" href="#动态规划解题技巧"> <span class="nav-number">1</span> <span class="nav-text">动态规划解题技巧</span> </a> </li> <li class="nav-item nav-level-1"> <a class="nav-link" href="#以numsi结尾的最大值和前i个元素的最大值有什么区别"> <span class="nav-number">2</span> <span class="nav-text">以nums[i]结尾的最大值和前i个元素的最大值有什么区别？</span> </a> </li> <li class="nav-item nav-level-1"> <a class="nav-link" href="#那么如何知道是选择numsi结尾的还是前i个元素呢"> <span class="nav-number">3</span> <span class="nav-text">那么如何知道是选择nums[i]结尾的还是前i个元素呢？</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-2"> <a class="nav-link" href="#1单串线性-dp-问题"> <span class="nav-number">3.1</span> <span class="nav-text">1.单串线性 DP 问题</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-3"> <a class="nav-link" href="#11-300最长递增子序列"> <span class="nav-number">3.1.1</span> <span class="nav-text">1.1 300最长递增子序列</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#12-53最大子数组和"> <span class="nav-number">3.1.2</span> <span class="nav-text">1.2 53最大子数组和</span> </a> </li> </ol> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#2双串线性-dp-问题"> <span class="nav-number">3.2</span> <span class="nav-text">2.双串线性 DP 问题</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-3"> <a class="nav-link" href="#21-1143-最长公共子路列"> <span class="nav-number">3.2.1</span> <span class="nav-text">2.1 1143 最长公共子路列</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-4"> <a class="nav-link" href="#问题"> <span class="nav-number">3.2.1.1</span> <span class="nav-text">问题</span> </a> </li> </ol> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#22-718-最长重复数组"> <span class="nav-number">3.2.2</span> <span class="nav-text">2.2 718 最长重复数组</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#23-104472-没有时间写了"> <span class="nav-number">3.2.3</span> <span class="nav-text">2.3 10/44/72 没有时间写了</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#24-115最长子序列问题"> <span class="nav-number">3.2.4</span> <span class="nav-text">2.4 115最长子序列问题</span> </a> </li> </ol> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#3路径问题"> <span class="nav-number">3.3</span> <span class="nav-text">3.路径问题</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-3"> <a class="nav-link" href="#31-120-三角形最小路径和"> <span class="nav-number">3.3.1</span> <span class="nav-text">3.1 120 三角形最小路径和</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#32-64最小路径和"> <span class="nav-number">3.3.2</span> <span class="nav-text">3.2 64.最小路径和</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#33-62-不同路径"> <span class="nav-number">3.3.3</span> <span class="nav-text">3.3 62 不同路径</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#34-63-不同路径ii"> <span class="nav-number">3.3.4</span> <span class="nav-text">3.4 63 不同路径II</span> </a> </li> </ol> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#4其他问题"> <span class="nav-number">3.4</span> <span class="nav-text">4.其他问题</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#5背包问题"> <span class="nav-number">3.5</span> <span class="nav-text">5.背包问题</span> </a> </li> </ol> </li>
+    </ol>
+  </div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">三山</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://jekyllrb.com">Jekyll</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/simpleyyt/jekyll-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+   
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/assets/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  <script type="text/javascript" src="/assets/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/assets/js/src/post-details.js?v=5.1.1"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+    
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
+
+

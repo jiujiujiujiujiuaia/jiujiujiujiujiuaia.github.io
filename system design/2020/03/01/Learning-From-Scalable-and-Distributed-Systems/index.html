@@ -1,0 +1,1092 @@
+<!--不算子网站访客统计-->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-M7QXLLL8YX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-M7QXLLL8YX');
+</script>
+
+
+<!doctype html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/assets/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/assets/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/assets/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="三山的编程之旅" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Introduction">
+<meta name="keywords" content="Jekyll, NexT">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Learning From Scalable and Distributed Systems">
+<meta property="og:url" content="https://jiujiujiujiujiuaia.github.io/system%20design/2020/03/01/Learning-From-Scalable-and-Distributed-Systems/">
+<meta property="og:site_name" content="三山的编程之旅">
+<meta property="og:description" content="Introduction">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/article/20240305212051/img.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/article/20240305212051/img_1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/article/20240305212051/img_2.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/article/20240305212051/img_3.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/article/20240305212051/img_4.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/article/20240305212051/img_5.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/article/20240305212051/img_6.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/article/20240305212051/img_7.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/article/20240305212051/img_8.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/article/20240305212051/img_9.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/article/20240305212051/img_10.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/article/20240305212051/img_11.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Learning From Scalable and Distributed Systems">
+<meta name="twitter:description" content="Introduction">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/article/20240305212051/img.png">
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://jiujiujiujiujiuaia.github.io"/>
+
+
+
+
+
+  <title>Learning From Scalable and Distributed Systems | 三山的编程之旅</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'G-M7QXLLL8YX', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">三山的编程之旅</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+<div id="posts" class="posts-expand">
+  
+  
+
+  
+
+  
+  
+  
+
+  <article class="post post-type- " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://jiujiujiujiujiuaia.github.io/system%20design/2020/03/01/Learning-From-Scalable-and-Distributed-Systems/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="三山">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="assets/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="三山的编程之旅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+          
+          
+            Learning From Scalable and Distributed Systems
+          
+        </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-01T17:30:09+00:00">
+                2020-03-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/category/#/System%20Design" itemprop="url" rel="index">
+                    <span itemprop="name">System Design</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+                
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv" id="busuanzi_container_page_pv">
+            本文总阅读量<span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+                
+
+            
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <div class="post-wordcount">
+                  <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                  <span class="post-meta-item-text">字数统计</span>
+                <span title="字数统计">
+                  1424字
+                </span>
+
+                <span class="post-meta-divider">|</span>
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                  <span class="post-meta-item-text">阅读时长</span>
+                <span title="阅读时长">
+                  7分钟
+                </span>
+            </div>
+
+          
+            
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 id="introduction">Introduction</h2>
+
+<p>读后感关于Kate Matsudaira写的这篇https://aosabook.org/en/v2/distsys.html</p>
+
+<h2 id="设计原则">设计原则</h2>
+
+<p>我们应该设计怎么样的系统?</p>
+
+<ul>
+  <li>High availability - replication</li>
+  <li>Low latency - routing/redis/data index/split table/sharding</li>
+  <li>Easily scalability - db partition/ service SRP - micro-service/keep stateless</li>
+  <li>Reliability: 一开始对这个和availability没能区别开，才知道这个指的是数据的一致性，没有脏读等等</li>
+</ul>
+
+<h2 id="需求">需求</h2>
+
+<p>想象一个系统，用户可以将图像上传到中央服务器，并且可以通过网络链接或 API 请求图像。了简单起见，我们假设该应用程序有两个关键部分：</p>
+<ul>
+  <li>将图像上传（写入）到服务器的能力</li>
+  <li>查询图像的能力</li>
+</ul>
+
+<p>对应到上面的原则，这个系统就需要这些能力:</p>
+<ul>
+  <li>如果用户上传图像，该图像应该始终存在(HA)</li>
+  <li>图像下载/请求需要低延迟(Low latency)</li>
+  <li>存储的图像数量非常大，需要考虑扩展(Easily scalability)</li>
+</ul>
+
+<h2 id="v1-版本">V1 版本</h2>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/article/20240305212051/img.png" alt="img.png" /></p>
+
+<h2 id="优化">优化</h2>
+
+<p>V1版本已经可以满足functional的需求了，但是我们要考虑那些non-functional的需求应该如何满足?</p>
+
+<h3 id="1服务读写扩展">1.服务读写扩展</h3>
+
+<ul>
+  <li>读和写的qps不一样 (大部分系统read heavy not write heavy)</li>
+  <li>读和写的资源需求不一样</li>
+  <li>读和写的latency也不一样，读有很多优化，而写由于一致性的要求，有锁</li>
+</ul>
+
+<p>因此，我们需要把服务进行拆分，把“image request handler service”拆分成一个负责读，另外一个负责写:</p>
+<ul>
+  <li>image write service</li>
+  <li>image retrieval service</li>
+</ul>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/article/20240305212051/img_1.png" alt="img_1.png" /></p>
+
+<p>这样做的好处是:</p>
+<ul>
+  <li>读写频率，资源需求不一样，因此为了资源最大利用率，服务可以各自扩展以应对不同业务需求(比如写请求spike，可以单独扩展write)</li>
+  <li>不同的业务服务有着不同的bottle neck，拆分了更容易解决和improve</li>
+</ul>
+
+<h3 id="2数据库读写扩展">2.数据库读写扩展</h3>
+
+<p>中间的服务只是数据流转的中点，而不是终点。因此，背后的数据库也要考虑到读写扩展。我们有两种做法:</p>
+<ul>
+  <li>Mysql master and slave mode</li>
+  <li>Nosql partition mode</li>
+</ul>
+
+<p>在SD中，我们更倾向第二种，nosql的partition更容易也更简单。我们只需要对每一张照片，随机分配到一个sharding db中，然后再去这个sharding db中进行读取。</p>
+
+<p>这样，相当于我们把巨大的QPS请求，给拆分成了10，100，1000个sharding db的请求，每个sharding db可以通过load testing压测出来它的压力上限，我们就可以合理分配sharding的数量。</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/article/20240305212051/img_2.png" alt="img_2.png" /></p>
+
+<p>用sharding的问题是:</p>
+<ul>
+  <li>带来分布式系统下，跨多个partition join的问题</li>
+  <li>部分partition的存放的数据过热问题</li>
+  <li>复杂事务如何处理?</li>
+  <li>数据一致性</li>
+</ul>
+
+<p>可以参考我自己写的这个!(Learning-From-Pinterest)[https://jiujiujiujiujiuaia.github.io/system%20design/2020/03/01/Learning-From-Pinterest/]是如何解决带来的这个问题</p>
+
+<h3 id="3更快的access到datanetworkingcache">3.更快的Access到Data(networking&amp;cache)</h3>
+
+<h4 id="cache">Cache</h4>
+
+<p>如下图所示，我们肯定不想用户直接touch database，这样db的压力过大，同时disk 比memory慢了好几个量级。因此，我们需要加缓存。</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/article/20240305212051/img_3.png" alt="img_3.png" /></p>
+
+<p>#1. Local cache</p>
+
+<p>最简单的，我们在access level(应用服务器)上加cache。每次向服务发出请求时，节点都会快速返回本地缓存的数据（如果存在）。如果缓存中没有，则请求节点会从磁盘中查询数据。</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/article/20240305212051/img_4.png" alt="img_4.png" /></p>
+
+<p>问题很快就出现了，由于我们的系统会不断的水平扩展以及使用Load balancer技术分摊qps的压力，这导致每次请求都会随机load到任意的机器上。</p>
+
+<p>相同的请求将发送到不同的节点，从而增加缓存未命中率和DB的压力。</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/article/20240305212051/img_5.png" alt="img_5.png" /></p>
+
+<p>#2.Global cache</p>
+
+<p>全局缓存顾名思义：所有节点都使用相同的单个缓存空间。当在缓存中找不到缓存的响应时，缓存本身将负责从底层存储中检索丢失的数据。</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/article/20240305212051/img_6.png" alt="img_6.png" /></p>
+
+<p>问题同样也很快出现了：</p>
+<ul>
+  <li>随着数据规模的不断扩大，global cache需要更多的capacity，如何方便的增加节点？</li>
+  <li>global cache处理请求的能力是有限的，如何分担读取的QPS?</li>
+</ul>
+
+<p>#3.Distribute cache</p>
+
+<p>在分布式缓存中（图 1.12），每个节点都拥有部分缓存数据。不同于#1 local cache的是，应用层节点在查找某条数据的时候，就已经知道要去那个cache node查找（hash算法）</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/article/20240305212051/img_7.png" alt="img_7.png" /></p>
+
+<p>然而，把一块中心化的cache切分成一块块（类似于sharding和partition了），所带来的坏处同样是：</p>
+<ul>
+  <li>如何方便的上线和下线cache节点？(一致性hash算法)[https://jiujiujiujiujiuaia.github.io/redis/cache/2020/03/02/Cache-And-Redis/]</li>
+  <li>如何解决部分cache节点过热问题？</li>
+</ul>
+
+<h4 id="indexes">Indexes</h4>
+
+<p>不可能在任何合理的时间内在一个大数据集中迭代那么多数据。因此索引是必要的（然而索引需要在增加存储开销和降低写入速度（因为您必须同时写入数据和更新索引））。</p>
+
+<p>如下图所示，如何你想找到B-Part2，你不必要从头开始遍历整个table，而是可以通过索引知道，如果想找B，请从Location-1开始。</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/article/20240305212051/img_8.png" alt="img_8.png" /></p>
+
+<p>甚至还有多级索引，当找到了B之后，如何快速知道part2在哪里呢？</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/article/20240305212051/img_9.png" alt="img_9.png" /></p>
+
+<h4 id="gatewaylb-加快网络访问">Gateway(LB) 加快网络访问</h4>
+
+<ul>
+  <li>ATM/Akamai
+    <ul>
+      <li>地理位置有限访问</li>
+      <li>权重访问</li>
+      <li>优先级访问</li>
+    </ul>
+  </li>
+  <li>Gateway TLS termination加速</li>
+  <li>Gateway可以针对header和path进行路由</li>
+</ul>
+
+<h4 id="队列">队列</h4>
+
+<p>队列可以把同步操作改成异步操作，让客户端不会傻等。</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/article/20240305212051/img_10.png" alt="img_10.png" /></p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/article/20240305212051/img_11.png" alt="img_11.png" /></p>
+
+<h2 id="pinterest感想">Pinterest感想</h2>
+
+<p>Pinterest感想:</p>
+<ul>
+  <li>1.把用户的数据分离到不同的sharding中</li>
+  <li>2.同一个用户不同的数据，尽量分布在同一个sharding中</li>
+</ul>
+
+<h2 id="reference">Reference</h2>
+
+<ul>
+  <li>1.https://acodersjourney.com/system-design-interview-consistent-hashing/</li>
+</ul>
+
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+      
+      
+
+      
+      
+        <div class="post-nav" id="post-nav-id">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/system%20design/2020/03/01/Learning-From-Slack-Messaging/" rel="next" title="Learning From Slack Messaging">
+                <i class="fa fa-chevron-left"></i> Learning From Slack Messaging
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/system%20design/2020/03/01/Learning-From-Rate-Limiting/" rel="prev" title="Learning From Rate Limiting">
+                Learning From Rate Limiting <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+      
+
+      
+    </footer>
+  </article>
+
+  <div class="post-spread">
+    
+  </div>
+</div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        
+        
+        
+
+
+
+
+
+
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/assets/images/avatar.gif"
+               alt="三山" />
+          <p class="site-author-name" itemprop="name">三山</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">77</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/">
+                <span class="site-state-item-count">48</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+        
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+
+
+
+
+
+
+
+            
+              <div class="post-toc-content">
+    <ol class=nav>
+      <li class="nav-item nav-level-2"> <a class="nav-link" href="#introduction"> <span class="nav-number">1</span> <span class="nav-text">Introduction</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#设计原则"> <span class="nav-number">2</span> <span class="nav-text">设计原则</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#需求"> <span class="nav-number">3</span> <span class="nav-text">需求</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#v1-版本"> <span class="nav-number">4</span> <span class="nav-text">V1 版本</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#优化"> <span class="nav-number">5</span> <span class="nav-text">优化</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-3"> <a class="nav-link" href="#1服务读写扩展"> <span class="nav-number">5.1</span> <span class="nav-text">1.服务读写扩展</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#2数据库读写扩展"> <span class="nav-number">5.2</span> <span class="nav-text">2.数据库读写扩展</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#3更快的access到datanetworkingcache"> <span class="nav-number">5.3</span> <span class="nav-text">3.更快的Access到Data(networking&amp;cache)</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-4"> <a class="nav-link" href="#cache"> <span class="nav-number">5.3.1</span> <span class="nav-text">Cache</span> </a> </li> <li class="nav-item nav-level-4"> <a class="nav-link" href="#indexes"> <span class="nav-number">5.3.2</span> <span class="nav-text">Indexes</span> </a> </li> <li class="nav-item nav-level-4"> <a class="nav-link" href="#gatewaylb-加快网络访问"> <span class="nav-number">5.3.3</span> <span class="nav-text">Gateway(LB) 加快网络访问</span> </a> </li> <li class="nav-item nav-level-4"> <a class="nav-link" href="#队列"> <span class="nav-number">5.3.4</span> <span class="nav-text">队列</span> </a> </li> </ol> </li> </ol> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#pinterest感想"> <span class="nav-number">6</span> <span class="nav-text">Pinterest感想</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#reference"> <span class="nav-number">7</span> <span class="nav-text">Reference</span> </a> </li>
+    </ol>
+  </div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">三山</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://jekyllrb.com">Jekyll</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/simpleyyt/jekyll-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+   
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/assets/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  <script type="text/javascript" src="/assets/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/assets/js/src/post-details.js?v=5.1.1"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+    
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
+
+

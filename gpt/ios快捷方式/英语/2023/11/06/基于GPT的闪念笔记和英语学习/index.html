@@ -1,0 +1,1058 @@
+<!--不算子网站访客统计-->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-M7QXLLL8YX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-M7QXLLL8YX');
+</script>
+
+
+<!doctype html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/assets/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/assets/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/assets/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="三山的编程之旅" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="1.前言 在AI如此简便和廉价的时代，如何快速利用GPT此类大模型来提升生活的效率或者提升英语呢？周末花了一些时间调研了IOS的快捷方式（TODO代表着低代码）， 然后结合GPT以及IOS shortcut，制作了两个小“程序”来帮助我自己在“闪念胶囊”和“学习英语”两个应用场景来提升自己。">
+<meta name="keywords" content="Jekyll, NexT">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于GPT的闪念笔记和英语学习">
+<meta property="og:url" content="https://jiujiujiujiujiuaia.github.io/gpt/ios%E5%BF%AB%E6%8D%B7%E6%96%B9%E5%BC%8F/%E8%8B%B1%E8%AF%AD/2023/11/06/%E5%9F%BA%E4%BA%8EGPT%E7%9A%84%E9%97%AA%E5%BF%B5%E7%AC%94%E8%AE%B0%E5%92%8C%E8%8B%B1%E8%AF%AD%E5%AD%A6%E4%B9%A0/">
+<meta property="og:site_name" content="三山的编程之旅">
+<meta property="og:description" content="1.前言 在AI如此简便和廉价的时代，如何快速利用GPT此类大模型来提升生活的效率或者提升英语呢？周末花了一些时间调研了IOS的快捷方式（TODO代表着低代码）， 然后结合GPT以及IOS shortcut，制作了两个小“程序”来帮助我自己在“闪念胶囊”和“学习英语”两个应用场景来提升自己。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/gptshortcut/20231106235021/img_8.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/gptshortcut/20231106235021/img.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/gptshortcut/20231106235021/img_1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/gptshortcut/20231106235021/img_4.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/gptshortcut/20231106235021/img_3.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/gptshortcut/20231106235021/img_5.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/gptshortcut/20231106235021/img_6.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/gptshortcut/20231106235021/img_7.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/gptshortcut/20231106235021/img_9.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/gptshortcut/20231106235021/img_10.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/gptshortcut/20231106235021/img_11.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/gptshortcut/20231106235021/img_13.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/gptshortcut/20231106235021/img_12.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="基于GPT的闪念笔记和英语学习">
+<meta name="twitter:description" content="1.前言 在AI如此简便和廉价的时代，如何快速利用GPT此类大模型来提升生活的效率或者提升英语呢？周末花了一些时间调研了IOS的快捷方式（TODO代表着低代码）， 然后结合GPT以及IOS shortcut，制作了两个小“程序”来帮助我自己在“闪念胶囊”和“学习英语”两个应用场景来提升自己。">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/gptshortcut/20231106235021/img_8.png">
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://jiujiujiujiujiuaia.github.io"/>
+
+
+
+
+
+  <title>基于GPT的闪念笔记和英语学习 | 三山的编程之旅</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'G-M7QXLLL8YX', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">三山的编程之旅</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+<div id="posts" class="posts-expand">
+  
+  
+
+  
+
+  
+  
+  
+
+  <article class="post post-type- " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://jiujiujiujiujiuaia.github.io/gpt/ios%E5%BF%AB%E6%8D%B7%E6%96%B9%E5%BC%8F/%E8%8B%B1%E8%AF%AD/2023/11/06/%E5%9F%BA%E4%BA%8EGPT%E7%9A%84%E9%97%AA%E5%BF%B5%E7%AC%94%E8%AE%B0%E5%92%8C%E8%8B%B1%E8%AF%AD%E5%AD%A6%E4%B9%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="三山">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="assets/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="三山的编程之旅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+          
+          
+            基于GPT的闪念笔记和英语学习
+          
+        </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-11-06T17:30:09+00:00">
+                2023-11-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/category/#/GPT" itemprop="url" rel="index">
+                    <span itemprop="name">GPT</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/category/#/IOS%E5%BF%AB%E6%8D%B7%E6%96%B9%E5%BC%8F" itemprop="url" rel="index">
+                    <span itemprop="name">IOS快捷方式</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/category/#/%E8%8B%B1%E8%AF%AD" itemprop="url" rel="index">
+                    <span itemprop="name">英语</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+                
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv" id="busuanzi_container_page_pv">
+            本文总阅读量<span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+                
+
+            
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <div class="post-wordcount">
+                  <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                  <span class="post-meta-item-text">字数统计</span>
+                <span title="字数统计">
+                  759字
+                </span>
+
+                <span class="post-meta-divider">|</span>
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                  <span class="post-meta-item-text">阅读时长</span>
+                <span title="阅读时长">
+                  3分钟
+                </span>
+            </div>
+
+          
+            
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 id="1前言">1.前言</h2>
+<p>在AI如此简便和廉价的时代，如何快速利用GPT此类大模型来提升生活的效率或者提升英语呢？周末花了一些时间调研了IOS的快捷方式（TODO代表着低代码），
+然后结合GPT以及IOS shortcut，制作了两个小“程序”来帮助我自己在“闪念胶囊”和“学习英语”两个应用场景来提升自己。</p>
+
+<h2 id="2闪念胶囊">2.闪念胶囊</h2>
+
+<h3 id="1什么是闪念胶囊">1.什么是闪念胶囊？</h3>
+<p>什么是闪念胶囊？TOOD 罗老师的视频截图 TODO 人脑一天有xx个念头，其中有用的是xx个。如何最为方便快捷的记录下这些念头呢？</p>
+
+<p>并且把这些念头转化为行之有效的action item去一一实现呢？</p>
+
+<h3 id="2使用流程">2.使用流程</h3>
+
+<p>通过借鉴一个youtube上的视频，一共两个shortcut，设计流程如下：</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/gptshortcut/20231106235021/img_8.png" alt="img_8.png" /></p>
+
+<p>记录shortcut：</p>
+<ul>
+  <li>1.轻按iphone15 pro的action button按钮，呼出一个记录shortcut来记录我当下的<strong>闪念</strong></li>
+  <li>2.在一天中不断的<strong>积累闪念</strong>，一个两个三个四个…</li>
+</ul>
+
+<p>总结shortcut：</p>
+<ul>
+  <li>1.在一天结束的时候，自动执行一个利用<strong>GPT总结所有闪念</strong>的shortcut</li>
+  <li>2.把GPT总结的内容自动的添加成一个待办事项</li>
+</ul>
+
+<h3 id="3效果展示">3.效果展示</h3>
+
+<h4 id="1记录闪念shortcut">1.记录闪念shortcut</h4>
+
+<ul>
+  <li>1.任意时刻按下Action Button</li>
+</ul>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/gptshortcut/20231106235021/img.png" alt="img.png" /></p>
+
+<ul>
+  <li>2.记录语音输入</li>
+</ul>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/gptshortcut/20231106235021/img_1.png" alt="img_1.png" /></p>
+
+<ul>
+  <li>3.完成存储</li>
+</ul>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/gptshortcut/20231106235021/img_4.png" alt="img_4.png" /></p>
+
+<p>查看闪念</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/gptshortcut/20231106235021/img_3.png" alt="img_3.png" /></p>
+
+<h4 id="2总结闪念shortcut">2.总结闪念shortcut</h4>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/gptshortcut/20231106235021/img_5.png" alt="img_5.png" /></p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/gptshortcut/20231106235021/img_6.png" alt="img_6.png" /></p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/gptshortcut/20231106235021/img_7.png" alt="img_7.png" /></p>
+
+<h3 id="4如何实现">4.如何实现</h3>
+
+<h4 id="1记录闪念">1.记录闪念</h4>
+
+<p>获取音频输入</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/gptshortcut/20231106235021/img_9.png" alt="img_9.png" /></p>
+
+<p>调用whisper模型音频转文字</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/gptshortcut/20231106235021/img_10.png" alt="img_10.png" /></p>
+
+<p>创建备忘录并追加到备忘录中</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/gptshortcut/20231106235021/img_11.png" alt="img_11.png" /></p>
+
+<h4 id="2总结闪念">2.总结闪念</h4>
+
+<p>调用GPT4</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/gptshortcut/20231106235021/img_13.png" alt="img_13.png" /></p>
+
+<pre><code class="language-prompt">你好 ChatGPT! 今天是. 我希望你能成为我的笔记/日记副驾驶。我在一天中的草稿日记中记录了我的随机想法、创意和事件等。 这是我的草稿日记，以’‘’‘’‘分隔：
+”“”
+剪贴板
+”“”
+现在请你帮我执行这个任务，只回复JSON: 
+1.请根据我笔记中提到的任务或者计划创建一个可执行的待办事项清单。请使用第一人称写作，并且按照下面的JSON格式创建待办事项清单 *in one code block*:
+{
+"任务名": "任务详细描述",
+}
+
+这是一个例子:
+{
+    "开发AI语言学习软件": "我应该开始使用ChatGPT的API配合IOS的快捷指令功能开发自己的AI语言学习软件",
+    "投资特斯拉": "在读完Elon Musk传记之后，我应该仔细思考我对投资特斯拉的策略，决定是否加大力度购买更多的股票"
+}
+</code></pre>
+
+<p>添加代办事项</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/gptshortcut/20231106235021/img_12.png" alt="img_12.png" /></p>
+
+<h2 id="3英语学习">3.英语学习</h2>
+
+<p>我的目的：
+1.英语
+2.日记</p>
+
+<p>Speak软件设计了一个情景，非常好，并且在英语前和英语后都有提示。但是毕竟不是一个你主动的过程，因此我设计了几个shortcut
+，在我每天结束的时候，用英语总结我发生的事情，让GPT和我对话并且纠正我，通过这个来锻炼口语和听力能力。</p>
+
+<h2 id="reference">Reference</h2>
+
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+      
+      
+
+      
+      
+        <div class="post-nav" id="post-nav-id">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/cpu/2023/11/26/Putting-the-you-into-CPU/" rel="next" title="Putting the you into CPU">
+                <i class="fa fa-chevron-left"></i> Putting the you into CPU
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/dotnet/async/2023/11/01/Csharp%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/" rel="prev" title="Csharp 异步编程">
+                Csharp 异步编程 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+      
+
+      
+    </footer>
+  </article>
+
+  <div class="post-spread">
+    
+  </div>
+</div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        
+        
+        
+
+
+
+
+
+
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/assets/images/avatar.gif"
+               alt="三山" />
+          <p class="site-author-name" itemprop="name">三山</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">77</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/">
+                <span class="site-state-item-count">48</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+        
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+
+
+
+
+
+
+
+            
+              <div class="post-toc-content">
+    <ol class=nav>
+      <li class="nav-item nav-level-2"> <a class="nav-link" href="#1前言"> <span class="nav-number">1</span> <span class="nav-text">1.前言</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#2闪念胶囊"> <span class="nav-number">2</span> <span class="nav-text">2.闪念胶囊</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-3"> <a class="nav-link" href="#1什么是闪念胶囊"> <span class="nav-number">2.1</span> <span class="nav-text">1.什么是闪念胶囊？</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#2使用流程"> <span class="nav-number">2.2</span> <span class="nav-text">2.使用流程</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#3效果展示"> <span class="nav-number">2.3</span> <span class="nav-text">3.效果展示</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-4"> <a class="nav-link" href="#1记录闪念shortcut"> <span class="nav-number">2.3.1</span> <span class="nav-text">1.记录闪念shortcut</span> </a> </li> <li class="nav-item nav-level-4"> <a class="nav-link" href="#2总结闪念shortcut"> <span class="nav-number">2.3.2</span> <span class="nav-text">2.总结闪念shortcut</span> </a> </li> </ol> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#4如何实现"> <span class="nav-number">2.4</span> <span class="nav-text">4.如何实现</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-4"> <a class="nav-link" href="#1记录闪念"> <span class="nav-number">2.4.1</span> <span class="nav-text">1.记录闪念</span> </a> </li> <li class="nav-item nav-level-4"> <a class="nav-link" href="#2总结闪念"> <span class="nav-number">2.4.2</span> <span class="nav-text">2.总结闪念</span> </a> </li> </ol> </li> </ol> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#3英语学习"> <span class="nav-number">3</span> <span class="nav-text">3.英语学习</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#reference"> <span class="nav-number">4</span> <span class="nav-text">Reference</span> </a> </li>
+    </ol>
+  </div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">三山</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://jekyllrb.com">Jekyll</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/simpleyyt/jekyll-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+   
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/assets/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  <script type="text/javascript" src="/assets/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/assets/js/src/post-details.js?v=5.1.1"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+    
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
+
+

@@ -1,0 +1,1069 @@
+<!--不算子网站访客统计-->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-M7QXLLL8YX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-M7QXLLL8YX');
+</script>
+
+
+<!doctype html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/assets/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/assets/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/assets/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="三山的编程之旅" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="https://github.com/Interview-Science/interview-english https://instant.1point3acres.cn/thread/776466">
+<meta name="keywords" content="Jekyll, NexT">
+<meta property="og:type" content="article">
+<meta property="og:title" content="System Design">
+<meta property="og:url" content="https://jiujiujiujiujiuaia.github.io/system%20design/2020/02/26/System-Design/">
+<meta property="og:site_name" content="三山的编程之旅">
+<meta property="og:description" content="https://github.com/Interview-Science/interview-english https://instant.1point3acres.cn/thread/776466">
+<meta property="og:locale" content="zh-Hans">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="System Design">
+<meta name="twitter:description" content="https://github.com/Interview-Science/interview-english https://instant.1point3acres.cn/thread/776466">
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://jiujiujiujiujiuaia.github.io"/>
+
+
+
+
+
+  <title>System Design | 三山的编程之旅</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'G-M7QXLLL8YX', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">三山的编程之旅</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+<div id="posts" class="posts-expand">
+  
+  
+
+  
+
+  
+  
+  
+
+  <article class="post post-type- " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://jiujiujiujiujiuaia.github.io/system%20design/2020/02/26/System-Design/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="三山">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="assets/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="三山的编程之旅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+          
+          
+            System Design
+          
+        </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-26T17:30:09+00:00">
+                2020-02-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/category/#/System%20Design" itemprop="url" rel="index">
+                    <span itemprop="name">System Design</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+                
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv" id="busuanzi_container_page_pv">
+            本文总阅读量<span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+                
+
+            
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <div class="post-wordcount">
+                  <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                  <span class="post-meta-item-text">字数统计</span>
+                <span title="字数统计">
+                  1188字
+                </span>
+
+                <span class="post-meta-divider">|</span>
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                  <span class="post-meta-item-text">阅读时长</span>
+                <span title="阅读时长">
+                  5分钟
+                </span>
+            </div>
+
+          
+            
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <p>https://github.com/Interview-Science/interview-english
+https://instant.1point3acres.cn/thread/776466</p>
+
+<h2 id="关键点">关键点</h2>
+
+<ul>
+  <li>不断地主动沟通，和面试官确认，我这样可以吗？我决定先做data model然后API，你可以吗？或者你有什么prefer?</li>
+  <li>注意观察，自己说了超过一分钟，但是没人响应，说明有可能走神了。</li>
+</ul>
+
+<p>Scenario 场景
+需要设计哪些功能、到哪个程度
+询问： Features / QPS / DAU / Interfaces</p>
+
+<p>Service 服务
+将大系统拆分为小服务
+拆分、Application、模块化</p>
+
+<p>Storage 存储（比较核心的部分）
+数据如何存储与访问
+Schema/Data/SQL/NoSQL/File System</p>
+
+<p>Scale 升级
+解决缺陷，处理可能遇到的问题
+Sharding/ Optimize / Special Case</p>
+
+<h2 id="弄清楚意图">弄清楚意图</h2>
+
+<p>关键点:</p>
+<ul>
+  <li>0.对description中的不同实体问问题，建表</li>
+  <li>1.逐字逐字的问题。例如题目是, design for large-scale job scheduler
+    <ul>
+      <li>what kinds of job?</li>
+      <li>How large is the scale?</li>
+      <li>Is it the distributed?</li>
+      <li>Who is the user? how does the user use this system? like create job?</li>
+      <li>what amount of data you should process, can the processing be background or it should be realtime, etc.</li>
+    </ul>
+  </li>
+  <li>2.弄清楚这是一个读重还是写重的系统</li>
+  <li>3.input 是什么 output是什么 主动带领面试官run一个work flow</li>
+  <li>4.how many requests/timeframe, how much existing data is there</li>
+</ul>
+
+<p>requirements搞清楚你需要什么样的data。
+从而进一步推导data的大小、pattern是什么样的，要怎么处理，怎么存，怎么读，怎么保证data integrity等等
+来决定合理的处理手段（in-memory vs database, SQL vs NoSQL, CAP strategy etc）
+是不是应该问面试官，我们的系统是at least-once at most once exactly once（non-functional requirement）</p>
+
+<h3 id="functional-requirement">Functional Requirement</h3>
+
+<p>Are the requirements I listed as core requirement?, do I miss the any core?</p>
+
+<ul>
+  <li>说不清楚就举例子</li>
+  <li>对description逐字逐字的问，对其中不同的实体建表</li>
+  <li>系统的使用者是谁，是用户，还是其他服务，还是其他系统。(who is the user)</li>
+  <li>如何被使用，是有UI界面，还是定期从哪里拿请求，是提供一个接口。</li>
+  <li>流量是否周期性，是否来自全球?</li>
+  <li>峰值的请求量? 最不希望发生的错误是什么样的</li>
+  <li>是否在意重复数据</li>
+  <li>预估用户量，每个用户的请求数，总数据量，时间跨度</li>
+  <li>** 最终要弄清楚: read heavy or write heavy? exactly once?/ **</li>
+</ul>
+
+<h3 id="non-functional-requirement">Non-functional Requirement</h3>
+
+<ul>
+  <li>How availability the system should be</li>
+  <li>How scalable the system should be?</li>
+  <li>latency should be low as much as possible</li>
+  <li>reliability</li>
+</ul>
+
+<h2 id="询问面试官">询问面试官</h2>
+
+<p>Are the requirements I listed as core requirement?, do I miss the any core? If not, 
+I am used to start from data model and API design, and then give you top-down system.
+How do you think about it?</p>
+
+<h2 id="data-model">Data Model</h2>
+<p>key point:</p>
+<ul>
+  <li>设计表的时候，万变不离其宗的三件套: id, name, timestamp</li>
+  <li>因此，在做data model的时候，先不要说我们是用SQL还是Non-sql存储，根据自己的理解，先把数据的表建立起来。</li>
+  <li>把这些data model对应的“表”写出来，此处你不用强调它是个sql表还是nosql的结构，就只说我们这个data model里有哪些信息。</li>
+  <li>如果是比较经典的事务型关系，比如交易，比如订餐，比如发货，一般是sql，非常看重一致性(CP)</li>
+  <li>如果是重写，更看到可扩展性，对一致性要求没那么高，对可用性要求更高，可以是nonsql(AP)</li>
+</ul>
+
+<p>SQL:</p>
+<ul>
+  <li>ACID, 事务</li>
+  <li>读重的系统</li>
+  <li>结构化数据</li>
+</ul>
+
+<p>Nosql:</p>
+<ul>
+  <li>扩展性更好</li>
+  <li>写重的系统</li>
+  <li>
+    <p>更高的可用性</p>
+  </li>
+  <li>不要套，比如酒店业务非得用SQL，而是通过前面的沟通和requirement，“推导”出要用SQL
+    <ul>
+      <li>例如，酒店业务需要加入购物车，下订单，减少库存，这是需要事务的，那么这是SQL的强项</li>
+      <li>例如聊天系统，是一个重写入的系统，更多时候需要write-heavy，需要在requirement环节对系统进行引导。</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="api-design">API Design</h2>
+
+<p>rest一般是对外，rpc一般是对内，前者有相对严格的围绕资源的定义，后者因为是对内所以协议上灵活一些，类似这种的考量。</p>
+
+<h2 id="high-level-design">High level Design</h2>
+
+<ul>
+  <li>可以先从同步模型开始，然后走向异步模型(消息队列)</li>
+  <li>LB:要画load balancer</li>
+  <li>FrontEnt/ Gateway如果有太多service和client做交互的话，可以考虑用Frontend service挡住
+    <ul>
+      <li>Common stuff
+        <ul>
+          <li>AuthN/AuthZ</li>
+          <li>TLS termination</li>
+          <li>request dispatching</li>
+          <li>rate limitation</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>CDN:用于交付静态资源，例如图像、视频、CSS 文件和其他多媒体内容</li>
+</ul>
+
+<h2 id="问题和优化">问题和优化</h2>
+
+<ul>
+  <li>redis
+    <ul>
+      <li>cache avalanche(缓存雪崩)
+        <ul>
+          <li>Random TTL</li>
+          <li>Consistent hashing</li>
+          <li>Circuit breakers/rate limitation</li>
+        </ul>
+      </li>
+      <li>cache穿透
+        <ul>
+          <li>bloom filter(false一定不存在)</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>海量的读写请求怎么办?
+    <ul>
+      <li>消息队列当作缓冲区,不让我们数据库面临风险</li>
+      <li>缓存一批数据，然后batch writing/reading</li>
+    </ul>
+  </li>
+  <li>单点故障怎么办?</li>
+  <li>通过load testing测试处上限，合理的分配sharding的数量</li>
+  <li>需要一个状态记录的DB，来保证reability</li>
+</ul>
+
+<h2 id="reference">Reference</h2>
+
+<p>https://zhuanlan.zhihu.com/p/103484396</p>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+      
+      
+
+      
+      
+        <div class="post-nav" id="post-nav-id">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/03/01/API-Design/" rel="next" title="Api design">
+                <i class="fa fa-chevron-left"></i> Api design
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+      
+
+      
+    </footer>
+  </article>
+
+  <div class="post-spread">
+    
+  </div>
+</div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        
+        
+        
+
+
+
+
+
+
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/assets/images/avatar.gif"
+               alt="三山" />
+          <p class="site-author-name" itemprop="name">三山</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">77</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/">
+                <span class="site-state-item-count">48</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+        
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+
+
+
+
+
+
+
+            
+              <div class="post-toc-content">
+    <ol class=nav>
+      <li class="nav-item nav-level-2"> <a class="nav-link" href="#关键点"> <span class="nav-number">1</span> <span class="nav-text">关键点</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#弄清楚意图"> <span class="nav-number">2</span> <span class="nav-text">弄清楚意图</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-3"> <a class="nav-link" href="#functional-requirement"> <span class="nav-number">2.1</span> <span class="nav-text">Functional Requirement</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#non-functional-requirement"> <span class="nav-number">2.2</span> <span class="nav-text">Non-functional Requirement</span> </a> </li> </ol> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#询问面试官"> <span class="nav-number">3</span> <span class="nav-text">询问面试官</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#data-model"> <span class="nav-number">4</span> <span class="nav-text">Data Model</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#api-design"> <span class="nav-number">5</span> <span class="nav-text">API Design</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#high-level-design"> <span class="nav-number">6</span> <span class="nav-text">High level Design</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#问题和优化"> <span class="nav-number">7</span> <span class="nav-text">问题和优化</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#reference"> <span class="nav-number">8</span> <span class="nav-text">Reference</span> </a> </li>
+    </ol>
+  </div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">三山</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://jekyllrb.com">Jekyll</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/simpleyyt/jekyll-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+   
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/assets/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  <script type="text/javascript" src="/assets/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/assets/js/src/post-details.js?v=5.1.1"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+    
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
+
+

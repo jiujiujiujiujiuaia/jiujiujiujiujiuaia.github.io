@@ -1,0 +1,1145 @@
+<!--不算子网站访客统计-->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-M7QXLLL8YX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-M7QXLLL8YX');
+</script>
+
+
+<!doctype html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/assets/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/assets/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/assets/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="三山的编程之旅" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="前言 继音视频基础知识(1)和环境搭建这两篇文章之后， 我们这一篇文章来利用FFmpeg的lib进行实战，使用的语言是C语言。">
+<meta name="keywords" content="Jekyll, NexT">
+<meta property="og:type" content="article">
+<meta property="og:title" content="音视频基础知识(2)">
+<meta property="og:url" content="https://jiujiujiujiujiuaia.github.io/%E9%9F%B3%E8%A7%86%E9%A2%91/2023/09/23/%E9%9F%B3%E8%A7%86%E9%A2%91%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86(2)/">
+<meta property="og:site_name" content="三山的编程之旅">
+<meta property="og:description" content="前言 继音视频基础知识(1)和环境搭建这两篇文章之后， 我们这一篇文章来利用FFmpeg的lib进行实战，使用的语言是C语言。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/media2/20231022095410/img.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/media2/20231022095410/img_2.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/media2/20231022095410/img_3.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/media2/20231022095410/img_1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/media2/20231216163449/img.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/media2/20231216163449/img_1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/media2/20231216163449/img_2.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/media2/20231216163449/img_3.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/media2/20231216163449/img_4.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="音视频基础知识(2)">
+<meta name="twitter:description" content="前言 继音视频基础知识(1)和环境搭建这两篇文章之后， 我们这一篇文章来利用FFmpeg的lib进行实战，使用的语言是C语言。">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/media2/20231022095410/img.png">
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://jiujiujiujiujiuaia.github.io"/>
+
+
+
+
+
+  <title>音视频基础知识(2) | 三山的编程之旅</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'G-M7QXLLL8YX', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">三山的编程之旅</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+<div id="posts" class="posts-expand">
+  
+  
+
+  
+
+  
+  
+  
+
+  <article class="post post-type- " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://jiujiujiujiujiuaia.github.io/%E9%9F%B3%E8%A7%86%E9%A2%91/2023/09/23/%E9%9F%B3%E8%A7%86%E9%A2%91%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86(2)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="三山">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="assets/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="三山的编程之旅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+          
+          
+            音视频基础知识(2)
+          
+        </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-09-23T23:30:09+00:00">
+                2023-09-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/category/#/%E9%9F%B3%E8%A7%86%E9%A2%91" itemprop="url" rel="index">
+                    <span itemprop="name">音视频</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+                
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv" id="busuanzi_container_page_pv">
+            本文总阅读量<span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+                
+
+            
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <div class="post-wordcount">
+                  <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                  <span class="post-meta-item-text">字数统计</span>
+                <span title="字数统计">
+                  3147字
+                </span>
+
+                <span class="post-meta-divider">|</span>
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                  <span class="post-meta-item-text">阅读时长</span>
+                <span title="阅读时长">
+                  15分钟
+                </span>
+            </div>
+
+          
+            
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 id="前言">前言</h2>
+<p>继<a href="https://jiujiujiujiujiuaia.github.io/%E9%9F%B3%E8%A7%86%E9%A2%91/2023/09/17/%E9%9F%B3%E8%A7%86%E9%A2%91%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86(1)/">音视频基础知识(1)</a>和<a href="https://jiujiujiujiujiuaia.github.io/%E9%9F%B3%E8%A7%86%E9%A2%91/c%E8%AF%AD%E8%A8%80/%E9%93%BE%E6%8E%A5/2023/10/06/%E9%93%BE%E6%8E%A5%E6%8A%80%E6%9C%AF%E7%AE%80%E4%BB%8B-%E9%9F%B3%E8%A7%86%E9%A2%91%E5%BC%80%E5%8F%91%E5%85%88%E5%AF%BC/">环境搭建</a>这两篇文章之后，
+我们这一篇文章来利用FFmpeg的lib进行实战，使用的语言是C语言。</p>
+
+<h2 id="1什么是codec">1.什么是codec?</h2>
+
+<h2 id="2什么是容器">2.什么是容器?</h2>
+
+<h2 id="3通用音视频操作">3.通用音视频操作</h2>
+
+<h3 id="转封装remuxing">转封装(remuxing)</h3>
+
+<p>是什么?: 将视频/音频从某一种格式（容器）转换成另一种</p>
+
+<p>为什么?: 受限于兼容性和专利授权问题，由于MP4是行业标准，所以基本上设备都支持，而WebM是Google推出的一个开源格式，基本上现代的浏览器原生支持。
+WebM格式是为在线使用而优化的，包括对流媒体的支持，它具有较小的文件大小和较好的视频质量，</p>
+
+<p>例如: HLS是Apple推出的一个标准,假设苹果不支持MP4，只支持HLS，用户打开了一个MP4的视频，这个时候就需要转封装了</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4</pre></td><td class="code"><pre class="highlight"><code><span class="nv">$ </span>ffmpeg <span class="se">\</span>
+<span class="nt">-i</span> bunny_1080p_60fps.mp4 <span class="se">\</span>
+<span class="nt">-c</span> copy <span class="se">\ </span><span class="c"># 令 ffmpeg 跳过编解码过程</span>
+bunny_1080p_60fps.ts
+</code></pre></td></tr></tbody></table></div></div>
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/media2/20231022095410/img.png" alt="img.png" /></p>
+
+<h3 id="转码transcoding">转码(transcoding)</h3>
+
+<p>是什么? 将其中一个流（视频流或音频流）从一种编码格式转换成另一种</p>
+
+<p>为什么? 有时候有些设备（TV，智能手机等等）不支持 X ，但是支持 Y 和一些更新的编码方式，这些方式能提供更好的压缩比</p>
+
+<p>比如，早期的iPhone不支持VP9播放，由于没有硬件支持，只能靠软件硬编解码，这通常效率会更低并且消耗更多电池。</p>
+
+<p>如何做? 转换 H264（AVC）视频为 H265（HEVC）</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4</pre></td><td class="code"><pre class="highlight"><code><span class="nv">$ </span>ffmpeg <span class="se">\</span>
+<span class="nt">-i</span> bunny_1080p_60fps.mp4 <span class="se">\</span>
+<span class="nt">-c</span>:v libx265 <span class="se">\</span>
+bunny_1080p_60fps_h265.mp4
+</code></pre></td></tr></tbody></table></div></div>
+
+<h3 id="软件编码和硬件编码">软件编码和硬件编码</h3>
+
+<p>这两者的区别是什么呢？以H.264视频编码标准为例，如果是软件编码，通常是运行在CPU上的，编码的过程包括运动估计，
+DCT变换，量化等等，然后软件可以对一些指令和参数进行优化</p>
+
+<p>然而硬件编码，比如NVENC是NVIDIA显卡上的一个硬件编码单元，运动估计不是算法计算的，而是由专有的电路进行快速出来。</p>
+
+<p>并且NVENC可以同时处理多个编码任务。例如，它可以同时处理多个视频帧的运动估计或量化操作。</p>
+
+<p>因此软件编码完全依赖于CPU执行编码算法，而硬件编码使用专用电路来执行相同的任务。软件编码通常更灵活，允许更多的配置和优化，但可能较慢。硬件编码更快、效率更高，但可能不提供那么多的配置选项。</p>
+
+<h4 id="cpu不是也可以并行">CPU不是也可以并行？</h4>
+
+<p>CPU可能是8核16核甚至更多，多通过多线程的方式并行处理，然后GPU单元拥有数千个粗合理单元及逆行加速。</p>
+
+<p>同时CPU是通用处理器，不会针对音视频处理进行优化。而专用的GPU可能有专门设计的电路处理运动或者DCT变换。</p>
+
+<h3 id="转分辨率">转分辨率</h3>
+
+<p>为什么需要转换分辨率？</p>
+
+<p>显示硬件的限制：设备的屏幕分辨率是固定的。一个1080p的屏幕不能完全显示4K视频的所有像素，所以需要将视频下采样到适合屏幕的分辨率。
+解码能力：较老的硬件可能没有足够的解码能力处理高分辨率视频。例如，某些解码器可能只设计成支持到1080p，而不支持4K。</p>
+
+<h3 id="自适应流">自适应流</h3>
+
+<p>为什么需要自适应流？</p>
+
+<p>动态码率调整：在传输过程中，根据网络条件动态选择不同的视频质量，需要一种机制来适应这些变化。这就是自适应流技术如DASH或HLS所做的。
+流的分段：为了使自适应技术能够工作，视频流被分成多个小段。每个段都有多个质量级别。当设备请求下一个段时，它会基于当前的网络条件选择合适的质量级别。
+流的下载和播放：设备需要同时处理流的下载和播放，确保流畅播放，同时预取下一个段以准备可能的网络波动</p>
+
+<h2 id="4实战0基础code">4.实战0:基础code</h2>
+
+<p>TODO 为什么有的函数签名是2啊3啊
+TODO 一些context结构体有什么内容背一背</p>
+
+<p>AVFormatContext 是多媒体文件格式的抽象（例如：MKV，MP4，Webm，TS）。 
+AVStream 代表给定格式的数据类型（例如：音频，视频，字幕，元数据）。
+AVPacket 是从 AVStream 获得的压缩数据的切片，
+可由 AVCodec（例如av1，h264，vp9，hevc）解码，从而生成称为 AVFrame 的原始数据。</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/media2/20231022095410/img_2.png" alt="img_2.png" /></p>
+
+<p>视频流：</p>
+
+<p>time_base: 1/15360，表示时间单位是 1/15360 秒。
+duration: 30720，表示总时长是 30720 个时间单位，即 30720 * (1/15360) = 2.0 秒。</p>
+
+<p>音频流：</p>
+
+<p>time_base: 1/48000，表示时间单位是 1/48000 秒。
+duration: 96000，表示总时长是 96000 个时间单位，即 96000 * (1/48000) = 2.0 秒。</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/media2/20231022095410/img_3.png" alt="img_3.png" /></p>
+
+<p>文件格式和属性：</p>
+
+<ul>
+  <li>视频文件的格式是 mov,mp4,m4a,3gp,3g2,mj2，这可能意味着它是一个兼容多种格式的容器或文件。</li>
+  <li>文件的总时长为 2022000 微秒（或 2.022 秒）。</li>
+  <li>总比特率未指定（bit_rate 0）。</li>
+</ul>
+
+<p>视频流：</p>
+
+<ul>
+  <li>视频流的 time_base（时间基准）是 1/15360。</li>
+  <li>视频的帧率是 60/1，意味着每秒60帧。</li>
+  <li>视频流的 start_time 是 0，表明它从文件的开始就启动。</li>
+  <li>视频流的持续时间是 30720 时间单位，这需要结合 time_base 来计算实际秒数。</li>
+  <li>视频流总共有 120 帧。</li>
+  <li>视频的分辨率是 1920 x 1080。</li>
+  <li>视频编解码器是 h264，比特率为 4773892。</li>
+</ul>
+
+<p>音频流：</p>
+
+<ul>
+  <li>音频流的 time_base 是 1/48000。</li>
+  <li>音频流的 r_frame_rate 是 0/0，这对音频流是常见的，因为它们不具有帧率的概念。</li>
+  <li>音频流的 start_time 是 0。</li>
+  <li>音频流的持续时间是 96000 时间单位。</li>
+  <li>音频流总共有 95 帧。</li>
+  <li>音频有 6 个频道，样本率为 48000，使用 aac 编解码器，比特率为 391959。</li>
+</ul>
+
+<h2 id="5实战1音视频同步">5.实战1:音视频同步</h2>
+
+<p>想想如果是你，你会怎么做，假设我们视频就1s，1s有30帧。</p>
+
+<p>第一帧的时间戳应该是 0.0。
+第二帧的时间戳应该是 0.0333333，但是存储为 0.0333332997163（因为浮点数的限制）。
+第三帧的时间戳应该是第二帧的时间戳加上 0.0333333（因为这是视频的帧率）。但是，由于第二帧的时间戳实际上是 0.0333332997163，</p>
+
+<p>所以实际的计算是 0.0333332997163 + 0.0333333 = 0.0666665997163，而不是期望的 0.0666666。</p>
+
+<p>这样误差就会不断累计，你可能会问，为什么要存储每一帧时间，而不是就存储一个间隔，按照实际播放累加呢？</p>
+
+<p>特别是现代的编码标准（如H.264, H.265），支持变帧率（Variable Frame Rate, VFR），这意味着视频帧之间的间隔可能会变化，以适应不同的场景需求和压缩效率。</p>
+
+<p>同时，在视频传输（尤其是通过不可靠的网络，如互联网）和处理中，可能会丢失帧或数据。</p>
+
+<p>如果您只有间隔时间而没有绝对的时间戳，当出现数据丢失或需要进行错误恢复时，重新同步视频和音频流会更加困难。</p>
+
+<p>而为什么要用PTS呢？因为PTS是直接算出来每一帧的，而不是靠累加。</p>
+
+<h3 id="pts">PTS</h3>
+
+<p>目的：流畅的播放每一帧，我们知道FPS=60，意味着1s播放60帧，然后我们是怎么存储每一帧播放的时间呢？</p>
+
+<p>frame=0, PTS = 0, PTS_TIME = 0
+frame=1, PTS = 1000, PTS_TIME = PTS * timebase = 0.016
+frame=2, PTS = 2000, PTS_TIME = PTS * timebase = 0.033</p>
+
+<p>PTS = 1/(fps * timebase),每一帧播放的时间都是fps倒数整数倍。</p>
+
+<p>PTS_TIME = PTS * timebase</p>
+
+<p>这样做的好处是，支持变帧率（VFR），因此就不能简单的存储固定的帧间隔，第二个存储整数比存储浮点数的误差要比整数要方便</p>
+
+<h3 id="timebase的选择">timebase的选择</h3>
+
+<p>TODO 如何选择timebase</p>
+
+<h3 id="dts">DTS</h3>
+
+<p>DTS（Decoding Time Stamp）是和解码器相关的，帧的存储顺序不一定和PTS（Presentation Time Stamp）一样</p>
+
+<p>这是由于B帧是愮I帧和P帧的信息才能被解码。</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/media2/20231022095410/img_1.png" alt="img_1.png" /></p>
+
+<h2 id="todoppt中的内容">TODO　PPT中的内容</h2>
+
+<h3 id="decode-in-action">Decode In action</h3>
+
+<ul>
+  <li>FFmpeg 库，如 libavcodec 和 libavformat，广泛应用于音视频领域</li>
+  <li>AVFormatContext：它抽象化多媒体文件格式（例如 MP4、Webm、TS）。</li>
+  <li>AVStream：表示给定格式中的数据类型，如音频、视频、字幕或元数据。</li>
+  <li>AVPacket：从 AVStream 获取的压缩数据切片。</li>
+  <li>AVCodec（例如，av1、h264、vp9）：用于解码 AVPacket 并生成称为 AVFrame 的原始数据。</li>
+</ul>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/media2/20231216163449/img.png" alt="img.png" /></p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/media2/20231216163449/img_1.png" alt="img_1.png" /></p>
+
+<h3 id="dtspts">DTS&amp;PTS</h3>
+
+<ul>
+  <li>PTS 和 DTS 是视频和音频的基础，确保帧以正确的顺序解码和播放，即使使用复杂的压缩技术也是如此。</li>
+  <li>PTS（演示时间戳）：它表示在播放过程中应显示或播放特定帧（视频或音频）的确切时间。</li>
+  <li>DTS（解码时间戳）：它表示特定帧（视频或音频）应该解码的确切时间。</li>
+  <li>PTS的顺序: I, B, P</li>
+  <li>DTS的顺序: I, P, B</li>
+  <li>可以看到解码的顺序的确是按照DTS从小往大排序的，PTS是播放的顺序，可以看到，在stream里面，是乱序的。正是因为B帧的存在，导致你实际看到的视频帧，和存储在视频里面的帧的顺序不一样。</li>
+</ul>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/media2/20231216163449/img_2.png" alt="img_2.png" /></p>
+
+<h3 id="pts-1">PTS</h3>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/media2/20231216163449/img_3.png" alt="img_3.png" /></p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/media2/20231216163449/img_4.png" alt="img_4.png" /></p>
+
+<ul>
+  <li>PTS = 1/(fps * timebase)    PTS_TIME = PTS * timebase</li>
+  <li>帧率是 60 FPS，这意味着每帧之间的时间间隔是 1/60 秒。</li>
+  <li>timebase 是 1/15360 秒，那么 1 秒就是 15360 个 timebase 单位。</li>
+  <li>PTS = 1/(60 * 1/15360) = 256</li>
+  <li>PTS_TIME1 = 256 * 1/15360 = 0.01666666666..秒</li>
+  <li>PTS_TIME2 = 512 * 1/15360 = 0.033333333333..秒</li>
+  <li>你可能会好奇，这个PTS为什么以256增加，是不是每个视频都是这样的？不是，这个是严格算出来的。（timebase越小，视频的精度越高，就像一把尺子一样的，尺子长度一样，但是有的尺子是厘米，毫米）</li>
+  <li>你可能发现了0.016666就是60/1 为什么要这么复杂？因为浮点数在存储的时候，不仅需要更多的bit存储相比较整型，同时有更多的误差，因为计算机是没办法准备的表达一个无限的小数，
+一定是有误差的，每一帧都有误差，那么时间长了，就会出现不同步的情况</li>
+</ul>
+
+<h2 id="reference">Reference</h2>
+<ol>
+  <li><a href="https://blog.csdn.net/fepengwang/article/details/124435461">Vistual studio C语言环境</a></li>
+  <li><a href="https://github.com/imengyu/ScreenRecoder">recording 项目</a></li>
+</ol>
+
+<p>recording的原理是啥呀？
+stream -&gt; package -&gt; frame
+TODO FHL的mov视频打不开要钱</p>
+
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+      
+      
+
+      
+      
+        <div class="post-nav" id="post-nav-id">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/%E9%9A%8F%E7%AC%94/2023/09/24/%E8%99%9A%E6%8B%9F%E5%AF%BC%E5%B8%88-%E4%BA%92%E8%81%94%E7%BD%91%E4%B8%8A%E7%9A%84%E5%85%8D%E8%B4%B9%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%97%85/" rel="next" title="虚拟导师：互联网上的免费学习之旅">
+                <i class="fa fa-chevron-left"></i> 虚拟导师：互联网上的免费学习之旅
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/azure/%E6%8A%80%E6%9C%AF/2023/09/22/Teams-Bot-%E5%92%8CAzure-Web-App%E4%BD%93%E9%AA%8C%E4%B9%8B%E6%97%85/" rel="prev" title="Teams Bot 和Azure Web App体验之旅">
+                Teams Bot 和Azure Web App体验之旅 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+      
+
+      
+    </footer>
+  </article>
+
+  <div class="post-spread">
+    
+  </div>
+</div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        
+        
+        
+
+
+
+
+
+
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/assets/images/avatar.gif"
+               alt="三山" />
+          <p class="site-author-name" itemprop="name">三山</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">77</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/">
+                <span class="site-state-item-count">48</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+        
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+
+
+
+
+
+
+
+            
+              <div class="post-toc-content">
+    <ol class=nav>
+      <li class="nav-item nav-level-2"> <a class="nav-link" href="#前言"> <span class="nav-number">1</span> <span class="nav-text">前言</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#1什么是codec"> <span class="nav-number">2</span> <span class="nav-text">1.什么是codec?</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#2什么是容器"> <span class="nav-number">3</span> <span class="nav-text">2.什么是容器?</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#3通用音视频操作"> <span class="nav-number">4</span> <span class="nav-text">3.通用音视频操作</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-3"> <a class="nav-link" href="#转封装remuxing"> <span class="nav-number">4.1</span> <span class="nav-text">转封装(remuxing)</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#转码transcoding"> <span class="nav-number">4.2</span> <span class="nav-text">转码(transcoding)</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#软件编码和硬件编码"> <span class="nav-number">4.3</span> <span class="nav-text">软件编码和硬件编码</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-4"> <a class="nav-link" href="#cpu不是也可以并行"> <span class="nav-number">4.3.1</span> <span class="nav-text">CPU不是也可以并行？</span> </a> </li> </ol> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#转分辨率"> <span class="nav-number">4.4</span> <span class="nav-text">转分辨率</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#自适应流"> <span class="nav-number">4.5</span> <span class="nav-text">自适应流</span> </a> </li> </ol> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#4实战0基础code"> <span class="nav-number">5</span> <span class="nav-text">4.实战0:基础code</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#5实战1音视频同步"> <span class="nav-number">6</span> <span class="nav-text">5.实战1:音视频同步</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-3"> <a class="nav-link" href="#pts"> <span class="nav-number">6.1</span> <span class="nav-text">PTS</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#timebase的选择"> <span class="nav-number">6.2</span> <span class="nav-text">timebase的选择</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#dts"> <span class="nav-number">6.3</span> <span class="nav-text">DTS</span> </a> </li> </ol> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#todoppt中的内容"> <span class="nav-number">7</span> <span class="nav-text">TODO　PPT中的内容</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-3"> <a class="nav-link" href="#decode-in-action"> <span class="nav-number">7.1</span> <span class="nav-text">Decode In action</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#dtspts"> <span class="nav-number">7.2</span> <span class="nav-text">DTS&amp;PTS</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#pts-1"> <span class="nav-number">7.3</span> <span class="nav-text">PTS</span> </a> </li> </ol> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#reference"> <span class="nav-number">8</span> <span class="nav-text">Reference</span> </a> </li>
+    </ol>
+  </div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">三山</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://jekyllrb.com">Jekyll</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/simpleyyt/jekyll-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+   
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/assets/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  <script type="text/javascript" src="/assets/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/assets/js/src/post-details.js?v=5.1.1"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+    
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
+
+

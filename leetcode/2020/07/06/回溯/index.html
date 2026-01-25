@@ -1,0 +1,1167 @@
+<!--不算子网站访客统计-->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-M7QXLLL8YX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-M7QXLLL8YX');
+</script>
+
+
+<!doctype html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/assets/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/assets/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/assets/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="三山的编程之旅" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="1.算法讲解">
+<meta name="keywords" content="Jekyll, NexT">
+<meta property="og:type" content="article">
+<meta property="og:title" content="回溯">
+<meta property="og:url" content="https://jiujiujiujiujiuaia.github.io/leetcode/2020/07/06/%E5%9B%9E%E6%BA%AF/">
+<meta property="og:site_name" content="三山的编程之旅">
+<meta property="og:description" content="1.算法讲解">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/backtracking/img_57.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/backtracking/img_55.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/backtracking/img_3.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/backtracking/img_58.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/backtracking/img_59.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/backtracking/img_60.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/backtracking/img_14.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/backtracking/img_15.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/backtracking/img_16.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/backtracking/img_17.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/backtracking/img_18.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="回溯">
+<meta name="twitter:description" content="1.算法讲解">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/backtracking/img_57.png">
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://jiujiujiujiujiuaia.github.io"/>
+
+
+
+
+
+  <title>回溯 | 三山的编程之旅</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'G-M7QXLLL8YX', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">三山的编程之旅</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+<div id="posts" class="posts-expand">
+  
+  
+
+  
+
+  
+  
+  
+
+  <article class="post post-type- " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://jiujiujiujiujiuaia.github.io/leetcode/2020/07/06/%E5%9B%9E%E6%BA%AF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="三山">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="assets/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="三山的编程之旅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+          
+          
+            回溯
+          
+        </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-06T23:30:09+00:00">
+                2020-07-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/category/#/Leetcode" itemprop="url" rel="index">
+                    <span itemprop="name">Leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+                
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv" id="busuanzi_container_page_pv">
+            本文总阅读量<span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+                
+
+            
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <div class="post-wordcount">
+                  <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                  <span class="post-meta-item-text">字数统计</span>
+                <span title="字数统计">
+                  2808字
+                </span>
+
+                <span class="post-meta-divider">|</span>
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                  <span class="post-meta-item-text">阅读时长</span>
+                <span title="阅读时长">
+                  14分钟
+                </span>
+            </div>
+
+          
+            
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 id="1算法讲解">1.算法讲解</h2>
+
+<h2 id="1回溯与循环">1.回溯与循环</h2>
+
+<p>循环的表达能力有限：如果是构造长为2的字符串，可以写一个二重循环，
+那如果是长为3，为4，甚至长度不确定呢？</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/backtracking/img_57.png" alt="img_57.png" /></p>
+
+<p>因此，回溯解决了循环不能枚举的问题，通过递归的方式，可以增量的构造答案。</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/backtracking/img_55.png" alt="img_55.png" /></p>
+
+<p>通常，回溯法有两个思路，一个是选或者不选，另外一个是选哪个：
+1.选或者不选：讨论每个nums[i]是否在答案中
+2.选哪个：讨论答案的第i个数是哪一个？</p>
+
+<p>以及，回溯时间复杂度如何计算问题</p>
+
+<h3 id="11-回溯法是什么">1.1 回溯法是什么</h3>
+<p>回溯法是一种通用的算法，用来<strong>穷举</strong>找到一种问题的所有或者部分解。</p>
+
+<p>穷举的策略是一条路走到黑，然后<strong>回头（回溯）</strong>或者剪枝，然后看看还有没有机会。</p>
+
+<p>因此<strong>回溯法看起来在处理一条隐式的树</strong>。（下图展示的就是一个排列[2,2’,2’’‘]的树）</p>
+
+<p>剪枝函数的意思是，某种策略下，可能走到2’的时候，就不往下走了，余下的枝叶和节点也被剪掉了。
+<img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/backtracking/img_3.png" alt="img_3.png" /></p>
+
+<h2 id="2经典题型">2.经典题型</h2>
+<p><del>一类是可以画出树形结构的，一类是比较复杂的工程类问题（不易画出树形）</del></p>
+
+<h3 id="21-排列组合子集类问题">2.1 排列组合子集类问题</h3>
+<p>这一类的问题包括：78.子集 77.组合 46.全排列以及变种问题</p>
+
+<p>有意思的是，可以用一套代码模板，依次解决这些问题，因为组合要解决的问题，是子集问题的一部分。
+然后排列的问题，也可以通过子集的问题求出来</p>
+
+<h4 id="211-代码模板-78子集">2.1.1 代码模板 78.子集</h4>
+
+<p>下面的代码是选哪一个的思路</p>
+
+<pre><code class="language-gotemplate">func problem(input)[][]int{
+	result := make([][]int,0)
+	path := make([]int,0)
+    startIndex := 0
+    cycle := 0
+    //cycle 记录的是答案数组的第i个元素
+	backtracking(input,path,result,startIndex,cycle)
+}
+
+func backtracking(input,path,result,startIndex,cycle)[][]int{
+    //#1 满足某种递归终止条件，记录path
+    if xxxxx {
+      //第二个append是copy path副本，避免之后的递归修改了同一个数组，会反应到同一个切片上
+      result = append(result,append([]int(nil),path...))
+      return result  
+    }
+
+    //#2 startIndex作用？对于当前递归层，可以选择的元素i下标范围[startIndex,len(nums)其中一个
+    //为了避免重复选择i和i前面的元素，当前如果选了i，那么下一次只能选[i+1,len(nums)],不能选[0,i]
+for i:=startIndex;i&lt;len(input);i++{
+      path = append(path,input[i])
+      result = backtracking(input,path,result,i+1,cycle+1)
+      //#3 回退一个元素，因为下一次循环是计算当前层的可选的一个可能
+      path = path[:len(path)-1]
+    } 
+    return result
+}
+</code></pre>
+<h5 id="cycle和startindex">cycle和startIndex</h5>
+<p>以78子集为例，如果输入是1,2,3，从答案的角度出发，答案数组的长度为1，2，3时，各有多少种情况。</p>
+
+<p>举例子：</p>
+
+<ol>
+  <li>当求答案数组长度为1时，对于cycle=0,startIndex=0的递归，path={},当前递归层可以选择的元素是1,2,3</li>
+  <li>当求答案数组长度为2时，cycle=1，startIndex=1,path={1},当前递归层可以选择的元素是2，3</li>
+  <li>当求答案数组长度为2时，cycle=1，startIndex=2,path={2},当前递归层可以选择的元素是3</li>
+  <li>…</li>
+</ol>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/backtracking/img_58.png" alt="img_58.png" /></p>
+
+<p>总结：</p>
+
+<ol>
+  <li>cycle是记录当前递归层，求的是答案数组的第cycle个元素，有索引[startIndex,len(input)]范围的选择。</li>
+  <li>startIndex是避免重复选择，对于子集和组合[1,2,3]和[2,1,3]是同一个答案：
+    <ol>
+      <li>对于当前递归层，可以选择的元素i下标范围[startIndex,len(nums)其中一个</li>
+      <li>为了避免重复选择i和i前面的元素，当前如果选了i，那么下一次只能选[i+1,len(nums)],不能选[0,i]</li>
+    </ol>
+  </li>
+</ol>
+
+<h5 id="回退和path复制">回退和path复制</h5>
+<p>注意回退：</p>
+
+<p>只考虑当前层，当前递归层是cycle=0, 可选范围是[startIndex,len(input)]</p>
+
+<p>假设第一次循环是选择了i号元素，第二次循环是i+1号元素，那么就需要撤回第一次循环的元素，那个位置放入i+1号元素</p>
+
+<p>注意path复制：
+避免之后的递归修改了同一个数组，会反应到同一个切片上</p>
+
+<h5 id="总结">总结</h5>
+<p>1.对于当前递归层cycle，可选元素范围[startIndex,len(input)]
+2.避免下一次重复选择，递归时startIndex+1,cycle+1
+3.对于当前递归层cycle，每一个可选元素都在path中的同一个索引，path[cycle],因此要回退
+4.答案复制要拷贝path的副本</p>
+
+<h4 id="212-77组合">2.1.2 77.组合</h4>
+<p>代码模板讲的是子集问题，组合问题是子集问题的一部分，如下图，假设从1，2，3中选取任意两个数，有多少种可能？</p>
+
+<p>那就是选择当cycle==2时，这个时候把答案记录一下就可以，直接秒了</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/backtracking/img_59.png" alt="img_59.png" /></p>
+
+<h4 id="213-46全排列">2.1.3 46.全排列</h4>
+<p>排列跟子集/组合相比，:</p>
+<ol>
+  <li>对于cycle=0,startIndex=0的递归，path={},当前递归层可以选择的元素是1,2,3</li>
+  <li>cycle=1，startIndex=1,path={1},当前递归层可以选择的元素是2,3</li>
+  <li>cycle=1，startIndex=2,path={2},当前递归层可以选择的元素是1,3</li>
+  <li>…</li>
+</ol>
+
+<p>也就是说[1,2,3]和[2,1,3]是两种排列，因此不需要startIndex避免重复选<strong>前面的元素</strong>，但是需要一个set来记录哪些元素已经被选了:</p>
+
+<p>区别：
+1.onPath set来标记哪些元素已经选了，并且在必要的时候回退
+2.递归终止条件是cycle=len(nums)的时候</p>
+
+<h4 id="214-变种题目">2.1.4 变种题目</h4>
+
+<h5 id="有重复元素-90-47">有重复元素 90 47</h5>
+<p>由于有重复元素，所以在78的基础上，加一个判断i&gt;index&amp;&amp;nums[i]==nums[i-1]，避免重复元素。</p>
+
+<p>原来是在[startIndex,len(input)]范围内选择元素，现在这个范围内有可能是有重复的。</p>
+
+<h5 id="同一个元素可以选多次-39">同一个元素可以选多次 39</h5>
+<p>这道题是重复选，那么注意的是，就不要传i+1,而是要传i，因为还可以重复选</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/backtracking/img_60.png" alt="img_60.png" /></p>
+
+<h5 id="其他括号生成数独">其他（括号生成，数独）</h5>
+<p>电话号码生成
+选或者不选思路在括号上面</p>
+
+<h2 id="3感想">3.感想</h2>
+<p>1.回溯题目，无论数据规模多大，比如要递归很多层，都可以先拿一个小数字，作为输入输出，去验证自己想的对不对</p>
+
+<h2 id="4reference">4.Reference</h2>
+<p>1.https://sexywp.com/whats-the-difference-between-backtracking-n-dfs.htm
+2.https://www.bilibili.com/video/BV1xG4y1F7nC/?spm_id_from=333.788&amp;vd_source=09ccbfabd53ffbcbc4c6de01f65bd72d</p>
+
+<h2 id="5-深度优先搜索">5. 深度优先搜索</h2>
+<p>深度优先搜索，是一种用于遍历或者搜索树或者图数据结构的算法。
+算法从树的根节点开始（或者图的任意节点），然后沿着连接节点的边，尽可能深的遍历图，直到回溯。</p>
+
+<p>在深度优先遍历的定义里，出现了回溯这个词。
+不难想象，假设有一颗树，我们从根节点开始深度优先遍历，那么会从根节点，一直向下深入，直到叶子节点，
+这时候如果想继续遍历，则必须返回父节点，这样才能寻找兄弟节点进行遍历。这个“返回” 的过程，就根回溯极其类似。</p>
+
+<h3 id="51-回溯和深度优先搜索的区别是什么">5.1 回溯和深度优先搜索的区别是什么？</h3>
+<p>相同点：</p>
+
+<ol>
+  <li>都是选定一种策略，一条路走到黑，如果走入死路，就退回来，重新选择。</li>
+  <li>是遍历解空间的一种策略，说直白点，都是“穷举”的算法</li>
+</ol>
+
+<p>不同点：</p>
+
+<ol>
+  <li>深度优先搜索适用于所有图（树是图的一种）。而回溯算法只适用于树结构。</li>
+</ol>
+
+<p>回溯法，处理了隐式树，而DFS则处理显示的树。</p>
+
+<p>当使用回溯法遍历一个问题的搜索空间时，隐式树在遍历的过程中，进行剪枝。
+但是，DFS 算法则不同，显示的树或者图已经被构造出来了，那些不可达的节点，或者不可能的情况，此时已经被排除在外了，
+只要按部就班全部遍历即可。所以，他认为，回溯法就是隐式树/图的深度优先搜索，而DFS就是没有剪枝的回溯法。</p>
+
+<p>//===============depreciate===============
+//===============depreciate===============
+//===============depreciate===============</p>
+
+<h4 id="212-解题技巧">2.1.2 解题技巧</h4>
+
+<p>这类问题通常可以简单的缩小输入参数的范围，来简化问题和大脑演算自己的算法逻辑正不正确。</p>
+
+<ol>
+  <li>
+    <p>首先我们可以把全排列问题的输入简化成[1,2]，这样树的层数比较少，也比较好画树形图
+同时也符合大脑计算容量。</p>
+  </li>
+  <li>
+    <p>其次把[1,2]代入到backtracking函数中，设想自己在某一次递归的一层，那么要考虑三个问题：</p>
+
+    <ol>
+      <li>递归终止条件，比如#1 全排列的循环终止条件就是input数组为空，元素被抽光了。</li>
+      <li>如果不终止，本次递归要做的操作
+        <ol>
+          <li>加入到path,然后递归。</li>
+          <li>如果回溯了，那么需要考虑 #2中是newPath而不是共享path，为什么呢？
+            <ol>
+              <li>假设第一次选择1，然后递归，最终newPath=(1,2)</li>
+              <li>成功排列后回溯到第一轮选择，这里的第一轮，仍然是下图中同层级，在需要保证path=(nil)，然后选择2</li>
+              <li>因此要保证每次是newPath而不是path</li>
+            </ol>
+          </li>
+        </ol>
+      </li>
+      <li>剪枝，有的题目（如47）不是所有的可能性我们都要考虑，我们要把不必要的枝叶剪掉。</li>
+    </ol>
+  </li>
+</ol>
+
+<p>值得一提的是：以下图为例</p>
+<ol>
+  <li><strong>每一层（比如第二层），会出现在同一个循环里(for range)，</strong>因此很容易知道，当选择2的时候，代码回溯到了
+和选择1的同一个循环。</li>
+  <li>而往下穷举的过程，是在不断的递归。</li>
+</ol>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/backtracking/img_14.png" alt="img_14.png" /></p>
+
+<h4 id="213-剪枝画出树形的好处">2.1.3 剪枝(画出树形的好处)</h4>
+
+<ul>
+  <li>47.全排列ii就需要剪枝，仔细看，1’和1’‘是一样的，因此完全没有必要重算1’‘的排列’
+    <ul>
+      <li><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/backtracking/img_15.png" alt="img_15.png" /></li>
+      <li>因此这里的剪枝策略是，同一层级的，如果出现重复数字，那么跳过。同一层级对应的就是迭代函数里面的</li>
+      <li><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/backtracking/img_16.png" alt="img_16.png" /></li>
+    </ul>
+  </li>
+  <li>77.组合问题同样也需要剪枝，比如从1，2，3选择2个数进行组合
+    <ul>
+      <li>先选了(1,2)和 (1,3)。</li>
+      <li>然后回溯到选择2的时候，就不能再选1了，因此剪枝。</li>
+      <li>然后回溯选3的时候，1，2已经都被用过了，剪枝。</li>
+      <li>
+        <p>因此，在实际解题的过程中，知道了1，2，3同一层在一个循环里面，就比较写代码剪枝。</p>
+      </li>
+      <li><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/backtracking/img_17.png" alt="img_17.png" /></li>
+      <li><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/backtracking/img_18.png" alt="img_18.png" /></li>
+    </ul>
+  </li>
+</ul>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+      
+      
+
+      
+      
+        <div class="post-nav" id="post-nav-id">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/leetcode/2020/07/07/%E6%95%B0%E7%BB%84/" rel="next" title="数组">
+                <i class="fa fa-chevron-left"></i> 数组
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/leetcode/2020/07/05/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E4%B9%8B%E7%BA%BF%E6%80%A7DP/" rel="prev" title="动态规划之线性DP">
+                动态规划之线性DP <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+      
+
+      
+    </footer>
+  </article>
+
+  <div class="post-spread">
+    
+  </div>
+</div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        
+        
+        
+
+
+
+
+
+
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/assets/images/avatar.gif"
+               alt="三山" />
+          <p class="site-author-name" itemprop="name">三山</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">77</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/">
+                <span class="site-state-item-count">48</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+        
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+
+
+
+
+
+
+
+            
+              <div class="post-toc-content">
+    <ol class=nav>
+      <li class="nav-item nav-level-2"> <a class="nav-link" href="#1算法讲解"> <span class="nav-number">1</span> <span class="nav-text">1.算法讲解</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#1回溯与循环"> <span class="nav-number">2</span> <span class="nav-text">1.回溯与循环</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-3"> <a class="nav-link" href="#11-回溯法是什么"> <span class="nav-number">2.1</span> <span class="nav-text">1.1 回溯法是什么</span> </a> </li> </ol> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#2经典题型"> <span class="nav-number">3</span> <span class="nav-text">2.经典题型</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-3"> <a class="nav-link" href="#21-排列组合子集类问题"> <span class="nav-number">3.1</span> <span class="nav-text">2.1 排列组合子集类问题</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-4"> <a class="nav-link" href="#211-代码模板-78子集"> <span class="nav-number">3.1.1</span> <span class="nav-text">2.1.1 代码模板 78.子集</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-5"> <a class="nav-link" href="#cycle和startindex"> <span class="nav-number">3.1.1.1</span> <span class="nav-text">cycle和startIndex</span> </a> </li> <li class="nav-item nav-level-5"> <a class="nav-link" href="#回退和path复制"> <span class="nav-number">3.1.1.2</span> <span class="nav-text">回退和path复制</span> </a> </li> <li class="nav-item nav-level-5"> <a class="nav-link" href="#总结"> <span class="nav-number">3.1.1.3</span> <span class="nav-text">总结</span> </a> </li> </ol> </li> <li class="nav-item nav-level-4"> <a class="nav-link" href="#212-77组合"> <span class="nav-number">3.1.2</span> <span class="nav-text">2.1.2 77.组合</span> </a> </li> <li class="nav-item nav-level-4"> <a class="nav-link" href="#213-46全排列"> <span class="nav-number">3.1.3</span> <span class="nav-text">2.1.3 46.全排列</span> </a> </li> <li class="nav-item nav-level-4"> <a class="nav-link" href="#214-变种题目"> <span class="nav-number">3.1.4</span> <span class="nav-text">2.1.4 变种题目</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-5"> <a class="nav-link" href="#有重复元素-90-47"> <span class="nav-number">3.1.4.1</span> <span class="nav-text">有重复元素 90 47</span> </a> </li> <li class="nav-item nav-level-5"> <a class="nav-link" href="#同一个元素可以选多次-39"> <span class="nav-number">3.1.4.2</span> <span class="nav-text">同一个元素可以选多次 39</span> </a> </li> <li class="nav-item nav-level-5"> <a class="nav-link" href="#其他括号生成数独"> <span class="nav-number">3.1.4.3</span> <span class="nav-text">其他（括号生成，数独）</span> </a> </li> </ol> </li> </ol> </li> </ol> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#3感想"> <span class="nav-number">4</span> <span class="nav-text">3.感想</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#4reference"> <span class="nav-number">5</span> <span class="nav-text">4.Reference</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#5-深度优先搜索"> <span class="nav-number">6</span> <span class="nav-text">5. 深度优先搜索</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-3"> <a class="nav-link" href="#51-回溯和深度优先搜索的区别是什么"> <span class="nav-number">6.1</span> <span class="nav-text">5.1 回溯和深度优先搜索的区别是什么？</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-4"> <a class="nav-link" href="#212-解题技巧"> <span class="nav-number">6.1.1</span> <span class="nav-text">2.1.2 解题技巧</span> </a> </li> <li class="nav-item nav-level-4"> <a class="nav-link" href="#213-剪枝画出树形的好处"> <span class="nav-number">6.1.2</span> <span class="nav-text">2.1.3 剪枝(画出树形的好处)</span> </a> </li> </ol> </li> </ol> </li>
+    </ol>
+  </div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">三山</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://jekyllrb.com">Jekyll</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/simpleyyt/jekyll-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+   
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/assets/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  <script type="text/javascript" src="/assets/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/assets/js/src/post-details.js?v=5.1.1"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+    
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
+
+

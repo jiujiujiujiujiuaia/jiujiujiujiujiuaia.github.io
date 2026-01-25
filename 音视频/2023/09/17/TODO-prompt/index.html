@@ -1,0 +1,1073 @@
+<!--不算子网站访客统计-->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-M7QXLLL8YX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-M7QXLLL8YX');
+</script>
+
+
+<!doctype html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/assets/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/assets/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/assets/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="三山的编程之旅" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="https://www.deeplearning.ai/short-courses/langchain-for-llm-application-development/ https://www.deeplearning.ai/short-courses/chatgpt-prompt-engineering-for-developers/">
+<meta name="keywords" content="Jekyll, NexT">
+<meta property="og:type" content="article">
+<meta property="og:title" content="prompt">
+<meta property="og:url" content="https://jiujiujiujiujiuaia.github.io/%E9%9F%B3%E8%A7%86%E9%A2%91/2023/09/17/TODO-prompt/">
+<meta property="og:site_name" content="三山的编程之旅">
+<meta property="og:description" content="https://www.deeplearning.ai/short-courses/langchain-for-llm-application-development/ https://www.deeplearning.ai/short-courses/chatgpt-prompt-engineering-for-developers/">
+<meta property="og:locale" content="zh-Hans">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="prompt">
+<meta name="twitter:description" content="https://www.deeplearning.ai/short-courses/langchain-for-llm-application-development/ https://www.deeplearning.ai/short-courses/chatgpt-prompt-engineering-for-developers/">
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://jiujiujiujiujiuaia.github.io"/>
+
+
+
+
+
+  <title>prompt | 三山的编程之旅</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'G-M7QXLLL8YX', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">三山的编程之旅</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+<div id="posts" class="posts-expand">
+  
+  
+
+  
+
+  
+  
+  
+
+  <article class="post post-type- " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://jiujiujiujiujiuaia.github.io/%E9%9F%B3%E8%A7%86%E9%A2%91/2023/09/17/TODO-prompt/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="三山">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="assets/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="三山的编程之旅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+          
+          
+            prompt
+          
+        </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-09-17T22:30:09+00:00">
+                2023-09-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/category/#/%E9%9F%B3%E8%A7%86%E9%A2%91" itemprop="url" rel="index">
+                    <span itemprop="name">音视频</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+                
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv" id="busuanzi_container_page_pv">
+            本文总阅读量<span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+                
+
+            
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <div class="post-wordcount">
+                  <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                  <span class="post-meta-item-text">字数统计</span>
+                <span title="字数统计">
+                  3586字
+                </span>
+
+                <span class="post-meta-divider">|</span>
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                  <span class="post-meta-item-text">阅读时长</span>
+                <span title="阅读时长">
+                  17分钟
+                </span>
+            </div>
+
+          
+            
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <p>https://www.deeplearning.ai/short-courses/langchain-for-llm-application-development/
+https://www.deeplearning.ai/short-courses/chatgpt-prompt-engineering-for-developers/</p>
+
+<p>下面这个文章告诉我们利用GPT可以干哪些有趣的事情？</p>
+
+<p>https://mp.weixin.qq.com/s/2TcuFZX1kg3odN6kaYAI3w</p>
+
+<p>程序员如何用ChatGPT编程？
+机器之心 2023-09-17 12:39 发表于北京
+ChatGPT 的爆火让大家看到人工智能（AI）的宏大前景，那么对于程序员来说，ChatGPT 如何能作为程序员们最忠实的伙伴，被充分运用于编程中呢？
+《人人都是提示工程师》给出了答案，一起来看看吧～
+图片
+用 ChatGPT 帮助写代码</p>
+
+<p>代码生成是指使用自动化工具和技术，根据指定的输入规则和要求，生成相应的计算机代码。这种自动生成代码的技术在各个领域都有广泛的应用，尤其在软件开发、数据分析、人工智能等领域中更加常见。
+在软件开发领域，代码生成可以帮助开发人员快速创建模板代码、重复性的代码，从而提高开发效率。在数据分析领域，代码生成可以根据数据分析结果自动生成相应的数据处理代码。在人工智能领域，代码生成可以帮助机器学习模型自动生成相应的代码，以实现更高效的模型构建和测试。
+通过代码生成，提高代码的质量，减少错误和重复性的工作，从而缩短开发时间，提高开发效率。此外，代码生成也可以提高代码的可读性、可维护性和可扩展性，帮助开发人员更好地管理和维护代码库。
+ChatGPT 在代码生成中的应用可以通过输入关键词、选择编程语言、生成代码等步骤来实现。具体步骤如下：</p>
+
+<p>❶ 输入关键词。用户可以根据需求输入关键词，例如，“生成随机数列表”“读取 CSV 文件”等。关键词的准确性和清晰度将对生成的代码质量产生重要的影响。
+❷ 选择编程语言。ChatGPT 支持多种编程语言，例如，Python、Java、JavaScript 等。用户可以根据自己的需求和熟练程度选择合适的编程语言。
+❸ 生成代码。根据用户输入的关键词和选择的编程语言，ChatGPT可以生成对应的代码。用户可以对生成的代码进行调整和优化，以满足自己的需求。</p>
+
+<p>接下来，我们看一个具体的例子。例如，我们在 ChatGPT 中输入如下内容。
+利用 Python 编程语言生成一个随机序列，并且实现一个排序算法。
+ChatGPT 输出如下内容。
+图片</p>
+
+<p>图片</p>
+
+<p>上述输出结果非常神奇——ChatGPT 可以帮助用户写代码。</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>ChatGPT 在代码生成中的优点</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>提高效率。自动生成代码可以大大缩短开发人员手动编写代码的时间，提高工作效率。</p>
+
+<p>减少错误。由于自动生成的代码是基于模型学习而来的，因此可以减少人为导致的错误。</p>
+
+<p>增强灵活性。可以根据不同的输入关键词生成不同的代码，增强代码的灵活性。</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>ChatGPT 在代码生成中的局限性</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>生成结果的准确性有时难以保证。由于代码生成是基于模型学习得到的，因此生成结果的准确性有时难以保证。</p>
+
+<p>存在语义理解的限制。由于自然语言和编程语言之间存在差异，因此模型可能会对输入语句理解不准确，生成的代码不符合预期。</p>
+
+<p>缺乏领域知识。模型缺乏特定领域的知识和经验，可能导致生成的代码无法满足特定领域的需求。</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>为了提高生成结果的准确性和流畅度，可以通过以下方式进行优化</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>增加训练数据。通过增加训练数据，提高模型对不同场景下的理解能力，进而提高生成结果的准确性。</p>
+
+<p>改进模型结构。优化模型结构，增加模型的深度和宽度，提高模型的泛化能力，减少过拟合的情况。</p>
+
+<p>结合领域知识。通过引入领域专家的知识和经验，帮助模型更好地理解特定领域的语义和逻辑。</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>ChatGPT 在代码生成领域的应用不断增多，未来的发展趋势如下</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>结合代码模板和规则。</p>
+
+<p>增加训练数据。</p>
+
+<p>结合其他技术和工具。</p>
+
+<p>面向特定领域的模型训练。
+综上所述，ChatGPT 在代码生成领域的应用还有很大的发展空间，未来 ChatGPT 将会结合代码模板和规则以及其他技术和工具，通过增加训练数据，面向特定领域进行模型训练等提高生成效率和代码的准确性。</p>
+
+<p>用 ChatGPT 帮助解释代码</p>
+
+<p>代码解释在软件开发中具有重要的作用：一方面，代码解释可以帮助开发人员更好地理解代码实现细节和设计意图，避免出现代码理解错误，提高代码的可读性和可维护性；另一方面，在团队协作中，代码解释能够帮助新加入的开发人员更快速地熟悉代码库，降低新人学习成本。此外，当代码需要维护或升级时，代码解释能够帮助开发人员快速了解代码的实现细节，从而更好地进行维护和升级。
+尤其是在大型软件开发项目中，由于涉及的代码量较大，因此多人协作开发会使代码难以理解和维护。因此，对代码进行解释变得尤为重要。代码解释需要写入代码注释中，注释的质量和数量直接影响代码的可读性与可维护性。
+传统的代码解释方式包括使用代码注释、文档、博客文章等。其中，代码注释是指在代码中添加的一些解释文字；文档则是指对代码进行详细描述和说明的文字；博客文章则是指作者在博客上发布的用于解释代码和分享经验的文字。
+这些传统的代码解释方式存在一些问题和局限性。首先，人工编写代码注释，需要花费大量的时间和精力，而且容易出现注释与代码不一致的情况。其次，文档与博客文章需要单独编写和维护，增加了代码的复杂度和维护成本。同时，文档和博客文章的质量很难保证，可能存在错误或者遗漏。最后，这些方式都需要用户主动查找和阅读，不够直观和方便。
+因此，传统的代码解释方式在实际开发中存在一些局限性，需要寻求新的解决方案来提高代码的可读性和可维护性。</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>使用 ChatGPT 来帮助解释代码的优点</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>自动解释。借助 ChatGPT 可以自动化生成代码解释，大大降低人工成本。</p>
+
+<p>提高代码阅读效率。当我们遇到一些难以阅读的代码时，借助ChatGPT 我们可以快速理解代码的含义，提高阅读效率。</p>
+
+<p>减少代码理解误差。在进行团队协作时，不同的开发人员对代码的理解可能会有所差异，借助 ChatGPT 来解释代码可以减少这种误差，保证代码的一致性。</p>
+
+<p>适用性广泛。ChatGPT 可用于处理多种编程语言，涵盖 Python、Java、C++ 等主流编程语言，具有广泛的适用性。</p>
+
+<p>不需要专业知识。借助 ChatGPT 解释代码不需要用户具备专业的编程知识，只需要输入代码即可得到解释，ChatGPT 对非专业开发人员也非常友好。
+总之，使用 ChatGPT 来帮助解释代码可以提高开发效率和质量，降低人工成本，减少理解误差。在真实的工作场景中，用 ChatGPT 帮助解释代码的应用场景包括哪些呢？</p>
+
+<p>学习新技术</p>
+
+<p>在学习新的库、框架、算法等技术时，使用 ChatGPT 我们可以快速了解其实现原理和用法，从而提高学习效率。例如，如果我们想要学习RAY 框架，那么如何快速学习呢？我们可以在 ChatGPT 中输入如下内容。</p>
+
+<p>帮我介绍一下 RAY 这个框架，从原理和用法方面进行详细介绍，并且给出例子。</p>
+
+<p>ChatGPT 输出如下内容。
+图片图片</p>
+
+<p>维护代码</p>
+
+<p>在维护已有的代码时，如果遇到不熟悉的代码，借助 ChatGPT 我们可以理解该代码的功能和实现方式，从而更好地维护代码。例如，如果我们想维护很多年前的一段代码，相关的开发人员已经离职，并且没有留下任何文档资料，那么负责开发的同事就会遭遇困难，ChatGPT 可以帮助开发人员理解这些代码的功能和实现方式。</p>
+
+<p>图片</p>
+
+<p>ChatGPT 输出如下内容。</p>
+
+<p>图片</p>
+
+<p>图片</p>
+
+<p>通过以上内容，我们就非常容易知道代码的含义，从而更好地对代码进行修改和维护。
+ChatGPT还能用于代码评审和开发文档生成等应用场景中，在前面介绍的这些应用场景中，ChatGPT 可以帮助开发者快速了解代码，从而提高工作效率。同时，ChatGPT 还可以帮助团队开展协作和代码维护等方面的工作，从而提高软件开发的整体效率和质量。
+随着人工智能技术的不断发展，ChatGPT 在代码解释方面的应用也将继续深入拓展。
+| 未来的发展趋势
+结合自然语言处理技术。</p>
+
+<p>引入更多的上下文信息。</p>
+
+<p>结合可视化工具。</p>
+
+<p>扩展应用场景。</p>
+
+<p>总之，ChatGPT 在代码解释方面的应用前景广阔，未来还有很多拓展空间。通过不断地引入更多的技术和工具，ChatGPT 可以帮助开发者更好地理解和应用代码，提高软件开发效率和软件质量。</p>
+
+<p>用 ChatGPT 帮助改代码</p>
+
+<p>| 传统代码审查和改进方式的局限性
+人工审查过程烦琐、耗时。
+容易出现疏漏。
+对人员技能要求高。
+难以保证一致性。
+为了克服传统代码审查和改进方式的局限性，需要借助新的技术和工具。例如，使用 ChatGPT 等人工智能技术来自动完成代码解释和改进，使用静态代码分析工具来发现潜在问题等。这些新技术可以有效提高代码质量，减少人工审查的工作量，降低出错率。</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>使用 ChatGPT 改进代码的过程</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>❶ 输入代码。在使用 ChatGPT 改进代码之前，需要将待改进的代码输入 ChatGPT 模型中。可以通过复制、粘贴的方式将代码输入ChatGPT 的文本框中，或者上传代码文件。
+❷ 选择编程语言。ChatGPT 支持多种编程语言，包括 Python、Java、C++ 等。在输入代码之后，需要选择正确的编程语言，以便ChatGPT 更好地理解代码并生成改进建议。
+❸ 调整参数。在输入代码和选择编程语言之后，可以选择调整一些参数来生成更准确和实用的改进建议。例如，可以选择不同的模型大小或使用不同的预训练模型来生成改进建议。
+❹ 生成改进建议。ChatGPT 模型可用于分析代码并生成改进建议。改进建议可能包括代码风格、变量名、语法错误等。ChatGPT 可以通过生成实时的解释或直接建议来帮助开发人员更好地理解和修改代码。
+需要注意的是，虽然 ChatGPT 可以提供有用的改进建议，但是开发人员仍然需要理解这些建议，并在必要的情况下手动修改。此外，由于 ChatGPT 是基于机器学习的模型，其改进建议可能不是完美的，因此开发人员需要谨慎评估和处理这些建议。
+总的来说，使用 ChatGPT 改进代码的过程可以大大提高开发人员的效率和模型的准确性，尤其是在需要快速理解新代码库或处理较大代码库时。同时，ChatGPT 还可以帮助开发人员避免常见的代码错误和风格问题，从而提高代码质量和可维护性。
+| 使用 ChatGPT 改进代码的优点
+提高代码质量</p>
+
+<p>加速开发流程。</p>
+
+<p>减少错误。</p>
+
+<p>提高代码可维护性。</p>
+
+<p>降低学习成本。
+总的来说，ChatGPT 可以帮助开发人员提高代码质量、加速开发流程、减少错误、提高代码可维护性、降低学习成本等，因此在软件开发中具有广泛的应用前景。</p>
+
+<p>ChatGPT 是眼下最具竞争力的 AI 工具，想深入了解如何用ChatGPT编程就快打开《人人都是提示工程师》这本书进行深度学习吧！
+阅读原文
+​
+喜欢此内容的人还喜欢
+MIT研究人员将Transformer与图神经网络结合，用于设计全新蛋白质 
+机器之心
+不喜欢</p>
+
+<p>科大讯飞，又爆了，勇夺第一 
+非著名程序员
+不喜欢</p>
+
+<p>中山大学开源Diffusion模型统一代码框架，推动AIGC规模化应用 
+机器之心
+不喜欢</p>
+
+<p>微信扫一扫
+关注该公众号</p>
+
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+      
+      
+
+      
+      
+        <div class="post-nav" id="post-nav-id">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/azure/%E6%8A%80%E6%9C%AF/2023/09/22/Teams-Bot-%E5%92%8CAzure-Web-App%E4%BD%93%E9%AA%8C%E4%B9%8B%E6%97%85/" rel="next" title="Teams Bot 和Azure Web App体验之旅">
+                <i class="fa fa-chevron-left"></i> Teams Bot 和Azure Web App体验之旅
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/%E9%9F%B3%E8%A7%86%E9%A2%91/2023/09/17/%E9%9F%B3%E8%A7%86%E9%A2%91%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86(1)/" rel="prev" title="音视频基础知识(1)">
+                音视频基础知识(1) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+      
+
+      
+    </footer>
+  </article>
+
+  <div class="post-spread">
+    
+  </div>
+</div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        
+        
+        
+
+
+
+
+
+
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/assets/images/avatar.gif"
+               alt="三山" />
+          <p class="site-author-name" itemprop="name">三山</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">77</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/">
+                <span class="site-state-item-count">48</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+        
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">三山</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://jekyllrb.com">Jekyll</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/simpleyyt/jekyll-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+   
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/assets/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  <script type="text/javascript" src="/assets/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/assets/js/src/post-details.js?v=5.1.1"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+    
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
+
+

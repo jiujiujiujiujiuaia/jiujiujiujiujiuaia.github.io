@@ -1,0 +1,1025 @@
+<!--不算子网站访客统计-->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-M7QXLLL8YX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-M7QXLLL8YX');
+</script>
+
+
+<!doctype html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/assets/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/assets/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/assets/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="三山的编程之旅" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="为什么需要缓存?">
+<meta name="keywords" content="Jekyll, NexT">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Cache">
+<meta property="og:url" content="https://jiujiujiujiujiuaia.github.io/redis/cache/2020/03/02/Cache-And-Redis/">
+<meta property="og:site_name" content="三山的编程之旅">
+<meta property="og:description" content="为什么需要缓存?">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/redis/20231229135150/img_1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/redis/20231229135150/img_2.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/redis/20231229135150/img_3.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/redis/20231229135150/img_4.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Cache">
+<meta name="twitter:description" content="为什么需要缓存?">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/redis/20231229135150/img_1.png">
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://jiujiujiujiujiuaia.github.io"/>
+
+
+
+
+
+  <title>Cache | 三山的编程之旅</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'G-M7QXLLL8YX', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">三山的编程之旅</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+<div id="posts" class="posts-expand">
+  
+  
+
+  
+
+  
+  
+  
+
+  <article class="post post-type- " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://jiujiujiujiujiuaia.github.io/redis/cache/2020/03/02/Cache-And-Redis/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="三山">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="assets/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="三山的编程之旅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+          
+          
+            Cache
+          
+        </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-02T17:30:09+00:00">
+                2020-03-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/category/#/Redis" itemprop="url" rel="index">
+                    <span itemprop="name">Redis</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/category/#/Cache" itemprop="url" rel="index">
+                    <span itemprop="name">Cache</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+                
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv" id="busuanzi_container_page_pv">
+            本文总阅读量<span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+                
+
+            
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <div class="post-wordcount">
+                  <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                  <span class="post-meta-item-text">字数统计</span>
+                <span title="字数统计">
+                  1195字
+                </span>
+
+                <span class="post-meta-divider">|</span>
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                  <span class="post-meta-item-text">阅读时长</span>
+                <span title="阅读时长">
+                  5分钟
+                </span>
+            </div>
+
+          
+            
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 id="为什么需要缓存">为什么需要缓存?</h2>
+
+<ul>
+  <li>1.需要经常访问的数据，例如热点数据，推特的top10 topic, 根据28定律，少量数据负责大量请求。</li>
+  <li>2.成本高昂的数据库操作: 从数据库检索数据需要复杂的查询或联接多个表，这些操作通常会消耗更多的CPU和内存资源。通过background-job不断的写入这些结果到缓存中。</li>
+  <li>3.不轻易修改的数据</li>
+  <li>4.与DB系统不同地是，缓存不是为了数据长期持久性设计的，是为了提高性能和吞吐量。不适合长期存储的场景</li>
+</ul>
+
+<p>总结: 对于数据不经常更改、多次访问相同数据、重复产生相同输出或耗时查询或计算的结果值得缓存的场景. 减少对数据库的访问次数。</p>
+
+<h2 id="使用缓存的例子">使用缓存的例子</h2>
+
+<ul>
+  <li>L1,2,3: 现代计算机利用多级缓存（包括 L1、L2 和 L3 缓存）来为 CPU 提供对常用数据的快速访问。</li>
+  <li>MMU: 内存管理单元（MMU）负责将虚拟内存地址映射到物理内存地址。</li>
+  <li>Page cache: 操作系统在主内存中使用page cache来增强整体系统性能。</li>
+  <li>Browser cache: 浏览器使用缓存来存储经常访问的网站图像、数据和文档，从而实现更快的加载时间和更流畅的浏览体验。</li>
+  <li>CDN: CDN 是另一种形式的缓存，用于交付静态资源，例如图像、视频、CSS 文件和其他多媒体内容。</li>
+</ul>
+
+<h2 id="缓存为什么快">缓存为什么快</h2>
+
+<p>数据保存在内存中。内存中的数据读写通常比磁盘读写快 1,000 倍 - 10,000 倍。详细信息请参见下图。</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/redis/20231229135150/img_1.png" alt="img_1.png" /></p>
+
+<h2 id="分布式缓存分片的策略">分布式缓存分片的策略</h2>
+
+<p>单个机器的redis或者本地缓存，无法提供无限的存储空间，因此需要分布式的缓存。</p>
+
+<p>缓存数据分布在多个节点上，每个节点仅存储一部分缓存数据。那么当客户端请求数据时，应该从那个节点返回数据呢？写入数据的时候又应该写入哪个节点呢？</p>
+
+<h3 id="模数分片modulus">模数分片(Modulus)</h3>
+
+<p>最直白的，对每个key进行hash计算，然后根据分片的数量取模。</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/redis/20231229135150/img_2.png" alt="img_2.png" /></p>
+
+<p>缺点：当分片数量增加或减少时，可能会导致许多缓存未命中，大多数键将重新分配到不同的分片。</p>
+
+<h3 id="基于范围的分片range">基于范围的分片(Range)</h3>
+
+<p>对于基于地理位置的数据或与特定客户群相关的数据。</p>
+
+<p>这种非常有用，特别适合key的种类比较明确，且不大会改变。例如地理位置的region，大洲的数据就不容易改变</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/redis/20231229135150/img_3.png" alt="img_3.png" /></p>
+
+<p>缺点：同样，这种方法也可能难以扩展，因为分片的数量是预定义的并且无法轻易更改。更改分片数量需要重新定义键范围并重新映射数据。</p>
+
+<h3 id="consistent-hashing">Consistent hashing</h3>
+
+<p>TODO: 下面的一致性hash写的太浅了，这个很好(https://acodersjourney.com/system-design-interview-consistent-hashing/)</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/redis/20231229135150/img_4.png" alt="img_4.png" /></p>
+
+<p>通过举一个例子来理解一致性hash</p>
+
+<ul>
+  <li>假设我们有一个分布式缓存系统，开始时有3个节点（Node A、Node B、Node C）。</li>
+  <li>使用一致性哈希环来分配数据，哈希环的范围是0到1000。</li>
+  <li>每个节点在哈希环上的位置是通过对节点名称进行哈希计算得到的。</li>
+  <li>假设哈希函数返回以下位置：Node A（哈希值200）、Node B（哈希值400）、Node C（哈希值600）。</li>
+</ul>
+
+<p>对于写入和读取的场景:</p>
+
+<p>写入：</p>
+<ul>
+  <li>假设Key1的哈希值是350。</li>
+  <li>在环上顺时针找到第一个节点是Node B（位置400），所以Key1存储在Node B。</li>
+</ul>
+
+<p>读取：</p>
+<ul>
+  <li>计算Key1的哈希值（350）。</li>
+  <li>顺时针在哈希环上找到Node B，从Node B读取Key1。</li>
+</ul>
+
+<p>增加slot:</p>
+<ul>
+  <li>现在我们增加一个新的节点Node D，假设其哈希值是500。</li>
+  <li>Node D插入到Node C（600）和Node A（200）之间。</li>
+  <li>原本存储在Node C上哈希值介于500和600之间的数据项现在需要迁移到Node D。</li>
+  <li>当增加或删除节点时，只有一部分数据需要迁移，而不是所有数据。这样可以极大地减少重新分配数据时的网络流量和处理负担，提高了系统的扩展性和稳定性。</li>
+</ul>
+
+<h2 id="缓存和数据库的一致性">缓存和数据库的一致性</h2>
+
+<p>Refere 系统设计常见问题</p>
+
+<h2 id="todo-缓存的挑战">TODO 缓存的挑战</h2>
+
+<p>https://blog.bytebytego.com/p/a-crash-course-in-caching-final-part</p>
+
+<h2 id="reference">Reference</h2>
+
+<ul>
+  <li>1.https://acodersjourney.com/system-design-interview-consistent-hashing/</li>
+  <li>https://blog.bytebytego.com/p/a-crash-course-in-caching-part-1</li>
+  <li>https://blog.bytebytego.com/p/a-crash-course-in-caching-part-2</li>
+  <li>https://blog.bytebytego.com/p/a-crash-course-in-caching-final-part</li>
+  <li>https://blog.bytebytego.com/p/a-crash-course-in-redis</li>
+</ul>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+      
+      
+
+      
+      
+        <div class="post-nav" id="post-nav-id">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/system%20design/2020/03/02/TinyURL/" rel="next" title="TinyURL">
+                <i class="fa fa-chevron-left"></i> TinyURL
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/system%20design/2020/03/01/Learning-From-Twitter(design)/" rel="prev" title="Learning From Twitter(design)">
+                Learning From Twitter(design) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+      
+
+      
+    </footer>
+  </article>
+
+  <div class="post-spread">
+    
+  </div>
+</div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        
+        
+        
+
+
+
+
+
+
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/assets/images/avatar.gif"
+               alt="三山" />
+          <p class="site-author-name" itemprop="name">三山</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">77</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/">
+                <span class="site-state-item-count">48</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+        
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+
+
+
+
+
+
+
+            
+              <div class="post-toc-content">
+    <ol class=nav>
+      <li class="nav-item nav-level-2"> <a class="nav-link" href="#为什么需要缓存"> <span class="nav-number">1</span> <span class="nav-text">为什么需要缓存?</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#使用缓存的例子"> <span class="nav-number">2</span> <span class="nav-text">使用缓存的例子</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#缓存为什么快"> <span class="nav-number">3</span> <span class="nav-text">缓存为什么快</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#分布式缓存分片的策略"> <span class="nav-number">4</span> <span class="nav-text">分布式缓存分片的策略</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-3"> <a class="nav-link" href="#模数分片modulus"> <span class="nav-number">4.1</span> <span class="nav-text">模数分片(Modulus)</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#基于范围的分片range"> <span class="nav-number">4.2</span> <span class="nav-text">基于范围的分片(Range)</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#consistent-hashing"> <span class="nav-number">4.3</span> <span class="nav-text">Consistent hashing</span> </a> </li> </ol> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#缓存和数据库的一致性"> <span class="nav-number">5</span> <span class="nav-text">缓存和数据库的一致性</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#todo-缓存的挑战"> <span class="nav-number">6</span> <span class="nav-text">TODO 缓存的挑战</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#reference"> <span class="nav-number">7</span> <span class="nav-text">Reference</span> </a> </li>
+    </ol>
+  </div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">三山</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://jekyllrb.com">Jekyll</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/simpleyyt/jekyll-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+   
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/assets/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  <script type="text/javascript" src="/assets/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/assets/js/src/post-details.js?v=5.1.1"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+    
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
+
+

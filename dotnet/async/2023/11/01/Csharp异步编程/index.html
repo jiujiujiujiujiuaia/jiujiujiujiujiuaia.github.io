@@ -1,0 +1,1144 @@
+<!--不算子网站访客统计-->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-M7QXLLL8YX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-M7QXLLL8YX');
+</script>
+
+
+<!doctype html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/assets/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/assets/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/assets/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="三山的编程之旅" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="0.同步vs异步">
+<meta name="keywords" content="Jekyll, NexT">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Csharp 异步编程">
+<meta property="og:url" content="https://jiujiujiujiujiuaia.github.io/dotnet/async/2023/11/01/Csharp%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/">
+<meta property="og:site_name" content="三山的编程之旅">
+<meta property="og:description" content="0.同步vs异步">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/async/20240114141602/img.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/async/20240114141602/img_10.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/async/20240114141602/img_11.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/async/20240114141602/img_1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/async/20240114141602/img_2.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/async/20240114141602/img_3.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/async/20240114141602/img_4.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/async/20240114141602/img_5.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/async/20240114141602/img_6.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/async/20240114141602/img_7.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/async/20240114141602/img_8.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/async/20240114141602/img_9.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/async/20240114141602/img_12.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/async/20240114141602/img_13.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/async/20240114184417/img.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/async/20240114184417/img_1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/async/20240114184417/img_3.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/async/20240114184417/img_2.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Csharp 异步编程">
+<meta name="twitter:description" content="0.同步vs异步">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/async/20240114141602/img.png">
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://jiujiujiujiujiuaia.github.io"/>
+
+
+
+
+
+  <title>Csharp 异步编程 | 三山的编程之旅</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'G-M7QXLLL8YX', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">三山的编程之旅</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+<div id="posts" class="posts-expand">
+  
+  
+
+  
+
+  
+  
+  
+
+  <article class="post post-type- " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://jiujiujiujiujiuaia.github.io/dotnet/async/2023/11/01/Csharp%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="三山">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="assets/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="三山的编程之旅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+          
+          
+            Csharp 异步编程
+          
+        </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-11-01T17:30:09+00:00">
+                2023-11-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/category/#/Dotnet" itemprop="url" rel="index">
+                    <span itemprop="name">Dotnet</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/category/#/Async" itemprop="url" rel="index">
+                    <span itemprop="name">Async</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+                
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv" id="busuanzi_container_page_pv">
+            本文总阅读量<span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+                
+
+            
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <div class="post-wordcount">
+                  <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                  <span class="post-meta-item-text">字数统计</span>
+                <span title="字数统计">
+                  2011字
+                </span>
+
+                <span class="post-meta-divider">|</span>
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                  <span class="post-meta-item-text">阅读时长</span>
+                <span title="阅读时长">
+                  10分钟
+                </span>
+            </div>
+
+          
+            
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 id="0同步vs异步">0.同步vs异步</h2>
+
+<p>同步函数很好理解，每一个函数调用都会阻塞，等待函数调用完了，才会执行下一个。</p>
+
+<p>异步函数不太好理解，和同步函数的区别是，实质上是遇到await关键字后，就1)注册一个回调函数，2)不执行完返回到调用层</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/async/20240114141602/img.png" alt="img.png" /></p>
+
+<p>同时，<strong>使用异步不是代表着创建新线程</strong>，有可能是<strong>复用本来应该等待的线程</strong>，因此对于IO密集型的任务非常适合。</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/async/20240114141602/img_10.png" alt="img_10.png" /></p>
+
+<p>例如：</p>
+<ul>
+  <li>在一个 Web 服务器应用中，当处理大量的网络请求时，每个请求可能需要等待数据从数据库或远程服务获取。</li>
+  <li>使用异步编程（例如 <code class="language-plaintext highlighter-rouge">await</code> 一个异步读取数据库的操作），可以在等待期间释放线程去处理其他请求，从而提高并发处理能力。</li>
+</ul>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/async/20240114141602/img_11.png" alt="img_11.png" /></p>
+
+<h2 id="1await-关键字">1.Await 关键字</h2>
+
+<p>Await的出现，意味着可以注册一个回调函数，当前正在执行的线程立即返回。调用者不会得到结果，而是得到结果的承诺，即异步方法返回的 Task<TResult> 对象。</TResult></p>
+
+<p>（有一个特殊情况是如果Await出现在main函数中，由于Main函数没有调用层了，因此就是要等待了）</p>
+
+<p>https://gist.github.com/jiujiujiujiujiuaia/ceabbce7479e7bfb55bb10dd08dff4b6</p>
+
+<h2 id="2async-关键字">2.Async 关键字</h2>
+<p>async只是修饰符，表示这个“MethodAsync”函数里面至少有一个await。</p>
+
+<p>对于调用方(caller)来说，调用“MethodAsync”函数，一般有有两个选择:</p>
+
+<p>可以并行的执行其他的任务</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/async/20240114141602/img_1.png" alt="img_1.png" /></p>
+
+<p>也可以await这个”MethodAsync”</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/async/20240114141602/img_2.png" alt="img_2.png" /></p>
+
+<h3 id="调用方的视角">调用方的视角</h3>
+
+<p>同时，对于调用方(caller)来说, 一旦在 “MethodAsync” 方法中第一次遇到关键字 await ，当前正在执行的线程立即返回。</p>
+
+<h2 id="3调用方还有调用方-如何阅读异步代码">3.调用方还有调用方? 如何阅读异步代码?</h2>
+
+<p>在实际的应用场景中，aysnc method1 会 call aysnc method2，然后async method2 又会call async method3。</p>
+
+<p>async叠加async的模式会给代码阅读带来障碍，我们阅读代码的方式就是:</p>
+
+<ul>
+  <li>找到最顶层的，也就是源头method，假设叫做parentMethod，看它是如何处理method1的。</li>
+</ul>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/async/20240114141602/img_3.png" alt="img_3.png" /></p>
+
+<h3 id="情况1">情况1</h3>
+
+<p>由于ParentMethod没有任何其他代码了，导致在Method1中遇到await就返回控制权到Parent，然后直接进程结束。</p>
+
+<p>这种是代码写的有问题，不了解异步编程机制。</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/async/20240114141602/img_4.png" alt="img_4.png" /></p>
+
+<h2 id="情况2">情况2</h2>
+
+<p>这种情况很常见，例如源头是一个Timer的不断调用的任务, 每隔xx时间就会重复一遍。</p>
+
+<p>由于这种定时任务会等待一定的时间，因此会等待把异步任务执行完。</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/async/20240114141602/img_5.png" alt="img_5.png" /></p>
+
+<h2 id="情况3">情况3</h2>
+
+<p>await了method1，因此会在ParentMethod等待执行完。</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/async/20240114141602/img_6.png" alt="img_6.png" /></p>
+
+<h2 id="情况4">情况4</h2>
+
+<p>并行执行其他任务，交替执行doSomething和Method1</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/async/20240114141602/img_7.png" alt="img_7.png" /></p>
+
+<h2 id="4-异步编程的优势-vs-手动管理多线程">4. 异步编程的优势 vs 手动管理多线程</h2>
+
+<p>在异步的情况下，对于网络请求IO被<strong>阻塞</strong>的情况:</p>
+
+<ul>
+  <li>异步编程允许在单个线程上执行多个操作。当操作处于等待状态时（如等待 I/O 完成），线程可以释放以执行其他任务。这减少了线程的数量和开销。</li>
+  <li>在 Web 服务器应用场景中，异步编程模型能够在相同的资源条件下处理更多的并发请求，因为异步情况下是复用<strong>本来会等待IO的线程</strong>。</li>
+  <li>相比较自己管理Thread，异步在代码层面提供了管理线程池的逻辑（状态机），更加不容易出错。</li>
+</ul>
+
+<p>而在自己通过“New thread”方式:</p>
+<ul>
+  <li>资源开销：每次使用 new Thread 创建新线程时，都会有相对较大的资源开销。对于每个新线程，操作系统需要分配内存和资源。这在高并发场景下尤其显著。</li>
+  <li>可扩展性限制：在大量请求的情况下，为每个请求创建一个新线程可能会导致系统资源迅速耗尽，限制了应用程序的可扩展性。</li>
+</ul>
+
+<p>Code: https://gist.github.com/jiujiujiujiujiuaia/bae783beeff2231920c84c411367d0d9</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/async/20240114141602/img_8.png" alt="img_8.png" /></p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/async/20240114141602/img_9.png" alt="img_9.png" /></p>
+
+<h2 id="5in-action-warning">5.In action warning</h2>
+
+<h3 id="warning1">Warning1</h3>
+<p>关键字 async 只是一个装饰器，它告诉 C# 编译器该方法至少包含一次 await 关键字。</p>
+
+<p>如果async 方法中不带 await 关键字，那么该方法会同步执行。在这种情况下会发出警告。</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/async/20240114141602/img_12.png" alt="img_12.png" /></p>
+
+<h3 id="warning2">Warning2</h3>
+
+<p>如果在不是异步方法的函数中，没有使用await调用了一个异步方法，会出现下面这个warning.</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/async/20240114141602/img_13.png" alt="img_13.png" /></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2</pre></td><td class="code"><pre class="highlight"><code>Because this call is not awaited, execution of the current method continues before the call is completed. 
+Consider applying the await operator to the result of the call."
+</code></pre></td></tr></tbody></table></div></div>
+
+<ul>
+  <li>1.调用异步方法而不使用 await：
+    <ul>
+      <li>当在非异步函数中调用一个异步方法时，如果没有使用 await，异步调用将立即返回一个 Task 或 Task<TResult> 对象（取决于方法是否有返回值）。这意味着您的方法将在异步操作完成之前继续执行。</TResult></li>
+    </ul>
+  </li>
+  <li>2.可能的后果：因为您的方法没有等待异步调用完成，所以它会继续执行后续的代码。这可能导致几个问题：
+    <ul>
+      <li>如果您的方法依赖于异步操作的结果，那么您可能得到一个尚未完成的任务的结果。</li>
+      <li>如果异步操作有副作用（例如修改全局状态或资源），那么这些副作用可能在您预期之前发生或者根本没有按预期发生。</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="6面试题">6.面试题</h2>
+
+<h3 id="1什么是blocking-non-blocking-同步-异步">1.什么是blocking, non-blocking, 同步, 异步?</h3>
+
+<p>同步和异步:</p>
+<ul>
+  <li>同步和异步概念以 “<strong>调用者的行为方式</strong>” 做区分</li>
+  <li>当调用者(caller)发起一个调用(callee)后，如果调用者<strong>主动</strong>等待该调用的结果，则称之为同步</li>
+  <li>当调用者(caller)发起一个调用(callee)后，被调用者完成任务后，通过某种形式<strong>通知</strong>调用者，则称之为异步</li>
+  <li>例如Csharp的async和await，JS的promise等等</li>
+</ul>
+
+<p>阻塞和非阻塞：</p>
+<ul>
+  <li>当调用发生的时候，不管调用者(caller) 是同步还是异步等待callee的结果。<strong>caller在干什么就决定了阻塞还是非阻塞</strong></li>
+  <li>异步:
+    <ul>
+      <li>阻塞：caller什么都不做，直至收到被callee的通知。</li>
+      <li>非阻塞：caller去干别的活，当callee完成任务后，通知caller，调用者就可以处理被调用者的返回结果了。（回调）</li>
+    </ul>
+  </li>
+  <li>同步:
+    <ul>
+      <li>阻塞:调用者什么都不干，就一直在等待，就是停在程序的某条执行语句上。</li>
+      <li>非阻塞: 调用者去干别的活，但因为以主动等待结果的方式，所以得时不时的询问任务完成了没有。</li>
+    </ul>
+  </li>
+</ul>
+
+<p>同步阻塞(调用者发起调用后，等待操作完成，期间不执行其他任务)</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/async/20240114184417/img.png" alt="img.png" /></p>
+
+<p>同步非阻塞(等待过程中执行其他任务，主动轮询任务是否完成)</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/async/20240114184417/img_1.png" alt="img_1.png" /></p>
+
+<p>异步阻塞(等待过程中没执行其他任务，被回调通知结果)</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/async/20240114184417/img_3.png" alt="img_3.png" /></p>
+
+<p>异步非阻塞(等待过程中执行其他任务，通过回调通知结果)</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/async/20240114184417/img_2.png" alt="img_2.png" /></p>
+
+<h3 id="2如何将阻塞工作流转换为非阻塞">2.如何将阻塞工作流转换为非阻塞？</h3>
+
+<p>上面说了，阻塞和非阻塞的区别是是否在等待结果的过程中，做其他的工作。</p>
+
+<p>在csharp中，可以通过异步编程模型，例如async和await，来完成非阻塞。 TODO 为什么回调函数可以帮忙？</p>
+
+<h3 id="3异步io的优势是什么">3.异步IO的优势是什么？</h3>
+
+<p>在IO密集型的程序中，本来这个时候线程是等待IO完成操作，但是异步IO可以允许线程在这个期间干别的事情，然后等IO完成了，</p>
+
+<p>通知线程继续完成callee工作。</p>
+
+<p>充分利用线程资源，在同等线程数量的情况下，提高程序的并发处理能力。</p>
+
+<h2 id="reference">Reference</h2>
+
+<ul>
+  <li>1.https://blog.ndepend.com/c-async-await-explained/</li>
+  <li>2.https://www.c-sharpcorner.com/article/async-and-await-in-c-sharp/</li>
+  <li>3.微软实例: https://medium.com/@mohamed.hashish42/async-and-await-in-c-eabbccb0d30f</li>
+  <li>4.Task Vs Thread: https://www.c-sharpcorner.com/article/task-and-thread-in-c-sharp/</li>
+  <li>5.Code gist: https://gist.github.com/jiujiujiujiujiuaia</li>
+  <li>6.Code sample https://www.dotnetperls.com/async</li>
+</ul>
+
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+      
+      
+
+      
+      
+        <div class="post-nav" id="post-nav-id">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/gpt/ios%E5%BF%AB%E6%8D%B7%E6%96%B9%E5%BC%8F/%E8%8B%B1%E8%AF%AD/2023/11/06/%E5%9F%BA%E4%BA%8EGPT%E7%9A%84%E9%97%AA%E5%BF%B5%E7%AC%94%E8%AE%B0%E5%92%8C%E8%8B%B1%E8%AF%AD%E5%AD%A6%E4%B9%A0/" rel="next" title="基于GPT的闪念笔记和英语学习">
+                <i class="fa fa-chevron-left"></i> 基于GPT的闪念笔记和英语学习
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/%E9%9F%B3%E8%A7%86%E9%A2%91/c%E8%AF%AD%E8%A8%80/debug/2023/10/30/FFmpeg-AVIO%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/" rel="prev" title="FFmpeg AVIO遇到的问题">
+                FFmpeg AVIO遇到的问题 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+      
+
+      
+    </footer>
+  </article>
+
+  <div class="post-spread">
+    
+  </div>
+</div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        
+        
+        
+
+
+
+
+
+
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/assets/images/avatar.gif"
+               alt="三山" />
+          <p class="site-author-name" itemprop="name">三山</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">77</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/">
+                <span class="site-state-item-count">48</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+        
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+
+
+
+
+
+
+
+            
+              <div class="post-toc-content">
+    <ol class=nav>
+      <li class="nav-item nav-level-2"> <a class="nav-link" href="#0同步vs异步"> <span class="nav-number">1</span> <span class="nav-text">0.同步vs异步</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#1await-关键字"> <span class="nav-number">2</span> <span class="nav-text">1.Await 关键字</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#2async-关键字"> <span class="nav-number">3</span> <span class="nav-text">2.Async 关键字</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-3"> <a class="nav-link" href="#调用方的视角"> <span class="nav-number">3.1</span> <span class="nav-text">调用方的视角</span> </a> </li> </ol> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#3调用方还有调用方-如何阅读异步代码"> <span class="nav-number">4</span> <span class="nav-text">3.调用方还有调用方? 如何阅读异步代码?</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-3"> <a class="nav-link" href="#情况1"> <span class="nav-number">4.1</span> <span class="nav-text">情况1</span> </a> </li> </ol> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#情况2"> <span class="nav-number">5</span> <span class="nav-text">情况2</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#情况3"> <span class="nav-number">6</span> <span class="nav-text">情况3</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#情况4"> <span class="nav-number">7</span> <span class="nav-text">情况4</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#4-异步编程的优势-vs-手动管理多线程"> <span class="nav-number">8</span> <span class="nav-text">4. 异步编程的优势 vs 手动管理多线程</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#5in-action-warning"> <span class="nav-number">9</span> <span class="nav-text">5.In action warning</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-3"> <a class="nav-link" href="#warning1"> <span class="nav-number">9.1</span> <span class="nav-text">Warning1</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#warning2"> <span class="nav-number">9.2</span> <span class="nav-text">Warning2</span> </a> </li> </ol> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#6面试题"> <span class="nav-number">10</span> <span class="nav-text">6.面试题</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-3"> <a class="nav-link" href="#1什么是blocking-non-blocking-同步-异步"> <span class="nav-number">10.1</span> <span class="nav-text">1.什么是blocking, non-blocking, 同步, 异步?</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#2如何将阻塞工作流转换为非阻塞"> <span class="nav-number">10.2</span> <span class="nav-text">2.如何将阻塞工作流转换为非阻塞？</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#3异步io的优势是什么"> <span class="nav-number">10.3</span> <span class="nav-text">3.异步IO的优势是什么？</span> </a> </li> </ol> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#reference"> <span class="nav-number">11</span> <span class="nav-text">Reference</span> </a> </li>
+    </ol>
+  </div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">三山</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://jekyllrb.com">Jekyll</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/simpleyyt/jekyll-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+   
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/assets/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  <script type="text/javascript" src="/assets/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/assets/js/src/post-details.js?v=5.1.1"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+    
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
+
+

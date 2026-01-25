@@ -1,0 +1,1039 @@
+<!--不算子网站访客统计-->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-M7QXLLL8YX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-M7QXLLL8YX');
+</script>
+
+
+<!doctype html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/assets/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/assets/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/assets/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="三山的编程之旅" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="1.滑动窗口">
+<meta name="keywords" content="Jekyll, NexT">
+<meta property="og:type" content="article">
+<meta property="og:title" content="滑动窗口">
+<meta property="og:url" content="https://jiujiujiujiujiuaia.github.io/leetcode/2020/07/08/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3/">
+<meta property="og:site_name" content="三山的编程之旅">
+<meta property="og:description" content="1.滑动窗口">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/slidingwindows/img_35.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/slidingwindows/img_36.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/slidingwindows/img_37.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/slidingwindows/img_38.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/slidingwindows/img_39.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/slidingwindows/img_40.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="滑动窗口">
+<meta name="twitter:description" content="1.滑动窗口">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/slidingwindows/img_35.png">
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://jiujiujiujiujiuaia.github.io"/>
+
+
+
+
+
+  <title>滑动窗口 | 三山的编程之旅</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'G-M7QXLLL8YX', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">三山的编程之旅</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+<div id="posts" class="posts-expand">
+  
+  
+
+  
+
+  
+  
+  
+
+  <article class="post post-type- " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://jiujiujiujiujiuaia.github.io/leetcode/2020/07/08/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="三山">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="assets/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="三山的编程之旅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+          
+          
+            滑动窗口
+          
+        </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-08T23:30:09+00:00">
+                2020-07-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/category/#/Leetcode" itemprop="url" rel="index">
+                    <span itemprop="name">Leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+                
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv" id="busuanzi_container_page_pv">
+            本文总阅读量<span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+                
+
+            
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <div class="post-wordcount">
+                  <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                  <span class="post-meta-item-text">字数统计</span>
+                <span title="字数统计">
+                  1498字
+                </span>
+
+                <span class="post-meta-divider">|</span>
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                  <span class="post-meta-item-text">阅读时长</span>
+                <span title="阅读时长">
+                  7分钟
+                </span>
+            </div>
+
+          
+            
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 id="1滑动窗口">1.滑动窗口</h2>
+
+<p>TODO 滑动窗口题目的特征是什么？和动态规划有什么区别？</p>
+
+<p>思想：从暴力解中得到优化，从题目中得到额外的信息熵（例如209都是正整数），然后避免重复计算。</p>
+
+<h3 id="暴力解法">暴力解法</h3>
+<p>在数组或者链表类问题中，我们常常需要在一段给定长度的连续子数组或者子链表上进行计算或者查询。</p>
+
+<p>比如数组[A1,A2,A3,A4,A5…] 我们会查看任意的子数组是否match任意的条件</p>
+
+<p>这个时候，我们首先想到的是暴力解法，双层循环</p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15</pre></td><td class="code"><pre class="highlight"><code><span class="k">package</span> <span class="n">main</span>
+<span class="k">func</span> <span class="n">bruthe</span> <span class="p">(</span><span class="n">array</span> <span class="p">[]</span><span class="kt">int</span><span class="p">){</span>
+	<span class="c">//遍历数组的左端点</span>
+	<span class="n">res</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([][]</span><span class="kt">int</span><span class="p">,</span><span class="m">0</span><span class="p">)</span>
+	<span class="k">for</span> <span class="n">i</span><span class="o">:=</span><span class="m">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="nb">len</span><span class="p">(</span><span class="n">array</span><span class="p">);</span><span class="n">i</span><span class="o">++</span><span class="p">{</span>
+		<span class="n">sum</span> <span class="o">:=</span><span class="m">0</span>
+		<span class="n">subArray</span><span class="o">:=</span><span class="nb">make</span><span class="p">([]</span><span class="kt">int</span><span class="p">,</span><span class="m">0</span><span class="p">)</span>
+		<span class="c">//不断向右扩展，求子数组和</span>
+		<span class="k">for</span> <span class="n">j</span><span class="o">:=</span><span class="n">i</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;</span><span class="nb">len</span><span class="p">(</span><span class="n">array</span><span class="p">);</span><span class="n">j</span><span class="o">++</span><span class="p">{</span>
+			<span class="n">subArray</span> <span class="o">=</span> <span class="nb">append</span><span class="p">(</span><span class="n">subArray</span><span class="p">,</span><span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+			<span class="n">res</span> <span class="o">=</span> <span class="nb">append</span><span class="p">(</span><span class="n">res</span><span class="p">,</span><span class="n">subArray</span><span class="p">)</span>
+			<span class="n">sum</span> <span class="o">+=</span><span class="n">array</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> 
+        <span class="p">}</span>   
+    <span class="p">}</span>   
+<span class="p">}</span>
+</code></pre></td></tr></tbody></table></div></div>
+
+<p>上面这段双重循环就是，首先遍历数组所有元素，然后依次以元素i为start，然后遍历剩余的元素，这样就会把所有的子数组都暴力求解出来。这样是O(N^2)</p>
+
+<p>（Btw: 为什么不是依次以元素i为end，j=0开始遍历呢？这样会重复遍历，第一次从j-&gt;i,第二次从j-&gt;i+1，其中有大量的重复子数组，因此应该是动态变化起始的位置）</p>
+
+<h3 id="滑动窗口">滑动窗口</h3>
+
+<p>滑动窗口分为定长的滑动窗口和动态长度的窗口，动态长度的滑动窗口通常有两个指针，left和right。</p>
+
+<p>对于暴力解中，第一次遍历start-&gt;end，第二次遍历start+1-&gt;end，这意味，如果第一次就满足了某个条件，不需要完全遍历完第二次，只需要把窗口，也就是start往前挪一格，看看结果如何。</p>
+
+<p><strong>因此滑动窗口的本质是：1)窗口满足条件 2)缩小或扩大窗口看是否还满足条件 3)求出最大或最小解。利用窗口之间的递推关系，减小时间复杂度</strong></p>
+
+<h2 id="2实战">2.实战</h2>
+
+<h3 id="1209-长度最小的子数组">(1).209 长度最小的子数组</h3>
+
+<p>给定一个由n个正整数组成的数组和一个正整数s，请找出该数组中满足其和大于等于s的最小长度子数组长度。如果无解，则返回0。</p>
+
+<p>输入: [2, 1, 5, 2, 3, 2], s = 7</p>
+
+<p>输出: 2</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/slidingwindows/img_35.png" alt="img_35.png" /></p>
+
+<h4 id="思路">思路</h4>
+
+<p>对于暴力解，当start=1的时候，1,5,2这个子数组已经大于target(7)了，这个时候，<strong>因为所有数组元素都是正数</strong>，继续向右扩展还是大于target。</p>
+
+<p>因此应该利用这个额外的信息，停止向右扩张，从而可以缩小左端点，因为都是正数，缩小了左端点，不会让子数组变大（如果有负数，丢掉一个复数一定会使其变大）</p>
+
+<p>时间复杂度：可以计算一下最极端的情况，每一个元素都比target大，就是right指针遍历到最后一个，然后left指针也遍历到最后一次，也就是2n，也就是o(N)</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/slidingwindows/img_36.png" alt="img_36.png" /></p>
+
+<h3 id="2-3-无重复字符的最长子串">(2). 3 无重复字符的最长子串</h3>
+
+<p>给定一个字符串 s ，请你找出其中不含有重复字符的 最长子串 的长度。</p>
+
+<p>输入: s = “abcabcbb”</p>
+
+<p>输出: 3</p>
+
+<h4 id="思路-1">思路</h4>
+<p>对于滑动窗口的题目，<strong>还有一系列是字符串相关的</strong>，比如这道题，同样可以通过o(N^2)暴力出所有的字串，但是如果[L,R]这个字串没有重复的，那么[L+1,R]就不应该再算一遍了</p>
+
+<p>因此，只要当前hashmap没有重复字符，就一直扩大窗口。</p>
+
+<h3 id="3340-最多有k个不同字符的最长子字符串">(3).340 最多有k个不同字符的最长子字符串</h3>
+<p>给定字符串，找到最多有k个不同字符的最长子串。</p>
+
+<p>输入: String=”caraai”, K=2</p>
+
+<p>输出: 4</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/slidingwindows/img_37.png" alt="img_37.png" /></p>
+
+<h4 id="思路-2">思路</h4>
+
+<p>如果窗口内的元素种类小于k，那么都有可能是最长子字符串，因此都可以记下来。</p>
+
+<p>一旦窗口的元素种类大于k，那么移动左边，让窗口小于k，然后继续扩展。</p>
+
+<p>值得注意的是，用hashmap记录元素出现的次数，一旦次数归零，要从hashmap中删掉该元素。</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/slidingwindows/img_38.png" alt="img_38.png" /></p>
+
+<h3 id="3567-字符串的排列">(3).567 字符串的排列</h3>
+
+<p>给定一个String s和一个Pattern p，判断s是否包含p的某种排列</p>
+
+<p>输入: Pattern=”abc”，String=”oidbcaf”</p>
+
+<p>输出: true (“bca” 是 “abc”的一种排列)</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/slidingwindows/img_39.png" alt="img_39.png" /></p>
+
+<h4 id="思路-3">思路</h4>
+<p>1.这道题是判断是或者不是，而不是求最大最长</p>
+
+<p>2.判断两个字符串是否是排列关系，可以通过元素种类和个数，一旦元素种类和个数完全match，那就是排列关系</p>
+
+<p>3.由于这道题的窗口是固定长度的，因为符合pattern的子数组length是一样的，所以不需要双指针，只需要每次向右移动，加入一位新的字符，移除一位旧的字符，更新对应字符出现的频数。</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/slidingwindows/img_40.png" alt="img_40.png" /></p>
+
+<h3 id="476-最小覆盖子串">(4).76 最小覆盖子串</h3>
+<p>给定两个字符串source和target. 求source中最短的包含target中每一个字符的子串.</p>
+
+<p>输入: s=”aabdec”, t=”abc”</p>
+
+<p>输出: “abdec”</p>
+
+<h4 id="思路-4">思路</h4>
+<p>这道题类似上面的题目，但是这个窗口是动态，因为要求出最长的窗口。因此就是需要双指针了。</p>
+
+<p>在之前的题目中，我们调用了Arrays.equals方法来比较两个数组。实际上这个方法会遍历整个数组，只不过我们的数组长度不大，所以对性能影响不显著。</p>
+
+<p>这道题中，我们可以利用一个int变量，在每次窗口变大或变小的时候，判断加入的字符是否属于patter，如果属于pattern且count归零，那就match++，直到match == patterHashMap.size</p>
+
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+      
+      
+
+      
+      
+        <div class="post-nav" id="post-nav-id">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/leetcode/2020/07/09/%E4%BA%8C%E5%88%86%E6%90%9C%E7%B4%A2/" rel="next" title="二分搜索">
+                <i class="fa fa-chevron-left"></i> 二分搜索
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/leetcode/2020/07/07/%E6%95%B0%E7%BB%84/" rel="prev" title="数组">
+                数组 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+      
+
+      
+    </footer>
+  </article>
+
+  <div class="post-spread">
+    
+  </div>
+</div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        
+        
+        
+
+
+
+
+
+
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/assets/images/avatar.gif"
+               alt="三山" />
+          <p class="site-author-name" itemprop="name">三山</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">77</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/">
+                <span class="site-state-item-count">48</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+        
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+
+
+
+
+
+
+
+            
+              <div class="post-toc-content">
+    <ol class=nav>
+      <li class="nav-item nav-level-2"> <a class="nav-link" href="#1滑动窗口"> <span class="nav-number">1</span> <span class="nav-text">1.滑动窗口</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-3"> <a class="nav-link" href="#暴力解法"> <span class="nav-number">1.1</span> <span class="nav-text">暴力解法</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#滑动窗口"> <span class="nav-number">1.2</span> <span class="nav-text">滑动窗口</span> </a> </li> </ol> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#2实战"> <span class="nav-number">2</span> <span class="nav-text">2.实战</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-3"> <a class="nav-link" href="#1209-长度最小的子数组"> <span class="nav-number">2.1</span> <span class="nav-text">(1).209 长度最小的子数组</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-4"> <a class="nav-link" href="#思路"> <span class="nav-number">2.1.1</span> <span class="nav-text">思路</span> </a> </li> </ol> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#2-3-无重复字符的最长子串"> <span class="nav-number">2.2</span> <span class="nav-text">(2). 3 无重复字符的最长子串</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-4"> <a class="nav-link" href="#思路-1"> <span class="nav-number">2.2.1</span> <span class="nav-text">思路</span> </a> </li> </ol> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#3340-最多有k个不同字符的最长子字符串"> <span class="nav-number">2.3</span> <span class="nav-text">(3).340 最多有k个不同字符的最长子字符串</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-4"> <a class="nav-link" href="#思路-2"> <span class="nav-number">2.3.1</span> <span class="nav-text">思路</span> </a> </li> </ol> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#3567-字符串的排列"> <span class="nav-number">2.4</span> <span class="nav-text">(3).567 字符串的排列</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-4"> <a class="nav-link" href="#思路-3"> <span class="nav-number">2.4.1</span> <span class="nav-text">思路</span> </a> </li> </ol> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#476-最小覆盖子串"> <span class="nav-number">2.5</span> <span class="nav-text">(4).76 最小覆盖子串</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-4"> <a class="nav-link" href="#思路-4"> <span class="nav-number">2.5.1</span> <span class="nav-text">思路</span> </a> </li> </ol> </li> </ol> </li>
+    </ol>
+  </div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">三山</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://jekyllrb.com">Jekyll</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/simpleyyt/jekyll-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+   
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/assets/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  <script type="text/javascript" src="/assets/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/assets/js/src/post-details.js?v=5.1.1"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+    
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
+
+

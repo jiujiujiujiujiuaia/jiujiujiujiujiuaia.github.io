@@ -1,0 +1,1103 @@
+<!--不算子网站访客统计-->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-M7QXLLL8YX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-M7QXLLL8YX');
+</script>
+
+
+<!doctype html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/assets/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/assets/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/assets/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="三山的编程之旅" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="问题">
+<meta name="keywords" content="Jekyll, NexT">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Learning From Payment System">
+<meta property="og:url" content="https://jiujiujiujiujiuaia.github.io/system%20design/2020/03/01/Learning-From-Payment/">
+<meta property="og:site_name" content="三山的编程之旅">
+<meta property="og:description" content="问题">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/payment/20240306152819/img_1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/payment/20240306152819/img_2.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/payment/20240306152819/img_3.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/payment/20240306152819/img_4.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Learning From Payment System">
+<meta name="twitter:description" content="问题">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/payment/20240306152819/img_1.png">
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://jiujiujiujiujiuaia.github.io"/>
+
+
+
+
+
+  <title>Learning From Payment System | 三山的编程之旅</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'G-M7QXLLL8YX', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">三山的编程之旅</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+<div id="posts" class="posts-expand">
+  
+  
+
+  
+
+  
+  
+  
+
+  <article class="post post-type- " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://jiujiujiujiujiuaia.github.io/system%20design/2020/03/01/Learning-From-Payment/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="三山">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="assets/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="三山的编程之旅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+          
+          
+            Learning From Payment System
+          
+        </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-01T17:30:09+00:00">
+                2020-03-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/category/#/System%20Design" itemprop="url" rel="index">
+                    <span itemprop="name">System Design</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+                
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv" id="busuanzi_container_page_pv">
+            本文总阅读量<span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+                
+
+            
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <div class="post-wordcount">
+                  <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                  <span class="post-meta-item-text">字数统计</span>
+                <span title="字数统计">
+                  1542字
+                </span>
+
+                <span class="post-meta-divider">|</span>
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                  <span class="post-meta-item-text">阅读时长</span>
+                <span title="阅读时长">
+                  7分钟
+                </span>
+            </div>
+
+          
+            
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 id="问题">问题</h2>
+
+<p>设计一个支付交易系统。</p>
+
+<p>Question:</p>
+<ul>
+  <li>我们这个交易系统是收谁的钱，客户是谁？（电商，外卖，酒店）</li>
+  <li>支持什么样的付款方式，信用卡，第三方，银行卡</li>
+  <li>一笔订单可以是多个不同的商家提供的货物吗？</li>
+  <li>每天产生多少比交易？</li>
+  <li>我们是不是不能产生对通过用户的多次charge?</li>
+  <li>客户付钱后，钱是打给平台，平台等待交易完成后，再给商家打款，对吗？</li>
+  <li>全球部署？流量来自全球？</li>
+  <li>我们这个系统需要提供对账服务吗？（我们收了用户多少钱，我们给商家打了多少钱）</li>
+</ul>
+
+<h2 id="requirement--keypoint">Requirement &amp; keypoint</h2>
+
+<ul>
+  <li>收款: 用户下单，平台替商家扣款，钱打入商家的账户
+    <ul>
+      <li>和第三方支付平台的交互(paypal)</li>
+      <li>使用信用卡 -&gt; 使用stripe扣款</li>
+    </ul>
+  </li>
+  <li>付款: 平台定期把钱给商家（除去平台费用）
+    <ul>
+      <li>记账</li>
+    </ul>
+  </li>
+</ul>
+
+<p>这个应用场景下，对一致性要求非常高:</p>
+<ul>
+  <li>用户重复下单，多个请求产生，平台不能重复扣款</li>
+  <li>平台定期要分钱给商家，因此不能有记账错误</li>
+  <li>一致性的要求大于可用性，可以提示client，当前有问题</li>
+</ul>
+
+<h2 id="data-model--api-design">Data Model &amp; API Design</h2>
+
+<p>在CAP theory, 我们只能选择CP和AP，在我们前面的分析中：</p>
+<ul>
+  <li>系统对一致性的要求特别高</li>
+  <li>我们需要事务来保证
+    <ul>
+      <li>不会出现用户重复扣款</li>
+      <li>用户扣款成功了，但是商品余额没改变的情况</li>
+    </ul>
+  </li>
+</ul>
+
+<p>因此，我们会选择SQL来解决这个应用场景。</p>
+
+<h3 id="data-model">Data Model</h3>
+
+<p>用户下单事件 table:</p>
+<ul>
+  <li>payment id (PK)</li>
+  <li>user id</li>
+  <li>order info (List)</li>
+  <li>payment way(credit card)</li>
+  <li>seller info</li>
+  <li>is_payment_done bool</li>
+</ul>
+
+<p>订单 table:</p>
+<ul>
+  <li>order id (PK)</li>
+  <li>price</li>
+  <li>amount</li>
+  <li>product name</li>
+  <li>is_done(payment status)</li>
+  <li>ledger_updated</li>
+  <li>payment id(FK)</li>
+</ul>
+
+<p>值得一提的是:</p>
+<ul>
+  <li>一笔payment包含了多个order(订单), 只有所有订单都完成了，这个payment才算完成</li>
+</ul>
+
+<h3 id="api-design">API Design</h3>
+
+<p>REST API</p>
+
+<p>下单:
+POST /v1/payments</p>
+
+<p>获取订单状态</p>
+
+<p>GET /v1/payments/{:paymentid}</p>
+
+<p>内部系统，和order系统的交互，我们可以采取RPC，更加轻量，高效，不需要http的header</p>
+
+<h2 id="high-level-design">High level design</h2>
+
+<p>根据需求和表设计，我们可以划分成这么几块：</p>
+<ul>
+  <li>用户下单付款, 付款系统</li>
+  <li>一笔付款包含多比订单，请求到订单系统</li>
+  <li>订单系统向外部payment system例如paypal charge</li>
+  <li>最终，告诉用户失败还是成功</li>
+  <li>以及记账</li>
+</ul>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/payment/20240306152819/img_1.png" alt="img_1.png" /></p>
+
+<h2 id="优化">优化</h2>
+
+<h3 id="外部系统延时过高怎么办">外部系统延时过高怎么办?</h3>
+
+<p>两个场景导致异常发生:</p>
+<ul>
+  <li>PSP 认为付款请求风险较高，需要人工审核。</li>
+  <li>信用卡需要额外的保护, 银行也有fraud detection</li>
+</ul>
+
+<p>解决方法:</p>
+<ul>
+  <li>用户发起支付请求，validation无误后，立即返回响应，用户需要等待结果。然后有callback机制，PSP成功或者失败，异步通知。</li>
+  <li>APP/Web 上提供用户实时的进度更新</li>
+</ul>
+
+<h3 id="内部系统同步和异步模型">内部系统同步和异步模型</h3>
+
+<p>同步: 简单，小规模系统效果很好，大规模下问题就会逐渐出现:</p>
+<ul>
+  <li>tight couple, sender知道谁来recipient，随着业务的发展，可能有更多的功能需要订阅同一个消息/事件，例如下单成功，我们可能需要邮件/短信通知</li>
+  <li>low performance: 任何一个组件性能不行，就会导致整个业务的performance下降</li>
+  <li>难扩展</li>
+</ul>
+
+<p>使用消息队列，讲同步模型转变成异步模型：</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/payment/20240306152819/img_2.png" alt="img_2.png" /></p>
+
+<ul>
+  <li>decoupling: 多个业务系统可以消费同一个events</li>
+  <li>容易扩展</li>
+  <li>缓冲层</li>
+</ul>
+
+<h3 id="容错">容错</h3>
+
+<ul>
+  <li>重试队列：可重试的错误（例如暂时性错误）被路由到重试队列。</li>
+  <li>死信队列：如果一条消息反复失败，它最终会进入死信队列。死信队列对于调试和隔离有问题的消息非常有用，以便检查以确定它们未成功处理的原因。</li>
+</ul>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/payment/20240306152819/img_3.png" alt="img_3.png" /></p>
+
+<h3 id="重复收费场景">重复收费场景</h3>
+
+<p>支付系统可能遇到的最严重的问题之一是向客户重复收费。(booking这种系统是不是也忌讳一个房间被重复消费?)</p>
+
+<p>因此，我们要保证收费这个事情，exactly once!:</p>
+<ul>
+  <li>at least once(至少成功一次)</li>
+  <li>at most once(最多也只能成功一次)</li>
+</ul>
+
+<p>第一，我们使用retry机制，一旦我们发生网络错误或者timeout，保证用户的请求可以到达payment系统（重试的策略有固定重试，指数退让，立即重试等等）</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/payment/20240306152819/img_4.png" alt="img_4.png" /></p>
+
+<p>那如果用户重复支付怎么办？我们只能让用户成功一次:</p>
+<ul>
+  <li>场景1 ：支付系统使用托管支付页面与 PSP 集成，客户单击支付按钮两次。(向PSP支付两次)</li>
+  <li>场景2 ：PSP <strong>成功</strong>处理付款，但由于网络错误，<strong>响应</strong>无法到达我们的支付系统。用户再次点击“支付”按钮或客户端重试支付。</li>
+</ul>
+
+<p>对于场景一，我们需要一个幂等的UUID，如果客户端对同一笔订单点击多次，请求带着同一个UUID（UUID 的目的是允许多个系统中的数据在没有中央协调机构的情况下独立生成，而不会发生冲突）</p>
+<ul>
+  <li>payment system 查询数据库，发现这个UUID对应着一个token已经在数据库中</li>
+  <li>立马返回</li>
+  <li>如果是并发写入场景，可以把主键设置为幂等键，这样数据库插入会失败</li>
+</ul>
+
+<p>对于场景二, PSP应该对于同一个UUID 有着PSP这边的token，因此当扣费成功时，哪怕第二个请求带着相同的token来了，也不能扣款。</p>
+<ul>
+  <li>请求是psp和payment service之间未能成功，因此payment system这边压根就没有token的记录</li>
+  <li>因此，payment system会带着同样的UUID，访问psp</li>
+  <li>psp会发现针对这个UUID发放了token，直接返回结果</li>
+</ul>
+
+<p>总结，场景一和场景二，分别代表了，</p>
+<ul>
+  <li>#1 payment system已经有成功了记录，如何避免重复扣费</li>
+  <li>#2 payment system db没有记录，但是PSP有，如何避免重复扣费</li>
+</ul>
+
+<h2 id="reference">Reference</h2>
+
+<p>https://newsletter.pragmaticengineer.com/p/designing-a-payment-system?s=r</p>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+      
+      
+
+      
+      
+        <div class="post-nav" id="post-nav-id">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/system%20design/2020/03/01/Learning-From-Pinterest/" rel="next" title="Learning From Pinterest(Shard)">
+                <i class="fa fa-chevron-left"></i> Learning From Pinterest(Shard)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/system%20design/2020/03/01/Learning-From-Notification-Service/" rel="prev" title="Learning From Notification Service">
+                Learning From Notification Service <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+      
+
+      
+    </footer>
+  </article>
+
+  <div class="post-spread">
+    
+  </div>
+</div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        
+        
+        
+
+
+
+
+
+
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/assets/images/avatar.gif"
+               alt="三山" />
+          <p class="site-author-name" itemprop="name">三山</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">77</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/">
+                <span class="site-state-item-count">48</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+        
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+
+
+
+
+
+
+
+            
+              <div class="post-toc-content">
+    <ol class=nav>
+      <li class="nav-item nav-level-2"> <a class="nav-link" href="#问题"> <span class="nav-number">1</span> <span class="nav-text">问题</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#requirement--keypoint"> <span class="nav-number">2</span> <span class="nav-text">Requirement &amp; keypoint</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#data-model--api-design"> <span class="nav-number">3</span> <span class="nav-text">Data Model &amp; API Design</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-3"> <a class="nav-link" href="#data-model"> <span class="nav-number">3.1</span> <span class="nav-text">Data Model</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#api-design"> <span class="nav-number">3.2</span> <span class="nav-text">API Design</span> </a> </li> </ol> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#high-level-design"> <span class="nav-number">4</span> <span class="nav-text">High level design</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#优化"> <span class="nav-number">5</span> <span class="nav-text">优化</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-3"> <a class="nav-link" href="#外部系统延时过高怎么办"> <span class="nav-number">5.1</span> <span class="nav-text">外部系统延时过高怎么办?</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#内部系统同步和异步模型"> <span class="nav-number">5.2</span> <span class="nav-text">内部系统同步和异步模型</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#容错"> <span class="nav-number">5.3</span> <span class="nav-text">容错</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#重复收费场景"> <span class="nav-number">5.4</span> <span class="nav-text">重复收费场景</span> </a> </li> </ol> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#reference"> <span class="nav-number">6</span> <span class="nav-text">Reference</span> </a> </li>
+    </ol>
+  </div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">三山</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://jekyllrb.com">Jekyll</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/simpleyyt/jekyll-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+   
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/assets/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  <script type="text/javascript" src="/assets/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/assets/js/src/post-details.js?v=5.1.1"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+    
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
+
+

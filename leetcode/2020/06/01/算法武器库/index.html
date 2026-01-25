@@ -1,0 +1,1364 @@
+<!--不算子网站访客统计-->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-M7QXLLL8YX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-M7QXLLL8YX');
+</script>
+
+
+<!doctype html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/assets/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/assets/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/assets/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="三山的编程之旅" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="无权图的构造（adjacency table版本）">
+<meta name="keywords" content="Jekyll, NexT">
+<meta property="og:type" content="article">
+<meta property="og:title" content="算法武器库">
+<meta property="og:url" content="https://jiujiujiujiujiuaia.github.io/leetcode/2020/06/01/%E7%AE%97%E6%B3%95%E6%AD%A6%E5%99%A8%E5%BA%93/">
+<meta property="og:site_name" content="三山的编程之旅">
+<meta property="og:description" content="无权图的构造（adjacency table版本）">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/weapon/20240301090501/img.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="算法武器库">
+<meta name="twitter:description" content="无权图的构造（adjacency table版本）">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/weapon/20240301090501/img.png">
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://jiujiujiujiujiuaia.github.io"/>
+
+
+
+
+
+  <title>算法武器库 | 三山的编程之旅</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'G-M7QXLLL8YX', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">三山的编程之旅</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+<div id="posts" class="posts-expand">
+  
+  
+
+  
+
+  
+  
+  
+
+  <article class="post post-type- " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://jiujiujiujiujiuaia.github.io/leetcode/2020/06/01/%E7%AE%97%E6%B3%95%E6%AD%A6%E5%99%A8%E5%BA%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="三山">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="assets/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="三山的编程之旅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+          
+          
+            算法武器库
+          
+        </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-01T23:30:09+00:00">
+                2020-06-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/category/#/Leetcode" itemprop="url" rel="index">
+                    <span itemprop="name">Leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+                
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv" id="busuanzi_container_page_pv">
+            本文总阅读量<span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+                
+
+            
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <div class="post-wordcount">
+                  <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                  <span class="post-meta-item-text">字数统计</span>
+                <span title="字数统计">
+                  2264字
+                </span>
+
+                <span class="post-meta-divider">|</span>
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                  <span class="post-meta-item-text">阅读时长</span>
+                <span title="阅读时长">
+                  11分钟
+                </span>
+            </div>
+
+          
+            
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 id="无权图的构造adjacency-table版本">无权图的构造（adjacency table版本）</h2>
+
+<p>注意点：一条边的两个点互为邻接</p>
+
+<div class="language-csharp highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17<br/>18<br/>19</pre></td><td class="code"><pre class="highlight"><code>            <span class="n">Dictionary</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">,</span> <span class="n">Dictionary</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">,</span> <span class="kt">double</span><span class="p">&gt;&gt;</span> <span class="n">graph</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Dictionary</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">,</span> <span class="n">Dictionary</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">,</span> <span class="kt">double</span><span class="p">&gt;&gt;();</span>
+            <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="p">&lt;</span> <span class="n">data</span><span class="p">.</span><span class="n">Count</span><span class="p">;</span> <span class="n">i</span><span class="p">++)</span>
+            <span class="p">{</span>
+                <span class="kt">var</span> <span class="n">node1</span> <span class="p">=</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="k">from</span><span class="p">;</span>
+                <span class="kt">var</span> <span class="n">node2</span> <span class="p">=</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">to</span><span class="p">;</span> 
+                <span class="kt">var</span> <span class="n">raio</span> <span class="p">=</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">ratio</span><span class="p">;</span>
+
+                <span class="k">if</span> <span class="p">(!</span><span class="n">graph</span><span class="p">.</span><span class="nf">ContainsKey</span><span class="p">(</span><span class="n">node1</span><span class="p">))</span>
+                <span class="p">{</span>
+                    <span class="n">graph</span><span class="p">[</span><span class="n">node1</span><span class="p">]</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Dictionary</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">,</span> <span class="kt">double</span><span class="p">&gt;();</span>
+                <span class="p">}</span>
+                <span class="n">graph</span><span class="p">[</span><span class="n">node1</span><span class="p">].</span><span class="nf">Add</span><span class="p">(</span><span class="n">node2</span><span class="p">,</span> <span class="n">raio</span><span class="p">);</span>
+
+                <span class="k">if</span> <span class="p">(!</span><span class="n">graph</span><span class="p">.</span><span class="nf">ContainsKey</span><span class="p">(</span><span class="n">node2</span><span class="p">))</span>
+                <span class="p">{</span>
+                    <span class="n">graph</span><span class="p">[</span><span class="n">node2</span><span class="p">]</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Dictionary</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">,</span> <span class="kt">double</span><span class="p">&gt;();</span>
+                <span class="p">}</span>
+                <span class="n">graph</span><span class="p">[</span><span class="n">node2</span><span class="p">].</span><span class="nf">Add</span><span class="p">(</span><span class="n">node1</span><span class="p">,</span> <span class="m">1.0</span> <span class="p">/</span> <span class="n">raio</span><span class="p">);</span>
+            <span class="p">}</span>
+</code></pre></td></tr></tbody></table></div></div>
+
+<h2 id="bfs---计算从a到b有多少步是否可能">BFS - 计算从a到b有多少步/是否可能/..</h2>
+
+<p>计算如何从A转换到B。其中从A到中间态，再到B的过程中，有很多选择，这些选择是同一个“权重”，没有prefer,所以都需要考虑。</p>
+
+<p>题目：</p>
+<ul>
+  <li>货币转换(currency_conversion)</li>
+  <li>搜索框搜索hotel(search_hotel_name)</li>
+  <li>字符转换 “abc”-&gt; “cba”</li>
+  <li>LC:399/127</li>
+</ul>
+
+<p>要点：</p>
+<ul>
+  <li>如果题目有grid(search_hotel_name)，那么就不需要构建图。否则需要构建图，</li>
+  <li>建立queue和visited对象方便BFS</li>
+  <li>队列出来的“节点的邻居” 进行判断是否在visited和判断是否满足题意，如果不是，加入队列和visited</li>
+  <li>对begin的判断和corner case的判断</li>
+  <li>每一次循环要把同一层的元素全部enqueue出来, 保证处理的同一层的item.
+    <ul>
+      <li>为什么呢？确保在每一轮中，处理当前层级的所有节点。如果不使用内层的 for 循环，而是仅依赖于队列来处理节点，那么就无法按照正确的层级顺序处理节点</li>
+    </ul>
+  </li>
+</ul>
+
+<p>模板：</p>
+<div class="language-csharp highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17<br/>18<br/>19<br/>20<br/>21<br/>22<br/>23<br/>24<br/>25<br/>26<br/>27<br/>28<br/>29<br/>30<br/>31<br/>32<br/>33<br/>34<br/>35<br/>36<br/>37<br/>38<br/>39<br/>40<br/>41<br/>42<br/>43<br/>44<br/>45<br/>46<br/>47<br/>48<br/>49<br/>50<br/>51<br/>52<br/>53<br/>54<br/>55<br/>56<br/>57<br/>58</pre></td><td class="code"><pre class="highlight"><code>        <span class="k">public</span> <span class="kt">int</span> <span class="nf">Calculate</span><span class="p">(</span><span class="kt">string</span> <span class="n">begin</span><span class="p">,</span> <span class="kt">string</span> <span class="n">target</span><span class="p">,</span> <span class="n">Dictionary</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">,</span><span class="n">List</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;&gt;</span> <span class="n">map</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="c1">//1. 处理corner cases, 例如beign 是否等于target，target是否可以直达</span>
+            <span class="k">if</span> <span class="p">(!</span><span class="n">map</span><span class="p">.</span><span class="nf">ContainsKey</span><span class="p">(</span><span class="n">target</span><span class="p">))</span>
+            <span class="p">{</span>
+                <span class="k">return</span> <span class="m">0</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">begin</span> <span class="p">==</span> <span class="n">target</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="k">return</span> <span class="m">1</span><span class="p">;</span>
+            <span class="p">}</span>
+
+            <span class="c1">//2. 准备queue和visited方便BFS</span>
+            <span class="n">Queue</span><span class="p">&lt;</span><span class="n">String</span><span class="p">&gt;</span> <span class="n">queue</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Queue</span><span class="p">&lt;</span><span class="n">String</span><span class="p">&gt;();</span>
+            <span class="n">HashSet</span><span class="p">&lt;</span><span class="n">String</span><span class="p">&gt;</span> <span class="n">visited</span> <span class="p">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="p">&lt;</span><span class="n">String</span><span class="p">&gt;();</span>
+            
+            <span class="c1">//2. 把begin加入队列和visited，避免成环又回到起点</span>
+            <span class="n">visited</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="n">begin</span><span class="p">);</span>
+            <span class="n">queue</span><span class="p">.</span><span class="nf">Enqueue</span><span class="p">(</span><span class="n">begin</span><span class="p">);</span>
+            <span class="kt">var</span> <span class="n">steps</span> <span class="p">=</span> <span class="m">1</span><span class="p">;</span>
+
+            <span class="k">while</span> <span class="p">(</span><span class="n">queue</span><span class="p">.</span><span class="n">Count</span> <span class="p">&gt;</span> <span class="m">0</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="c1">//3.每一次循环要把同一层的元素全部enqueue出来, 保证处理的同一层的item</span>
+                <span class="kt">var</span> <span class="n">size</span> <span class="p">=</span> <span class="n">queue</span><span class="p">.</span><span class="nf">Count</span><span class="p">();</span>
+                <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="p">&lt;</span> <span class="n">size</span><span class="p">;</span> <span class="n">i</span><span class="p">++)</span>
+                <span class="p">{</span>
+                    <span class="kt">var</span> <span class="n">word</span> <span class="p">=</span> <span class="n">queue</span><span class="p">.</span><span class="nf">Dequeue</span><span class="p">();</span>
+
+                    <span class="c1">//4.循环图中每一个可达点</span>
+                    <span class="c1">//4.1 判断是否在visited</span>
+                    <span class="c1">//4.2 判断是否满足题意</span>
+                    <span class="c1">//4.3 如果都不是，那就加入队列和visited中</span>
+                    <span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">item</span> <span class="k">in</span> <span class="n">map</span><span class="p">[</span><span class="n">word</span><span class="p">])</span>
+                    <span class="p">{</span>
+                        <span class="k">if</span> <span class="p">(</span><span class="n">visited</span><span class="p">.</span><span class="nf">Contains</span><span class="p">(</span><span class="n">item</span><span class="p">))</span>
+                        <span class="p">{</span>
+                            <span class="k">continue</span><span class="p">;</span>
+                        <span class="p">}</span>
+
+                        <span class="k">if</span> <span class="p">(!</span><span class="nf">canCovert</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="n">item</span><span class="p">))</span>
+                        <span class="p">{</span>
+                            <span class="k">continue</span><span class="p">;</span>
+                        <span class="p">}</span>
+
+                        <span class="k">if</span> <span class="p">(</span><span class="n">item</span><span class="p">.</span><span class="nf">Equals</span><span class="p">(</span><span class="n">target</span><span class="p">))</span>
+                        <span class="p">{</span>
+                            <span class="k">return</span> <span class="n">steps</span> <span class="p">+</span> <span class="m">1</span><span class="p">;</span>
+                        <span class="p">}</span>
+                        
+                        <span class="n">queue</span><span class="p">.</span><span class="nf">Enqueue</span><span class="p">(</span><span class="n">item</span><span class="p">);</span>
+                        <span class="n">visited</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="n">item</span><span class="p">);</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+                <span class="n">steps</span><span class="p">++;</span>
+            <span class="p">}</span>
+            <span class="k">return</span> <span class="m">0</span><span class="p">;</span>
+        <span class="p">}</span>
+</code></pre></td></tr></tbody></table></div></div>
+
+<p>有一个优化点是，外层调用Calculate函数的时候，一旦计算完，就可以把begin-&gt;to和to-begin的value缓存下来:</p>
+
+<div class="language-csharp highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2</pre></td><td class="code"><pre class="highlight"><code><span class="n">cacheDistance</span><span class="p">.</span><span class="nf">put</span><span class="p">(</span><span class="n">a</span> <span class="p">+</span> <span class="s">","</span> <span class="p">+</span> <span class="n">b</span><span class="p">,</span> <span class="n">dis</span><span class="p">);</span>
+<span class="n">cacheDistance</span><span class="p">.</span><span class="nf">put</span><span class="p">(</span><span class="n">b</span> <span class="p">+</span> <span class="s">","</span> <span class="p">+</span> <span class="n">a</span><span class="p">,</span> <span class="n">dis</span><span class="p">);</span>
+</code></pre></td></tr></tbody></table></div></div>
+
+<h2 id="并查集">并查集</h2>
+
+<ul>
+  <li>在树这个数据结构里面，每个节点会记录它的子节点。</li>
+  <li>然而在并查集里，每个节点会记录它的父节点。</li>
+  <li>通过输入得知每个节点的父节点，通过数组，最终可以获得每个子节点都指向自己的root节点
+    <ul>
+      <li>input:1-&gt;2,2-&gt;3,3-&gt;4</li>
+      <li>output:1-&gt;4,2-&gt;4,3-4</li>
+    </ul>
+  </li>
+</ul>
+
+<p>题目:</p>
+<ul>
+  <li>547</li>
+  <li>LC上还有好多别的</li>
+  <li>get_topK_score_hotel</li>
+</ul>
+
+<div class="language-csharp highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17<br/>18<br/>19<br/>20<br/>21<br/>22<br/>23<br/>24<br/>25<br/>26<br/>27<br/>28<br/>29<br/>30<br/>31<br/>32<br/>33<br/>34<br/>35<br/>36<br/>37<br/>38<br/>39<br/>40<br/>41<br/>42<br/>43<br/>44<br/>45<br/>46<br/>47</pre></td><td class="code"><pre class="highlight"><code>        <span class="k">public</span> <span class="k">class</span> <span class="nc">UnionFind</span>
+        <span class="p">{</span>
+            <span class="k">private</span> <span class="k">readonly</span> <span class="n">Dictionary</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="p">&gt;</span> <span class="n">_parent</span><span class="p">;</span>
+            <span class="k">private</span> <span class="kt">int</span> <span class="n">numberOfUF</span><span class="p">;</span>
+            <span class="k">public</span> <span class="nf">UnionFind</span><span class="p">(</span><span class="kt">int</span> <span class="n">count</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">_parent</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Dictionary</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="p">&gt;();</span>
+                <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="p">&lt;</span> <span class="n">count</span><span class="p">;</span> <span class="n">i</span><span class="p">++)</span>
+                <span class="p">{</span>
+                <span class="c1">//1.首先默认每个节点指向自己</span>
+                    <span class="n">_parent</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="p">=</span> <span class="n">i</span><span class="p">;</span>
+                <span class="p">}</span>
+                <span class="n">numberOfUF</span> <span class="p">=</span> <span class="n">count</span><span class="p">;</span>
+            <span class="p">}</span>
+
+            <span class="c1">//完全压缩</span>
+            <span class="k">public</span> <span class="kt">int</span> <span class="nf">Find</span><span class="p">(</span><span class="kt">int</span> <span class="n">item</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="c1">//2.如果自己是自己的root，直接返回</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">_parent</span><span class="p">[</span><span class="n">item</span><span class="p">]</span> <span class="p">==</span> <span class="n">item</span><span class="p">)</span>
+                <span class="p">{</span>
+                    <span class="k">return</span> <span class="n">item</span><span class="p">;</span>
+                <span class="p">}</span>
+                
+                <span class="c1">//3.DFS寻找root，并把所有子节点的父亲都指向自己</span>
+                <span class="n">_parent</span><span class="p">[</span><span class="n">item</span><span class="p">]</span> <span class="p">=</span> <span class="nf">Find</span><span class="p">(</span><span class="n">_parent</span><span class="p">[</span><span class="n">item</span><span class="p">]);</span>
+                <span class="k">return</span> <span class="n">_parent</span><span class="p">[</span><span class="n">item</span><span class="p">];</span>
+            <span class="p">}</span>
+
+            <span class="k">public</span> <span class="k">void</span> <span class="nf">Merge</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="kt">var</span> <span class="n">parentX</span> <span class="p">=</span> <span class="nf">Find</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+                <span class="kt">var</span> <span class="n">parentY</span> <span class="p">=</span> <span class="nf">Find</span><span class="p">(</span><span class="n">y</span><span class="p">);</span>
+
+                <span class="k">if</span> <span class="p">(</span><span class="n">parentX</span> <span class="p">!=</span> <span class="n">parentY</span><span class="p">)</span>
+                <span class="p">{</span>
+                    <span class="n">_parent</span><span class="p">[</span><span class="n">parentX</span><span class="p">]</span> <span class="p">=</span> <span class="n">parentY</span><span class="p">;</span>
+                    <span class="n">numberOfUF</span><span class="p">--;</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+
+            <span class="k">public</span> <span class="kt">int</span> <span class="nf">getNumberOfUF</span><span class="p">()</span>
+            <span class="p">{</span>
+                <span class="k">return</span> <span class="n">numberOfUF</span><span class="p">;</span>
+            <span class="p">}</span>
+
+        <span class="p">}</span>
+</code></pre></td></tr></tbody></table></div></div>
+
+<h2 id="dfs---回溯生成">DFS - 回溯生成</h2>
+
+<ul>
+  <li>有的题目用迭代也可以，用DFS也可以</li>
+  <li>DFS能够解决迭代遍历不了的情况</li>
+</ul>
+
+<p>题目：</p>
+<ul>
+  <li>schedule_employee_by_skills</li>
+  <li>get_hotel_by_search</li>
+  <li>shuffedSentence</li>
+</ul>
+
+<p>关键点：</p>
+<ul>
+  <li>DFS的参数通常是一个List类型的Path和List<List>类型的Res</List></li>
+  <li>要有递归终止条件，不能无限DFS下去</li>
+  <li>Loop循环挑选candidate的时候，不符合条件的直接continue</li>
+</ul>
+
+<div class="language-csharp highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17<br/>18<br/>19<br/>20<br/>21<br/>22<br/>23<br/>24<br/>25<br/>26<br/>27<br/>28<br/>29<br/>30<br/>31<br/>32<br/>33<br/>34<br/>35<br/>36<br/>37<br/>38<br/>39</pre></td><td class="code"><pre class="highlight"><code>        <span class="k">public</span> <span class="k">void</span> <span class="nf">dfs</span><span class="p">(</span><span class="kt">int</span> <span class="n">checkIn</span><span class="p">,</span> <span class="kt">int</span> <span class="n">checkOut</span><span class="p">,</span> <span class="n">HashSet</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;</span> <span class="n">featureSet</span><span class="p">,</span> <span class="kt">int</span> <span class="n">minRooms</span><span class="p">,</span> <span class="n">Dictionary</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">Room</span><span class="p">&gt;&gt;</span> <span class="n">hotelList</span><span class="p">,</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">Room</span><span class="p">&gt;</span> <span class="n">candidateHotel</span><span class="p">,</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">List</span><span class="p">&lt;</span><span class="n">Room</span><span class="p">&gt;&gt;</span> <span class="n">result</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="kt">var</span> <span class="n">a</span> <span class="p">=</span> <span class="s">"a"</span><span class="p">;</span>
+
+            <span class="c1">//递归中止条件</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">checkIn</span> <span class="p">==</span> <span class="n">checkOut</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="c1">//Note 需要创建一个新的对象</span>
+                <span class="n">result</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">Room</span><span class="p">&gt;(</span><span class="n">candidateHotel</span><span class="p">));</span>
+                <span class="k">return</span><span class="p">;</span>
+            <span class="p">}</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="n">hotelList</span><span class="p">.</span><span class="nf">ContainsKey</span><span class="p">(</span><span class="n">checkIn</span><span class="p">))</span>
+            <span class="p">{</span>
+                <span class="kt">var</span> <span class="n">hotelListByDate</span> <span class="p">=</span> <span class="n">hotelList</span><span class="p">[</span><span class="n">checkIn</span><span class="p">];</span>
+                <span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">hotel</span> <span class="k">in</span> <span class="n">hotelListByDate</span><span class="p">)</span>
+                <span class="p">{</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="n">hotel</span><span class="p">.</span><span class="n">availability</span> <span class="p">&lt;</span> <span class="n">minRooms</span><span class="p">)</span>
+                    <span class="p">{</span>
+                        <span class="k">continue</span><span class="p">;</span>
+                    <span class="p">}</span>
+
+                    <span class="kt">var</span> <span class="n">candidateHotelFeatureSet</span> <span class="p">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;(</span><span class="n">hotel</span><span class="p">.</span><span class="n">features</span><span class="p">);</span>
+
+                    <span class="c1">//子集</span>
+                    <span class="k">if</span> <span class="p">(!</span><span class="n">featureSet</span><span class="p">.</span><span class="nf">IsSubsetOf</span><span class="p">(</span><span class="n">candidateHotelFeatureSet</span><span class="p">))</span>
+                    <span class="p">{</span>
+                        <span class="k">continue</span><span class="p">;</span>
+                    <span class="p">}</span>
+
+                    <span class="n">candidateHotel</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="n">hotel</span><span class="p">);</span>
+                    <span class="kt">var</span> <span class="n">nextDay</span> <span class="p">=</span> <span class="n">checkIn</span> <span class="p">+</span> <span class="m">1</span><span class="p">;</span>
+                    <span class="nf">dfs</span><span class="p">(</span><span class="n">nextDay</span><span class="p">,</span> <span class="n">checkOut</span><span class="p">,</span> <span class="n">featureSet</span><span class="p">,</span> <span class="n">minRooms</span><span class="p">,</span> <span class="n">hotelList</span><span class="p">,</span> <span class="n">candidateHotel</span><span class="p">,</span> <span class="n">result</span><span class="p">);</span>
+
+                    <span class="c1">//回溯</span>
+                    <span class="n">candidateHotel</span><span class="p">.</span><span class="nf">RemoveAt</span><span class="p">(</span><span class="n">candidateHotel</span><span class="p">.</span><span class="n">Count</span> <span class="p">-</span> <span class="m">1</span><span class="p">);</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+</code></pre></td></tr></tbody></table></div></div>
+
+<h2 id="char">Char</h2>
+
+<h3 id="char判断">Char判断</h3>
+<p>char本身好像是int，因此可以通过下面的判断，判断字符串中是否有invalid char</p>
+
+<div class="language-csharp highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4</pre></td><td class="code"><pre class="highlight"><code>        <span class="k">private</span> <span class="kt">bool</span> <span class="nf">invalidChar</span><span class="p">(</span><span class="kt">char</span> <span class="n">a</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">return</span> <span class="p">!(</span><span class="n">a</span> <span class="p">&gt;=</span> <span class="sc">'a'</span> <span class="p">&amp;&amp;</span> <span class="n">a</span> <span class="p">&lt;=</span> <span class="sc">'z'</span> <span class="p">||</span> <span class="n">a</span> <span class="p">&gt;=</span> <span class="sc">'A'</span> <span class="p">&amp;&amp;</span> <span class="n">a</span> <span class="p">&lt;=</span> <span class="sc">'Z'</span><span class="p">);</span>
+        <span class="p">}</span>
+</code></pre></td></tr></tbody></table></div></div>
+
+<h3 id="char频率">Char频率</h3>
+
+<p>技巧: 用任意字母的char减去’a’得到一个数字。
+技巧: 同理，如果想把’1’转换成1, 直接用‘1’-‘0’就可以了</p>
+
+<p>用常量时间，快速算出任意一个string字符串的char频率</p>
+<div class="language-csharp highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5</pre></td><td class="code"><pre class="highlight"><code>                <span class="kt">int</span><span class="p">[]</span> <span class="n">characterArray</span> <span class="p">=</span> <span class="k">new</span> <span class="kt">int</span><span class="p">[</span><span class="m">26</span><span class="p">];</span>
+                <span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">singelByte</span> <span class="k">in</span> <span class="n">str</span><span class="p">)</span>
+                <span class="p">{</span>
+                    <span class="n">characterArray</span><span class="p">[</span><span class="n">singelByte</span> <span class="p">-</span> <span class="sc">'a'</span><span class="p">]++;</span>
+                <span class="p">}</span>
+</code></pre></td></tr></tbody></table></div></div>
+
+<h3 id="char数组当作key">Char数组当作key</h3>
+
+<p>把char数组当作key，可以快速反推，有哪些潜在的candidate</p>
+
+<div class="language-csharp highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14</pre></td><td class="code"><pre class="highlight"><code>            <span class="n">Dictionary</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">[],</span> <span class="n">List</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;&gt;</span> <span class="n">wordsCounter</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Dictionary</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">[],</span> <span class="n">List</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;&gt;();</span>
+            <span class="p">...</span>
+            <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="n">start</span> <span class="p">+</span> <span class="m">1</span><span class="p">;</span> <span class="n">i</span> <span class="p">&lt;=</span> <span class="n">shuffedSentence</span><span class="p">.</span><span class="n">Length</span><span class="p">;</span> <span class="n">i</span><span class="p">++)</span>
+            <span class="p">{</span>
+                <span class="kt">string</span> <span class="n">newWord</span> <span class="p">=</span> <span class="n">shuffedSentence</span><span class="p">.</span><span class="nf">Substring</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">i</span> <span class="p">-</span> <span class="n">start</span><span class="p">);</span>
+                <span class="kt">int</span><span class="p">[]</span> <span class="n">temp</span> <span class="p">=</span> <span class="k">new</span> <span class="kt">int</span><span class="p">[</span><span class="m">26</span><span class="p">];</span>
+                <span class="k">foreach</span> <span class="p">(</span><span class="kt">char</span> <span class="n">c</span> <span class="k">in</span> <span class="n">newWord</span><span class="p">)</span>
+                    <span class="n">temp</span><span class="p">[</span><span class="n">c</span> <span class="p">-</span> <span class="sc">'a'</span><span class="p">]++;</span>
+                
+                <span class="k">if</span> <span class="p">(</span><span class="n">wordsCounter</span><span class="p">.</span><span class="nf">ContainsKey</span><span class="p">(</span><span class="n">temp</span><span class="p">))</span>
+                <span class="p">{</span>
+                    <span class="p">...</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+</code></pre></td></tr></tbody></table></div></div>
+
+<p>LC:49 https://leetcode.cn/problems/group-anagrams/description/
+https://leetcode.cn/problems/word-break-ii/description/</p>
+
+<h2 id="计算数字的题目">计算数字的题目</h2>
+
+<p>string 转double
+数字转billion
+https://leetcode.cn/problems/integer-to-english-words/solutions/1040978/gong-shui-san-xie-zi-fu-chuan-da-mo-ni-b-0my6/</p>
+
+<div class="language-csharp highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17</pre></td><td class="code"><pre class="highlight"><code>        <span class="k">public</span> <span class="k">void</span> <span class="nf">NumberToWords</span><span class="p">(</span><span class="kt">int</span> <span class="n">num</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="kt">var</span> <span class="n">dividend</span> <span class="p">=</span> <span class="m">10</span><span class="p">;</span>
+            <span class="k">while</span><span class="p">(</span><span class="n">num</span> <span class="p">!=</span> <span class="m">0</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="kt">var</span> <span class="n">remainder</span> <span class="p">=</span> <span class="n">num</span> <span class="p">%</span> <span class="n">dividend</span><span class="p">;</span>
+                <span class="n">num</span> <span class="p">/=</span> <span class="n">dividend</span><span class="p">;</span>
+                <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="n">remainder</span><span class="p">);</span>
+            <span class="p">}</span>
+            <span class="k">return</span><span class="p">;</span>
+        <span class="p">}</span>
+<span class="n">output</span><span class="p">:</span>
+<span class="m">5</span>
+<span class="m">4</span>
+<span class="m">3</span>
+<span class="m">2</span>
+<span class="m">1</span>        
+</code></pre></td></tr></tbody></table></div></div>
+
+<h2 id="子数组的暴力生成">子数组的暴力生成</h2>
+
+<p>子数组暴力生成是N^2 如何进一步优化呢？前缀和可以进一步优化这种题目</p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11</pre></td><td class="code"><pre class="highlight"><code><span class="k">package</span> <span class="n">main</span>
+<span class="k">func</span> <span class="n">bruthe</span> <span class="p">(</span><span class="n">array</span> <span class="p">[]</span><span class="kt">int</span><span class="p">){</span>
+	<span class="c">//遍历数组的左端点</span>
+	<span class="k">for</span> <span class="n">i</span><span class="o">:=</span><span class="m">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="nb">len</span><span class="p">(</span><span class="n">array</span><span class="p">);</span><span class="n">i</span><span class="o">++</span><span class="p">{</span>
+		<span class="n">sum</span> <span class="o">:=</span><span class="m">0</span>
+		<span class="c">//不断向右扩展，求子数组和</span>
+		<span class="k">for</span> <span class="n">j</span><span class="o">:=</span><span class="n">i</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;</span><span class="nb">len</span><span class="p">(</span><span class="n">array</span><span class="p">);</span><span class="n">j</span><span class="o">++</span><span class="p">{</span>
+			<span class="n">sum</span> <span class="o">+=</span><span class="n">array</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> 
+        <span class="p">}</span>   
+    <span class="p">}</span>   
+<span class="p">}</span>
+</code></pre></td></tr></tbody></table></div></div>
+
+<h2 id="拓扑排序">拓扑排序</h2>
+
+<ul>
+  <li>1.构建邻接矩阵，使用hashMap，如果人工智能依赖高数，那么这条边是高数-&gt; 人工智能，边的方向就是key-&gt;value</li>
+  <li>2.构建入度表，如果修人工智能之前需要修3门课，那么人工智能的入度是3，如果入度为0，代表它不依赖任何，所以可以排序在前。</li>
+</ul>
+
+<div class="language-csharp highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17<br/>18<br/>19<br/>20<br/>21<br/>22</pre></td><td class="code"><pre class="highlight"><code>            <span class="n">Dictionary</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="n">List</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;&gt;</span> <span class="n">adjacency</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Dictionary</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="n">List</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;&gt;();</span>
+            <span class="kt">int</span><span class="p">[]</span> <span class="n">inDegree</span> <span class="p">=</span> <span class="k">new</span> <span class="kt">int</span><span class="p">[</span><span class="n">numCourses</span><span class="p">];</span>
+
+            <span class="c1">//构建入度表和邻接矩阵</span>
+            <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="p">&lt;</span> <span class="n">prerequisites</span><span class="p">.</span><span class="n">Length</span><span class="p">;</span> <span class="n">i</span><span class="p">++)</span>
+            <span class="p">{</span>
+                <span class="kt">var</span> <span class="n">predefinedCourse</span> <span class="p">=</span> <span class="n">prerequisites</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="m">1</span><span class="p">];</span>
+                <span class="kt">var</span> <span class="n">lateCourse</span> <span class="p">=</span> <span class="n">prerequisites</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="m">0</span><span class="p">];</span>
+
+                <span class="n">inDegree</span><span class="p">[</span><span class="n">lateCourse</span><span class="p">]++;</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">adjacency</span><span class="p">.</span><span class="nf">ContainsKey</span><span class="p">(</span><span class="n">predefinedCourse</span><span class="p">))</span>
+                <span class="p">{</span>
+                    <span class="c1">//TODO Why use add not append? why append has problem?</span>
+                    <span class="n">adjacency</span><span class="p">[</span><span class="n">predefinedCourse</span><span class="p">].</span><span class="nf">Add</span><span class="p">(</span><span class="n">lateCourse</span><span class="p">);</span>
+                <span class="p">}</span>
+                <span class="k">else</span>
+                <span class="p">{</span>
+                    <span class="n">List</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;</span> <span class="n">list</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;();</span>
+                    <span class="n">list</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="n">lateCourse</span><span class="p">);</span>
+                    <span class="n">adjacency</span><span class="p">[</span><span class="n">predefinedCourse</span><span class="p">]</span> <span class="p">=</span> <span class="n">list</span><span class="p">;</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+</code></pre></td></tr></tbody></table></div></div>
+
+<p>把所有入度为0的点加入queue，开始循环遍历</p>
+<div class="language-csharp highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17<br/>18<br/>19<br/>20<br/>21<br/>22<br/>23<br/>24<br/>25<br/>26<br/>27</pre></td><td class="code"><pre class="highlight"><code>            <span class="n">Queue</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;</span> <span class="n">queue</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Queue</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;();</span>
+            <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="p">&lt;</span> <span class="n">inDegree</span><span class="p">.</span><span class="n">Length</span><span class="p">;</span> <span class="n">i</span><span class="p">++)</span>
+            <span class="p">{</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">inDegree</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="p">==</span> <span class="m">0</span><span class="p">)</span>
+                <span class="p">{</span>
+                    <span class="n">queue</span><span class="p">.</span><span class="nf">Enqueue</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+
+            <span class="kt">var</span> <span class="n">courseOrder</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;();</span>
+            <span class="k">while</span> <span class="p">(</span><span class="n">queue</span><span class="p">.</span><span class="n">Count</span> <span class="p">&gt;</span> <span class="m">0</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="kt">var</span> <span class="n">courseId</span> <span class="p">=</span> <span class="n">queue</span><span class="p">.</span><span class="nf">Dequeue</span><span class="p">();</span>
+                <span class="n">courseOrder</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="n">courseId</span><span class="p">);</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">adjacency</span><span class="p">.</span><span class="nf">ContainsKey</span><span class="p">(</span><span class="n">courseId</span><span class="p">))</span>
+                <span class="p">{</span>
+                    <span class="kt">var</span> <span class="n">lateCourseList</span> <span class="p">=</span> <span class="n">adjacency</span><span class="p">[</span><span class="n">courseId</span><span class="p">];</span>
+                    <span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">lateCourseId</span> <span class="k">in</span> <span class="n">lateCourseList</span><span class="p">)</span>
+                    <span class="p">{</span>
+                        <span class="n">inDegree</span><span class="p">[</span><span class="n">lateCourseId</span><span class="p">]--;</span>
+                        <span class="k">if</span> <span class="p">(</span><span class="n">inDegree</span><span class="p">[</span><span class="n">lateCourseId</span><span class="p">]</span> <span class="p">==</span> <span class="m">0</span><span class="p">)</span>
+                        <span class="p">{</span>
+                            <span class="n">queue</span><span class="p">.</span><span class="nf">Enqueue</span><span class="p">(</span><span class="n">lateCourseId</span><span class="p">);</span>
+                        <span class="p">}</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+</code></pre></td></tr></tbody></table></div></div>
+
+<h2 id="二分搜索">二分搜索</h2>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/weapon/20240301090501/img.png" alt="img.png" /></p>
+
+<h2 id="双重排序">双重排序</h2>
+
+<p>很多时候，题目要求，先按得分排序，如果得分相同，又按字典序排序</p>
+
+<div class="language-csharp highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4</pre></td><td class="code"><pre class="highlight"><code>            <span class="kt">var</span> <span class="n">maxLengthKey</span> <span class="p">=</span> <span class="n">patternToScore</span>
+            <span class="p">.</span><span class="nf">OrderByDescending</span><span class="p">(</span><span class="n">kvp</span> <span class="p">=&gt;</span> <span class="n">kvp</span><span class="p">.</span><span class="n">Value</span><span class="p">)</span>
+            <span class="p">.</span><span class="nf">ThenByDescending</span><span class="p">(</span><span class="n">kvp</span> <span class="p">=&gt;</span> <span class="n">kvp</span><span class="p">.</span><span class="n">Key</span><span class="p">)</span>
+            <span class="p">.</span><span class="nf">First</span><span class="p">().</span><span class="n">Key</span><span class="p">;</span>
+</code></pre></td></tr></tbody></table></div></div>
+
+<p>如果有多个属性需要进行排序，把这些属性抽象成一个对象，然后Sort排序</p>
+
+<div class="language-csharp highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3</pre></td><td class="code"><pre class="highlight"><code>            <span class="n">cellList</span><span class="p">.</span><span class="nf">Sort</span><span class="p">((</span><span class="n">item1</span><span class="p">,</span> <span class="n">item2</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="n">item1</span><span class="p">.</span><span class="n">distance</span> <span class="p">!=</span> <span class="n">item2</span><span class="p">.</span><span class="n">distance</span> <span class="p">?</span> 
+            <span class="n">item1</span><span class="p">.</span><span class="n">distance</span> <span class="p">-</span> <span class="n">item2</span><span class="p">.</span><span class="n">distance</span> <span class="p">:</span> <span class="n">item1</span><span class="p">.</span><span class="n">price</span> <span class="p">!=</span> <span class="n">item2</span><span class="p">.</span><span class="n">price</span> <span class="p">?</span> <span class="n">item1</span><span class="p">.</span><span class="n">price</span> <span class="p">-</span> <span class="n">item2</span><span class="p">.</span><span class="n">price</span> <span class="p">:</span> <span class="n">item1</span><span class="p">.</span><span class="n">x</span> <span class="p">!=</span> <span class="n">item2</span><span class="p">.</span><span class="n">x</span> 
+            <span class="p">?</span> <span class="n">item1</span><span class="p">.</span><span class="n">x</span> <span class="p">-</span> <span class="n">item2</span><span class="p">.</span><span class="n">x</span> <span class="p">:</span> <span class="n">item1</span><span class="p">.</span><span class="n">y</span> <span class="p">-</span> <span class="n">item2</span><span class="p">.</span><span class="n">y</span><span class="p">);</span>
+</code></pre></td></tr></tbody></table></div></div>
+
+<h2 id="交集和子集">交集和子集</h2>
+
+<div class="language-csharp highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1</pre></td><td class="code"><pre class="highlight"><code><span class="n">feature</span> <span class="p">=</span> <span class="n">feature</span><span class="p">.</span><span class="nf">Intersect</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">features</span><span class="p">).</span><span class="nf">ToArray</span><span class="p">();</span>
+</code></pre></td></tr></tbody></table></div></div>
+
+<div class="language-csharp highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2</pre></td><td class="code"><pre class="highlight"><code> <span class="kt">var</span> <span class="n">candidateHotelFeatureSet</span> <span class="p">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;(</span><span class="n">hotel</span><span class="p">.</span><span class="n">features</span><span class="p">);</span>
+ <span class="n">featureSet</span><span class="p">.</span><span class="nf">IsSubsetOf</span><span class="p">(</span><span class="n">candidateHotelFeatureSet</span><span class="p">)</span>
+</code></pre></td></tr></tbody></table></div></div>
+
+<h2 id="优先级队列">优先级队列</h2>
+
+<p>如果不用优先级队列，求前K个数的需要先排序，那么就是nlogn</p>
+<div class="language-csharp highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17</pre></td><td class="code"><pre class="highlight"><code> <span class="kt">var</span> <span class="n">sortedParentToScore</span> <span class="p">=</span> <span class="n">parentToScore</span><span class="p">.</span><span class="nf">OrderByDescending</span><span class="p">(</span><span class="n">pair</span> <span class="p">=&gt;</span> <span class="n">pair</span><span class="p">.</span><span class="n">Value</span><span class="p">).</span><span class="nf">ToDictionary</span><span class="p">(</span><span class="n">pair</span> <span class="p">=&gt;</span> <span class="n">pair</span><span class="p">.</span><span class="n">Key</span><span class="p">,</span> <span class="n">pair</span> <span class="p">=&gt;</span> <span class="n">pair</span><span class="p">.</span><span class="n">Value</span><span class="p">);</span>
+
+ <span class="n">List</span><span class="p">&lt;</span><span class="n">List</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;&gt;</span> <span class="n">res</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">List</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;&gt;();</span>
+ <span class="kt">var</span> <span class="n">cnt</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
+ <span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">pair</span> <span class="k">in</span> <span class="n">sortedParentToScore</span><span class="p">)</span>
+ <span class="p">{</span>
+     <span class="k">if</span> <span class="p">(</span><span class="n">cnt</span> <span class="p">==</span> <span class="n">k</span><span class="p">)</span>
+     <span class="p">{</span>
+         <span class="k">break</span><span class="p">;</span>
+     <span class="p">}</span>
+
+     <span class="n">cnt</span><span class="p">++;</span>
+     <span class="n">List</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;</span> <span class="n">path</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;();</span>
+     <span class="n">path</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="n">pair</span><span class="p">.</span><span class="n">Key</span><span class="p">);</span>
+     <span class="n">path</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="n">pair</span><span class="p">.</span><span class="n">Value</span><span class="p">);</span>
+     <span class="n">res</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="n">path</span><span class="p">);</span>
+ <span class="p">}</span>
+</code></pre></td></tr></tbody></table></div></div>
+
+<p>如果使用优先级队列，构造一个pq的时间复杂度是logk, 那么就是n*logK</p>
+
+<div class="language-csharp highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6</pre></td><td class="code"><pre class="highlight"><code>            <span class="n">PriorityQueue</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="p">&gt;</span> <span class="n">pq</span> <span class="p">=</span> <span class="k">new</span> <span class="n">PriorityQueue</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="p">&gt;(</span><span class="n">Comparer</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;.</span><span class="nf">Create</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="n">x</span><span class="p">.</span><span class="nf">CompareTo</span><span class="p">(</span><span class="n">y</span><span class="p">)));</span>
+            <span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">pair</span> <span class="k">in</span> <span class="n">parentToScore</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">pq</span><span class="p">.</span><span class="nf">Enqueue</span><span class="p">(</span><span class="n">pair</span><span class="p">.</span><span class="n">Key</span><span class="p">,</span> <span class="n">pair</span><span class="p">.</span><span class="n">Value</span><span class="p">);</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">pq</span><span class="p">.</span><span class="n">Count</span> <span class="p">&gt;</span> <span class="n">k</span><span class="p">)</span> <span class="n">pq</span><span class="p">.</span><span class="nf">Dequeue</span><span class="p">();</span> <span class="c1">// 保持优先级队列的大小为k</span>
+            <span class="p">}</span>
+</code></pre></td></tr></tbody></table></div></div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+      
+      
+
+      
+      
+        <div class="post-nav" id="post-nav-id">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/leetcode/2020/06/03/%E5%88%B7%E9%A2%98%E7%A2%B0%E5%88%B0%E5%9B%B0%E9%9A%BE%E6%97%B6%E5%AF%B9%E8%87%AA%E5%B7%B1%E8%AF%B4%E7%9A%84%E5%87%A0%E5%8F%A5%E8%AF%9D/" rel="next" title="刷题碰到困难时对自己说的几句话">
+                <i class="fa fa-chevron-left"></i> 刷题碰到困难时对自己说的几句话
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/leetcode/2020/06/01/Golang-%E5%88%B7%E9%A2%98%E5%B8%B8%E7%94%A8%E5%BA%93/" rel="prev" title="Golang 刷题常用库">
+                Golang 刷题常用库 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+      
+
+      
+    </footer>
+  </article>
+
+  <div class="post-spread">
+    
+  </div>
+</div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        
+        
+        
+
+
+
+
+
+
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/assets/images/avatar.gif"
+               alt="三山" />
+          <p class="site-author-name" itemprop="name">三山</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">77</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/">
+                <span class="site-state-item-count">48</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+        
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+
+
+
+
+
+
+
+            
+              <div class="post-toc-content">
+    <ol class=nav>
+      <li class="nav-item nav-level-2"> <a class="nav-link" href="#无权图的构造adjacency-table版本"> <span class="nav-number">1</span> <span class="nav-text">无权图的构造（adjacency table版本）</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#bfs---计算从a到b有多少步是否可能"> <span class="nav-number">2</span> <span class="nav-text">BFS - 计算从a到b有多少步/是否可能/..</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#并查集"> <span class="nav-number">3</span> <span class="nav-text">并查集</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#dfs---回溯生成"> <span class="nav-number">4</span> <span class="nav-text">DFS - 回溯生成</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#char"> <span class="nav-number">5</span> <span class="nav-text">Char</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-3"> <a class="nav-link" href="#char判断"> <span class="nav-number">5.1</span> <span class="nav-text">Char判断</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#char频率"> <span class="nav-number">5.2</span> <span class="nav-text">Char频率</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#char数组当作key"> <span class="nav-number">5.3</span> <span class="nav-text">Char数组当作key</span> </a> </li> </ol> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#计算数字的题目"> <span class="nav-number">6</span> <span class="nav-text">计算数字的题目</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#子数组的暴力生成"> <span class="nav-number">7</span> <span class="nav-text">子数组的暴力生成</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#拓扑排序"> <span class="nav-number">8</span> <span class="nav-text">拓扑排序</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#二分搜索"> <span class="nav-number">9</span> <span class="nav-text">二分搜索</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#双重排序"> <span class="nav-number">10</span> <span class="nav-text">双重排序</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#交集和子集"> <span class="nav-number">11</span> <span class="nav-text">交集和子集</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#优先级队列"> <span class="nav-number">12</span> <span class="nav-text">优先级队列</span> </a> </li>
+    </ol>
+  </div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">三山</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://jekyllrb.com">Jekyll</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/simpleyyt/jekyll-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+   
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/assets/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  <script type="text/javascript" src="/assets/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/assets/js/src/post-details.js?v=5.1.1"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+    
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
+
+

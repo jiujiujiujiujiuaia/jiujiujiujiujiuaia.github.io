@@ -1,0 +1,1242 @@
+<!--不算子网站访客统计-->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-M7QXLLL8YX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-M7QXLLL8YX');
+</script>
+
+
+<!doctype html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/assets/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/assets/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/assets/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="三山的编程之旅" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="前言">
+<meta name="keywords" content="Jekyll, NexT">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DDIA Stream System">
+<meta property="og:url" content="https://jiujiujiujiujiuaia.github.io/sd/%E5%8A%A0%E5%AF%86/2025/07/06/DDIA-Stream-System/">
+<meta property="og:site_name" content="三山的编程之旅">
+<meta property="og:description" content="前言">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/ddia/20250706135910/image.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="DDIA Stream System">
+<meta name="twitter:description" content="前言">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/ddia/20250706135910/image.png">
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://jiujiujiujiujiuaia.github.io"/>
+
+
+
+
+
+  <title>DDIA Stream System | 三山的编程之旅</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'G-M7QXLLL8YX', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">三山的编程之旅</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+<div id="posts" class="posts-expand">
+  
+  
+
+  
+
+  
+  
+  
+
+  <article class="post post-type- " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://jiujiujiujiujiuaia.github.io/sd/%E5%8A%A0%E5%AF%86/2025/07/06/DDIA-Stream-System/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="三山">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="assets/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="三山的编程之旅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+          
+          
+            DDIA Stream System
+          
+        </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2025-07-06T02:35:15+00:00">
+                2025-07-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/category/#/SD" itemprop="url" rel="index">
+                    <span itemprop="name">SD</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/category/#/%E5%8A%A0%E5%AF%86" itemprop="url" rel="index">
+                    <span itemprop="name">加密</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+                
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv" id="busuanzi_container_page_pv">
+            本文总阅读量<span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+                
+
+            
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <div class="post-wordcount">
+                  <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                  <span class="post-meta-item-text">字数统计</span>
+                <span title="字数统计">
+                  3600字
+                </span>
+
+                <span class="post-meta-divider">|</span>
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                  <span class="post-meta-item-text">阅读时长</span>
+                <span title="阅读时长">
+                  18分钟
+                </span>
+            </div>
+
+          
+            
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <h1 id="前言">前言</h1>
+
+<p>这一章反复读了很多次，然后才理清楚这一章的脉络，比如我一开始只用过Kafka，我就带着对Kafka的记忆开始阅读，后来发现它的视野更大！它是从整个系统演进的角度来说的！Kafka只是这个流系统中基于Log based的一个分支。</p>
+
+<h1 id="脉络">脉络</h1>
+<ul>
+  <li>Stream VS Batch processing
+    <ul>
+      <li>什么是Stream?</li>
+      <li>Stream的输入是什么？Batch Processing的输入输出是什么？</li>
+      <li>流处理的方式是什么? 生产者，消费者，事件的聚合(topic)</li>
+    </ul>
+  </li>
+  <li>生产者和消费者之间是如何沟通的？简单的就是Unix管道，常见的就是生产消费者之间有一个代理接耦合。(大部分messgaing sytem都是以这个扩展的)
+    <ul>
+      <li>1.直接从生产者传递给消费者(为什么这一种不好？为什么broker的占据了主流？)</li>
+      <li>2.生产者消费者之间有agent(broker)</li>
+    </ul>
+  </li>
+  <li>消息代理解决了#1的问题</li>
+  <li>日志式消息队列常见问题
+    <ul>
+      <li>消费者/生产者节点实效/网络抖动连接不上怎么办？</li>
+      <li>磁盘空间如何利用的？耗尽怎么办？（举例子计算）</li>
+      <li>消费者跟不上生产者怎么办？</li>
+      <li>replay</li>
+    </ul>
+  </li>
+  <li>日志式消息队列和传统的消息队列进行对比</li>
+  <li>中间讲的数据库与流我没懂为什么放在这里？？？</li>
+  <li>流处理的应用</li>
+  <li>流处理的容错</li>
+</ul>
+
+<p>基于日志的消息队列为什么适合扇出？
+● 天然支持
+● 因为多个消费者可以独立读取日志，并且互补影响——读入消息不会将其从日志中删除；
+● 每个客户端将消费被指派分区中的所有消息，通常就是单线程顺序读取分区中的消息。
+  ○ 缺点：
+    ■ 由于同一个分区的消息被传递到同一个节点，所以消费一个主题的节点数 最多为 主体中的日志分区数。
+    ■ 单个消息处理缓慢时会影响后续消息的处理。</p>
+
+<p>怎么选择消息队列？
+● 当消息处理代价高，希望逐条并行处理，以及消息顺序不重要时，JMS/AMQP风格的消息代理是可取的。
+● 当消息吞吐量很高，处理迅速，消息顺序重要时，基于日志的方法表现非常好。</p>
+
+<h2 id="消息系统">消息系统</h2>
+
+<p>通知消费者有新事件产生的一个常见方法是消息系统（messaging system）：生产者将事件以消息的形式发送到消息系统，消息系统将其推送给消费者。</p>
+
+<p>消息系统多如牛毛，我们可以带着两个问题去看待不同的消息系统</p>
+
+<h3 id="如果生产者的生产速度快于消费者的消费速度会发生什么">如果生产者的生产速度快于消费者的消费速度会发生什么？</h3>
+
+<p>通常来说，有三种选择：丢掉部分消息、缓存多余消息、背压阻止新消息（backpressure，也被称为流控，即在消费者处理完之前，阻止生产者产生更多数据）</p>
+
+<h3 id="当系统中一些节点短时间下线会发生什么会有消息因此而丢失吗">当系统中一些节点短时间下线会发生什么？会有消息因此而丢失吗？</h3>
+
+<p>和数据库一样，要想保证持久性，是需要付出一些代价的：如将数据写到硬盘中、将数据冗余到其他节点上等等。如果你能够接受偶尔丢一些数据，那在同样的硬件配置下，你或许能获得更高的吞吐和更低的延迟。</p>
+
+<h2 id="消息系统实践1-生产者到消费者的直接消息">消息系统实践1: 生产者到消费者的直接消息</h2>
+
+<p>常见的:</p>
+<ul>
+  <li>UDP 多播。UDP 多播广泛用在金融系统的数据流中，如对时延要求很高的股票市场中的大盘动态。尽管 UDP 本身是不可靠的，但是可以在应用层增加可靠性算法（类似在应用层实现 TCP 的一些算法），对丢失的信息进行恢复（生产者需要记住所有已发送的消息，才可以按需进行重传）。</li>
+  <li>Webhooks。如果消费者在网络上暴露出了一个服务，则生产者可以通过 HTTP 或者 RPC 请求（来将数据打到消费者中。这就是 webhooks 背后的思想：一个服务会向另一个服务进行注册，并在有事件产生时向该服务发送一个请求。</li>
+</ul>
+
+<p>回答上面的两个问题：</p>
+<ul>
+  <li>#2 消费者下线了，可能就错过消息了，然后应用层要设计很多缓存机制考虑这种异常。</li>
+  <li>#1 这本质上是因为，这些没有 broker 的消息系统多表现为库的形式，本身是没有状态的。如果没有状态，就没有办法应对消息传输过程中生产者、消费者宕机重启的故障。这也是引入 broker 的初衷，但因此消息系统也会变的更加重。</li>
+</ul>
+
+<h2 id="消息系统实践2-消息代理">消息系统实践2: 消息代理</h2>
+
+<p>Broker</p>
+<ul>
+  <li>Broker通常以进程的形式跑在服务器上，生产者和消费者作为客户端与之通信。</li>
+  <li>生产者将消息写入消息代理，消费者从其中读取以进行消费。</li>
+</ul>
+
+<p>好处:</p>
+<ul>
+  <li>由于是一个额外的消息代理系统，因此应用层不用自己解决这些问题。</li>
+  <li>#2 通过引入一个消息数据存储代理，消息系统可以更加容易的对客户端（包括生产者和消费者）的来来去去（连接、失联和宕机）进行容错。</li>
+  <li>#1 如果遇到慢的消费者，就可以使用无限队列的方式（而不是丢消息或者背压）对没来得及消费的数据进行缓存，当然通常来说，能够存多少数据通常也会以配置的方式交给用户去选择。</li>
+  <li>异步: 即当发送一条消息后，生产者等待消息代理确认收到（缓存或者持久化）就会结束，而不会去等待这条消息最终被消费者所消费。而消息最终被消费者所消费，会发生在将来的某个时间点——大多数很快，比如几秒内，但如果出现大量消息积压时，这个时间也可能会很久。</li>
+</ul>
+
+<h2 id="消息代理的分类">消息代理的分类</h2>
+
+<h3 id="队列式">队列式</h3>
+
+<p>AMQP/JMS/Rabbitmq这一类:</p>
+<ul>
+  <li>队列是一等公民，而不是partition</li>
+  <li>因此一条队列的message，可以load balancing的发给多个消费者（m1-cosumer1,m2-consumer2,m3-consumer1…) 也可以是fan out，所有多发</li>
+</ul>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/ddia/20250706135910/image.png" alt="alt text" /></p>
+
+<p>乱序问题：</p>
+<ul>
+  <li>即使消息代理试图以顺序的方式给消费者发送消息（JMS 和 AMQP 都有此类规定），但由于负载均衡和重传机制的组合，乱序消费难以避免。为了避免这个问题，你可以让每个消费者使用单独的队列（即，不用负载均衡功能，也可以理解，毕竟并行总是有代价的）。在每条消息都是互相独立时，乱序消费不是问题；但如果消息间有前后因果依赖，则消息的保序消费非常重要。</li>
+</ul>
+
+<h3 id="分区日志">分区日志</h3>
+
+<h1 id="qa">Q&amp;A</h1>
+
+<h2 id="下面到底代表着几类消息系统">下面到底代表着几类消息系统？</h2>
+
+<p>怎么区分不同的消息传递系统？</p>
+<ol>
+  <li>如果生产者发送消息的速度比消费者能够处理的速度快会发生什么？
+  a. 阻塞生产者的三种选择
+ ■ 丢掉消息
+ ■ 把消息放入缓冲队列
+ ■ 反压（backpressure）</li>
+  <li>如果节点崩溃或暂时脱机，会发生什么情况？——是否有消息丢失？
+  a. 与数据库一样，持久性可能需要写入磁盘或者进行复制</li>
+</ol>
+
+<p>是否可以接受消息丢失？
+● 这取决于应用
+  ○ 如，周期传输的传感器读数，偶尔确实数据不重要；
+  ○ 如，正在事件进行记数，如果不能可靠送达就意味着计数器的错误扩大。</p>
+
+<h2 id="kafka中parititon的分配是pod如何对应的一个pod多个partition还是只能有一个">Kafka中，parititon的分配是pod如何对应的？一个pod多个partition还是只能有一个？</h2>
+
+<p>对于同一个topic:</p>
+<ul>
+  <li>一组pod的topic如果是一样的，那么就自动组成了一个consumer group</li>
+  <li>一个partition只能被Consumer Group中的一个pod消费</li>
+  <li>但是一个pod可能可以消费多个partition</li>
+</ul>
+
+<p>最佳实践：</p>
+<ul>
+  <li>Pod数量 ≤ Partition数量</li>
+  <li>超出的Pod会处于空闲状态</li>
+</ul>
+
+<p>动态均衡：</p>
+<ul>
+  <li>当组内的Pod数量发生变化时（新增、宕机、退出），会触发再均衡（Rebalance），Kafka会自动重新分配所有分区给当前存活的Pod。</li>
+  <li>range/roundrobin/stickey的分配方式</li>
+</ul>
+
+<h2 id="kafka单个partition有序这里的有序不一定是时间上有序对吧例如reservation的创建时间有先后但是后一个的订单可能会被生产者先写进去">Kafka单个partition有序，这里的有序不一定是时间上有序，对吧？例如reservation的创建时间有先后，但是后一个的订单可能会被生产者先写进去？</h2>
+
+<p>正确！Kafka保证的是消息在partition中的存储顺序（offset顺序），而不是业务时间顺序。</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3</pre></td><td class="code"><pre class="highlight"><code>订单A：创建时间 10:00:00，网络延迟，10:00:05到达Kafka -&gt; offset: 1001
+订单B：创建时间 10:00:02，立即到达，10:00:02到达Kafka -&gt; offset: 1000
+结果：B的offset &lt; A的offset，虽然A创建时间更早
+</code></pre></td></tr></tbody></table></div></div>
+
+<h2 id="kafka中单个partition里的message应该单线程处理的对不">Kafka中，单个partition里的message应该单线程处理的，对不？</h2>
+
+<p>是的，单个partition内的消息必须单线程处理。</p>
+
+<p>// ✅ 方案1：消费和处理分离
+单线程消费 -&gt; 多线程处理（如果不需要严格顺序）</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17<br/>18<br/>19<br/>20<br/>21</pre></td><td class="code"><pre class="highlight"><code>public class AsyncProcessingConsumer {
+    private final ExecutorService processExecutor = Executors.newFixedThreadPool(10);
+    
+    public void consume() {
+        KafkaConsumer&lt;String, String&gt; consumer = new KafkaConsumer&lt;&gt;(props);
+        consumer.subscribe(Arrays.asList("my-topic"));
+        
+        while (true) {
+            ConsumerRecords&lt;String, String&gt; records = consumer.poll(Duration.ofMillis(100));
+            
+            // 单线程消费，但处理可以异步
+            for (ConsumerRecord&lt;String, String&gt; record : records) {
+                // 如果不需要严格顺序，可以异步处理
+                processExecutor.submit(() -&gt; processRecord(record));
+            }
+            
+            // 注意：需要等待处理完成后再提交offset
+            consumer.commitSync();
+        }
+    }
+}
+</code></pre></td></tr></tbody></table></div></div>
+
+<p>// ✅ 方案2：多partition并发
+多个partition + 多个Consumer实例 = 真正的并发</p>
+
+<h2 id="consumerpoll每一次poll出来的是单个message还是多个哪里规定的了">consumer.poll()每一次poll出来的是单个message？还是多个？哪里规定的了？</h2>
+
+<p>A: poll()返回的是多个消息（批量），不是单个消息。</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7</pre></td><td class="code"><pre class="highlight"><code>// 最重要的参数
+props.put("max.poll.records", "500");        // 单次poll最多返回记录数（默认500）
+
+// 其他相关参数
+props.put("fetch.min.bytes", "1");           // 最小抓取字节数
+props.put("fetch.max.wait.ms", "500");       // 最大等待时间
+props.put("max.partition.fetch.bytes", "1048576"); // 每个partition最大字节数
+</code></pre></td></tr></tbody></table></div></div>
+
+<h2 id="kafka的有序-append-order--写入顺序-指的是消息被成功写入到分区日志文件中的物理顺序这个有序有什么用">Kafka的有序 (Append Order / 写入顺序): 指的是消息被成功写入到分区日志文件中的物理顺序，这个有序有什么用？</h2>
+
+<p>Kafka严格保证消费者会按照这个顺序来读取消息</p>
+
+<h2 id="dead-letter是什么">Dead letter是什么？</h2>
+
+<p>Dead Letter (死信) 指的是在消息中间件系统中，因为某些原因无法被消费者成功处理的消息。为了不让这些“问题消息”阻塞后续正常消息的处理，或被无限次地重试，系统会将它们发送到一个专门的地方，这个地方就叫做死信队列 (Dead Letter Queue, DLQ)。</p>
+
+<p>一个消息变成“死信”的常见原因：</p>
+
+<ul>
+  <li>消息格式错误 (Message Poisoning): 消息的格式（如JSON、XML）损坏或不符合消费者的预期，导致消费者无法解析而抛出异常。</li>
+  <li>业务逻辑失败 (Business Logic Failure): 消息本身格式正确，但其内容在业务上是无效的。例如，处理一个不存在的用户ID的订单，或者对一个余额为零的账户进行扣款。</li>
+  <li>达到最大重试次数 (Exceeding Retry Count): 消费者在处理某条消息时临时失败（如数据库连接超时），系统会进行重试。当重试次数达到预设的上限后，如果依然失败，该消息就会被视为死信。</li>
+  <li>消息过期 (Message Expiration): 消息在队列中停留的时间超过了其生存时间（TTL, Time-To-Live）。</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14</pre></td><td class="code"><pre class="highlight"><code># 1. 基础DLQ模式
+basic_dlq:
+  main_topic: "orders"
+  dlq_topic: "orders.dlq"
+  retry_topic: "orders.retry"
+  
+# 2. 带重试的DLQ模式
+retry_with_dlq:
+  flow:
+    - main_topic: "orders"
+    - retry_topic_1: "orders.retry.1"  # 延迟1分钟
+    - retry_topic_2: "orders.retry.2"  # 延迟5分钟
+    - retry_topic_3: "orders.retry.3"  # 延迟30分钟
+    - dlq_topic: "orders.dlq"          # 最终失败
+</code></pre></td></tr></tbody></table></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17<br/>18<br/>19<br/>20<br/>21<br/>22<br/>23<br/>24<br/>25<br/>26<br/>27<br/>28<br/>29<br/>30<br/>31<br/>32<br/>33<br/>34<br/>35<br/>36<br/>37<br/>38<br/>39<br/>40<br/>41<br/>42<br/>43</pre></td><td class="code"><pre class="highlight"><code>@Component
+public class CompleteDLQHandler {
+    
+    @Value("${kafka.dlq.max-retries:3}")
+    private int maxRetries;
+    
+    @KafkaListener(topics = "${kafka.topics.main}")
+    public void processMessage(ConsumerRecord&lt;String, String&gt; record,
+                             @Header(KafkaHeaders.RECEIVED_TOPIC) String topic) {
+        try {
+            // 业务处理
+            businessService.process(record.value());
+        } catch (RecoverableException e) {
+            // 可恢复异常，发送到重试队列
+            sendToRetryTopic(record, e);
+        } catch (Exception e) {
+            // 不可恢复异常，直接发送到DLQ
+            sendToDeadLetter(record, e, "UNRECOVERABLE_ERROR");
+        }
+    }
+    
+    @KafkaListener(topics = "${kafka.topics.retry}")
+    public void processRetry(ConsumerRecord&lt;String, String&gt; record,
+                           @Header("retry_count") Integer retryCount) {
+        if (retryCount &gt;= maxRetries) {
+            sendToDeadLetter(record, null, "MAX_RETRIES_EXCEEDED");
+            return;
+        }
+        
+        try {
+            businessService.process(record.value());
+        } catch (Exception e) {
+            // 增加重试次数，重新发送到重试队列
+            sendToRetryTopic(record, e, retryCount + 1);
+        }
+    }
+    
+    // 监控DLQ中的消息
+    @Scheduled(fixedDelay = 60000)
+    public void monitorDeadLetters() {
+        // 统计DLQ消息数量，发送告警等
+    }
+}
+</code></pre></td></tr></tbody></table></div></div>
+
+<h2 id="如果要求业务时间严格有序怎么办">如果要求业务时间严格有序怎么办？</h2>
+
+<p>这是一个复杂的问题，有多种办法。</p>
+
+<p>Kafka Streams: Kafka原生的流处理库，相对轻量级。它也支持事件时间处理和窗口化操作，适合于和Kafka紧密集成的场景。</p>
+
+<h2 id="topic是如何创建的">Topic是如何创建的？</h2>
+
+<p>命令行创建</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15</pre></td><td class="code"><pre class="highlight"><code>kafka-topics.sh --create \
+  --bootstrap-server localhost:9092 \
+  --topic my-topic \
+  --partitions 3 \
+  --replication-factor 2
+
+# 带配置参数创建
+kafka-topics.sh --create \
+  --bootstrap-server localhost:9092 \
+  --topic my-topic \
+  --partitions 6 \
+  --replication-factor 3 \
+  --config retention.ms=604800000 \
+  --config compression.type=lz4 \
+  --config min.insync.replicas=2
+</code></pre></td></tr></tbody></table></div></div>
+
+<p>自动创建（不推荐生产环境，主要是方便调试）</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4</pre></td><td class="code"><pre class="highlight"><code># Kafka broker配置
+auto.create.topics.enable=true  # 默认true，生产环境建议false
+num.partitions=1               # 自动创建的默认分区数
+default.replication.factor=1   # 自动创建的默认副本数
+</code></pre></td></tr></tbody></table></div></div>
+
+<h2 id="日志与传统的消息传递相比">日志与传统的消息传递相比</h2>
+
+<h1 id="reference">Reference</h1>
+<ul>
+  <li>1.https://www.yuque.com/fuxuemingzhu/ddia/ghtg7p</li>
+  <li>2.https://ddia.qtmuniao.com/#/ch11</li>
+</ul>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+      
+      
+
+      
+      
+        <div class="post-nav" id="post-nav-id">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/%E8%8B%B1%E8%AF%AD/2026/01/11/TalkPal%E8%AE%B0%E5%BD%95/" rel="next" title="TalkPal记录">
+                <i class="fa fa-chevron-left"></i> TalkPal记录
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/%E5%A4%A7%E5%AD%A6/%E5%8A%A0%E5%AF%86/2025/01/01/%E5%A4%A7%E5%AD%A6%E6%97%B6%E6%9C%9F%E7%9A%84%E6%88%91/" rel="prev" title="大学时期的我">
+                大学时期的我 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+      
+
+      
+    </footer>
+  </article>
+
+  <div class="post-spread">
+    
+  </div>
+</div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        
+        
+        
+
+
+
+
+
+
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/assets/images/avatar.gif"
+               alt="三山" />
+          <p class="site-author-name" itemprop="name">三山</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">77</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/">
+                <span class="site-state-item-count">48</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+        
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+
+
+
+
+
+
+
+            
+              <div class="post-toc-content">
+    <ol class=nav>
+      <li class="nav-item nav-level-1"> <a class="nav-link" href="#前言"> <span class="nav-number">1</span> <span class="nav-text">前言</span> </a> </li> <li class="nav-item nav-level-1"> <a class="nav-link" href="#脉络"> <span class="nav-number">2</span> <span class="nav-text">脉络</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-2"> <a class="nav-link" href="#消息系统"> <span class="nav-number">2.1</span> <span class="nav-text">消息系统</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-3"> <a class="nav-link" href="#如果生产者的生产速度快于消费者的消费速度会发生什么"> <span class="nav-number">2.1.1</span> <span class="nav-text">如果生产者的生产速度快于消费者的消费速度会发生什么？</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#当系统中一些节点短时间下线会发生什么会有消息因此而丢失吗"> <span class="nav-number">2.1.2</span> <span class="nav-text">当系统中一些节点短时间下线会发生什么？会有消息因此而丢失吗？</span> </a> </li> </ol> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#消息系统实践1-生产者到消费者的直接消息"> <span class="nav-number">2.2</span> <span class="nav-text">消息系统实践1: 生产者到消费者的直接消息</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#消息系统实践2-消息代理"> <span class="nav-number">2.3</span> <span class="nav-text">消息系统实践2: 消息代理</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#消息代理的分类"> <span class="nav-number">2.4</span> <span class="nav-text">消息代理的分类</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-3"> <a class="nav-link" href="#队列式"> <span class="nav-number">2.4.1</span> <span class="nav-text">队列式</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#分区日志"> <span class="nav-number">2.4.2</span> <span class="nav-text">分区日志</span> </a> </li> </ol> </li> </ol> </li> <li class="nav-item nav-level-1"> <a class="nav-link" href="#qa"> <span class="nav-number">3</span> <span class="nav-text">Q&amp;A</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-2"> <a class="nav-link" href="#下面到底代表着几类消息系统"> <span class="nav-number">3.1</span> <span class="nav-text">下面到底代表着几类消息系统？</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#kafka中parititon的分配是pod如何对应的一个pod多个partition还是只能有一个"> <span class="nav-number">3.2</span> <span class="nav-text">Kafka中，parititon的分配是pod如何对应的？一个pod多个partition还是只能有一个？</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#kafka单个partition有序这里的有序不一定是时间上有序对吧例如reservation的创建时间有先后但是后一个的订单可能会被生产者先写进去"> <span class="nav-number">3.3</span> <span class="nav-text">Kafka单个partition有序，这里的有序不一定是时间上有序，对吧？例如reservation的创建时间有先后，但是后一个的订单可能会被生产者先写进去？</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#kafka中单个partition里的message应该单线程处理的对不"> <span class="nav-number">3.4</span> <span class="nav-text">Kafka中，单个partition里的message应该单线程处理的，对不？</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#consumerpoll每一次poll出来的是单个message还是多个哪里规定的了"> <span class="nav-number">3.5</span> <span class="nav-text">consumer.poll()每一次poll出来的是单个message？还是多个？哪里规定的了？</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#kafka的有序-append-order--写入顺序-指的是消息被成功写入到分区日志文件中的物理顺序这个有序有什么用"> <span class="nav-number">3.6</span> <span class="nav-text">Kafka的有序 (Append Order / 写入顺序): 指的是消息被成功写入到分区日志文件中的物理顺序，这个有序有什么用？</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#dead-letter是什么"> <span class="nav-number">3.7</span> <span class="nav-text">Dead letter是什么？</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#如果要求业务时间严格有序怎么办"> <span class="nav-number">3.8</span> <span class="nav-text">如果要求业务时间严格有序怎么办？</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#topic是如何创建的"> <span class="nav-number">3.9</span> <span class="nav-text">Topic是如何创建的？</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#日志与传统的消息传递相比"> <span class="nav-number">3.10</span> <span class="nav-text">日志与传统的消息传递相比</span> </a> </li> </ol> </li> <li class="nav-item nav-level-1"> <a class="nav-link" href="#reference"> <span class="nav-number">4</span> <span class="nav-text">Reference</span> </a> </li>
+    </ol>
+  </div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">三山</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://jekyllrb.com">Jekyll</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/simpleyyt/jekyll-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+   
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/assets/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  <script type="text/javascript" src="/assets/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/assets/js/src/post-details.js?v=5.1.1"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+    
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
+
+

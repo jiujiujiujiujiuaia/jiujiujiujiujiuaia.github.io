@@ -1,0 +1,1074 @@
+<!--不算子网站访客统计-->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-M7QXLLL8YX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-M7QXLLL8YX');
+</script>
+
+
+<!doctype html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/assets/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/assets/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/assets/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="三山的编程之旅" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="System Design Guidance 清楚的部分不需要代码实战，例如对数据库的CRUD 不清楚的部分用MVP(最小可运行产品)去弄明白，比如websocket如何实现(push model) 前期准备充足的资料，了解业务场景,解决什么问题,核心方案,核心技术是什么 在这个过程中逐渐积累一些通用能力，能够去回答一些模糊问题，例如”如何提高系统的可扩展性”，“如何提高系统的弹性” 短期内不要想着去code实现，搞清楚什么是什么，然后说出来。实现那是长期的目标，想想LC那种人都可以找到 构建组件的认知（如何使用消息队列达到一个目标）而不是实现一个产品(费时费力)">
+<meta name="keywords" content="Jekyll, NexT">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TinyURL">
+<meta property="og:url" content="https://jiujiujiujiujiuaia.github.io/system%20design/2020/03/02/TinyURL/">
+<meta property="og:site_name" content="三山的编程之旅">
+<meta property="og:description" content="System Design Guidance 清楚的部分不需要代码实战，例如对数据库的CRUD 不清楚的部分用MVP(最小可运行产品)去弄明白，比如websocket如何实现(push model) 前期准备充足的资料，了解业务场景,解决什么问题,核心方案,核心技术是什么 在这个过程中逐渐积累一些通用能力，能够去回答一些模糊问题，例如”如何提高系统的可扩展性”，“如何提高系统的弹性” 短期内不要想着去code实现，搞清楚什么是什么，然后说出来。实现那是长期的目标，想想LC那种人都可以找到 构建组件的认知（如何使用消息队列达到一个目标）而不是实现一个产品(费时费力)">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/tinyURL/20240106124336/img_1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/tinyURL/20240106124336/img_2.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/tinyURL/20240106124336/img_3.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/tinyURL/20240106124336/img_4.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/tinyURL/20240106124336/img_5.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/tinyurl/20240107220734/img.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/tinyurl/20240107220734/img_1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/tinyurl/20240107220734/img_3.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/tinyurl/20240107220734/img_2.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="TinyURL">
+<meta name="twitter:description" content="System Design Guidance 清楚的部分不需要代码实战，例如对数据库的CRUD 不清楚的部分用MVP(最小可运行产品)去弄明白，比如websocket如何实现(push model) 前期准备充足的资料，了解业务场景,解决什么问题,核心方案,核心技术是什么 在这个过程中逐渐积累一些通用能力，能够去回答一些模糊问题，例如”如何提高系统的可扩展性”，“如何提高系统的弹性” 短期内不要想着去code实现，搞清楚什么是什么，然后说出来。实现那是长期的目标，想想LC那种人都可以找到 构建组件的认知（如何使用消息队列达到一个目标）而不是实现一个产品(费时费力)">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/tinyURL/20240106124336/img_1.png">
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://jiujiujiujiujiuaia.github.io"/>
+
+
+
+
+
+  <title>TinyURL | 三山的编程之旅</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'G-M7QXLLL8YX', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">三山的编程之旅</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+<div id="posts" class="posts-expand">
+  
+  
+
+  
+
+  
+  
+  
+
+  <article class="post post-type- " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://jiujiujiujiujiuaia.github.io/system%20design/2020/03/02/TinyURL/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="三山">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="assets/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="三山的编程之旅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+          
+          
+            TinyURL
+          
+        </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-02T17:30:09+00:00">
+                2020-03-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/category/#/System%20Design" itemprop="url" rel="index">
+                    <span itemprop="name">System Design</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+                
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv" id="busuanzi_container_page_pv">
+            本文总阅读量<span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+                
+
+            
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <div class="post-wordcount">
+                  <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                  <span class="post-meta-item-text">字数统计</span>
+                <span title="字数统计">
+                  1494字
+                </span>
+
+                <span class="post-meta-divider">|</span>
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                  <span class="post-meta-item-text">阅读时长</span>
+                <span title="阅读时长">
+                  7分钟
+                </span>
+            </div>
+
+          
+            
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 id="system-design-guidance">System Design Guidance</h2>
+<ul>
+  <li>清楚的部分不需要代码实战，例如对数据库的CRUD</li>
+  <li>不清楚的部分用MVP(最小可运行产品)去弄明白，比如websocket如何实现(push model)</li>
+  <li>前期准备充足的资料，了解<code class="language-plaintext highlighter-rouge">业务场景</code>,<code class="language-plaintext highlighter-rouge">解决什么问题</code>,<code class="language-plaintext highlighter-rouge">核心方案</code>,<code class="language-plaintext highlighter-rouge">核心技术</code>是什么</li>
+  <li>在这个过程中逐渐积累一些通用能力，能够去回答一些模糊问题，例如”如何提高系统的可扩展性”，“如何提高系统的弹性”</li>
+  <li>短期内不要想着去code实现，搞清楚什么是什么，然后说出来。实现那是长期的目标，想想LC那种人都可以找到</li>
+  <li>构建组件的认知（如何使用消息队列达到一个目标）而不是实现一个产品(费时费力)</li>
+</ul>
+
+<h2 id="tinyurl的好处">TinyURL的好处</h2>
+<ul>
+  <li>1.长连接变短，省钱（媒介费，如短信费）省空间</li>
+  <li>2.方便数据分析例如点击事件（why?)</li>
+</ul>
+
+<h2 id="需求分析明确问题">需求分析/明确问题</h2>
+<ul>
+  <li>1.对于任意一个given的original URL，我们要返回一个short URL</li>
+  <li>2.如果给的是一个short URL，我们要重定向到original URL</li>
+  <li>3.假设每天1个亿的URL生成，rps=1亿/24*3600 = 1160，total records = 1个亿/per day * 365 * 10年= 3650亿条records
+    <ul>
+      <li>那么对于shorten URL来说，长度就是7。它通常是由0-9，a-z,A-Z一共62种选择，那么<strong>shorten URL length = 7</strong>时，62^7&gt;3650亿</li>
+    </ul>
+  </li>
+  <li>功能性: #1&amp;#2</li>
+  <li>Non-Function: resilience, performance, scalability</li>
+</ul>
+
+<h2 id="api-design">API Design</h2>
+
+<ul>
+  <li>Long URL -&gt; Short URL
+    <ul>
+      <li>Post api/v1/shorten</li>
+    </ul>
+  </li>
+  <li>Short URL -&gt; Long URL
+    <ul>
+      <li>GET api/v1/longURL</li>
+    </ul>
+  </li>
+</ul>
+
+<p>对于短连接跳转到原始链接的技术实现，是浏览器返回301 或者 302，然后把原始链接放在location的header当中。</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/tinyURL/20240106124336/img_1.png" alt="img_1.png" /></p>
+
+<p>301和302的区别在于，301是永久重定向，用户对同一个短连接的后续请求都是直接跳转，而不经过tinyURL server。302 是暂时重定向，每次都要去shortURL。</p>
+
+<p>301的好处是节省server load，302的好处是便于分析用户跳转情况。</p>
+
+<h2 id="data-model">Data Model</h2>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/tinyURL/20240106124336/img_2.png" alt="img_2.png" /></p>
+
+<h2 id="核心---如何缩短url">核心 -&gt; 如何缩短URL?</h2>
+
+<p>我们来到功能上的核心点，如何设计? 其实问题就是如何把<code class="language-plaintext highlighter-rouge">https://wiki.com.xxxx</code> =&gt; 转换成 tinyURL <code class="language-plaintext highlighter-rouge">https://tinyurl.com/qtj5opu</code></p>
+
+<p>一种是直接字符串hash，取前7位</p>
+
+<p>一种是生成unique的id，然后把这个id转成7位 base62编码。</p>
+
+<h3 id="1哈希">1.哈希</h3>
+
+<p>哈希的方法很直白，输入一个long URL，然后返回一个字符串作为tiny url的末尾。</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/tinyURL/20240106124336/img_3.png" alt="img_3.png" /></p>
+
+<p>然而常见的hash算法例如MD5，SHA-1等等都超过了7个字符长度。</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/tinyURL/20240106124336/img_4.png" alt="img_4.png" /></p>
+
+<p>哪怕没有超过7个字符，也会有hash冲突的情况。也就是两个不同的input long url，得到的是同样的hash值，如何解决hash冲突呢？</p>
+
+<p>每次生成的short URL，都确定DB中没有出现过。如果出现过，那么append一个预设的string到long URL，然后<strong>不断重复判断循环</strong>，直到没有出现过。</p>
+
+<p>这样效率很低，因此可以用布隆过滤器(100%判断不存在)</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/tinyURL/20240106124336/img_5.png" alt="img_5.png" /></p>
+
+<h2 id="2id自增器62进制">2.Id自增器+62进制</h2>
+
+<p>假设我们根据一些全局自增的算法，例如snowflake，然后获取了全局自增id。</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/tinyurl/20240107220734/img.png" alt="img.png" /></p>
+
+<p>然后我们不断的对这个数字做取余数和除数操作。就可以做到从id转换到short url。</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/tinyurl/20240107220734/img_1.png" alt="img_1.png" /></p>
+
+<h2 id="架构">架构</h2>
+
+<p>如果是用户点击了https://tinyurl.com/zn9edcyu, 请求会先经过load balancer到达server，</p>
+
+<p>server会查询缓存，然后再查询数据库，如果数据库中或者缓存存在，则返回，否则不存在。</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/tinyurl/20240107220734/img_3.png" alt="img_3.png" /></p>
+
+<p>如果是访问POST接口，那么就是先判断URL是否存在，不存在，则创建，存在则返回。</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/tinyurl/20240107220734/img_2.png" alt="img_2.png" /></p>
+
+<h2 id="优化">优化</h2>
+
+<h3 id="读操作优化">读操作优化</h3>
+
+<h4 id="1使用缓存">1.使用缓存</h4>
+
+<p>缓存可以高效的解决数据库的负担</p>
+
+<h4 id="2读写分离">2.读写分离</h4>
+
+<p>使用主从复制，扩展多个从数据库提供读，适用于读多写少</p>
+
+<h4 id="3根据地理位置部署">3.根据地理位置部署</h4>
+
+<p>在不同的国家和地区部署web服务器和存储服务器，使用ATM和DNS将用户导向最近的服务器</p>
+
+<h3 id="写操作优化">写操作优化</h3>
+
+<h4 id="1sharding">1.sharding</h4>
+
+<ul>
+  <li>假设我们有一个主表 url_mappings，其中包含列 short_url, long_url, creation_date, access_count。</li>
+  <li>可以根据 short_url 的哈希值将数据分布到不同的分片中。例如，创建 url_mappings_0, url_mappings_1, …, url_mappings_n，
+每个分片根据 short_url 的哈希值模 n+1 的结果存储数据</li>
+</ul>
+
+<p>无论是维护静态的id-&gt;db url的关系在每个服务器，还是依赖一个metedata服务器，传入一个short url，然后返回服务器地址都可以</p>
+
+<h4 id="2垂直分片">2.垂直分片</h4>
+
+<p>大表拆分成小表，继续使用 url_mappings 表作为例子，可以将其分为两部分：</p>
+<ul>
+  <li>url_mappings_core 包含 short_url, long_url，这些是每次操作都会用到的核心数据。</li>
+  <li>url_mappings_stats 包含 short_url, creation_date, access_count，这些是统计和分析用的数据，可能不会那么频繁地访问。</li>
+</ul>
+
+<h4 id="3利用开源paas先写入缓存">3.利用开源PaaS，先写入缓存</h4>
+
+<p>使用如Redis等内存缓存，减少对数据库的直接写入操作。
+可以通过批量写入或异步写入减轻数据库的压力。</p>
+
+<h4 id="4使用消息队列批量写入">4.使用消息队列+批量写入</h4>
+
+<p>应用程序将写入操作发送到消息队列，而不是直接写入数据库。后台进程（消费者）异步地从队列中读取这些操作并执行数据库写入。</p>
+
+<p>消费者可以从队列中收集多个写入操作，并将它们作为一个批量操作写入数据库。</p>
+
+<p>同时，防止突发流量直接冲击数据库，提供更平稳的性能表现。</p>
+
+<h2 id="reference">Reference</h2>
+<ul>
+  <li>1.https://eric-zhang-seattle.gitbook.io/mess-around/unique-id/scenario_tinyurl#main-purpose</li>
+  <li>2.https://www.zhihu.com/question/292700343</li>
+  <li>3.https://github.com/ByteByteGoHq/system-design-101</li>
+  <li>4.https://bytebytego.com/</li>
+</ul>
+
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+      
+      
+
+      
+      
+        <div class="post-nav" id="post-nav-id">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/system%20design/2020/03/02/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/" rel="next" title="系统设计常见问题">
+                <i class="fa fa-chevron-left"></i> 系统设计常见问题
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/redis/cache/2020/03/02/Cache-And-Redis/" rel="prev" title="Cache">
+                Cache <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+      
+
+      
+    </footer>
+  </article>
+
+  <div class="post-spread">
+    
+  </div>
+</div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        
+        
+        
+
+
+
+
+
+
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/assets/images/avatar.gif"
+               alt="三山" />
+          <p class="site-author-name" itemprop="name">三山</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">77</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/">
+                <span class="site-state-item-count">48</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+        
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+
+
+
+
+
+
+
+            
+              <div class="post-toc-content">
+    <ol class=nav>
+      <li class="nav-item nav-level-2"> <a class="nav-link" href="#system-design-guidance"> <span class="nav-number">1</span> <span class="nav-text">System Design Guidance</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#tinyurl的好处"> <span class="nav-number">2</span> <span class="nav-text">TinyURL的好处</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#需求分析明确问题"> <span class="nav-number">3</span> <span class="nav-text">需求分析/明确问题</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#api-design"> <span class="nav-number">4</span> <span class="nav-text">API Design</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#data-model"> <span class="nav-number">5</span> <span class="nav-text">Data Model</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#核心---如何缩短url"> <span class="nav-number">6</span> <span class="nav-text">核心 -&gt; 如何缩短URL?</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-3"> <a class="nav-link" href="#1哈希"> <span class="nav-number">6.1</span> <span class="nav-text">1.哈希</span> </a> </li> </ol> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#2id自增器62进制"> <span class="nav-number">7</span> <span class="nav-text">2.Id自增器+62进制</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#架构"> <span class="nav-number">8</span> <span class="nav-text">架构</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#优化"> <span class="nav-number">9</span> <span class="nav-text">优化</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-3"> <a class="nav-link" href="#读操作优化"> <span class="nav-number">9.1</span> <span class="nav-text">读操作优化</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-4"> <a class="nav-link" href="#1使用缓存"> <span class="nav-number">9.1.1</span> <span class="nav-text">1.使用缓存</span> </a> </li> <li class="nav-item nav-level-4"> <a class="nav-link" href="#2读写分离"> <span class="nav-number">9.1.2</span> <span class="nav-text">2.读写分离</span> </a> </li> <li class="nav-item nav-level-4"> <a class="nav-link" href="#3根据地理位置部署"> <span class="nav-number">9.1.3</span> <span class="nav-text">3.根据地理位置部署</span> </a> </li> </ol> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#写操作优化"> <span class="nav-number">9.2</span> <span class="nav-text">写操作优化</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-4"> <a class="nav-link" href="#1sharding"> <span class="nav-number">9.2.1</span> <span class="nav-text">1.sharding</span> </a> </li> <li class="nav-item nav-level-4"> <a class="nav-link" href="#2垂直分片"> <span class="nav-number">9.2.2</span> <span class="nav-text">2.垂直分片</span> </a> </li> <li class="nav-item nav-level-4"> <a class="nav-link" href="#3利用开源paas先写入缓存"> <span class="nav-number">9.2.3</span> <span class="nav-text">3.利用开源PaaS，先写入缓存</span> </a> </li> <li class="nav-item nav-level-4"> <a class="nav-link" href="#4使用消息队列批量写入"> <span class="nav-number">9.2.4</span> <span class="nav-text">4.使用消息队列+批量写入</span> </a> </li> </ol> </li> </ol> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#reference"> <span class="nav-number">10</span> <span class="nav-text">Reference</span> </a> </li>
+    </ol>
+  </div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">三山</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://jekyllrb.com">Jekyll</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/simpleyyt/jekyll-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+   
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/assets/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  <script type="text/javascript" src="/assets/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/assets/js/src/post-details.js?v=5.1.1"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+    
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
+
+

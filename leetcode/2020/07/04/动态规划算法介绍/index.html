@@ -1,0 +1,1044 @@
+<!--不算子网站访客统计-->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-M7QXLLL8YX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-M7QXLLL8YX');
+</script>
+
+
+<!doctype html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/assets/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/assets/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/assets/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="三山的编程之旅" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="新加">
+<meta name="keywords" content="Jekyll, NexT">
+<meta property="og:type" content="article">
+<meta property="og:title" content="动态规划算法介绍">
+<meta property="og:url" content="https://jiujiujiujiujiuaia.github.io/leetcode/2020/07/04/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%AE%97%E6%B3%95%E4%BB%8B%E7%BB%8D/">
+<meta property="og:site_name" content="三山的编程之旅">
+<meta property="og:description" content="新加">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/dynamicprogramming/img_5.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/dynamicprogramming/img_6.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/dynamicprogramming/img_9.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/dynamicprogramming/img_7.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/dynamicprogramming/img_8.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/dynamicprogramming/img_4.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/dynamicprogramming/img_10.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/dynamicprogramming/img_11.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/dynamicprogramming/img_12.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/dynamicprogramming/img_19.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="动态规划算法介绍">
+<meta name="twitter:description" content="新加">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/dynamicprogramming/img_5.png">
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://jiujiujiujiujiuaia.github.io"/>
+
+
+
+
+
+  <title>动态规划算法介绍 | 三山的编程之旅</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'G-M7QXLLL8YX', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">三山的编程之旅</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+<div id="posts" class="posts-expand">
+  
+  
+
+  
+
+  
+  
+  
+
+  <article class="post post-type- " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://jiujiujiujiujiuaia.github.io/leetcode/2020/07/04/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%AE%97%E6%B3%95%E4%BB%8B%E7%BB%8D/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="三山">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="assets/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="三山的编程之旅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+          
+          
+            动态规划算法介绍
+          
+        </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-04T23:30:09+00:00">
+                2020-07-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/category/#/Leetcode" itemprop="url" rel="index">
+                    <span itemprop="name">Leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+                
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv" id="busuanzi_container_page_pv">
+            本文总阅读量<span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+                
+
+            
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <div class="post-wordcount">
+                  <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                  <span class="post-meta-item-text">字数统计</span>
+                <span title="字数统计">
+                  1970字
+                </span>
+
+                <span class="post-meta-divider">|</span>
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                  <span class="post-meta-item-text">阅读时长</span>
+                <span title="阅读时长">
+                  9分钟
+                </span>
+            </div>
+
+          
+            
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 id="新加">新加</h2>
+
+<p>1.如何思考动态规划问题？
+一开始是不知道这道题可以动态规划的，因此一开始就是模拟题目
+比如路径问题，选哪一个，任意一个i,j点应该如何达到?从i-1,j和i,j-1到达
+比如盗窃问题，选或不选，对于任意一个房间i,要么选择i-1，然后选择i和i-2
+（自顶向下和自底向上无所谓）比如120三角形问题，选哪一个，从任意一点i,j出发，到达底边有两个选择，要么选择i+1,j 要么选择i+1,j+1 或者任意一个点i,j是如何到达的呢？是从i-1,j和i-1，j-1中来的。</p>
+
+<p>然后通过画树就会发现，选择是有重复计算的，因此同样的计算备份一次。</p>
+
+<p>然后呢，栈空间是有限的，如何转换成迭代呢？
+以120举例，已知递归法是从根结点递归到叶子节点，
+“递“是由函数栈出入栈，”归“是到叶子节点回退。因此可以直接去掉”递”，保留”归”，递是从根节点，那么归就是从叶子节点了。因此迭代法是和递归相反的方向。</p>
+
+<p>如何写代码呢？
+如果状态转移是dfs(i,j) = dfs(i-1,j) + dfs(i,j-1)那么可以把等式两边+1，避免下标为负数，但是值得一提的是，这里更改的是memo的数组长度，nums数组长度不受影响， 保证nums数组长度不会被超出。</p>
+
+<p>3.如何把递归改成递推呢？去掉递，合并归，树的下面开始往上计算，也就是为什么有些题目是递归是从数组末尾，递推是从0开始的
+然后为了避免一些索引复数，可以通过两边加一的方式把状态转移方程平衡一下</p>
+
+<p>1.当前操作是第i个元素的操作，子问题是前i个元素的状态和。memo数组是从一些元素中算出的结果，而不是从一个元素中</p>
+
+<h2 id="动态规划算法">动态规划算法</h2>
+<p>动态规划算法是一个工具，帮助你<strong>递归</strong>更加的高效。因此，碰到一个问题，不是一开始就一头扎进动态规划，
+而是先尝试解决这个问题，然后再去看看，有没有什么办法可以让其更加的高效。</p>
+
+<h3 id="动态规划算法核心点">动态规划算法核心点</h3>
+<ol>
+  <li>状态如何定义</li>
+  <li>递归暴力解</li>
+  <li>重复子问题</li>
+  <li>最优子结构</li>
+  <li>迭代优化解</li>
+  <li>有后效性和无后效性
+能用动态规划解题的一个特点是<strong>无后效性</strong>，也就是已经求解的子问题，不受到后续阶段的影响。
+比如dp[i]=100，那么在算dp[i+1]的时候，dp[i]是不应该改变的，如果dp[i]会变，那就无法逐次递推推出了，也就不是动态规划的题目了。
+李煜东著《算法竞赛进阶指南》，摘录如下：
+<code class="language-plaintext highlighter-rouge">为了保证计算子问题能够按照顺序、不重复地进行，动态规划要求已经求解的子问题不受后续阶段的影响。
+这个条件也被叫做「无后效性」。换言之，动态规划对状态空间的遍历构成一张有向无环图，遍历就是该有向无环图的一个拓扑序。
+有向无环图中的节点对应问题中的「状态」，图中的边则对应状态之间的「转移」，转移的选取就是动态规划中的「决策」。</code></li>
+</ol>
+
+<h3 id="题目">题目</h3>
+<p>我们列举两个经典的题目作为我们文章的例子：</p>
+
+<p>斐波那契
+<img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/dynamicprogramming/img_5.png" alt="img_5.png" /></p>
+
+<p>不同路径的题目
+<img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/dynamicprogramming/img_6.png" alt="img_6.png" /></p>
+
+<h3 id="step1-暴力递归">Step1 暴力递归</h3>
+<p>第一步，我们先不管这道题能不能用动态规划解决，我们先尝试解决这两个问题，<strong>我们先从暴力解法</strong>。</p>
+
+<p>以斐波那契数列为例，你想要知道F(5)第五个数是多少:</p>
+<ol>
+  <li>你得首先知道F(4)和F(3)</li>
+  <li>然后你又得知道F(2),F(1),F(0)</li>
+  <li>F(1)和F(0)等于1和0
+<img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/dynamicprogramming/img_9.png" alt="img_9.png" /></li>
+</ol>
+
+<p>以不同路径的缩小版为例，想要抵达终点，只能从A或者B达到:</p>
+<ol>
+  <li>A只能一个办法抵达终点（因为只能向右或者向下）</li>
+  <li>B有两个选择C或者D，而C或者D只有一个选择抵达终点（因为只能向右或者向下）</li>
+  <li>因此可以发现，从起点到第一行或者第一列的每一个格子，只有一条路径。</li>
+  <li><strong>递归法中状态定义：从起点到某个格子的路径</strong></li>
+</ol>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/dynamicprogramming/img_7.png" alt="img_7.png" />
+<img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/dynamicprogramming/img_8.png" alt="img_8.png" /></p>
+
+<p>结论：</p>
+<ol>
+  <li>首先你会发现这个过程是递归的。</li>
+  <li>其次你会发现这个递归终止是有条件的，到F(1)或者F(0)或者某一个条件就会停下来。</li>
+  <li>最后，你会发现递归的过程是<strong>自顶向下</strong>的，也就是从不知道问题的解(F5)，到已知的解(F0或者F1)（相比较下文的迭代）</li>
+</ol>
+
+<h3 id="step2-递归记忆化搜索">Step2 递归+记忆化搜索</h3>
+<p>如果把斐波那契数列的递归过程，画成一棵树的话，你会发现，有的枝叶是重复计算的。
+<img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/dynamicprogramming/img_4.png" alt="img_4.png" /></p>
+
+<p>如果把不同路径的缩小版的递归过程，画成一棵树的话，你会发现，有的枝叶是重复计算的。
+<img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/dynamicprogramming/img_10.png" alt="img_10.png" /></p>
+
+<p>同时，我们也可以从刚刚的递归中发现两个问题：</p>
+<ol>
+  <li>重复子问题（你在重复的解决子问题，上图的红色框）
+    <ol>
+      <li>由于递归是至顶向下的，因此算F(n)和F(n-1)的时候，必然是有重复算某一个值的情况，例如重复算F(2)</li>
+    </ol>
+  </li>
+  <li>最优子结构（通过找到子问题的最优解决方案，你几乎免费地提取整个问题的最优解决方案）</li>
+</ol>
+
+<p>因此，现在任务变成了要优化刚刚的暴力解法。增加一个数组memo，一旦memo中的值存在，我们就不再递归，直接返回。
+<img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/dynamicprogramming/img_11.png" alt="img_11.png" /></p>
+
+<p>虽然解法是对的，但是会引入新的问题，当输入是一个很大的值的时候，由于递归层数太多，超时了。
+<img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/dynamicprogramming/img_12.png" alt="img_12.png" /></p>
+
+<h3 id="step3-迭代表格法">Step3 迭代+表格法</h3>
+<p>迭代往往不会带来空间或者时间上的好处，从递归转成迭代的原因是因为程序能够有更大的输入，计算更复杂情况的问题。因为我们常常会忽略程序递归调用栈的最大上限或者栈溢出（递归的实现是靠函数栈，函数栈所占有的内容不是无穷大的）。</p>
+
+<p>把程序从递归改成迭代，往往需要表格法。</p>
+
+<p>同时，要注意的是，表格法是自底向上的，为什么呢？</p>
+<ol>
+  <li>递归可以把未知问题递归到已知，<strong>62中的状态定义是从起点到某个格子的路径。</strong></li>
+  <li>但是迭代问题在一个函数空间，要从已知值像滚筒一样滚向未知，没办法先计算终点的路径（不像递归）
+<img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/dynamicprogramming/img_19.png" alt="img_19.png" /></li>
+</ol>
+
+<h3 id="step4-迭代表格法优化">Step4: 迭代+表格法（优化）</h3>
+<p>这是我最喜欢的一步，我们已经建立了一个MVP，然后我们在现有的代码上做优化。不是从0到1（这是最难的），而是从1到100。</p>
+
+<p>往往动态规划的优化是可以在空间复杂度上进行优化。（以后碰到了时间优化可以举例子）</p>
+
+<h2 id="遗留的问题">遗留的问题</h2>
+<p>一种题目是计数类的，一种题目是最优解
+滚筒数组法
+状态定义
+如何从递归问题中分析出来重叠子问题呢？</p>
+
+<h2 id="和贪心搜索的区别">和贪心搜索的区别？</h2>
+
+<h2 id="reference">Reference</h2>
+<p>1.动态规划从0到1 https://medium.com/@al.eks/the-ultimate-guide-to-dynamic-programming-65865ef7ec5b</p>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+      
+      
+
+      
+      
+        <div class="post-nav" id="post-nav-id">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/leetcode/2020/07/05/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E4%B9%8B%E7%BA%BF%E6%80%A7DP/" rel="next" title="动态规划之线性DP">
+                <i class="fa fa-chevron-left"></i> 动态规划之线性DP
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/leetcode/2020/07/03/%E6%A0%91/" rel="prev" title="树">
+                树 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+      
+
+      
+    </footer>
+  </article>
+
+  <div class="post-spread">
+    
+  </div>
+</div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        
+        
+        
+
+
+
+
+
+
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/assets/images/avatar.gif"
+               alt="三山" />
+          <p class="site-author-name" itemprop="name">三山</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">77</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/">
+                <span class="site-state-item-count">48</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+        
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+
+
+
+
+
+
+
+            
+              <div class="post-toc-content">
+    <ol class=nav>
+      <li class="nav-item nav-level-2"> <a class="nav-link" href="#新加"> <span class="nav-number">1</span> <span class="nav-text">新加</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#动态规划算法"> <span class="nav-number">2</span> <span class="nav-text">动态规划算法</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-3"> <a class="nav-link" href="#动态规划算法核心点"> <span class="nav-number">2.1</span> <span class="nav-text">动态规划算法核心点</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#题目"> <span class="nav-number">2.2</span> <span class="nav-text">题目</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#step1-暴力递归"> <span class="nav-number">2.3</span> <span class="nav-text">Step1 暴力递归</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#step2-递归记忆化搜索"> <span class="nav-number">2.4</span> <span class="nav-text">Step2 递归+记忆化搜索</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#step3-迭代表格法"> <span class="nav-number">2.5</span> <span class="nav-text">Step3 迭代+表格法</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#step4-迭代表格法优化"> <span class="nav-number">2.6</span> <span class="nav-text">Step4: 迭代+表格法（优化）</span> </a> </li> </ol> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#遗留的问题"> <span class="nav-number">3</span> <span class="nav-text">遗留的问题</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#和贪心搜索的区别"> <span class="nav-number">4</span> <span class="nav-text">和贪心搜索的区别？</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#reference"> <span class="nav-number">5</span> <span class="nav-text">Reference</span> </a> </li>
+    </ol>
+  </div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">三山</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://jekyllrb.com">Jekyll</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/simpleyyt/jekyll-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+   
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/assets/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  <script type="text/javascript" src="/assets/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/assets/js/src/post-details.js?v=5.1.1"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+    
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
+
+

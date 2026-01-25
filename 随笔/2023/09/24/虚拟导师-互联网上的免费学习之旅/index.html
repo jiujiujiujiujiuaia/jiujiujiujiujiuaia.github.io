@@ -1,0 +1,1037 @@
+<!--不算子网站访客统计-->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-M7QXLLL8YX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-M7QXLLL8YX');
+</script>
+
+
+<!doctype html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/assets/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/assets/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/assets/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="三山的编程之旅" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="前言 什么是Chaser? 笔者自从2017年走入计算机的大门，第一次师从翁恺老师学习C语言，第一次在慕课网上学习如何用python实现爬虫 在互联网这座图书馆上，”认识”到了无数的老师，从无数的前辈那里学到了各种各样的知识，因此想长期记录一下那些特别有价值的网站/博客。">
+<meta name="keywords" content="Jekyll, NexT">
+<meta property="og:type" content="article">
+<meta property="og:title" content="虚拟导师：互联网上的免费学习之旅">
+<meta property="og:url" content="https://jiujiujiujiujiuaia.github.io/%E9%9A%8F%E7%AC%94/2023/09/24/%E8%99%9A%E6%8B%9F%E5%AF%BC%E5%B8%88-%E4%BA%92%E8%81%94%E7%BD%91%E4%B8%8A%E7%9A%84%E5%85%8D%E8%B4%B9%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%97%85/">
+<meta property="og:site_name" content="三山的编程之旅">
+<meta property="og:description" content="前言 什么是Chaser? 笔者自从2017年走入计算机的大门，第一次师从翁恺老师学习C语言，第一次在慕课网上学习如何用python实现爬虫 在互联网这座图书馆上，”认识”到了无数的老师，从无数的前辈那里学到了各种各样的知识，因此想长期记录一下那些特别有价值的网站/博客。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/chaser/20231005133603/img.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/chaser/20231005133603/img_1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/chaser/20231005133603/img_2.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/chaser/20231013160153/img.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/chaser/20231013160153/img_1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/chaser/20231013160153/img_2.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/chaser/20231013162319/img.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/chaser/20230924134537/img.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/chaser/20230924134537/img_1.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="虚拟导师：互联网上的免费学习之旅">
+<meta name="twitter:description" content="前言 什么是Chaser? 笔者自从2017年走入计算机的大门，第一次师从翁恺老师学习C语言，第一次在慕课网上学习如何用python实现爬虫 在互联网这座图书馆上，”认识”到了无数的老师，从无数的前辈那里学到了各种各样的知识，因此想长期记录一下那些特别有价值的网站/博客。">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/chaser/20231005133603/img.png">
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://jiujiujiujiujiuaia.github.io"/>
+
+
+
+
+
+  <title>虚拟导师：互联网上的免费学习之旅 | 三山的编程之旅</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'G-M7QXLLL8YX', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">三山的编程之旅</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+<div id="posts" class="posts-expand">
+  
+  
+
+  
+
+  
+  
+  
+
+  <article class="post post-type- " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://jiujiujiujiujiuaia.github.io/%E9%9A%8F%E7%AC%94/2023/09/24/%E8%99%9A%E6%8B%9F%E5%AF%BC%E5%B8%88-%E4%BA%92%E8%81%94%E7%BD%91%E4%B8%8A%E7%9A%84%E5%85%8D%E8%B4%B9%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%97%85/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="三山">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="assets/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="三山的编程之旅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+          
+          
+            虚拟导师：互联网上的免费学习之旅
+          
+        </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-09-24T23:30:09+00:00">
+                2023-09-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/category/#/%E9%9A%8F%E7%AC%94" itemprop="url" rel="index">
+                    <span itemprop="name">随笔</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+                
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv" id="busuanzi_container_page_pv">
+            本文总阅读量<span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+                
+
+            
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <div class="post-wordcount">
+                  <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                  <span class="post-meta-item-text">字数统计</span>
+                <span title="字数统计">
+                  787字
+                </span>
+
+                <span class="post-meta-divider">|</span>
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                  <span class="post-meta-item-text">阅读时长</span>
+                <span title="阅读时长">
+                  3分钟
+                </span>
+            </div>
+
+          
+            
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 id="前言">前言</h2>
+<p>什么是Chaser? 笔者自从2017年走入计算机的大门，第一次师从翁恺老师学习C语言，第一次在慕课网上学习如何用python实现爬虫
+在互联网这座图书馆上，”认识”到了无数的老师，从无数的前辈那里学到了各种各样的知识，因此想长期记录一下那些特别有价值的网站/博客。</p>
+
+<p>同时，自己也碰到了一个问题，有一个Goolge工程师的博客写的很不错，但是过一段时间发现无法访问了。</p>
+
+<p>追逐作者本人到知乎，才发现，原来是作者本人嫌弃域名太贵，随即注销了网站..</p>
+
+<p>因此，目的如下:</p>
+
+<ul>
+  <li>记录那些值得追随的前辈，定期看他们的更新，同时分析，为什么他们的网站/博客能成功？</li>
+  <li>备份这些网站，避免有一点域名注销了，什么都没了</li>
+</ul>
+
+<h2 id="chaser">Chaser</h2>
+
+<h3 id="1tech-interview-handbook">1.Tech Interview handbook</h3>
+
+<p>一份非常好的指南，简单易懂，循序渐进，涵盖了软件工程面试准备的各个方面。</p>
+
+<p>从准备简历开始，到coding准备，到offer沟通甚至挑选job，都涵盖到了。</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/chaser/20231005133603/img.png" alt="img.png" /></p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/chaser/20231005133603/img_1.png" alt="img_1.png" /></p>
+
+<p><strong>因此，在准备算法尤为关键和有用</strong></p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/chaser/20231005133603/img_2.png" alt="img_2.png" /></p>
+
+<ul>
+  <li>https://www.techinterviewhandbook.org/system-design/</li>
+  <li>https://github.com/yangshun/tech-interview-handbook</li>
+</ul>
+
+<h3 id="2java-design-pattern可以模仿">2.Java design pattern(可以模仿)</h3>
+
+<p>遵循KISS(Keep it simple stupid)原则，总结了大部分的最小单元的脚手架。</p>
+
+<p>例如编程范式，编程原则等等。</p>
+
+<ul>
+  <li>https://java-design-patterns.com/patterns/</li>
+  <li>https://github.com/iluwatar/java-design-patterns-vuepress-web</li>
+</ul>
+
+<h3 id="3system-design可以模仿">3.System Design(可以模仿)</h3>
+
+<p>一个特别好的关于system design的wiki，把一些常见场景列举出来了，</p>
+
+<p>这样未来只需要负责实现就好了。</p>
+
+<ul>
+  <li>https://github.com/ekzhang</li>
+  <li>https://eric-zhang-seattle.gitbook.io/mess-around/</li>
+</ul>
+
+<h3 id="4csharp-code-snippets">4.Csharp code snippets</h3>
+
+<p>特别特别牛的一个csharp code的snippets，任何一个csharp的语法糖或者使用都可以在里面找到详细的使用说明。</p>
+
+<ul>
+  <li>https://www.dotnetperls.com/s#c#</li>
+</ul>
+
+<h3 id="5devtoys">5.DevToys</h3>
+
+<p>一些常见的工具箱，比如文件转换啊，时间戳啊，再也不用去网页上找”在线时间戳工具” or “在线cron工具”</p>
+
+<p>UI界面风格也很好，甚至可以模仿这个风格做一些自己的windows app的应用。</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/chaser/20231013160153/img.png" alt="img.png" /></p>
+
+<ul>
+  <li>https://github.com/veler/DevToys</li>
+</ul>
+
+<h3 id="6交互式的科普博客">6.交互式的科普博客</h3>
+
+<p>看起来这个就是普通的博客，实际上这个博客特别有意思，是交互式的，讲解hash或者LB等等概念的时候，使用的</p>
+
+<p>内嵌网页交互式的方式来阐述概念。实在是太酷了。</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/chaser/20231013160153/img_1.png" alt="img_1.png" /></p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/chaser/20231013160153/img_2.png" alt="img_2.png" /></p>
+
+<ul>
+  <li>https://samwho.dev/blog/</li>
+  <li>https://samwho.dev/hashing/</li>
+</ul>
+
+<h3 id="7build-your-own-project-from-scratch">7.Build your own project from scratch</h3>
+
+<p>对于初学者来说，计算机领域想要深入的学习，而不是泛泛的学习，只能自己去造一些重复轮子，从项目中学习。</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/chaser/20231013162319/img.png" alt="img.png" /></p>
+
+<p>下面这两个github就提供了大量的可以自己play的成熟项目，自己实现实现docker/git/webserver/database, 被称为程序员的浪漫的一些东西，也是挺有趣的。</p>
+
+<ul>
+  <li>https://github.com/codecrafters-io/build-your-own-x</li>
+  <li>https://github.com/practical-tutorials/project-based-learning?utm_source=wechat_session&amp;utm_medium=social&amp;utm_oi=729076936067805184#miscellaneous-1</li>
+</ul>
+
+<h2 id="备份">备份</h2>
+
+<p>简单问了一下GPT神，给我的答复如下：</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/chaser/20230924134537/img.png" alt="img.png" /></p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1</pre></td><td class="code"><pre class="highlight"><code> <span class="nb">sudo </span>apt-get <span class="nb">install </span>httrack
+</code></pre></td></tr></tbody></table></div></div>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/chaser/20230924134537/img_1.png" alt="img_1.png" /></p>
+
+<p>TODO 下次不加*号，而是使用<code class="language-plaintext highlighter-rouge">+*.css +*.js -ad.doubleclick.net/* -mime:application/foobar +*.gif +*.jpg +*.jpeg +*.png +*.tif +*.bmp</code></p>
+
+<h2 id="reference">Reference</h2>
+<ol>
+  <li><a href="https://leeyuxun.github.io/HTTrack%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8.html">HTTrack使用</a></li>
+</ol>
+
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+      
+      
+
+      
+      
+        <div class="post-nav" id="post-nav-id">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/%E7%BC%96%E7%A8%8B/2023/09/28/Wechat%E6%8F%90%E9%86%92%E5%8A%A9%E6%89%8B/" rel="next" title="Wechat自律助手">
+                <i class="fa fa-chevron-left"></i> Wechat自律助手
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/%E9%9F%B3%E8%A7%86%E9%A2%91/2023/09/23/%E9%9F%B3%E8%A7%86%E9%A2%91%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86(2)/" rel="prev" title="音视频基础知识(2)">
+                音视频基础知识(2) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+      
+
+      
+    </footer>
+  </article>
+
+  <div class="post-spread">
+    
+  </div>
+</div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        
+        
+        
+
+
+
+
+
+
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/assets/images/avatar.gif"
+               alt="三山" />
+          <p class="site-author-name" itemprop="name">三山</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">77</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/">
+                <span class="site-state-item-count">48</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+        
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+
+
+
+
+
+
+
+            
+              <div class="post-toc-content">
+    <ol class=nav>
+      <li class="nav-item nav-level-2"> <a class="nav-link" href="#前言"> <span class="nav-number">1</span> <span class="nav-text">前言</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#chaser"> <span class="nav-number">2</span> <span class="nav-text">Chaser</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-3"> <a class="nav-link" href="#1tech-interview-handbook"> <span class="nav-number">2.1</span> <span class="nav-text">1.Tech Interview handbook</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#2java-design-pattern可以模仿"> <span class="nav-number">2.2</span> <span class="nav-text">2.Java design pattern(可以模仿)</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#3system-design可以模仿"> <span class="nav-number">2.3</span> <span class="nav-text">3.System Design(可以模仿)</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#4csharp-code-snippets"> <span class="nav-number">2.4</span> <span class="nav-text">4.Csharp code snippets</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#5devtoys"> <span class="nav-number">2.5</span> <span class="nav-text">5.DevToys</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#6交互式的科普博客"> <span class="nav-number">2.6</span> <span class="nav-text">6.交互式的科普博客</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#7build-your-own-project-from-scratch"> <span class="nav-number">2.7</span> <span class="nav-text">7.Build your own project from scratch</span> </a> </li> </ol> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#备份"> <span class="nav-number">3</span> <span class="nav-text">备份</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#reference"> <span class="nav-number">4</span> <span class="nav-text">Reference</span> </a> </li>
+    </ol>
+  </div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">三山</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://jekyllrb.com">Jekyll</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/simpleyyt/jekyll-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+   
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/assets/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  <script type="text/javascript" src="/assets/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/assets/js/src/post-details.js?v=5.1.1"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+    
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
+
+

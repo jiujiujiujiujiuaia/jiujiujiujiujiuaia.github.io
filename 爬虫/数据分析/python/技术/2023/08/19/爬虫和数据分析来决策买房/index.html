@@ -1,0 +1,1250 @@
+<!--不算子网站访客统计-->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-M7QXLLL8YX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-M7QXLLL8YX');
+</script>
+
+
+<!doctype html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/assets/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/assets/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/assets/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="三山的编程之旅" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="技术实现 首先，我还是想像之前破解”俺来也“app一样： 1.笔记本配置Finddler环境 2.手机配置抓包环境 3.抓包，找到对应接口 4.通过jadx-gui反编译apk应用，然后进行接口破解，找到客户端代码如何鉴权，如何加盐">
+<meta name="keywords" content="Jekyll, NexT">
+<meta property="og:type" content="article">
+<meta property="og:title" content="爬虫和数据分析来决策买房">
+<meta property="og:url" content="https://jiujiujiujiujiuaia.github.io/%E7%88%AC%E8%99%AB/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/python/%E6%8A%80%E6%9C%AF/2023/08/19/%E7%88%AC%E8%99%AB%E5%92%8C%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E6%9D%A5%E5%86%B3%E7%AD%96%E4%B9%B0%E6%88%BF/">
+<meta property="og:site_name" content="三山的编程之旅">
+<meta property="og:description" content="技术实现 首先，我还是想像之前破解”俺来也“app一样： 1.笔记本配置Finddler环境 2.手机配置抓包环境 3.抓包，找到对应接口 4.通过jadx-gui反编译apk应用，然后进行接口破解，找到客户端代码如何鉴权，如何加盐">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/spider/20230923161241/img.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/spider/img.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/spider/img_1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/spider/img_2.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/spider/img_3.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/spider/img_4.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/spider/img_5.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/spider/img_6.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/spider/img_8.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/spider/img_7.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/spider/img_9.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="爬虫和数据分析来决策买房">
+<meta name="twitter:description" content="技术实现 首先，我还是想像之前破解”俺来也“app一样： 1.笔记本配置Finddler环境 2.手机配置抓包环境 3.抓包，找到对应接口 4.通过jadx-gui反编译apk应用，然后进行接口破解，找到客户端代码如何鉴权，如何加盐">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/spider/20230923161241/img.png">
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://jiujiujiujiujiuaia.github.io"/>
+
+
+
+
+
+  <title>爬虫和数据分析来决策买房 | 三山的编程之旅</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'G-M7QXLLL8YX', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">三山的编程之旅</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+<div id="posts" class="posts-expand">
+  
+  
+
+  
+
+  
+  
+  
+
+  <article class="post post-type- " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://jiujiujiujiujiuaia.github.io/%E7%88%AC%E8%99%AB/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/python/%E6%8A%80%E6%9C%AF/2023/08/19/%E7%88%AC%E8%99%AB%E5%92%8C%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E6%9D%A5%E5%86%B3%E7%AD%96%E4%B9%B0%E6%88%BF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="三山">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="assets/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="三山的编程之旅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+          
+          
+            爬虫和数据分析来决策买房
+          
+        </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-08-19T23:30:09+00:00">
+                2023-08-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/category/#/%E7%88%AC%E8%99%AB" itemprop="url" rel="index">
+                    <span itemprop="name">爬虫</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/category/#/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90" itemprop="url" rel="index">
+                    <span itemprop="name">数据分析</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/category/#/python" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/category/#/%E6%8A%80%E6%9C%AF" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+                
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv" id="busuanzi_container_page_pv">
+            本文总阅读量<span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+                
+
+            
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <div class="post-wordcount">
+                  <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                  <span class="post-meta-item-text">字数统计</span>
+                <span title="字数统计">
+                  3265字
+                </span>
+
+                <span class="post-meta-divider">|</span>
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                  <span class="post-meta-item-text">阅读时长</span>
+                <span title="阅读时长">
+                  16分钟
+                </span>
+            </div>
+
+          
+            
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 id="技术实现">技术实现</h2>
+<p>首先，我还是想像之前破解”俺来也“app一样：</p>
+<ul>
+  <li>1.笔记本配置Finddler环境</li>
+  <li>2.手机配置抓包环境</li>
+  <li>3.抓包，找到对应接口</li>
+  <li>4.通过jadx-gui反编译apk应用，然后进行接口破解，找到客户端代码如何鉴权，如何加盐</li>
+</ul>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/spider/20230923161241/img.png" alt="img.png" /></p>
+
+<p>但是我低估了上面的难度，首先我对client端的框架不理解，然后反编译的时候代码无法跳转
+，对代码阅读增加了难度，最后尽管找到了鉴权的地方，但是还是没能破解。</p>
+
+<p>山穷水尽疑无路，没想到在CSDN上找到一段代码，通过爬取web端接口，非常简单的使用cookie
+就能拿到成交价的所有信息，令人大喜过望。</p>
+
+<h2 id="目标">目标</h2>
+<p>房子作为大宗商品，具有价值高，转手周期长等特点。而购房者，往往希望买到的房子</p>
+
+<p>未来升值，如果不能升值，至少好转手，因此，了解某小区某户型在市场上的热度或者喜好</p>
+
+<p>就是二手房购买者需要攻克的难题，那么萦绕在购房者眼中的问题有哪些呢？</p>
+
+<ul>
+  <li>1.应该买哪个小区？（哪个小区更加保值）</li>
+  <li>2.应该买个哪个户型？（哪个户型更受大家喜爱且容易流转？）</li>
+  <li>3.应该买哪个楼层？</li>
+  <li>4.应该以什么样的价格买？</li>
+</ul>
+
+<p>笔者希望通过数据分析的手段，找到最适合买的户型，楼层，小区。</p>
+
+<p>通过计算出同一小区的，不同户型，不同楼层，不同的挂牌周期，来计算出什么样的房子挂牌周期比较短，成交比较快。</p>
+
+<p>通过将独墅湾和其他苏州热门小区的挂牌周期做比较，看看独墅湾的成交周期的平均数，中位数，是否和其他热门小区短？从而衡量独墅湾相较于其他小区是否好转手。</p>
+
+<p>甚至可以分析10个热门小区，不同年份，不同面积段的二手成交数据，进行分析，苏州市场人群偏好是否有变化，当前最适合上车的户型段是什么。</p>
+
+<h2 id="chatgpt帮助数据分析">ChatGPT帮助数据分析</h2>
+
+<p>在购买了GPT plus后，就拥有了Code interpreter的权限。</p>
+
+<h3 id="1数据准备和清洗">1.数据准备和清洗</h3>
+
+<ul>
+  <li>检查数据中是否有缺失值。</li>
+  <li>检查数据类型是否正确。</li>
+  <li>检查是否有异常值。</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8</pre></td><td class="code"><pre class="highlight"><code><span class="c1"># Check for missing values in the dataset
+</span><span class="n">missing_values</span> <span class="o">=</span> <span class="n">data</span><span class="p">.</span><span class="n">isnull</span><span class="p">().</span><span class="nb">sum</span><span class="p">()</span>
+
+<span class="c1"># Check the data types of each column
+</span><span class="n">data_types</span> <span class="o">=</span> <span class="n">data</span><span class="p">.</span><span class="n">dtypes</span>
+
+<span class="c1"># Descriptive statistics for numerical columns to check for outliers or anomalies
+</span><span class="n">numerical_descriptive_stats</span> <span class="o">=</span> <span class="n">data</span><span class="p">[[</span><span class="s">"总面积"</span><span class="p">,</span> <span class="s">"成交价格"</span><span class="p">,</span> <span class="s">"单价"</span><span class="p">,</span> <span class="s">"挂牌价格"</span><span class="p">,</span> <span class="s">"交易周期"</span><span class="p">]].</span><span class="n">describe</span><span class="p">()</span>
+</code></pre></td></tr></tbody></table></div></div>
+
+<p>TODO 可以得到如下结果</p>
+
+<h3 id="2了解数据分布">2.了解数据分布</h3>
+
+<ul>
+  <li>分布分析：查看房屋类型、朝向、建筑类型和楼层类型的分布。</li>
+  <li>成交价格和挂牌价格的分布。</li>
+  <li>单价的分布。</li>
+  <li>交易周期的分布。</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15</pre></td><td class="code"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+
+<span class="c1"># Set up the figure and axes
+</span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+
+<span class="c1"># Plot distribution for categorical columns
+</span><span class="n">data</span><span class="p">[</span><span class="s">'房屋类型'</span><span class="p">].</span><span class="n">value_counts</span><span class="p">().</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s">'bar'</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">title</span><span class="o">=</span><span class="s">'房屋类型分布'</span><span class="p">)</span>
+<span class="n">data</span><span class="p">[</span><span class="s">'朝向'</span><span class="p">].</span><span class="n">value_counts</span><span class="p">().</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s">'bar'</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">title</span><span class="o">=</span><span class="s">'朝向分布'</span><span class="p">)</span>
+<span class="n">data</span><span class="p">[</span><span class="s">'建筑类型'</span><span class="p">].</span><span class="n">value_counts</span><span class="p">().</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s">'bar'</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">title</span><span class="o">=</span><span class="s">'建筑类型分布'</span><span class="p">)</span>
+<span class="n">data</span><span class="p">[</span><span class="s">'楼层类型'</span><span class="p">].</span><span class="n">value_counts</span><span class="p">().</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s">'bar'</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">title</span><span class="o">=</span><span class="s">'楼层类型分布'</span><span class="p">)</span>
+
+<span class="c1"># Adjust the layout
+</span><span class="n">plt</span><span class="p">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+
+</code></pre></td></tr></tbody></table></div></div>
+
+<p>TODO 可以得到如下结果，可以注意到，4楼都是独栋的洋房，他们的数据应该和高层的数据分开分析。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12</pre></td><td class="code"><pre class="highlight"><code><span class="c1"># Set up the figure and axes for numerical columns' distribution
+</span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+
+<span class="c1"># Plot histograms for numerical columns
+</span><span class="n">data</span><span class="p">[</span><span class="s">'成交价格'</span><span class="p">].</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s">'hist'</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">title</span><span class="o">=</span><span class="s">'成交价格分布'</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">'skyblue'</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s">'black'</span><span class="p">)</span>
+<span class="n">data</span><span class="p">[</span><span class="s">'单价'</span><span class="p">].</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s">'hist'</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">title</span><span class="o">=</span><span class="s">'单价分布'</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">'salmon'</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s">'black'</span><span class="p">)</span>
+<span class="n">data</span><span class="p">[</span><span class="s">'挂牌价格'</span><span class="p">].</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s">'hist'</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">title</span><span class="o">=</span><span class="s">'挂牌价格分布'</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">'lightgreen'</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s">'black'</span><span class="p">)</span>
+<span class="n">data</span><span class="p">[</span><span class="s">'交易周期'</span><span class="p">].</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s">'hist'</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">title</span><span class="o">=</span><span class="s">'交易周期分布'</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">'orchid'</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s">'black'</span><span class="p">)</span>
+
+<span class="c1"># Adjust the layout
+</span><span class="n">plt</span><span class="p">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></td></tr></tbody></table></div></div>
+
+<p>TODO 可以得到如下结果</p>
+
+<h3 id="3分析">3.分析</h3>
+
+<ul>
+  <li>-1.同小区中，把不同的户型分为不同的组，计算平均交易周期，年份作为变量，户型结构作为图例。（把别墅和洋房的户型直接设置为洋房）</li>
+  <li>0.同小区中，把不同的面积分成不同的组，计算平均交易周期，年份作为变量，总面积作为图例。（把别墅和洋房的户型直接设置为洋房）</li>
+  <li>1.同小区中，把不同的楼层分为不同的组，计算平均交易周期，年份作为变量，楼层类型作为图例。（把别墅和洋房的户型直接设置为洋房）</li>
+  <li>2.同小区中，把不同的户型分为不同的组，计算房子的挂牌价格和成交价格差值，年份作为变量，户型结构作为图例。（把别墅和洋房的户型直接设置为洋房）</li>
+  <li>3.同小区中，把不同的面积分为不同的组，计算房子的挂牌价格和成交价格差值，年份作为变量，总面积作为图例。（把别墅和洋房的户型直接设置为洋房）</li>
+  <li>4.同小区中，把不同的楼层分为不同的组，计算房子的挂牌价格和成交价格差值，年份作为变量，楼层类型作为图例。（把别墅和洋房的户型直接设置为洋房）</li>
+  <li>5.同小区中，把不同的户型分为不同的组，计算房子的成交价格，年份作为变量，户型结构作为图例。（把别墅和洋房的户型直接设置为洋房）</li>
+  <li>6.同小区中，把不同的面积分为不同的组，计算房子的成交价格，年份作为变量，总面积作为图例。（把别墅和洋房的户型直接设置为洋房）</li>
+  <li>7.同小区中，把不同的楼层分为不同的组，计算房子的成交价格，年份作为变量，楼层类型作为图例。（把别墅和洋房的户型直接设置为洋房）</li>
+  <li>8.比较不同的小区，哪个小区的平均挂牌周期最短，细分到不同的年份，看看逐年之间的趋势</li>
+</ul>
+
+<h2 id="咒语prompt">咒语(prompt)</h2>
+
+<h3 id="分析同一个小区">分析同一个小区</h3>
+<p>假设你房屋分析大师，请你按照下面的指令，对我提供的数据进行分析。
+请用下面的占位符替换掉下面指令中所有用大括号扩起来的文字。
+替换完下面的指令后，用替换好的指令去生成代码。</p>
+
+<p>占位符：</p>
+<ul>
+  <li>{placeholder}=楼层类型</li>
+  <li>{floor}=5</li>
+  <li>{area}=145</li>
+  <li>{count]=2</li>
+  <li>{calculateType}=交易周期</li>
+</ul>
+
+<p>指令:</p>
+<ul>
+  <li>1.把所有数据按照年份分成不同的组,请用pd.to_datetime处理成交日期。同时增加一个新的列为显示{placeholder}</li>
+  <li>2.总楼层小于等于{floor}，或者总面积大于等于{area}，图例中不要用{placeholder}显示，请用别墅或洋房或大平层代替。</li>
+  <li>3.把同一年份不同{placeholder}的数据按照显示{placeholder}分组，不展示分组count小于{count}的分组</li>
+  <li>4.对所有同一个年份同一个显示{placeholder}的数据，计算{calculateType}</li>
+  <li>5.横坐标是年份，纵坐标是{calculateType}，图例是显示{placeholder}，请用折线图进行可视化</li>
+  <li>6.图例的颜色尽量选择差别比较大的，这样能够分辨清楚。</li>
+  <li>7.请提供完整的代码。</li>
+  <li>8.不要展示每一步，直接展示可视化和提供代码。</li>
+</ul>
+
+<h3 id="分析不同的小区">分析不同的小区</h3>
+
+<p>假设你房屋分析大师，请你按照下面的指令，对我提供的数据进行分析。
+请用下面的占位符替换掉下面指令中所有用大括号扩起来的文字。
+替换完下面的指令后，用替换好的指令去生成代码。</p>
+
+<p>占位符：</p>
+<ul>
+  <li>{placeholder}=小区名</li>
+  <li>{floor}=5</li>
+  <li>{area}=145</li>
+  <li>{count]=2</li>
+  <li>{calculateType}=交易周期</li>
+</ul>
+
+<p>指令:</p>
+<ul>
+  <li>1.把所有数据按照年份分成不同的组,请用pd.to_datetime处理成交日期。同时增加一个新的列为显示{placeholder}</li>
+  <li>2.不考虑总楼层小于等于{floor}，或者总面积大于等于{area}</li>
+  <li>3.只考虑’户型结构’为4室2厅,4室1厅，3室2厅，3室1厅</li>
+  <li>4.把同一年份不同{placeholder}的数据按照显示{placeholder}分组，不展示分组count小于{count}的分组</li>
+  <li>5.对所有同一个年份同一个显示{placeholder}的数据，计算{calculateType}</li>
+  <li>6.横坐标是年份，纵坐标是{calculateType}，图例是显示{placeholder}，请用折线图进行可视化</li>
+  <li>7.图例的颜色尽量选择差别比较大的，这样能够分辨清楚。</li>
+  <li>8.请提供完整的代码。</li>
+  <li>9.不要展示每一步，直接展示可视化和提供代码。</li>
+</ul>
+
+<h3 id="成交量">成交量</h3>
+
+<p>把所有数据按照年份分成不同的组,请用pd.to_datetime处理成交日期，
+用折现图展示每一年的成交量，图例是小区名。</p>
+
+<h3 id="prompt启示">Prompt启示：</h3>
+
+<ul>
+  <li>1.步骤要按照代码步骤给GPT，步骤不能和代码步骤出现不一致</li>
+  <li>2.prompt的表述尽量和excel表格header一致</li>
+  <li>3.逻辑语言例如</li>
+  <li>
+    <h2 id="结果展示">结果展示</h2>
+  </li>
+</ul>
+
+<h3 id="1同一小区">1.同一小区</h3>
+
+<h4 id="11-户型结构和成交价格的关系">1.1 户型结构和成交价格的关系</h4>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/spider/img.png" alt="img.png" /></p>
+
+<h4 id="12-户型结构和交易周期的关系">1.2 户型结构和交易周期的关系</h4>
+
+<ul>
+  <li>1.别墅的成交周期远低高楼，有钱人还是多啊</li>
+  <li>2.别墅的价格降下来了，因此成交周期逐渐缩短了。</li>
+  <li>3.疫情三年，3室和4室的房子交易周期不断变长。</li>
+  <li>4.尽管疫情结束了，看房子更加容易了，但是4室的房子交易周期仍在增加，3室的房子受到疫情解封福利，有下降趋势。</li>
+</ul>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/spider/img_1.png" alt="img_1.png" /></p>
+
+<h4 id="13-户型结构与成交价和挂牌价的差值的关系">1.3 户型结构与成交价和挂牌价的差值的关系</h4>
+
+<ul>
+  <li>1.差值越大，说明房东心理价位过高，不得不降价以促成交易</li>
+  <li>2.对于别墅而言，疫情结束后，房东可以用少降价，尽量贴近挂牌价的方式成交</li>
+  <li>3.对于3室和4室的房子，房东在不断降价已促成成交，平均降价15w左右</li>
+</ul>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/spider/img_2.png" alt="img_2.png" /></p>
+
+<h4 id="14-楼层和成交价的关系">1.4 楼层和成交价的关系</h4>
+
+<ul>
+  <li>1.低楼层在走高，中高楼层在走低，走低大概在10w左右</li>
+  <li>2.别墅也在跳水</li>
+</ul>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/spider/img_3.png" alt="img_3.png" /></p>
+
+<h4 id="15-楼层和交易周期的关系">1.5 楼层和交易周期的关系</h4>
+
+<ul>
+  <li>1.低楼层虽然成交价格在走高，但是成交周期在不断上升</li>
+  <li>2.低楼层交易周期中位数为455天，而中高楼层差不多在190天左右</li>
+  <li>3.别墅卖的很快</li>
+</ul>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/spider/img_4.png" alt="img_4.png" /></p>
+
+<p>中位数</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/spider/img_5.png" alt="img_5.png" /></p>
+
+<h4 id="16-楼层与成交价和挂牌价的差值的关系">1.6 楼层与成交价和挂牌价的差值的关系</h4>
+
+<ul>
+  <li>1.无论是中低高楼层哪一种，平均值和中位数都在上升，房东不得多让一些利益，以达到成交的目的</li>
+  <li>2.房东中位数让利15w左右，因此成交价至少是挂牌价减去15w</li>
+  <li>3.不得不说别墅的价格和坚挺，别墅尽管总价价格大，但是却和高层的房子降价幅度差不多。</li>
+</ul>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/spider/img_6.png" alt="img_6.png" /></p>
+
+<h3 id="2不同小区">2.不同小区</h3>
+
+<ul>
+  <li>A小区的区位差于其他小区</li>
+  <li>B小区是笔者最先去的小区</li>
+  <li>C小区和D小区区位是最好的，C小区是次新房，D小区是房龄20年左右的二手房</li>
+  <li>下面的表格中仅仅考虑了4室2厅,4室1厅，3室2厅，3室1厅</li>
+</ul>
+
+<h4 id="21-小区和成交价的关系">2.1 小区和成交价的关系</h4>
+
+<ul>
+  <li>除B小区外，所有小区成交价格都在下跌，下跌在20w左右</li>
+</ul>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/spider/img_8.png" alt="img_8.png" /></p>
+
+<h4 id="22-楼层和交易周期的关系">2.2 楼层和交易周期的关系</h4>
+
+<ul>
+  <li>同样的，除B小区外，所有小区的成交周期都在变长</li>
+</ul>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/spider/img_7.png" alt="img_7.png" /></p>
+
+<h4 id="23-楼层与成交价和挂牌价的差值的关系">2.3 楼层与成交价和挂牌价的差值的关系</h4>
+
+<ul>
+  <li>B小区非常枪手，房东需要降10w左右，就可以成交，并且和去年持平</li>
+  <li>A小区虽然略微增加，但是抢手程度和B小区类似，可以降价不多的情况下完成交易</li>
+</ul>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/spider/img_9.png" alt="img_9.png" /></p>
+
+<h2 id="todo">TODO</h2>
+<p>1.抓包环境配置
+2.抓包原理
+3.wc的建模分析的视频？有一个kaggle国外大神的书
+4.分析不同的户型的不同楼层，成交价，成交周期，降价幅度的关系，得出最应该买什么类型的房子</p>
+
+<h2 id="reference">Reference:</h2>
+<ul>
+  <li>1.https://blog.csdn.net/weixin_45195493/article/details/122466796</li>
+  <li>2.https://cloud.tencent.com/developer/article/1819306</li>
+</ul>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+      
+      
+
+      
+      
+        <div class="post-nav" id="post-nav-id">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/%E5%8D%9A%E5%AE%A2/2023/09/08/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA(2)/" rel="next" title="博客搭建(2)">
+                <i class="fa fa-chevron-left"></i> 博客搭建(2)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/%E6%8A%80%E6%9C%AF/c%23/2023/08/06/%E5%9C%A8-C-%E4%B8%AD%E4%BC%98%E9%9B%85%E5%A4%84%E7%90%86-null-%E5%80%BC%E7%9A%84%E4%BA%94%E7%A7%8D%E6%96%B9%E5%BC%8F/" rel="prev" title="在C#中优雅处理 null 值的五种方式">
+                在C#中优雅处理 null 值的五种方式 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+      
+
+      
+    </footer>
+  </article>
+
+  <div class="post-spread">
+    
+  </div>
+</div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        
+        
+        
+
+
+
+
+
+
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/assets/images/avatar.gif"
+               alt="三山" />
+          <p class="site-author-name" itemprop="name">三山</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">77</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/">
+                <span class="site-state-item-count">48</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+        
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+
+
+
+
+
+
+
+            
+              <div class="post-toc-content">
+    <ol class=nav>
+      <li class="nav-item nav-level-2"> <a class="nav-link" href="#技术实现"> <span class="nav-number">1</span> <span class="nav-text">技术实现</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#目标"> <span class="nav-number">2</span> <span class="nav-text">目标</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#chatgpt帮助数据分析"> <span class="nav-number">3</span> <span class="nav-text">ChatGPT帮助数据分析</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-3"> <a class="nav-link" href="#1数据准备和清洗"> <span class="nav-number">3.1</span> <span class="nav-text">1.数据准备和清洗</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#2了解数据分布"> <span class="nav-number">3.2</span> <span class="nav-text">2.了解数据分布</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#3分析"> <span class="nav-number">3.3</span> <span class="nav-text">3.分析</span> </a> </li> </ol> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#咒语prompt"> <span class="nav-number">4</span> <span class="nav-text">咒语(prompt)</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-3"> <a class="nav-link" href="#分析同一个小区"> <span class="nav-number">4.1</span> <span class="nav-text">分析同一个小区</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#分析不同的小区"> <span class="nav-number">4.2</span> <span class="nav-text">分析不同的小区</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#成交量"> <span class="nav-number">4.3</span> <span class="nav-text">成交量</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#prompt启示"> <span class="nav-number">4.4</span> <span class="nav-text">Prompt启示：</span> </a> </li> </ol> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#结果展示"> <span class="nav-number">5</span> <span class="nav-text">结果展示</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-3"> <a class="nav-link" href="#1同一小区"> <span class="nav-number">5.1</span> <span class="nav-text">1.同一小区</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-4"> <a class="nav-link" href="#11-户型结构和成交价格的关系"> <span class="nav-number">5.1.1</span> <span class="nav-text">1.1 户型结构和成交价格的关系</span> </a> </li> <li class="nav-item nav-level-4"> <a class="nav-link" href="#12-户型结构和交易周期的关系"> <span class="nav-number">5.1.2</span> <span class="nav-text">1.2 户型结构和交易周期的关系</span> </a> </li> <li class="nav-item nav-level-4"> <a class="nav-link" href="#13-户型结构与成交价和挂牌价的差值的关系"> <span class="nav-number">5.1.3</span> <span class="nav-text">1.3 户型结构与成交价和挂牌价的差值的关系</span> </a> </li> <li class="nav-item nav-level-4"> <a class="nav-link" href="#14-楼层和成交价的关系"> <span class="nav-number">5.1.4</span> <span class="nav-text">1.4 楼层和成交价的关系</span> </a> </li> <li class="nav-item nav-level-4"> <a class="nav-link" href="#15-楼层和交易周期的关系"> <span class="nav-number">5.1.5</span> <span class="nav-text">1.5 楼层和交易周期的关系</span> </a> </li> <li class="nav-item nav-level-4"> <a class="nav-link" href="#16-楼层与成交价和挂牌价的差值的关系"> <span class="nav-number">5.1.6</span> <span class="nav-text">1.6 楼层与成交价和挂牌价的差值的关系</span> </a> </li> </ol> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#2不同小区"> <span class="nav-number">5.2</span> <span class="nav-text">2.不同小区</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-4"> <a class="nav-link" href="#21-小区和成交价的关系"> <span class="nav-number">5.2.1</span> <span class="nav-text">2.1 小区和成交价的关系</span> </a> </li> <li class="nav-item nav-level-4"> <a class="nav-link" href="#22-楼层和交易周期的关系"> <span class="nav-number">5.2.2</span> <span class="nav-text">2.2 楼层和交易周期的关系</span> </a> </li> <li class="nav-item nav-level-4"> <a class="nav-link" href="#23-楼层与成交价和挂牌价的差值的关系"> <span class="nav-number">5.2.3</span> <span class="nav-text">2.3 楼层与成交价和挂牌价的差值的关系</span> </a> </li> </ol> </li> </ol> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#todo"> <span class="nav-number">6</span> <span class="nav-text">TODO</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#reference"> <span class="nav-number">7</span> <span class="nav-text">Reference:</span> </a> </li>
+    </ol>
+  </div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">三山</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://jekyllrb.com">Jekyll</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/simpleyyt/jekyll-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+   
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/assets/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  <script type="text/javascript" src="/assets/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/assets/js/src/post-details.js?v=5.1.1"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+    
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
+
+

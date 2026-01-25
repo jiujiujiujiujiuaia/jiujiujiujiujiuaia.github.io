@@ -1,0 +1,1185 @@
+<!--不算子网站访客统计-->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-M7QXLLL8YX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-M7QXLLL8YX');
+</script>
+
+
+<!doctype html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/assets/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/assets/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/assets/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="三山的编程之旅" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="1.前言 有一个工作需求是需要从内存中拿到Elementary Stream(ES指的是只包含一个类型的数据的流，比如音频流or视频流)而不是从文件或者网络中拿到。正好FFmpeg中有一个AVIO的lib就是专门做这个事情的，在实际的使用中， 遇到了一个十分诡异的问题，那就是明明视频本身是有音频流和视频流的，但是从stream info拿到的时候，竟然是两个视频流。">
+<meta name="keywords" content="Jekyll, NexT">
+<meta property="og:type" content="article">
+<meta property="og:title" content="FFmpeg AVIO遇到的问题">
+<meta property="og:url" content="https://jiujiujiujiujiuaia.github.io/%E9%9F%B3%E8%A7%86%E9%A2%91/c%E8%AF%AD%E8%A8%80/debug/2023/10/30/FFmpeg-AVIO%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/">
+<meta property="og:site_name" content="三山的编程之旅">
+<meta property="og:description" content="1.前言 有一个工作需求是需要从内存中拿到Elementary Stream(ES指的是只包含一个类型的数据的流，比如音频流or视频流)而不是从文件或者网络中拿到。正好FFmpeg中有一个AVIO的lib就是专门做这个事情的，在实际的使用中， 遇到了一个十分诡异的问题，那就是明明视频本身是有音频流和视频流的，但是从stream info拿到的时候，竟然是两个视频流。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/avio/20231030121233/img.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/avio/20231030121233/img_1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/avio/20231030121233/img_2.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/avio/20231030121233/img_3.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/avio/20231216155645/img.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/avio/20231030121233/img_4.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/avio/20231030121233/img_5.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/avio/20231030121233/img_6.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/avio/20231030121233/img_7.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/avio/20231030121233/img_8.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/avio/20231216155645/img_1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/avio/20231216155645/img_2.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/avio/20231216155645/img_3.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/avio/20231216155645/img_4.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/avio/20231216155645/Animation.gif">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/avio/20231216155645/img_5.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/avio/20231216155645/img_7.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/avio/20231216155645/img_8.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/avio/20231216155645/img_9.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/avio/20231216155645/img_11.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/avio/20231216155645/img_12.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="FFmpeg AVIO遇到的问题">
+<meta name="twitter:description" content="1.前言 有一个工作需求是需要从内存中拿到Elementary Stream(ES指的是只包含一个类型的数据的流，比如音频流or视频流)而不是从文件或者网络中拿到。正好FFmpeg中有一个AVIO的lib就是专门做这个事情的，在实际的使用中， 遇到了一个十分诡异的问题，那就是明明视频本身是有音频流和视频流的，但是从stream info拿到的时候，竟然是两个视频流。">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/avio/20231030121233/img.png">
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://jiujiujiujiujiuaia.github.io"/>
+
+
+
+
+
+  <title>FFmpeg AVIO遇到的问题 | 三山的编程之旅</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'G-M7QXLLL8YX', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">三山的编程之旅</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+<div id="posts" class="posts-expand">
+  
+  
+
+  
+
+  
+  
+  
+
+  <article class="post post-type- " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://jiujiujiujiujiuaia.github.io/%E9%9F%B3%E8%A7%86%E9%A2%91/c%E8%AF%AD%E8%A8%80/debug/2023/10/30/FFmpeg-AVIO%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="三山">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="assets/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="三山的编程之旅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+          
+          
+            FFmpeg AVIO遇到的问题
+          
+        </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-10-30T22:30:09+00:00">
+                2023-10-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/category/#/%E9%9F%B3%E8%A7%86%E9%A2%91" itemprop="url" rel="index">
+                    <span itemprop="name">音视频</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/category/#/C%E8%AF%AD%E8%A8%80" itemprop="url" rel="index">
+                    <span itemprop="name">C语言</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/category/#/Debug" itemprop="url" rel="index">
+                    <span itemprop="name">Debug</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+                
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv" id="busuanzi_container_page_pv">
+            本文总阅读量<span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+                
+
+            
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <div class="post-wordcount">
+                  <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                  <span class="post-meta-item-text">字数统计</span>
+                <span title="字数统计">
+                  2933字
+                </span>
+
+                <span class="post-meta-divider">|</span>
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                  <span class="post-meta-item-text">阅读时长</span>
+                <span title="阅读时长">
+                  14分钟
+                </span>
+            </div>
+
+          
+            
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 id="1前言">1.前言</h2>
+<p>有一个工作需求是需要从内存中拿到Elementary Stream(ES指的是只包含一个类型的数据的流，比如音频流or视频流)而不是从文件或者网络中拿到。正好FFmpeg中有一个AVIO的lib就是专门做这个事情的，在实际的使用中，
+遇到了一个十分诡异的问题，那就是明明视频本身是有音频流和视频流的，但是从stream info拿到的时候，竟然是两个视频流。</p>
+
+<h2 id="2背景">2.背景</h2>
+<p>在managed code中，划分多个chunk，把一个文件的bytes按照chunk size依次放到内存中存起来。</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/avio/20231030121233/img.png" alt="img.png" /></p>
+
+<p>然后从内存中的这个avio队列，利用自己写的read_buffer的回调函数，把media data读到<code class="language-plaintext highlighter-rouge">AVFormatContext</code>结构体中</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/avio/20231030121233/img_1.png" alt="img_1.png" /></p>
+
+<p>最后利用<code class="language-plaintext highlighter-rouge">avformat_open_input</code>函数尝试从context中读到stream的信息</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/avio/20231030121233/img_2.png" alt="img_2.png" /></p>
+
+<p>一切看起来都很正常，然后碰到了什么问题呢？</p>
+
+<h2 id="3问题描述">3.问题描述</h2>
+
+<p>运行起来的时候，就出问题了。</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/avio/20231030121233/img_3.png" alt="img_3.png" /></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5</pre></td><td class="code"><pre class="highlight"><code>[h264 @ 000001365E9A6CC0] corrupted macroblock 113 24 (total_coeff=-1)
+[h264 @ 000001365E9A6CC0] error while decoding MB 113 24
+[h264 @ 000001365E9A6CC0] concealing 5216 DC, 5216 AC, 5216 MV errors in P frame
+[h264 @ 000001365EB2E400] Could not find codec parameters for stream 1 (Video: h264, none): unspecified size
+Consider increasing the value for the 'analyzeduration' (10000000) and 'probesize' (10000000) options
+</code></pre></td></tr></tbody></table></div></div>
+
+<p>翻译一下上面的这个错误:</p>
+
+<ul>
+  <li>宏块损坏：corrupted macroblock 113 24 (total_coeff=-1) 这条消息表示在指定的坐标（第113个宏块，第24行）发现了一个损坏的宏块。total_coeff=-1 可能表明在视频压缩的熵编码（系数处理）部分出现了错误。</li>
+  <li>解码时错误：error while decoding MB 113 24 这条消息与上面的问题相关，指出在尝试解码同一个宏块时发生了错误。</li>
+  <li>隐藏错误：concealing 5216 DC, 5216 AC, 5216 MV errors in P frame 这条消息表明解码器正在试图隐藏P帧中的错误。P帧是一种使用前面帧的数据来预测当前帧内容的帧。DC和AC指的是图像块（宏块）中的直流和交流分量，MV指的是运动矢量。数字表明有大量的错误被隐藏，这可能意味着视频质量受到了严重影响。</li>
+  <li>缺少编解码器参数：Could not find codec parameters for stream 1 (Video: h264, none): unspecified size 这条消息意味着FFmpeg无法确定视频流所需的编解码器参数。这可能是由于文件损坏、缺失元数据或不支持的流格式。</li>
+</ul>
+
+<p>什么是宏块？它是编码、解码、处理和预测算法的基本单元。如果独立编码每个像素，看每个像素的帧间和帧内的预测差异，效率很低，计算量爆炸。 因此通常使用4X4或者16X16的宏块作为最小单元，来预测最佳的运动矢量，预测误差校正</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/avio/20231216155645/img.png" alt="img.png" /></p>
+
+<p>咋一看感觉是input file是损坏的，丢失了一部分，导致找不到正确的编码器参数。咱们接着往下看，同时还贴心的提示你，你可以给下面这两个参数增加值，来获取更多的信息。</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1</pre></td><td class="code"><pre class="highlight"><code>Consider increasing the value for the 'analyzeduration' (10000000) and 'probesize' (10000000) options
+</code></pre></td></tr></tbody></table></div></div>
+
+<h3 id="什么是probesize和analyzeduration">什么是probesize和analyzeduration?</h3>
+
+<p>ffmpeg在avformat_find_stream_info中会读取一部分源文件的音视频数据，来分析文件信息，那么这个操作读取多少数据呢?</p>
+
+<p>就是由<code class="language-plaintext highlighter-rouge">analyzeduration</code>和<code class="language-plaintext highlighter-rouge">probesize</code>决定的</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/avio/20231030121233/img_4.png" alt="img_4.png" /></p>
+
+<p>从上面的头文件可以看出，<code class="language-plaintext highlighter-rouge">probesize</code>是从源文件中读取的最大字节数，单位为字节。 max_analyze_duration是从文件中读取的最大时长，单位为 AV_TIME_BASE units。</p>
+
+<p>对于默认值，<code class="language-plaintext highlighter-rouge">probesize</code>是5000000字节，<code class="language-plaintext highlighter-rouge">analyzeduration</code>是5s</p>
+
+<h3 id="初始思路">初始思路</h3>
+
+<ul>
+  <li>首先，我会思考，上面这个FFmpeg的error是哪一行代码引入的，是哪个环节出的问题？追踪出错的代码行</li>
+  <li>其次，我会怀疑，是不是文件真的出现的问题？比如用ffprobe或者自己写一个程序处理这个文件是否真的出问题了？</li>
+  <li>再然后，如果文件没有问题，那就说明是code出现了问题，换一个格式比如mp4会不会更好呢？或者说从新写一个AVIO scratch，看看能不能读取到呢？</li>
+</ul>
+
+<h2 id="4排查过程">4.排查过程</h2>
+
+<h3 id="1increase-analyzeduration-和-probesize">1.Increase analyzeduration 和 probesize</h3>
+
+<p>无功而返，哪怕这两个值都比文件size和文件播放时长更大了，依然无济于事</p>
+
+<h3 id="2输入文件是否有问题">2.输入文件是否有问题?</h3>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1</pre></td><td class="code"><pre class="highlight"><code>ffprobe <span class="nt">-i</span> .<span class="se">\f</span>ile.webM
+</code></pre></td></tr></tbody></table></div></div>
+
+<p>很明显，ffprobe通过从文件流（disk）中读到文件，可以正确的解析出包含两个流。</p>
+
+<p>也就是说，文件没问题，就是AVIO的方式有了问题（从文件读没问题）！</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/avio/20231030121233/img_5.png" alt="img_5.png" /></p>
+
+<h3 id="3avio的code有问题吗">3.AVIO的code有问题吗？</h3>
+
+<p>为了省事，我直接从FFmpeg的官网找到了一个<a href="https://github.com/FFmpeg/FFmpeg/blob/n4.1/doc/examples/avio_reading.c">example</a></p>
+
+<p>然后修修补补，保证这个simple code和我业务上复杂的code调用FFmpeg的lib是一样的。</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/avio/20231030121233/img_6.png" alt="img_6.png" /></p>
+
+<p>日志如下，最终读到了A/V stream的codec方式!!</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/avio/20231030121233/img_7.png" alt="img_7.png" /></p>
+
+<p>太棒了，这就意味着，文件没有问题，代码（使用AVIO的方式）本身也没有问题，问题出在了那里呢？</p>
+
+<h2 id="5apple-to-apple-comparison">5.Apple-to-Apple Comparison</h2>
+
+<p>还记得最开始managed code那个截图吗？是分chunk去读的file，而我的simple code是一次性dump到内存中的。会不会是因为一个是从文件流读的，一个是从内存流读的，从而有问题呢？</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/avio/20231030121233/img_8.png" alt="img_8.png" /></p>
+
+<h3 id="文件流-vs-内存流">文件流 vs 内存流</h3>
+
+<p>无论是从文件流读取还是从其他来源（如网络或直接内存访问）读取，最终数据都必须被加载到内存中以供处理。这是因为计算机的CPU只能直接访问内存中的数据，不论数据最初来源于哪里。</p>
+
+<p>当我们说“从文件流读取”，这实际上意味着：</p>
+
+<ul>
+  <li>数据的物理存储：数据最初存储在磁盘上的文件中。</li>
+  <li>数据读取过程：当需要读取这些数据时，操作系统的文件系统会负责从磁盘读取数据，并将其放置到进程的内存空间中。</li>
+  <li>内存中的数据处理：一旦数据位于内存中，应用程序（如FFmpeg）就可以对其进行处理，例如解码、转码或播放。</li>
+</ul>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/avio/20231216155645/img_1.png" alt="img_1.png" /></p>
+
+<h3 id="visual-studio-memory-tool">Visual studio memory tool</h3>
+
+<p>用了这个工具，只需要输入一个运行时的指针地址，就可以返回内存的data。</p>
+
+<p>我发现MCR native code少了4个字节! 这不就是真相了，因为少了4个字节，所有文件损坏了呀！我觉得肯定是这个问题，到这里的时候我已经半场开香槟了。</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/avio/20231216155645/img_2.png" alt="img_2.png" /></p>
+
+<p>回到最开始的代码，的确代码中跳过了4个字节</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/avio/20231216155645/img_3.png" alt="img_3.png" /></p>
+
+<h3 id="更差的结果">更差的结果</h3>
+
+<p>令我绝望的是，这里竟然报了另外一个我从未见过的错误，并且你仔细会发现，这里比最开始的时候还不如，甚至连video都没打印出来， 兜兜转转，到这里我已经花了一个星期，没有进度甚至还倒退。</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/avio/20231216155645/img_4.png" alt="img_4.png" /></p>
+
+<h3 id="比较内存中字节的内容">比较内存中字节的内容</h3>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/avio/20231216155645/Animation.gif" alt="git" /></p>
+
+<p>我所看到的是真实的吗？内存中两端的字节是否完全相同？除了顺序错误之外，还会有更多的问题吗？</p>
+
+<p>我没去看这个错误，我只是很奇怪，为什么文件是一样的， 使用Lib的方式是一样的，但是两个不同的结局，所以我已经不相信我设想的或者我看到的，我要重新验证每一步。</p>
+
+<p>我加入了一个hash函数，然后看看内存中的字节是否一致。</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/avio/20231216155645/img_5.png" alt="img_5.png" /></p>
+
+<h3 id="漫长的体力活---比较">漫长的体力活 - 比较</h3>
+
+<p>接下来，我不断修改Business code和Sampe code，以确保进行同类比较：</p>
+
+<ul>
+  <li>确保文件读取方法相同。</li>
+  <li>确保 AVIO 回调的缓冲区大小相同。</li>
+  <li>确保所有与 FFmpeg 相关的参数设置都相同。</li>
+  <li>…</li>
+</ul>
+
+<h3 id="root-cause">Root Cause!!</h3>
+
+<p>最终找到了问题！我非常疑惑，为什么在我的pure code中，<code class="language-plaintext highlighter-rouge">avformat_open_input</code>函数中只调用了一次，而在business code中</p>
+
+<p>这个函数被调用了两次（后面发现这是一个bug，开发人员疏忽了，在AVIO的if scope中调用了一次，然后又在公共的地方调用了一次，它忘记了）</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/avio/20231216155645/img_7.png" alt="img_7.png" /></p>
+
+<h2 id="6更多的问题">6.更多的问题..</h2>
+
+<ul>
+  <li>1.为什么同一个函数<code class="language-plaintext highlighter-rouge">avformat_open_input</code>调用两次就会出错呢？</li>
+  <li>2.为什么跳过4个字节能读到音视频流，而不跳过，保留完整的文件，反而直接抛错了呢？</li>
+</ul>
+
+<h3 id="1-问题">#1 问题</h3>
+
+<p>C语言是过程式的语言，函数是运来操作和改变参数的状态，核心观点是通过函数来组织代码，C语言的函数通常会产生副作用，即除了返回值之外，它们还会修改某些外部状态或数据结构。</p>
+
+<h3 id="2-问题">#2 问题</h3>
+
+<p>问题2就复杂的多了，我们先看看<code class="language-plaintext highlighter-rouge">avformat_open_input</code>源码</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/avio/20231216155645/img_8.png" alt="img_8.png" /></p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/avio/20231216155645/img_9.png" alt="img_9.png" /></p>
+
+<p>最终聚焦在这个<code class="language-plaintext highlighter-rouge">ebml_read_num</code>函数上，先读取头字节，确定表示EBML data的长度有长，然后发现长度竟然是8字节长(2^56)</p>
+
+<p>然后max size规定了只能是4字节长。所以导致抛了下面这个错误。因为正好读到了0x01这一字节上。</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2</pre></td><td class="code"><pre class="highlight"><code>[matroska,webm @ 0000024F733C8440] Length 8 indicated by an EBML number's first byte 0x01 at pos 219 (0xdb) exceeds max length 4.
+[matroska,webm @ 0000024F733C8440] EBML header parsing failed
+</code></pre></td></tr></tbody></table></div></div>
+
+<h4 id="什么是ebml">什么是EBML</h4>
+
+<p>当格式被识别为WebM时，会调用 matroska_read_header 函数来处理头部。</p>
+
+<p>这个过程涉及根据EBML规范解析EBML（可扩展二进制元语言）。</p>
+
+<p>EBML（可扩展二进制元语言）是一种灵活的、大小可变的二进制标记语言，设计用于作为多媒体容器格式的基础，例如Matroska（.mkv、.mka、.mks文件）</p>
+
+<p>EBML文件通常由一个头部和随后的多个数据元素组成。每个元素包含一个ID、长度描述和实际的数据内容：</p>
+<ul>
+  <li>ID：唯一标识元素类型。</li>
+  <li>长度描述：使用EBML的长度编码规则，标识数据内容的大小。</li>
+  <li>数据内容：实际的元素数据。</li>
+</ul>
+
+<p>在EBML中，数字的长度由第一个字节的高位字节中前导零位的数量决定。高字节中第一个’1’位之前的零位数量（包括’1’位本身）决定了用于数字部分的字节数。</p>
+
+<p>例如下面这个例子，第一个字节表示，这个length的长度有几个字节，然后去掉一个1后，剩下的总长度表示数据的length有多长。</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/avio/20231216155645/img_11.png" alt="img_11.png" /></p>
+
+<h4 id="指针0x01">指针0x01</h4>
+
+<p>16进制0x01转换成2进制就是<code class="language-plaintext highlighter-rouge">0000 0001</code></p>
+
+<p>同理可得，0x01是一个非常大的数字，说data的size长达2^56次方，这是不可能的，因为EBML格式规定了max size是4</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/avio/20231216155645/img_12.png" alt="img_12.png" /></p>
+
+<h2 id="7reference">7.Reference</h2>
+
+<ul>
+  <li>1.<a href="https://github.com/FFmpeg/FFmpeg/blob/n4.1/doc/examples/avio_reading.c">sample code</a></li>
+  <li>2.<a href="https://www.jianshu.com/p/37d705aa0e01">probesize and duration</a></li>
+  <li>3.<a href="https://ffmpeg.xianwaizhiyin.net/api-ffmpeg/avio.html">什么是avio</a></li>
+  <li>4.https://www.cnblogs.com/leisure_chn/p/10318145.html</li>
+  <li>5.https://octalzero.com/article/17802173-7d46-4be2-be66-46c5a1824724</li>
+</ul>
+
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+      
+      
+
+      
+      
+        <div class="post-nav" id="post-nav-id">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/dotnet/async/2023/11/01/Csharp%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/" rel="next" title="Csharp 异步编程">
+                <i class="fa fa-chevron-left"></i> Csharp 异步编程
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/dotnet/debug/2023/10/30/IHosted-Service%E7%A2%B0%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/" rel="prev" title="IHosted Service碰到的问题">
+                IHosted Service碰到的问题 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+      
+
+      
+    </footer>
+  </article>
+
+  <div class="post-spread">
+    
+  </div>
+</div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        
+        
+        
+
+
+
+
+
+
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/assets/images/avatar.gif"
+               alt="三山" />
+          <p class="site-author-name" itemprop="name">三山</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">77</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/">
+                <span class="site-state-item-count">48</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+        
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+
+
+
+
+
+
+
+            
+              <div class="post-toc-content">
+    <ol class=nav>
+      <li class="nav-item nav-level-2"> <a class="nav-link" href="#1前言"> <span class="nav-number">1</span> <span class="nav-text">1.前言</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#2背景"> <span class="nav-number">2</span> <span class="nav-text">2.背景</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#3问题描述"> <span class="nav-number">3</span> <span class="nav-text">3.问题描述</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-3"> <a class="nav-link" href="#什么是probesize和analyzeduration"> <span class="nav-number">3.1</span> <span class="nav-text">什么是probesize和analyzeduration?</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#初始思路"> <span class="nav-number">3.2</span> <span class="nav-text">初始思路</span> </a> </li> </ol> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#4排查过程"> <span class="nav-number">4</span> <span class="nav-text">4.排查过程</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-3"> <a class="nav-link" href="#1increase-analyzeduration-和-probesize"> <span class="nav-number">4.1</span> <span class="nav-text">1.Increase analyzeduration 和 probesize</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#2输入文件是否有问题"> <span class="nav-number">4.2</span> <span class="nav-text">2.输入文件是否有问题?</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#3avio的code有问题吗"> <span class="nav-number">4.3</span> <span class="nav-text">3.AVIO的code有问题吗？</span> </a> </li> </ol> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#5apple-to-apple-comparison"> <span class="nav-number">5</span> <span class="nav-text">5.Apple-to-Apple Comparison</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-3"> <a class="nav-link" href="#文件流-vs-内存流"> <span class="nav-number">5.1</span> <span class="nav-text">文件流 vs 内存流</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#visual-studio-memory-tool"> <span class="nav-number">5.2</span> <span class="nav-text">Visual studio memory tool</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#更差的结果"> <span class="nav-number">5.3</span> <span class="nav-text">更差的结果</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#比较内存中字节的内容"> <span class="nav-number">5.4</span> <span class="nav-text">比较内存中字节的内容</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#漫长的体力活---比较"> <span class="nav-number">5.5</span> <span class="nav-text">漫长的体力活 - 比较</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#root-cause"> <span class="nav-number">5.6</span> <span class="nav-text">Root Cause!!</span> </a> </li> </ol> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#6更多的问题"> <span class="nav-number">6</span> <span class="nav-text">6.更多的问题..</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-3"> <a class="nav-link" href="#1-问题"> <span class="nav-number">6.1</span> <span class="nav-text">#1 问题</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#2-问题"> <span class="nav-number">6.2</span> <span class="nav-text">#2 问题</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-4"> <a class="nav-link" href="#什么是ebml"> <span class="nav-number">6.2.1</span> <span class="nav-text">什么是EBML</span> </a> </li> <li class="nav-item nav-level-4"> <a class="nav-link" href="#指针0x01"> <span class="nav-number">6.2.2</span> <span class="nav-text">指针0x01</span> </a> </li> </ol> </li> </ol> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#7reference"> <span class="nav-number">7</span> <span class="nav-text">7.Reference</span> </a> </li>
+    </ol>
+  </div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">三山</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://jekyllrb.com">Jekyll</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/simpleyyt/jekyll-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+   
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/assets/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  <script type="text/javascript" src="/assets/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/assets/js/src/post-details.js?v=5.1.1"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+    
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
+
+

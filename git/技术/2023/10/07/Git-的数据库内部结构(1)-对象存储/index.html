@@ -1,0 +1,1238 @@
+<!--不算子网站访客统计-->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-M7QXLLL8YX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-M7QXLLL8YX');
+</script>
+
+
+<!doctype html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/assets/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/assets/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/assets/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="三山的编程之旅" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="1.前言 之前老早在网上发现了这五篇blog, 讲解研究git的内部结构，通过学习git的数据结构 来掌握一些关于对象存储，压缩技术，同步等等内容。多说一句，学习这种成熟且经典组件背后的技术，非常有助于技术成长。">
+<meta name="keywords" content="Jekyll, NexT">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git 的数据库内部结构(1)-对象存储">
+<meta property="og:url" content="https://jiujiujiujiujiuaia.github.io/git/%E6%8A%80%E6%9C%AF/2023/10/07/Git-%E7%9A%84%E6%95%B0%E6%8D%AE%E5%BA%93%E5%86%85%E9%83%A8%E7%BB%93%E6%9E%84(1)-%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8/">
+<meta property="og:site_name" content="三山的编程之旅">
+<meta property="og:description" content="1.前言 之前老早在网上发现了这五篇blog, 讲解研究git的内部结构，通过学习git的数据结构 来掌握一些关于对象存储，压缩技术，同步等等内容。多说一句，学习这种成熟且经典组件背后的技术，非常有助于技术成长。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/git1/20231008112719/img_1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/git1/20231008112719/img_9.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/git1/20231008112719/img_6.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/git1/20231008112719/img_7.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/git1/20231008112719/img_8.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/git1/20231008112719/img.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/git1/20231008112719/img_4.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/git1/20231008112719/img_11.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/git1/20231008112719/img_12.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/git1/20231008112719/img_13.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/git1/20231008112719/img_5.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/git1/20231008112719/img_14.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/git1/20231008112719/img_16.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/git1/20231013162544/img.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/git1/20231008112719/img_15.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Git 的数据库内部结构(1)-对象存储">
+<meta name="twitter:description" content="1.前言 之前老早在网上发现了这五篇blog, 讲解研究git的内部结构，通过学习git的数据结构 来掌握一些关于对象存储，压缩技术，同步等等内容。多说一句，学习这种成熟且经典组件背后的技术，非常有助于技术成长。">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/git1/20231008112719/img_1.png">
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://jiujiujiujiujiuaia.github.io"/>
+
+
+
+
+
+  <title>Git 的数据库内部结构(1)-对象存储 | 三山的编程之旅</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'G-M7QXLLL8YX', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">三山的编程之旅</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+<div id="posts" class="posts-expand">
+  
+  
+
+  
+
+  
+  
+  
+
+  <article class="post post-type- " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://jiujiujiujiujiuaia.github.io/git/%E6%8A%80%E6%9C%AF/2023/10/07/Git-%E7%9A%84%E6%95%B0%E6%8D%AE%E5%BA%93%E5%86%85%E9%83%A8%E7%BB%93%E6%9E%84(1)-%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="三山">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="assets/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="三山的编程之旅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+          
+          
+            Git 的数据库内部结构(1)-对象存储
+          
+        </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-10-07T22:30:09+00:00">
+                2023-10-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/category/#/Git" itemprop="url" rel="index">
+                    <span itemprop="name">Git</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/category/#/%E6%8A%80%E6%9C%AF" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+                
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv" id="busuanzi_container_page_pv">
+            本文总阅读量<span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+                
+
+            
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <div class="post-wordcount">
+                  <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                  <span class="post-meta-item-text">字数统计</span>
+                <span title="字数统计">
+                  4075字
+                </span>
+
+                <span class="post-meta-divider">|</span>
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                  <span class="post-meta-item-text">阅读时长</span>
+                <span title="阅读时长">
+                  20分钟
+                </span>
+            </div>
+
+          
+            
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 id="1前言">1.前言</h2>
+<p>之前老早在网上发现了这<a href="https://github.blog/author/dstolee/">五篇blog</a>, 讲解研究git的内部结构，通过学习git的数据结构
+来掌握一些关于对象存储，压缩技术，同步等等内容。多说一句，学习这种成熟且经典组件背后的技术，非常有助于技术成长。</p>
+
+<h2 id="2git本身">2.Git本身</h2>
+
+<p>Git 是为了存储纯文本源代码文件而构建的，即使代码库包含数百万行，其中大多数更改都足够小，可以一次性读取。</p>
+
+<p>同时，Git和其他数据库一样，有着非常基本的概念：</p>
+<ul>
+  <li>数据<strong>持久</strong>保存到磁盘。</li>
+  <li><strong>查询</strong>允许用户根据该数据请求信息。</li>
+  <li>数据存储针对这些<strong>查询进行了优化</strong>。</li>
+  <li>查询算法经过优化以利用这些结构。</li>
+  <li>分布式节点需要同步并就某些公共状态达成一致。</li>
+</ul>
+
+<p>Git也有自己非常特殊的一面:</p>
+<ul>
+  <li>不使用B树</li>
+  <li>完全依赖文件系统(磁盘)而没有缓存</li>
+  <li>不像传统数据库那样有着长时间运行的守护进程</li>
+</ul>
+
+<h2 id="3git-object">3.Git Object</h2>
+<p>Git 中最基本的概念是 Git 对象(object)。这些是 Git 存储库的“原子”。</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3</pre></td><td class="code"><pre class="highlight"><code>git rev-parse HEAD
+git cat-file <span class="nt">-p</span> 0c3e39d179c9655c5ae23a9634ee35cef09b68c19
+git cat-file <span class="nt">-p</span> 5d5842da253fddfb79b1920d46c87f43c746fb02
+</code></pre></td></tr></tbody></table></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">git rev-parse</code>是 Git 中的一个底层命令，用于解析 Git object的名称, <code class="language-plaintext highlighter-rouge">git rev-parse HEAD</code>就可以获取当前branch的commit id hash</li>
+  <li><code class="language-plaintext highlighter-rouge">git cat-file -p</code>这个命令用于显示二进制对象的内容。-p 选项表示 “pretty-print”，它会格式化对象的内容，使其易于阅读。</li>
+</ul>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/git1/20231008112719/img_1.png" alt="img_1.png" /></p>
+
+<p>通过上面的截图可以看到：</p>
+<ul>
+  <li>我们首先拿到了commit id 0c3e39d179c9xxxxx</li>
+  <li>通过这个id解析到了一个文件，文件有<code class="language-plaintext highlighter-rouge">tree 5d5842da253fddfb79b192xxx</code>的内容，这是这次commit的项目结构（tree 对象）的哈希值。</li>
+  <li>通过进一步解析<code class="language-plaintext highlighter-rouge">tree id 5d5842da253fddfb79b192xxx</code>, 我们可以看到:
+    <ul>
+      <li>这个命令展示了上面提到的 tree 对象的内容。</li>
+      <li>输出中的每一行代表项目中的一个文件或目录。</li>
+      <li><code class="language-plaintext highlighter-rouge">100644 blob 481c469dd5dcf9ef3b25c217ecdc73a0612065f0 .gitignore</code>：这是一个文件（由 blob 表示）和它的哈希值。</li>
+      <li><code class="language-plaintext highlighter-rouge">040000 tree 10a37b3bb413ee3fb058d3b5e58d9787d7cf779c .idea</code>：这是一个目录（由 tree 表示）和它的哈希值。</li>
+    </ul>
+  </li>
+  <li>如果再往下，我们可以通过如下图，通过解析blob文件，看到.gitignore里面的content。</li>
+</ul>
+
+<p>很明显，下图就是一个gitignore的内容。</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/git1/20231008112719/img_9.png" alt="img_9.png" /></p>
+
+<p>也就是说，我们通过commit id，拿到了这次commit（这次提交）的文件目录结构的id（tree id）
+, 再通过这个tree id，解析到了组成这次提交的所有文件和目录的id，如果我们持续递归这个过程，就可以看到所有文件的内容。</p>
+
+<p>上面我演示了一个从一个commit id到追溯到整个tree对象的<strong>查询</strong>过程。</p>
+
+<h3 id="如何理解">如何理解？</h3>
+
+<p>每一个hash id都是一个索引，指向着一个文件。这个hash id被拆分为两部分来存储，前两个字符被用作目录名，其余的字符被用作该目录下的文件名。</p>
+
+<p>比如commit id为<code class="language-plaintext highlighter-rouge">5d5842da253fddfb79b1920d46c87f43c746fb02</code>, 你就可以去<code class="language-plaintext highlighter-rouge">.git/objects/5d</code>目录，找到一个文件名为<code class="language-plaintext highlighter-rouge">5842da253fddfb79b1920d46c87f43c746fb02</code>。</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/git1/20231008112719/img_6.png" alt="img_6.png" /></p>
+
+<p>这个文件的内容是二进制，你没办法直接用cat解析，</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/git1/20231008112719/img_7.png" alt="img_7.png" /></p>
+
+<p>你只能用<code class="language-plaintext highlighter-rouge">git cat-file -p</code>命令看到这个文件内容。可以很清楚的看到，这个文件是一个描述tree 对象的文件，
+其中文件内容就是一棵tree，指向其他blob对象和tree对象的索引。</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/git1/20231008112719/img_8.png" alt="img_8.png" /></p>
+
+<h3 id="对象类别">对象类别</h3>
+
+<p>在git的世界里，git commit 命令是我们常用的命令，每次文件的增删改查，其实就是给.git/objects目录提交文件对象，</p>
+
+<p>存储在本地硬盘上。每一次commit id，最终都会对应到一个tree对象，保留着这一次git commit的<strong>整个项目的快照</strong></p>
+
+<p>因此，在.git/objects目录，存储着非常多的对象，这些对象分为四个类别:</p>
+
+<ul>
+  <li>tree</li>
+  <li>commit</li>
+  <li>blob</li>
+  <li>tag</li>
+</ul>
+
+<p>插一个题外话，git tag和git branch的区别是什么呢？</p>
+
+<ul>
+  <li>tag 对应某次commit, 是一个点，是不可移动的。</li>
+  <li>一个版本发布之后，我们可以为git打上 v.1.0.1 v.1.0.2 …这样的标签。</li>
+  <li>branch 对应一系列commit，是很多点连成的一根线，有一个HEAD 指针，是可以依靠 HEAD 指针移动的。</li>
+  <li>所以，两者的区别决定了使用方式，改动代码用 branch ,不改动只查看用 tag。</li>
+</ul>
+
+<p>git 暂存区和工作区的区别是什么呢？原来只有git commit，才是真正把文件提交到本地<code class="language-plaintext highlighter-rouge">.git/object</code>目录。</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/git1/20231008112719/img.png" alt="img.png" /></p>
+
+<h3 id="小结">小结</h3>
+
+<p>所以，对象存储就是一个数据库表，一共有两列，对象 ID 和对象内容。对象 ID 是对象内容的哈希值，其作用类似于主键。</p>
+
+<p>Object data就是用二进制文件把内容存储到磁盘上的。</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/git1/20231008112719/img_4.png" alt="img_4.png" /></p>
+
+<p>因此，当我们还不知道想要看什么内容的时候，可以从参考(reference)存储,也就是某个tag，作为起点来导航到对象存储</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/git1/20231008112719/img_11.png" alt="img_11.png" /></p>
+
+<p>下面这张图就演示了这个寻找过程：</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/git1/20231008112719/img_12.png" alt="img_12.png" /></p>
+
+<p>假设你对本地的编辑只是改了README.md文件，那么就会经历下面这四个步骤。</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/git1/20231008112719/img_13.png" alt="img_13.png" /></p>
+
+<p>TODO 用chatGPT的识图功能来理解一下文章中的两个架构图</p>
+
+<h2 id="4compressed-object-storage-packfiles">4.Compressed object storage: packfiles</h2>
+
+<p>当 Git 的对象数据库中有许多小的对象文件时，为了节省空间和提高性能，Git 会将这些文件打包成一个大的.pack 文件。</p>
+
+<p>例如，当我重新clone这个我的博客的时候，我会发现，本地是没有对象文件的，只有一个pack文件。</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/git1/20231008112719/img_5.png" alt="img_5.png" /></p>
+
+<p>多说一句，想想这个时候如果想通过object id查询一个对象，例如执行<code class="language-plaintext highlighter-rouge">git cat-file -p 5d5842daxxx</code>，Git会怎么样？</p>
+
+<ul>
+  <li>首先尝试在 .git/objects 中查找是否有这么一个文件。</li>
+  <li>如果没有找到，它会查看 pack-index 来确定该对象是否在某个 packfile 中（因为会有多个packfile的情况），并在哪里。</li>
+</ul>
+
+<h3 id="pack-index">Pack-Index</h3>
+
+<p>上面提到了，如果想通过object id查询，那么过程应该是怎么样的？目录下只有一个packfile, 直接遍历整个packfile查找嘛？</p>
+
+<p>NO!一定会有索引！</p>
+
+<p>每个 Packfile 都有一个对应的 Pack-index 文件。这个 .idx 文件包含了 Packfile 中所有对象的索引，使 Git 能够快速找到和提取 Packfile 中的任何对象。</p>
+
+<h3 id="为什么节省空间和性能">为什么节省空间和性能？</h3>
+
+<p>你肯定会这样的问题:</p>
+
+<ul>
+  <li>1.object id对应的二进制文件不就在.git/objects目录中嘛？为什么不直接去对应文件夹目录下查询呢？而要去packfile呢?</li>
+  <li>2.同一个文件如果修改了多次，那么多个版本在本地中都是全量保存，都是唯一的一个blob文件，这样多浪费空间呀？</li>
+</ul>
+
+<p>这就是Packfiles and pack-indexes这个系统的意义:</p>
+
+<p>当你在本地提交了多次commit后，把同一个文件修改了很多此后，其中的对象数量增长到一定程度时，</p>
+
+<p>Git自动运行 git gc 来优化你的对象存储，把tree/commit/blob对象压缩成一个packfile文件。</p>
+
+<p>当你执行<code class="language-plaintext highlighter-rouge"> git verify-pack -v pack-1c1f6c96054da35754df37fd1b11f5c06738bac5.pack</code>命令后，你会在底部发现：</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/git1/20231008112719/img_14.png" alt="img_14.png" /></p>
+
+<p>non delta: 532 objects, 意味着在这个 packfile 中，有 532 个对象是完整存储的，没有使用差异压缩技术(delta压缩)</p>
+
+<p>这些对象称为”base”对象，因为它们不依赖于其他对象。</p>
+
+<p>chain length = 1: 154 objects：表示有 154 个对象是基于另一个 base 对象的差异。进行了差异化压缩</p>
+
+<p>chain length = 2: 70 objects：表示有 70 个对象是基于另一个差异对象的差异，这个差异对象本身也是基于一个 base 对象的差异。</p>
+
+<p>从下一次类推</p>
+
+<h3 id="小结packfiles的优点">小结packfiles的优点</h3>
+
+<p>下面是有了packfiles后的优点：</p>
+
+<ul>
+  <li>存储效率：每个松散对象都是单独压缩的，而没有利用对象之间的相似性。packfiles 允许多个对象一起被压缩，这样相似的或重复的数据只需要存储一次。这尤其对于多个版本的源代码文件（如文本文件）非常有效。</li>
+  <li>文件系统限制：在某些文件系统上，有太多的小文件可能会导致性能问题或达到文件系统的文件数量限制。</li>
+  <li>性能：读取大量的小文件比读取一个大文件慢得多，尤其是在某些文件系统和存储介质上。通过将对象存储在一个或几个大的 packfiles 中，Git 可以更快地读取和搜索数据。</li>
+  <li>网络效率：当你从远程克隆或拉取一个 Git 仓库时，传输一个或几个大的 packfiles 比传输大量小文件更高效。</li>
+  <li>垃圾回收和优化：随着时间的推移，仓库中可能会有很多不再需要的对象（例如，来自已经删除的分支）。packfiles 允许 Git 在执行垃圾回收时重新组织和优化这些对象，从而释放不必要的存储空间。</li>
+</ul>
+
+<h3 id="查询过程">查询过程</h3>
+
+<p>如下图，查询过程有这么几个步骤:</p>
+<ul>
+  <li>Fanout table
+    <ul>
+      <li>这个表格有 256 个条目, 每个一个条目对应的字典序小于等于当前前缀的对象的数量。</li>
+      <li>例如有一个object id为<code class="language-plaintext highlighter-rouge">7ef...</code>, 7e所代表的16进制在10进制中就是127.</li>
+      <li>第 126 个条目的数字表示对象列表中所有 object id 以 00 到 7d 开头的对象的数量。</li>
+      <li>第 127 个条目的数字表示对象列表中所有 object id 以 00 到 7e 开头的对象的数量。</li>
+      <li>假设第 126 个条目的数字是 1000，而第 127 个条目的数字是 1050，这意味任意一个<code class="language-plaintext highlighter-rouge">7exxxx</code>的object id在列表的位置是1001-1050之间</li>
+      <li>Fanout table的目的是确定二分搜索的上限和下限，缩小搜索范围</li>
+    </ul>
+  </li>
+  <li>查询 Object list
+    <ul>
+      <li>有了起点和终点，简单地可以执行一个二分搜索来找到你的 object id。</li>
+    </ul>
+  </li>
+  <li>Pack offset
+    <ul>
+      <li>最终通过唯一object id，拿到一个offset，这个offset就是这个object id在packfile的起始位置</li>
+    </ul>
+  </li>
+  <li>Packfile
+    <ul>
+      <li>有了offset，开始读取对象类型和长度，比如offset是200，从200开始读，获取到了长度，就知道哪里是终点</li>
+      <li>解压packfile，就可以获取object id对应的实际对象内容。</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/git1/20231008112719/img_16.png" alt="img_16.png" /></p>
+
+<p>我们都知道，查找一个有序列表的算法是二分查找，在git中做了一个小优化。</p>
+
+<h4 id="题外话">题外话</h4>
+
+<p>同时，试用了最新的GPT-4V的图片识别功能，感觉效果挺不错的，去识别上面的图片来讲解这个查询过程。</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/git1/20231013162544/img.png" alt="img.png" /></p>
+
+<h3 id="压缩原理增量压缩">压缩原理(增量压缩)</h3>
+
+<p>Git 使用了一个叫做 “binary diff” 的技术来生成并存储对象之间的差异，这是一个针对二进制数据的差异算法。</p>
+
+<p>Git 的 delta 压缩技术的实现基于这样一个观察：</p>
+
+<p>即使在大型的二进制文件中，也只有小部分数据发生变化。
+大多数编辑都会更改文件而不更改其模式、类型或名称，因此两个commit id之间，树结构大部分相同，只需要把一个当作base，其他的会被当作delta</p>
+
+<p>因此：</p>
+
+<ul>
+  <li>选择一个基对象：对于给定的对象，Git 尝试找到最合适的”基”对象。这通常是之前版本的同一个文件，但也可能是仓库中的任何其他对象。</li>
+  <li>生成差异：Git 使用二进制差异算法比较这两个对象，生成一个差异数据，描述如何从基对象获取到目标对象</li>
+  <li>差异格式：Git 的差异格式非常简洁。它由一系列的指令组成，每个指令要么是从基对象复制一段数据，要么是插入一些新数据。</li>
+</ul>
+
+<p>例如下图，Delta对象的内容就非常简洁：</p>
+<ul>
+  <li>Copy 0-803表示copy 基对象从0到803个字节</li>
+  <li>然后Write 40个差异字节，</li>
+  <li>然后继续copy 843-29444字节</li>
+</ul>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/git1/20231008112719/img_15.png" alt="img_15.png" /></p>
+
+<h2 id="5git和其他主流数据库的区别">5.Git和其他主流数据库的区别</h2>
+
+<h3 id="git没有用b树">Git没有用B树</h3>
+
+<p>最开始的时候说了，git object是最小的原子对象，这玩意是<strong>不可变</strong>的，什么意思呢？</p>
+
+<p>假设你正在使用 Git 管理一个项目，并且你添加了一个文件 example.txt，该文件的内容为 “Hello, World!”。当你提交这个更改，Git 会为 example.txt 的内容创建一个 “blob” 对象。这个对象将有一个与其内容关联的唯一哈希标识符，例如 abc123。</p>
+
+<p>现在，即使你在未来对 example.txt 进行了修改，原始的 abc123 对象不会被改变或删除。相反，Git 会为修改后的内容创建一个新的 blob 对象，该对象将有一个不同的哈希标识符，例如 def456。</p>
+
+<p>一旦一个对象被创建，它在 Git 的历史中就是永久的，并且不会被修改。</p>
+
+<p>而B树的一大特点是动态平衡，对于一个节点，可能会有频繁的插入，修改，删除等等。</p>
+
+<p>对于传统的数据库和对应的业务场景，保证数据动态变化的同时，还能拿好正搜索效率（B树可以保持平衡），这是使用B树的主要原因。</p>
+
+<p>因此：</p>
+<ul>
+  <li>由于 Git 对象的不变性，我们不需要删除旧对象或修改它们。也就是CRUD中，只有增加和查，没有修改和删除。</li>
+  <li>新的 Git 对象是添加到存储系统中的，但由于它们是通过内容寻址的，我们不需要一个复杂的数据结构来查找它们。</li>
+  <li>Git 的历史记录是累积的，我们经常需要查找旧的对象。</li>
+</ul>
+
+<p>计算机的世界里面没有银弹，适合才是最好的。</p>
+
+<h3 id="git不是一个长时间运行的守护进程">Git不是一个长时间运行的守护进程</h3>
+
+<p>当我们谈论传统的数据库时，我们通常认为数据库是一个长时间运行的进程，并且在内存中缓存了数据。</p>
+
+<p>当我们发送查询请求时，这个数据库进程会返回结果，并且会继续运行，等待下一个查询。</p>
+
+<p>而每次执行git命令，git实际上会启动一个新的进程执行，一旦执行完毕，这个进程就结束了。</p>
+
+<p>如果 Git 有一个长时间运行的守护进程（daemon），这个进程可以随时满足查询请求，同时它也可以在内存中保持数据的表示，这样就不需要每次从磁盘解析对象了。</p>
+
+<p>这样的设计在理论上可能会提高 Git 的效率，因为它不再需要频繁地读取和解析磁盘上的对象。</p>
+
+<h2 id="6reference">6.Reference</h2>
+<ul>
+  <li>1.<a href="https://github.blog/2022-08-29-gits-database-internals-i-packed-object-store/">文章原文关于git对象存储</a></li>
+  <li>2.<a href="https://www.cnblogs.com/zhilu/p/14082019.html">Git tag vs Git Branch</a></li>
+  <li>3.<a href="https://www.liaoxuefeng.com/wiki/896043488029600/897271968352576">Git stage</a></li>
+  <li>4.<a href="https://chat.openai.com/share/69841aa7-7c59-491e-a2d9-04b89d800ae4">Learn from GPT</a></li>
+</ul>
+
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+      
+      
+
+      
+      
+        <div class="post-nav" id="post-nav-id">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/%E9%9A%8F%E7%AC%94/2023/10/28/%E5%87%A0%E4%BB%B6%E5%B0%8F%E4%BA%8B/" rel="next" title="几件小事——拖延，刷刷和失而复得">
+                <i class="fa fa-chevron-left"></i> 几件小事——拖延，刷刷和失而复得
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/%E9%9F%B3%E8%A7%86%E9%A2%91/c%E8%AF%AD%E8%A8%80/%E9%93%BE%E6%8E%A5/2023/10/06/%E9%93%BE%E6%8E%A5%E6%8A%80%E6%9C%AF%E7%AE%80%E4%BB%8B-%E9%9F%B3%E8%A7%86%E9%A2%91%E5%BC%80%E5%8F%91%E5%85%88%E5%AF%BC/" rel="prev" title="链接技术简介：音视频开发先导">
+                链接技术简介：音视频开发先导 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+      
+
+      
+    </footer>
+  </article>
+
+  <div class="post-spread">
+    
+  </div>
+</div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        
+        
+        
+
+
+
+
+
+
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/assets/images/avatar.gif"
+               alt="三山" />
+          <p class="site-author-name" itemprop="name">三山</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">77</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/">
+                <span class="site-state-item-count">48</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+        
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+
+
+
+
+
+
+
+            
+              <div class="post-toc-content">
+    <ol class=nav>
+      <li class="nav-item nav-level-2"> <a class="nav-link" href="#1前言"> <span class="nav-number">1</span> <span class="nav-text">1.前言</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#2git本身"> <span class="nav-number">2</span> <span class="nav-text">2.Git本身</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#3git-object"> <span class="nav-number">3</span> <span class="nav-text">3.Git Object</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-3"> <a class="nav-link" href="#如何理解"> <span class="nav-number">3.1</span> <span class="nav-text">如何理解？</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#对象类别"> <span class="nav-number">3.2</span> <span class="nav-text">对象类别</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#小结"> <span class="nav-number">3.3</span> <span class="nav-text">小结</span> </a> </li> </ol> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#4compressed-object-storage-packfiles"> <span class="nav-number">4</span> <span class="nav-text">4.Compressed object storage: packfiles</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-3"> <a class="nav-link" href="#pack-index"> <span class="nav-number">4.1</span> <span class="nav-text">Pack-Index</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#为什么节省空间和性能"> <span class="nav-number">4.2</span> <span class="nav-text">为什么节省空间和性能？</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#小结packfiles的优点"> <span class="nav-number">4.3</span> <span class="nav-text">小结packfiles的优点</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#查询过程"> <span class="nav-number">4.4</span> <span class="nav-text">查询过程</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-4"> <a class="nav-link" href="#题外话"> <span class="nav-number">4.4.1</span> <span class="nav-text">题外话</span> </a> </li> </ol> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#压缩原理增量压缩"> <span class="nav-number">4.5</span> <span class="nav-text">压缩原理(增量压缩)</span> </a> </li> </ol> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#5git和其他主流数据库的区别"> <span class="nav-number">5</span> <span class="nav-text">5.Git和其他主流数据库的区别</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-3"> <a class="nav-link" href="#git没有用b树"> <span class="nav-number">5.1</span> <span class="nav-text">Git没有用B树</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#git不是一个长时间运行的守护进程"> <span class="nav-number">5.2</span> <span class="nav-text">Git不是一个长时间运行的守护进程</span> </a> </li> </ol> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#6reference"> <span class="nav-number">6</span> <span class="nav-text">6.Reference</span> </a> </li>
+    </ol>
+  </div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">三山</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://jekyllrb.com">Jekyll</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/simpleyyt/jekyll-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+   
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/assets/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  <script type="text/javascript" src="/assets/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/assets/js/src/post-details.js?v=5.1.1"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+    
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
+
+

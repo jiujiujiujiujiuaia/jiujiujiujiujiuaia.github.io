@@ -1,0 +1,1026 @@
+<!--不算子网站访客统计-->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-M7QXLLL8YX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-M7QXLLL8YX');
+</script>
+
+
+<!doctype html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/assets/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/assets/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/assets/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="三山的编程之旅" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="1.前言 无意间读到了一篇写的基础又详细的关于你的程序如何跑起来的文章，作者逐步深入，把计算机的常见概念如中断，时间片 ，寄存器等等知识串起来。同时通过反问一些问题吸引读者读下去，并且配有高质量的图片辅助讲解。大学里面一门无聊的操作系统要花半年的时间学习， 而这7篇文章花一个下午就可以让你理解。因此记录一下阅读完后的所学所思。">
+<meta name="keywords" content="Jekyll, NexT">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Putting the you into CPU">
+<meta property="og:url" content="https://jiujiujiujiujiuaia.github.io/cpu/2023/11/26/Putting-the-you-into-CPU/">
+<meta property="og:site_name" content="三山的编程之旅">
+<meta property="og:description" content="1.前言 无意间读到了一篇写的基础又详细的关于你的程序如何跑起来的文章，作者逐步深入，把计算机的常见概念如中断，时间片 ，寄存器等等知识串起来。同时通过反问一些问题吸引读者读下去，并且配有高质量的图片辅助讲解。大学里面一门无聊的操作系统要花半年的时间学习， 而这7篇文章花一个下午就可以让你理解。因此记录一下阅读完后的所学所思。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/cpu/20231126171005/img.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/cpu/20231126171005/img_1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/cpu/20231126171005/img_2.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/cpu/20231126171005/img_3.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/cpu/20231126171005/img_4.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/cpu/20231126171005/img_5.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Putting the you into CPU">
+<meta name="twitter:description" content="1.前言 无意间读到了一篇写的基础又详细的关于你的程序如何跑起来的文章，作者逐步深入，把计算机的常见概念如中断，时间片 ，寄存器等等知识串起来。同时通过反问一些问题吸引读者读下去，并且配有高质量的图片辅助讲解。大学里面一门无聊的操作系统要花半年的时间学习， 而这7篇文章花一个下午就可以让你理解。因此记录一下阅读完后的所学所思。">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/cpu/20231126171005/img.png">
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://jiujiujiujiujiuaia.github.io"/>
+
+
+
+
+
+  <title>Putting the you into CPU | 三山的编程之旅</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'G-M7QXLLL8YX', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">三山的编程之旅</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+<div id="posts" class="posts-expand">
+  
+  
+
+  
+
+  
+  
+  
+
+  <article class="post post-type- " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://jiujiujiujiujiuaia.github.io/cpu/2023/11/26/Putting-the-you-into-CPU/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="三山">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="assets/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="三山的编程之旅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+          
+          
+            Putting the you into CPU
+          
+        </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-11-26T17:30:09+00:00">
+                2023-11-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/category/#/CPU" itemprop="url" rel="index">
+                    <span itemprop="name">CPU</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+                
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv" id="busuanzi_container_page_pv">
+            本文总阅读量<span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+                
+
+            
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <div class="post-wordcount">
+                  <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                  <span class="post-meta-item-text">字数统计</span>
+                <span title="字数统计">
+                  1876字
+                </span>
+
+                <span class="post-meta-divider">|</span>
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                  <span class="post-meta-item-text">阅读时长</span>
+                <span title="阅读时长">
+                  9分钟
+                </span>
+            </div>
+
+          
+            
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 id="1前言">1.前言</h2>
+<p>无意间读到了一篇写的<strong>基础又详细</strong>的关于你的程序如何跑起来的文章，作者逐步深入，把计算机的常见概念如中断，时间片
+，寄存器等等知识串起来。同时通过反问一些问题吸引读者读下去，并且配有高质量的图片辅助讲解。大学里面一门无聊的操作系统要花半年的时间学习，
+而这7篇文章花一个下午就可以让你理解。因此记录一下阅读完后的所学所思。</p>
+
+<h2 id="2没想到标题">2.没想到标题</h2>
+
+<h3 id="cpu指针指令">CPU,指针,指令</h3>
+
+<p>寄存器中存储着一个指针，指向下一个从RAM获取的指令的地址。CPU不断重复着“读取指令-移动指针”</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/cpu/20231126171005/img.png" alt="img.png" /></p>
+
+<p>指令是什么？分为操作码和数据，都是以二进制表示，如下图所示。</p>
+
+<p>（顺便回忆一下基础知识，下图中的<code class="language-plaintext highlighter-rouge">0x83</code>是16进制的表示方式，其中0x是一个常用的前缀，用于表示随后的数字是16进制的。在16进制中，每一位的值是基于16的幂次方计算的。
+第一位（从右往左数）是3，代表的是3X16^0=3。
+第二位是8，代表的是8X16^1=128.
+而<code class="language-plaintext highlighter-rouge">0xFF</code>是最大的，代表255，刚好用8个bit表示)</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/cpu/20231126171005/img_1.png" alt="img_1.png" /></p>
+
+<p>是的，处理器“很傻很天真”，就是不断向前执行指令。进程完全就是一个抽象的概念，在CPU的视角里，没有进程，只有源源不断的二进制等待着被读取和执行（打工人哈哈）</p>
+
+<p>处理器在一个无限的取指-执行循环中执行指令，它们没有操作系统或程序的概念。</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/cpu/20231126171005/img_2.png" alt="img_2.png" /></p>
+
+<h3 id="什么是寄存器">什么是寄存器</h3>
+
+<p>寄存器是位于CPU内部的非常小但极快的存储单元。它们用于存储执行指令过程中需要的数据和中间计算结果。</p>
+
+<p>常见的寄存器如指令寄存器，数据寄存器等等。如果把内润比喻成冰箱的话，那么寄存器就是切菜板，空间有限，但是高效。</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/cpu/20231126171005/img_3.png" alt="img_3.png" /></p>
+
+<p>寄存器的作用：</p>
+<ul>
+  <li>快速存取：由于寄存器直接集成在CPU内，因此CPU可以非常快速地读写寄存器中的数据，这比访问RAM（随机存取存储器）快得多。</li>
+  <li>中间计算：在执行算术或逻辑运算时，CPU通常会将数据从内存加载到寄存器中，然后在寄存器上进行计算。</li>
+  <li>指令执行：某些寄存器用于特定目的，比如指令寄存器（IR）用于存储当前正在执行的指令，程序计数器（PC）用于追踪下一条要执行的指令。</li>
+</ul>
+
+<h3 id="问题">问题</h3>
+
+<p>CPU太简单太傻，这引起了一些基本的思考和问题（这些问题让我想继续阅读下去）:</p>
+<ul>
+  <li>1.如果CPU不知道多进程并且只按顺序执行指令，为什么它不会在运行的程序中卡住？如何能同时运行多个程序?</li>
+  <li>2.如果程序直接在CPU上运行，而CPU可以直接访问RAM，为什么代码不能访问其他进程的内存？</li>
+  <li>3.是什么机制阻止每个进程运行任何指令并对你的电脑做任何事情？</li>
+</ul>
+
+<p>问题1的答案是时间片，问题2和3的答案涉及到了系统调用/内核和用户态</p>
+
+<h3 id="系统调用">系统调用</h3>
+
+<p>在用户态下，大部分的“高危”操作，分配内存，IO读取都是不行的，但是可以通过<strong>系统调用</strong>来实现。</p>
+
+<p>如果你写过C语言，你肯定知道open,read,fork,exit 这样的函数。调用这些函数，就是在”system call”。</p>
+
+<p>系统调用是一种特殊的过程，它让程序从用户空间开始转换到内核空间，从程序的代码跳转到操作系统的代码。</p>
+
+<ul>
+  <li>用户模式程序不能直接访问I/O或内存。他们必须请求操作系统帮助与外部世界交互。</li>
+  <li>程序可以使用像INT和IRET这样的特殊机器代码指令将控制权委托给操作系统。</li>
+  <li>程序不能直接切换权限级别；软件中断是安全的，因为处理器已经被操作系统预先配置好了跳转到操作系统代码的位置。中断向量表只能从内核模式配置。</li>
+  <li>请求中断-中断触发（控制权回到操作系统）-执行（内核代码执行）-返回控制权</li>
+  <li>这种叫做软件中断，和硬件中断不一样，不涉及到完整的上下文切换，CPU仍然在处理程序的请求，只是在操作系统内核的上下文中处理。</li>
+</ul>
+
+<h3 id="时间片">时间片</h3>
+
+<p>处理器只能在一个无限的取指-执行循环中执行指令，它们没有操作系统或程序的概念。</p>
+
+<p>你发现可以通过让进程轮流在CPU上运行来<strong>模拟并行</strong>。如果你轮流运行每个进程的几个指令，它们都可以保持响应，并且在极短的时间内切换（ns级别）。</p>
+
+<p>但你如何从程序代码中<strong>夺回控制权</strong>来计算下一段时间片来给哪个程序使用呢或者运行内核代码呢？</p>
+
+<h3 id="硬件中断">硬件中断</h3>
+
+<p>软件中断是由程序自愿触发的，在处理器在正常的取指-执行周期中执行的机器代码告诉它切换控制权到内核。</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/cpu/20231126171005/img_4.png" alt="img_4.png" /></p>
+
+<p>操作系统调度器使用像PIT这样的定时器芯片来触发<strong>硬件中断</strong>以实现多任务处理：</p>
+<ul>
+  <li>1.执行程序代码之前，操作系统会设置定时器芯片在一段时间后触发中断。</li>
+  <li>2.在用户态执行程序的下一条指令</li>
+  <li>3.定时器时间到达时，它会触发一个硬件中断，切换到内核模式并跳转到操作系统代码</li>
+  <li>4.保存程序离开的数据和指令位置，也被称作上下文，然后根据优先级/权重/反正就是调度算法来加载不同的程序</li>
+</ul>
+
+<h3 id="时间片的计算">时间片的计算</h3>
+
+<p>最简单的就是固定时间片-在10毫秒的范围内，按顺序轮流处理任务。</p>
+
+<p>然后呢Linux的调度器使用的目标延迟是6毫秒，最小粒度是0.75毫秒。</p>
+
+<p>这意味着CPU在超高负载的情况下，可以保证每个进程运行0.75s。</p>
+
+<p>而目标延迟保证每个进程在最多什么情况下可以轮到它执行。</p>
+
+<p>然而，一些简单的算法各有个的问题，因此现在操作系统倾向于有更复杂的调度器，考虑到进程的优先级和截止日期。</p>
+
+<p>例如，2007年以来，Linux已经使用了一个名为完全公平调度器（CFS）的调度器</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/cpu/20231126171005/img_5.png" alt="img_5.png" /></p>
+
+<p><strong>每次操作系统抢占一个进程时，它需要加载新程序的保存的执行上下文，包括其内存环境。这是通过告诉CPU使用不同的页表来完成的，这是从“虚拟”到物理地址的映射。这也是防止程序访问彼此内存的系统</strong></p>
+
+<h2 id="todo-httpscpulandhow-to-run-a-program">TODO https://cpu.land/how-to-run-a-program</h2>
+
+<h2 id="3reference">3.Reference</h2>
+<ul>
+  <li>1.<a href="https://cpu.land/">原文</a></li>
+</ul>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+      
+      
+
+      
+      
+        <div class="post-nav" id="post-nav-id">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/%E5%B7%A5%E4%BD%9C/%E5%8A%A0%E5%AF%86/2024/03/08/Culture-Fit/" rel="next" title="Culture Fit">
+                <i class="fa fa-chevron-left"></i> Culture Fit
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/gpt/ios%E5%BF%AB%E6%8D%B7%E6%96%B9%E5%BC%8F/%E8%8B%B1%E8%AF%AD/2023/11/06/%E5%9F%BA%E4%BA%8EGPT%E7%9A%84%E9%97%AA%E5%BF%B5%E7%AC%94%E8%AE%B0%E5%92%8C%E8%8B%B1%E8%AF%AD%E5%AD%A6%E4%B9%A0/" rel="prev" title="基于GPT的闪念笔记和英语学习">
+                基于GPT的闪念笔记和英语学习 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+      
+
+      
+    </footer>
+  </article>
+
+  <div class="post-spread">
+    
+  </div>
+</div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        
+        
+        
+
+
+
+
+
+
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/assets/images/avatar.gif"
+               alt="三山" />
+          <p class="site-author-name" itemprop="name">三山</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">77</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/">
+                <span class="site-state-item-count">48</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+        
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+
+
+
+
+
+
+
+            
+              <div class="post-toc-content">
+    <ol class=nav>
+      <li class="nav-item nav-level-2"> <a class="nav-link" href="#1前言"> <span class="nav-number">1</span> <span class="nav-text">1.前言</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#2没想到标题"> <span class="nav-number">2</span> <span class="nav-text">2.没想到标题</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-3"> <a class="nav-link" href="#cpu指针指令"> <span class="nav-number">2.1</span> <span class="nav-text">CPU,指针,指令</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#什么是寄存器"> <span class="nav-number">2.2</span> <span class="nav-text">什么是寄存器</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#问题"> <span class="nav-number">2.3</span> <span class="nav-text">问题</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#系统调用"> <span class="nav-number">2.4</span> <span class="nav-text">系统调用</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#时间片"> <span class="nav-number">2.5</span> <span class="nav-text">时间片</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#硬件中断"> <span class="nav-number">2.6</span> <span class="nav-text">硬件中断</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#时间片的计算"> <span class="nav-number">2.7</span> <span class="nav-text">时间片的计算</span> </a> </li> </ol> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#todo-httpscpulandhow-to-run-a-program"> <span class="nav-number">3</span> <span class="nav-text">TODO https://cpu.land/how-to-run-a-program</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#3reference"> <span class="nav-number">4</span> <span class="nav-text">3.Reference</span> </a> </li>
+    </ol>
+  </div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">三山</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://jekyllrb.com">Jekyll</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/simpleyyt/jekyll-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+   
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/assets/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  <script type="text/javascript" src="/assets/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/assets/js/src/post-details.js?v=5.1.1"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+    
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
+
+

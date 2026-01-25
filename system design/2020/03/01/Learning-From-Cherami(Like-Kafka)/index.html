@@ -1,0 +1,1168 @@
+<!--不算子网站访客统计-->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-M7QXLLL8YX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-M7QXLLL8YX');
+</script>
+
+
+<!doctype html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/assets/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/assets/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/assets/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="三山的编程之旅" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="1.故障恢复和复制">
+<meta name="keywords" content="Jekyll, NexT">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Learning From Cherami(Like Kafka)">
+<meta property="og:url" content="https://jiujiujiujiujiuaia.github.io/system%20design/2020/03/01/Learning-From-Cherami(Like-Kafka)/">
+<meta property="og:site_name" content="三山的编程之旅">
+<meta property="og:description" content="1.故障恢复和复制">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/Cherami/20240302165756/img.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/Cherami/20240302165756/img_1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/Cherami/20240302165756/img_2.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/Cherami/20240302165756/img_3.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/Cherami/20240302165756/img_4.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/Cherami/20240302165756/img_5.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/Cherami/20240302165756/img_6.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/Cherami/20240302165756/img_9.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/Cherami/20240302165756/img_10.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/Cherami/20240302165756/img_7.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/Cherami/20240302165756/img_8.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Learning From Cherami(Like Kafka)">
+<meta name="twitter:description" content="1.故障恢复和复制">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/Cherami/20240302165756/img.png">
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://jiujiujiujiujiuaia.github.io"/>
+
+
+
+
+
+  <title>Learning From Cherami(Like Kafka) | 三山的编程之旅</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'G-M7QXLLL8YX', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">三山的编程之旅</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+<div id="posts" class="posts-expand">
+  
+  
+
+  
+
+  
+  
+  
+
+  <article class="post post-type- " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://jiujiujiujiujiuaia.github.io/system%20design/2020/03/01/Learning-From-Cherami(Like-Kafka)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="三山">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="assets/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="三山的编程之旅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+          
+          
+            Learning From Cherami(Like Kafka)
+          
+        </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-01T17:30:09+00:00">
+                2020-03-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/category/#/System%20Design" itemprop="url" rel="index">
+                    <span itemprop="name">System Design</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+                
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv" id="busuanzi_container_page_pv">
+            本文总阅读量<span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+                
+
+            
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <div class="post-wordcount">
+                  <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                  <span class="post-meta-item-text">字数统计</span>
+                <span title="字数统计">
+                  2148字
+                </span>
+
+                <span class="post-meta-divider">|</span>
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                  <span class="post-meta-item-text">阅读时长</span>
+                <span title="阅读时长">
+                  10分钟
+                </span>
+            </div>
+
+          
+            
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 id="1故障恢复和复制">1.故障恢复和复制</h2>
+
+<h3 id="数据持久化">数据持久化</h3>
+
+<p>仅当“所有storage主机”都确认收到相同消息时，input主机才会向生产者确认。最后的确认意味着该消息已持久存储在所有副本中。</p>
+
+<p>下图中，1，2，3被持久化成功了。</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/Cherami/20240302165756/img.png" alt="img.png" /></p>
+
+<h3 id="fail-handle-and-recover">Fail handle and recover</h3>
+
+<p>收到“所有storage主机”的ACK，才意味着存储在所有副本。如果某个默认时间收不到ACK，意味着故障发生。</p>
+
+<p>input主机因为没有收到来自该失败storage主机的确认，无法确定该消息是否在所有副本中都被成功存储，因此导致这个范围（partition）不再可追加新消息，但是任然可以读。</p>
+
+<p>如何recover呢？</p>
+
+<ul>
+  <li>密封这个partition，可以读但是不能写</li>
+  <li>通过websocket，向client端通知（producer)，创建了一个新的partition</li>
+</ul>
+
+<p>好处：</p>
+<ul>
+  <li>简单的恢复机制：如果没能出现ACK，那么创建一个新的partition并通知client，保证可用性</li>
+</ul>
+
+<p>坏处：</p>
+<ul>
+  <li>消息的重复：
+    <ul>
+      <li>生产者在未收到确认时可能会重试发送消息，导致新范围中出现重复的消息。</li>
+      <li>脏读：有些消息可能没有被所有副本确认，这些消息在读取路径中仍会被处理。</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="读和写可用">读和写可用</h3>
+
+<p>硬件故障是经常发生的。当磁盘发生故障时，多个replica可以保证读可用。</p>
+
+<p>“写”如何保持可用呢？</p>
+
+<p>每个队列，都由多个partition构成(文中称为extent), 在创建partition的时候，会由元数据数据库(zookeeper?)分配不可变的input主机和 3个storage主机。</p>
+
+<p>client端（producer）连接到input主机，然后发送消息，input主机负责维护和storage主机的连接（ack）以及replica message。</p>
+
+<ul>
+  <li>就像上面说的，如果任意一个storage host发生故障，那么其他的storage host任然可读，但是不可以写了。</li>
+  <li>会分配新的input和3个storage主机。</li>
+  <li>通知客户端。</li>
+</ul>
+
+<h3 id="append-only">Append only</h3>
+
+<p>好处：</p>
+<ul>
+  <li>降低复杂性：数据一旦写入，就不涉及update和delete，这样简化了系统，降低了多个replica之间复制的复杂性（因为update和delete也要在多个副本之间维护）</li>
+  <li>无锁操作，增大吞吐量: 它避免了修改和删除操作可能引起的数据竞争条件。由于所有写入操作都是追加到日志文件的末尾，因此可以无需复杂的锁机制，避免了并发写入时的数据冲突。</li>
+</ul>
+
+<p>坏处：</p>
+<ul>
+  <li>数据膨胀很快</li>
+  <li>读取效率问题，有大量旧数据</li>
+</ul>
+
+<h2 id="2scaling-of-write">2.scaling of write</h2>
+
+<h3 id="scale-up">scale up</h3>
+
+<p>每个input 主机都会监控吞吐量，一旦吞吐量超过threshold，那么就会自动创建新的input和storage host。</p>
+
+<p>新的input接收部分写入负载，从而减轻现有盘区的负载。</p>
+
+<p>Before scaling:
+<img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/Cherami/20240302165756/img_1.png" alt="img_1.png" /></p>
+
+<p>After scaling:
+<img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/Cherami/20240302165756/img_2.png" alt="img_2.png" /></p>
+
+<h3 id="scale-down">scale down</h3>
+
+<p>随着负载的减少，Cherami 会密封某些范围，而不用新的范围替换它们。</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/Cherami/20240302165756/img_3.png" alt="img_3.png" /></p>
+
+<p>这样的好处：</p>
+<ul>
+  <li>分散到多个partition，避免单个partition过载。</li>
+  <li>扩展性强，方便横向扩展</li>
+</ul>
+
+<p>缺点：</p>
+<ul>
+  <li>随着extent的数量增加，需要维护更多的元数据来追踪每个消息存储的位置，这可能导致管理复杂性增加</li>
+  <li>客户端可能需要从多个extent中检索数据，这可能导致读取操作比集中存储的情况更复杂，影响读取性能</li>
+</ul>
+
+<p>因此，</p>
+<ul>
+  <li>需要高效的索引来快速定位数据（比如记录数据id到extent id的索引关系（index relationship）)</li>
+  <li>同时需要定期的后台任务来合并和压缩extent</li>
+  <li>缓存热点数据，减少对分散extent的直接访问，从而改善读取性能</li>
+</ul>
+
+<h2 id="3-consumption-handling">3. Consumption handling</h2>
+
+<p>一条queue可以被consumer group处理，不同的消费组有不同的逻辑。消息可以被重复读取，这个很好理解。</p>
+
+<p>但是会有一些问题：</p>
+<ul>
+  <li>某个消费者处理消息超时（客户端超时）</li>
+  <li>消息没能成功发送给消费者</li>
+  <li>不同消费者的处理速度不一样</li>
+  <li>管理已读未读状态的复杂性</li>
+</ul>
+
+<p>因此，Cherami是这样设计的：</p>
+<ul>
+  <li>每个消费组有自己的定时器，超时会重传</li>
+  <li>每个消费组记录自己的offset</li>
+  <li>Cherami有一个output主机，维护了read offset和consumed offset</li>
+  <li>如果达到重传限制，消息将被发送到死信队列（Dead Letter Queue，DLQ），并将该消息标记为已确认，以便确认偏移量可以前进。</li>
+</ul>
+
+<p>尽管worker4处理了完了2，发会了ACK，但是consumed offset不会移动。已发送的offset会不断前进。</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/Cherami/20240302165756/img_4.png" alt="img_4.png" /></p>
+
+<p>只有当前面所有的消息都ACK，consumed offset才会移动。</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/Cherami/20240302165756/img_5.png" alt="img_5.png" /></p>
+
+<h2 id="4-id-唯一性">4. Id 唯一性</h2>
+
+<p>数据的存储很简单，就是key和value，key是id，那么如何保证id的唯一性呢？</p>
+
+<h3 id="uuid">UUID</h3>
+<p>UUID（通用唯一标识符）或是依据每个写入实例的特定算法来生成ID，从而避免冲突。</p>
+
+<p>例如，可以结合时间戳、节点标识和序列号来生成唯一的ID，这样即使多个进程同时尝试生成ID，也能保证它们的唯一性。</p>
+
+<p>好处：</p>
+<ul>
+  <li>唯一性：生成全局唯一的ID，避免了冲突。</li>
+  <li>无需协调：不需要跨进程或服务的协调，生成ID的操作可以在本地完成。</li>
+</ul>
+
+<p>坏处：</p>
+<ul>
+  <li>但是这样id就不是有序的，会降低查询效率。</li>
+  <li>可读性差</li>
+  <li>需要更多存储空间</li>
+</ul>
+
+<h3 id="分布式一致性算法如raft或paxos">分布式一致性算法（如Raft或Paxos）</h3>
+
+<p>好处:</p>
+
+<ul>
+  <li>能够生成自增id</li>
+  <li>强一致性：提供跨多个节点的强一致性保证。</li>
+  <li>容错性：这些算法通常能够容忍部分节点失败而不影响整体系统。</li>
+</ul>
+
+<p>坏处:</p>
+
+<ul>
+  <li>复杂性高：算法实现复杂，需要深入理解才能正确实施。</li>
+  <li>性能开销：通常需要多轮通信以达成一致，可能导致性能开销。</li>
+</ul>
+
+<h2 id="5整体架构">5.整体架构</h2>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/Cherami/20240302165756/img_6.png" alt="img_6.png" /></p>
+
+<h3 id="control-plane">Control plane</h3>
+
+<p>所有的data plane(DP) 通过gRPC去访问CP，CP</p>
+
+<ul>
+  <li>使用Cassandra记录和存储元数据</li>
+  <li>它主要确定何时创建范围以及在何处放置（到哪个输入和哪个存储主机）。</li>
+  <li>它还确定哪些输出主机处理消费者组的消费。</li>
+  <li>所有data plane向CP本报告负载信息，CP根据信息做出负载平衡的决策</li>
+  <li>CP本身要有高可用，使用一致性hash和leader模式保证一直能够做决策</li>
+</ul>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/Cherami/20240302165756/img_9.png" alt="img_9.png" /></p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/Cherami/20240302165756/img_10.png" alt="img_10.png" /></p>
+
+<h3 id="前端">前端</h3>
+
+<ul>
+  <li>提供CRUD API，提供负载均衡，auth健全等等功能</li>
+  <li>帮助producer找到input</li>
+  <li>帮助client找到output</li>
+</ul>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/Cherami/20240302165756/img_7.png" alt="img_7.png" /></p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/Cherami/20240302165756/img_8.png" alt="img_8.png" /></p>
+
+<h3 id="cassandra">Cassandra</h3>
+
+<ul>
+  <li>Cherami 将元数据存储在 Cassandra 上，Cassandra 是单独部署的。</li>
+  <li>元数据包含有关队列、其所有范围以及所有消费者组信息的信息，例如每个消费者组每个范围的 ACK 偏移量。</li>
+  <li>我们选择 Cassandra 不仅因为 Cassandra 是一个高可用的数据存储系统，还因为它的可调一致性模型。</li>
+</ul>
+
+<h4 id="什么是可调一致性">什么是可调一致性?</h4>
+
+<ul>
+  <li>一致性（Consistency）：每次读取都会返回最新写入的数据。</li>
+  <li>可用性（Availability）：每个请求总能在有限时间内收到响应，无论响应成功或失败。</li>
+  <li>分区容错性（Partition tolerance）：系统即使在某些部分发生网络分区事件时也能继续工作。
+    <ul>
+      <li>在一个分布式数据库中，如果两个数据中心之间的网络连接中断，数据库仍然能够在各自的数据中心内部处理读写请求，这就体现了分区容错性。</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Cassandra数据库提供了可调的一致性模型，这意味着开发者可以根据业务需求调整读写操作的一致性级别。例如，可以选择：</p>
+
+<ul>
+  <li>强一致性（如Quorum）：确保读取总是返回最新的写入数据，但可能会牺牲一些可用性。</li>
+  <li>最终一致性：允许读取不一定立即返回最新写入的数据，但系统最终会达到一致状态，这提高了可用性。</li>
+</ul>
+
+<p>回到我们的情况：</p>
+
+<ul>
+  <li>这种灵活性使我们能够提供可以容忍分区但不保留顺序的队列（AP 队列），
+    <ul>
+      <li>牺牲一致性，保护可用性</li>
+    </ul>
+  </li>
+  <li>或者保留顺序（CP 队列）但在此类分区事件期间在次要分区中不可用的队列。
+    <ul>
+      <li>牺牲可用性，保护一致性</li>
+    </ul>
+  </li>
+  <li>两种类型的队列处理上的主要区别在于Extent创建是否需要条件更新操作。</li>
+</ul>
+
+<h2 id="reference">Reference</h2>
+<ul>
+  <li>https://web.archive.org/web/20170225055932/https://eng.uber.com/cherami/</li>
+</ul>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+      
+      
+
+      
+      
+        <div class="post-nav" id="post-nav-id">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/system%20design/2020/03/01/Learning-From-Job-System/" rel="next" title="Learning From Job System">
+                <i class="fa fa-chevron-left"></i> Learning From Job System
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/system%20design/2020/03/01/Learning-From-Booking/" rel="prev" title="Learning From Booking">
+                Learning From Booking <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+      
+
+      
+    </footer>
+  </article>
+
+  <div class="post-spread">
+    
+  </div>
+</div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        
+        
+        
+
+
+
+
+
+
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/assets/images/avatar.gif"
+               alt="三山" />
+          <p class="site-author-name" itemprop="name">三山</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">77</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/">
+                <span class="site-state-item-count">48</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+        
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+
+
+
+
+
+
+
+            
+              <div class="post-toc-content">
+    <ol class=nav>
+      <li class="nav-item nav-level-2"> <a class="nav-link" href="#1故障恢复和复制"> <span class="nav-number">1</span> <span class="nav-text">1.故障恢复和复制</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-3"> <a class="nav-link" href="#数据持久化"> <span class="nav-number">1.1</span> <span class="nav-text">数据持久化</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#fail-handle-and-recover"> <span class="nav-number">1.2</span> <span class="nav-text">Fail handle and recover</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#读和写可用"> <span class="nav-number">1.3</span> <span class="nav-text">读和写可用</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#append-only"> <span class="nav-number">1.4</span> <span class="nav-text">Append only</span> </a> </li> </ol> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#2scaling-of-write"> <span class="nav-number">2</span> <span class="nav-text">2.scaling of write</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-3"> <a class="nav-link" href="#scale-up"> <span class="nav-number">2.1</span> <span class="nav-text">scale up</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#scale-down"> <span class="nav-number">2.2</span> <span class="nav-text">scale down</span> </a> </li> </ol> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#3-consumption-handling"> <span class="nav-number">3</span> <span class="nav-text">3. Consumption handling</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#4-id-唯一性"> <span class="nav-number">4</span> <span class="nav-text">4. Id 唯一性</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-3"> <a class="nav-link" href="#uuid"> <span class="nav-number">4.1</span> <span class="nav-text">UUID</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#分布式一致性算法如raft或paxos"> <span class="nav-number">4.2</span> <span class="nav-text">分布式一致性算法（如Raft或Paxos）</span> </a> </li> </ol> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#5整体架构"> <span class="nav-number">5</span> <span class="nav-text">5.整体架构</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-3"> <a class="nav-link" href="#control-plane"> <span class="nav-number">5.1</span> <span class="nav-text">Control plane</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#前端"> <span class="nav-number">5.2</span> <span class="nav-text">前端</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#cassandra"> <span class="nav-number">5.3</span> <span class="nav-text">Cassandra</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-4"> <a class="nav-link" href="#什么是可调一致性"> <span class="nav-number">5.3.1</span> <span class="nav-text">什么是可调一致性?</span> </a> </li> </ol> </li> </ol> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#reference"> <span class="nav-number">6</span> <span class="nav-text">Reference</span> </a> </li>
+    </ol>
+  </div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">三山</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://jekyllrb.com">Jekyll</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/simpleyyt/jekyll-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+   
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/assets/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  <script type="text/javascript" src="/assets/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/assets/js/src/post-details.js?v=5.1.1"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+    
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
+
+

@@ -1,0 +1,1192 @@
+<!--不算子网站访客统计-->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-M7QXLLL8YX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-M7QXLLL8YX');
+</script>
+
+
+<!doctype html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/assets/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/assets/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/assets/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="三山的编程之旅" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="前言 音视频的底层开发大多数都是C++/C, 因此需要对底层的链接技术有一定的理解，在IDE的配环境或者一些常见的编译问题的发生, 才能更好的解决。比如如果报错头文件找到，就需要取property中看看是不是include目录配置错误了。同时，我们日常在集成开发环境(IDE)如Vistual studio中， 点击run 或者 debug按钮，程序运行起来，十分简单。 但是背后其实发生了很多事情。从ASCII的源代码文件，到编译，到链接静态库，到运行时load动态链接库， 里面有了太多的细节。">
+<meta name="keywords" content="Jekyll, NexT">
+<meta property="og:type" content="article">
+<meta property="og:title" content="链接技术简介：音视频开发先导">
+<meta property="og:url" content="https://jiujiujiujiujiuaia.github.io/%E9%9F%B3%E8%A7%86%E9%A2%91/c%E8%AF%AD%E8%A8%80/%E9%93%BE%E6%8E%A5/2023/10/06/%E9%93%BE%E6%8E%A5%E6%8A%80%E6%9C%AF%E7%AE%80%E4%BB%8B-%E9%9F%B3%E8%A7%86%E9%A2%91%E5%BC%80%E5%8F%91%E5%85%88%E5%AF%BC/">
+<meta property="og:site_name" content="三山的编程之旅">
+<meta property="og:description" content="前言 音视频的底层开发大多数都是C++/C, 因此需要对底层的链接技术有一定的理解，在IDE的配环境或者一些常见的编译问题的发生, 才能更好的解决。比如如果报错头文件找到，就需要取property中看看是不是include目录配置错误了。同时，我们日常在集成开发环境(IDE)如Vistual studio中， 点击run 或者 debug按钮，程序运行起来，十分简单。 但是背后其实发生了很多事情。从ASCII的源代码文件，到编译，到链接静态库，到运行时load动态链接库， 里面有了太多的细节。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/linker/20231006171141/img.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/linker/20231006171141/img_1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/linker/20231006171141/img_3.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/linker/20231006171141/img_4.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/linker/20231006171141/img_5.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/linker/20231006171141/img_6.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/linker/20231006171141/img_7.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/linker/20231006171141/img_8.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/linker/20231006171141/img_9.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/linker/20231006171141/img_10.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/linker/20231006171141/img_11.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/linker/20231006171141/img_12.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/linker/20231103122354/img.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/linker/20231006171141/img_13.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/linker/20231006171141/img_14.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/linker/20231006171141/img_15.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/linker/20231006171141/img_16.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/linker/20231006171141/img_17.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="链接技术简介：音视频开发先导">
+<meta name="twitter:description" content="前言 音视频的底层开发大多数都是C++/C, 因此需要对底层的链接技术有一定的理解，在IDE的配环境或者一些常见的编译问题的发生, 才能更好的解决。比如如果报错头文件找到，就需要取property中看看是不是include目录配置错误了。同时，我们日常在集成开发环境(IDE)如Vistual studio中， 点击run 或者 debug按钮，程序运行起来，十分简单。 但是背后其实发生了很多事情。从ASCII的源代码文件，到编译，到链接静态库，到运行时load动态链接库， 里面有了太多的细节。">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/linker/20231006171141/img.png">
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://jiujiujiujiujiuaia.github.io"/>
+
+
+
+
+
+  <title>链接技术简介：音视频开发先导 | 三山的编程之旅</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'G-M7QXLLL8YX', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">三山的编程之旅</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+<div id="posts" class="posts-expand">
+  
+  
+
+  
+
+  
+  
+  
+
+  <article class="post post-type- " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://jiujiujiujiujiuaia.github.io/%E9%9F%B3%E8%A7%86%E9%A2%91/c%E8%AF%AD%E8%A8%80/%E9%93%BE%E6%8E%A5/2023/10/06/%E9%93%BE%E6%8E%A5%E6%8A%80%E6%9C%AF%E7%AE%80%E4%BB%8B-%E9%9F%B3%E8%A7%86%E9%A2%91%E5%BC%80%E5%8F%91%E5%85%88%E5%AF%BC/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="三山">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="assets/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="三山的编程之旅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+          
+          
+            链接技术简介：音视频开发先导
+          
+        </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-10-06T22:30:09+00:00">
+                2023-10-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/category/#/%E9%9F%B3%E8%A7%86%E9%A2%91" itemprop="url" rel="index">
+                    <span itemprop="name">音视频</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/category/#/C%E8%AF%AD%E8%A8%80" itemprop="url" rel="index">
+                    <span itemprop="name">C语言</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/category/#/%E9%93%BE%E6%8E%A5" itemprop="url" rel="index">
+                    <span itemprop="name">链接</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+                
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv" id="busuanzi_container_page_pv">
+            本文总阅读量<span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+                
+
+            
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <div class="post-wordcount">
+                  <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                  <span class="post-meta-item-text">字数统计</span>
+                <span title="字数统计">
+                  2140字
+                </span>
+
+                <span class="post-meta-divider">|</span>
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                  <span class="post-meta-item-text">阅读时长</span>
+                <span title="阅读时长">
+                  10分钟
+                </span>
+            </div>
+
+          
+            
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 id="前言">前言</h2>
+<p>音视频的底层开发大多数都是C++/C, 因此需要对底层的链接技术有一定的理解，在IDE的配环境或者一些常见的编译问题的发生,
+才能更好的解决。比如如果报错头文件找到，就需要取property中看看是不是include目录配置错误了。同时，我们日常在集成开发环境(IDE)如Vistual studio中，
+点击run 或者 debug按钮，程序运行起来，十分简单。 但是背后其实发生了很多事情。从ASCII的源代码文件，到编译，到链接静态库，到运行时load动态链接库，
+里面有了太多的细节。</p>
+
+<h2 id="编译">编译</h2>
+
+<p>编译是把源代码(ASCII代码文件)转换成可执行文件的过程。</p>
+
+<p>下面有两个C语言代码，一个是main，一个是被调用的函数sum，目标是获得一个执行文件(exe) prog被执行。</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/linker/20231006171141/img.png" alt="img.png" /></p>
+
+<p>在Linux环境中，可以使用下面的命令，通过链接器，获得一个可执行文件。</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1</pre></td><td class="code"><pre class="highlight"><code>gcc <span class="nt">-Og</span> <span class="nt">-o</span> prog main.c sum.c
+</code></pre></td></tr></tbody></table></div></div>
+
+<p>过程如下：</p>
+<ul>
+  <li>1.将源文件main.c转换为 ASCII 中间文件main.i；</li>
+  <li>2.驱动运行 C 编译器 (C Compiler，CC)，将main.i转换为 ASCII 汇编语言文件main.s</li>
+  <li>3.驱动运行汇编器，将main.s转换为二进制可重定位（Relocatable）目标文件main.o（sum.o的生成过程相同）</li>
+  <li>4.<strong>驱动运行链接器</strong>，将main.o、sum.o和一些必要的系统目标文件组合，创建二进制可执行目标文件prog。</li>
+</ul>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/linker/20231006171141/img_1.png" alt="img_1.png" /></p>
+
+<h2 id="链接">链接</h2>
+
+<h3 id="什么是链接">什么是链接？</h3>
+
+<p>在现代系统中，能够自动执行链接（Linking）的程序被称为链接器（Linker）。链接器是将<strong>各部分代码和数据</strong>收集并组成单个文件的过程，该文件可以被加载（复制）到内存中执行。</p>
+
+<h3 id="链接在什么时候发生">链接在什么时候发生？</h3>
+
+<ul>
+  <li>链接可以在编译时（即源代码被翻译成机器代码时）执行。(静态链接)</li>
+  <li>可以在加载时（即程序被加载到内存并由加载器执行时）执行。(动态链接)</li>
+  <li>还可以在运行时由应用程序执行。</li>
+</ul>
+
+<h3 id="链接器做了什么">链接器做了什么？</h3>
+
+<p>链接器需要完成两个主要任务：</p>
+
+<ul>
+  <li>1.符号解析（Symbol Resolution）：<strong>目标文件</strong>定义并引用符号，每个符号对应一个函数、全局变量或静态变量（即使用static声明的任何变量）。符号解析的目的是将每个符号引用与一个符号定义相关联；</li>
+  <li>2.重定位（Relocation）：编译器和汇编器生成的代码和数据段是从地址 0 开始的，链接器会重定位所有的符号定义并修改其对应的符号引用。</li>
+</ul>
+
+<h4 id="目标文件">目标文件</h4>
+<p>目标文件（Object File）有三种形式：</p>
+
+<ul>
+  <li>1.可重定位目标文件(.o file)：每个 .o 文件都是由对应的 .c 文件通过编译器和汇编器生成,包含二进制代码和数据，可以在编译时与其他可重定位目标文件组合以创建可执行目标文件；</li>
+  <li>2.可执行目标文件(.out file)：包含二进制代码和数据形式，可直接被复制到内存中执行；</li>
+  <li>3.共享目标文件(.so file or .dll in windows)：一种特殊类型的可重定位目标文件，可以在加载时或运行时被加载到内存中并动态链接。</li>
+</ul>
+
+<h4 id="符号解析">符号解析</h4>
+
+<p>如果main.c 引用了sum.c的sum函数或者引用了标准库的函数，如何确保了main.o 中对sum的调用会正确地跳转到sum.o中的定义？ 符号解析就是干这个事情的。</p>
+
+<p>在main.o中，利用READELF工具，执行’readelf -s main.o’, 可以看到下面的符号表。</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/linker/20231006171141/img_3.png" alt="img_3.png" /></p>
+
+<p>READELF 通过整数索引 Ndx 标识每个 Section，1 表示 .text，3 表示 .data。</p>
+
+<p>全局符号main和array分别位于上述两个 Section 首部，因此其偏移量value均为 0。</p>
+
+<p>外部符号sum未在本文件中定义，位于 UNDEF。</p>
+
+<p>通过符号解析后，你会发现这个SUM的符号，Ndx不再是<code class="language-plaintext highlighter-rouge">undefine</code>，type也有了<code class="language-plaintext highlighter-rouge">FUNC</code>。</p>
+
+<p>当然符号解析还有另外一大块内容，涉及到解析名称重复的符号，强符号/弱符号等等，这里就略过了。</p>
+
+<h4 id="重定位">重定位</h4>
+
+<p>现在，链接器已经知道了sum函数的定义在哪里，但这还不够。它还需要确保在可执行文件中，main.o 中对sum的调用能够正确地跳转到其定义。</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2</pre></td><td class="code"><pre class="highlight"><code>gcc <span class="nt">-c</span> main.c <span class="nt">-o</span> main.o
+objdump <span class="nt">-dr</span> main.o
+</code></pre></td></tr></tbody></table></div></div>
+
+<p>这里的关键是 callq 指令。它正在尝试调用 sum，但因为 main.o 是单独编译的，所以它不知道 sum 的实际地址。</p>
+
+<p>因此，它使用一个占位符地址 (00 00 00 00)。</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/linker/20231006171141/img_4.png" alt="img_4.png" /></p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3</pre></td><td class="code"><pre class="highlight"><code>gcc <span class="nt">-c</span> sum.c <span class="nt">-o</span> sum.o
+gcc main.o sum.o <span class="nt">-o</span> my_program
+objdump <span class="nt">-d</span> my_program
+</code></pre></td></tr></tbody></table></div></div>
+
+<p>你就可以得到下图，可以看到，这个时候在my_program可执行文件中，当执行到sum这个符号引用的时候，会跳转到
+0000000000001162地址。</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/linker/20231006171141/img_5.png" alt="img_5.png" /></p>
+
+<h2 id="静态库与共享库">静态库与共享库</h2>
+
+<p>静态库与共享库都会在链接阶段和main函数合并在一起。区别在于是编译时还是运行时执行。</p>
+
+<p>同时这两类库在不同的系统上有一定的区别，在linux和windows上有一定的区别</p>
+
+<ol>
+  <li>静态库:
+    <ol>
+      <li>Linux: 静态库通常以 .a 后缀存储。例如: libmylibrary.a</li>
+      <li>Windows: 静态库通常以 .lib 后缀存储。例如: mylibrary.lib</li>
+    </ol>
+  </li>
+  <li>动态库:
+    <ol>
+      <li>Linux: 动态库（或共享对象）通常以 .so 后缀存储。它们还可能有版本号作为扩展名的一部分。例如: libmylibrary.so, libmylibrary.so.1</li>
+      <li>Windows: 动态链接库以 .dll 后缀存储。例如: mylibrary.dll</li>
+    </ol>
+  </li>
+</ol>
+
+<p>使用静态库，就叫做静态链接:</p>
+
+<ul>
+  <li>优点: 生成的可执行文件(exe)包含了所有代码和数据，不需要外部依赖。因此用户不需要安装 FFmpeg。</li>
+  <li>缺点: 可执行文件的大小会增加，因为它包含了整个 FFmpeg 库的代码。</li>
+</ul>
+
+<p>使用动态库(eg.DLL)，就叫做动态链接:</p>
+
+<ul>
+  <li>优点: 生成的可执行文件更小，因为它不包含动态库的代码，运行时才会被加载到内存中。</li>
+  <li>缺点: 当你发布你的程序时，你还需要包括 FFmpeg 的动态链接库（DLLs 或 .so 文件）。如果用户的系统上已经有不同版本的 FFmpeg 动态链接库，可能会出现版本冲突。</li>
+</ul>
+
+<h2 id="实战搭建ffmpeg-开发环境">实战：搭建FFmpeg 开发环境</h2>
+
+<p>prerequisite:</p>
+<ul>
+  <li>1.Visual studio</li>
+  <li>2.FFmpeg lib</li>
+</ul>
+
+<h3 id="下载ffmpeg的依赖">下载FFmpeg的依赖</h3>
+
+<p>https://github.com/GyanD/codexffmpeg/releases</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/linker/20231006171141/img_6.png" alt="img_6.png" /></p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/linker/20231006171141/img_7.png" alt="img_7.png" /></p>
+
+<h3 id="设置头文件地址">设置头文件地址</h3>
+
+<p>右键项目选择property，填写include的地址，我的是<code class="language-plaintext highlighter-rouge">C:\Users\A\Desktop\workspace\ffmpeg-4.4-full_build-shared\include\</code>，这个是干什么用的呢？</p>
+
+<p>在C++ 代码中使用 #include 指令来包含一个头文件，编译器需要知道从哪里找到这个文件。</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/linker/20231006171141/img_8.png" alt="img_8.png" /></p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/linker/20231006171141/img_9.png" alt="img_9.png" /></p>
+
+<h3 id="设置静态链接库地址">设置静态链接库地址</h3>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/linker/20231006171141/img_10.png" alt="img_10.png" /></p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/linker/20231006171141/img_11.png" alt="img_11.png" /></p>
+
+<h3 id="设置静态链接库">设置静态链接库</h3>
+
+<ul>
+  <li>avcodec.lib</li>
+  <li>avdevice.lib</li>
+  <li>avfilter.lib</li>
+  <li>avformat.lib</li>
+  <li>avutil.lib</li>
+  <li>postproc.lib</li>
+  <li>swresample.lib</li>
+  <li>swscale.lib</li>
+</ul>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/linker/20231006171141/img_12.png" alt="img_12.png" /></p>
+
+<h3 id="dll-not-found">DLL not found</h3>
+
+<p>你很有可能碰到这个问题，这个时候只需要去环境变量里面set up DLL的目录就好，通常就是bin目录，比如我的是：</p>
+
+<p><code class="language-plaintext highlighter-rouge">C:\Users\A\Desktop\workspace\ffmpeg-4.4-full_build-shared\bin\</code></p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/linker/20231103122354/img.png" alt="img.png" /></p>
+
+<h3 id="设置visual-studio">设置visual studio</h3>
+
+<p>一个solution有多个项目时，运行那个被选中的项目</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/linker/20231006171141/img_13.png" alt="img_13.png" /></p>
+
+<p>Debug的参数设置，我这里是需要传一个输入文件，你可以看情况决定。</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/linker/20231006171141/img_14.png" alt="img_14.png" /></p>
+
+<h3 id="cmakelist和property">CmakeList和property</h3>
+
+<p>你可能会觉得很复杂， 如果多个项目需要配置这个怎么办？在visual studio，有一种简单的办法，那就是创建一个property模板：</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/linker/20231006171141/img_15.png" alt="img_15.png" /></p>
+
+<p>未来有了新项目，就可以用这个存在的模板了。</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/linker/20231006171141/img_16.png" alt="img_16.png" /></p>
+
+<p>这里小结一下两者的优缺点：</p>
+
+<p>Visual Studio 构建系统:</p>
+
+<ul>
+  <li>使用 .vcxproj 和 .sln 文件。 专为 Visual Studio 设计。</li>
+  <li>在创建新的 Visual Studio 项目时自动生成。</li>
+  <li>不需要 CMakeLists.txt。</li>
+</ul>
+
+<p>CMake:</p>
+
+<ul>
+  <li>跨平台，可以生成多种构建系统的文件，如 Makefiles、Visual Studio 项目文件、Xcode 项目文件等。</li>
+  <li>需要手动设置并创建 CMakeLists.txt。</li>
+  <li>适用于需要在多个平台或编译环境中构建的项目。</li>
+</ul>
+
+<h3 id="那么什么是cmakelists呢">那么什么是CMakeLists呢？</h3>
+
+<p>下面是GPT给的一个cmakelists的sample，你可以看到和我们手动点点的很像哈，什么include，link directory等等</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/linker/20231006171141/img_17.png" alt="img_17.png" /></p>
+
+<p>TODO 实际上，可以利用windows平台上的cmake，然后根据CMAKELISTS做一个solution出来，这样保证了在不同平台的跨平台。</p>
+
+<h2 id="reference">Reference</h2>
+
+<ul>
+  <li>1.<a href="https://koktlzz.github.io/posts/linking-note/#%E5%8F%AF%E6%89%A7%E8%A1%8C%E7%9B%AE%E6%A0%87%E6%96%87%E4%BB%B6">详细讲诉CSAPP中的链接器的内容</a></li>
+  <li>2.<a href="https://wdxtub.com/csapp/thin-csapp-4/2016/04/16/">粗糙讲诉</a></li>
+</ul>
+
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+      
+      
+
+      
+      
+        <div class="post-nav" id="post-nav-id">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/git/%E6%8A%80%E6%9C%AF/2023/10/07/Git-%E7%9A%84%E6%95%B0%E6%8D%AE%E5%BA%93%E5%86%85%E9%83%A8%E7%BB%93%E6%9E%84(1)-%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8/" rel="next" title="Git 的数据库内部结构(1)-对象存储">
+                <i class="fa fa-chevron-left"></i> Git 的数据库内部结构(1)-对象存储
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/%E7%BC%96%E7%A8%8B/2023/09/28/Wechat%E6%8F%90%E9%86%92%E5%8A%A9%E6%89%8B/" rel="prev" title="Wechat自律助手">
+                Wechat自律助手 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+      
+
+      
+    </footer>
+  </article>
+
+  <div class="post-spread">
+    
+  </div>
+</div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        
+        
+        
+
+
+
+
+
+
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/assets/images/avatar.gif"
+               alt="三山" />
+          <p class="site-author-name" itemprop="name">三山</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">77</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/">
+                <span class="site-state-item-count">48</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+        
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+
+
+
+
+
+
+
+            
+              <div class="post-toc-content">
+    <ol class=nav>
+      <li class="nav-item nav-level-2"> <a class="nav-link" href="#前言"> <span class="nav-number">1</span> <span class="nav-text">前言</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#编译"> <span class="nav-number">2</span> <span class="nav-text">编译</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#链接"> <span class="nav-number">3</span> <span class="nav-text">链接</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-3"> <a class="nav-link" href="#什么是链接"> <span class="nav-number">3.1</span> <span class="nav-text">什么是链接？</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#链接在什么时候发生"> <span class="nav-number">3.2</span> <span class="nav-text">链接在什么时候发生？</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#链接器做了什么"> <span class="nav-number">3.3</span> <span class="nav-text">链接器做了什么？</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-4"> <a class="nav-link" href="#目标文件"> <span class="nav-number">3.3.1</span> <span class="nav-text">目标文件</span> </a> </li> <li class="nav-item nav-level-4"> <a class="nav-link" href="#符号解析"> <span class="nav-number">3.3.2</span> <span class="nav-text">符号解析</span> </a> </li> <li class="nav-item nav-level-4"> <a class="nav-link" href="#重定位"> <span class="nav-number">3.3.3</span> <span class="nav-text">重定位</span> </a> </li> </ol> </li> </ol> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#静态库与共享库"> <span class="nav-number">4</span> <span class="nav-text">静态库与共享库</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#实战搭建ffmpeg-开发环境"> <span class="nav-number">5</span> <span class="nav-text">实战：搭建FFmpeg 开发环境</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-3"> <a class="nav-link" href="#下载ffmpeg的依赖"> <span class="nav-number">5.1</span> <span class="nav-text">下载FFmpeg的依赖</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#设置头文件地址"> <span class="nav-number">5.2</span> <span class="nav-text">设置头文件地址</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#设置静态链接库地址"> <span class="nav-number">5.3</span> <span class="nav-text">设置静态链接库地址</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#设置静态链接库"> <span class="nav-number">5.4</span> <span class="nav-text">设置静态链接库</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#dll-not-found"> <span class="nav-number">5.5</span> <span class="nav-text">DLL not found</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#设置visual-studio"> <span class="nav-number">5.6</span> <span class="nav-text">设置visual studio</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#cmakelist和property"> <span class="nav-number">5.7</span> <span class="nav-text">CmakeList和property</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#那么什么是cmakelists呢"> <span class="nav-number">5.8</span> <span class="nav-text">那么什么是CMakeLists呢？</span> </a> </li> </ol> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#reference"> <span class="nav-number">6</span> <span class="nav-text">Reference</span> </a> </li>
+    </ol>
+  </div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">三山</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://jekyllrb.com">Jekyll</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/simpleyyt/jekyll-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+   
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/assets/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  <script type="text/javascript" src="/assets/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/assets/js/src/post-details.js?v=5.1.1"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+    
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
+
+

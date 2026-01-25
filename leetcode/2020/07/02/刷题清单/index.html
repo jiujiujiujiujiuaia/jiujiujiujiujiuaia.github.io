@@ -1,0 +1,1968 @@
+<!--不算子网站访客统计-->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-M7QXLLL8YX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-M7QXLLL8YX');
+</script>
+
+
+<!doctype html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/assets/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/assets/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/assets/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="三山的编程之旅" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="TODO https://www.acwing.com/file_system/file/content/whole/index/content/1448335/ 一个话题刷完了要录入ANKI 前綴和 一维前缀和的公式：sum[i] = sum[i-1] + arr[i] ; sum是前缀和数组, arr是内容数组。拥有前缀和数组后, 我们可以在O(1)的时间复杂度内求出区间和。 对于任意的区间和k， k = sum[j] - sum[i] 模板题:https://leetcode.cn/problems/subarray-sum-equals-k/description/ https://leetcode.cn/problems/subarray-product-less-than-k/description/ https://leetcode.cn/problems/continuous-subarray-sum/description/ https://leetcode.cn/problems/product-of-array-except-self/description/ https://leetcode.cn/problems/minimum-size-subarray-sum/description/ 优先级队列/堆 回溯">
+<meta name="keywords" content="Jekyll, NexT">
+<meta property="og:type" content="article">
+<meta property="og:title" content="刷题清单">
+<meta property="og:url" content="https://jiujiujiujiujiuaia.github.io/leetcode/2020/07/02/%E5%88%B7%E9%A2%98%E6%B8%85%E5%8D%95/">
+<meta property="og:site_name" content="三山的编程之旅">
+<meta property="og:description" content="TODO https://www.acwing.com/file_system/file/content/whole/index/content/1448335/ 一个话题刷完了要录入ANKI 前綴和 一维前缀和的公式：sum[i] = sum[i-1] + arr[i] ; sum是前缀和数组, arr是内容数组。拥有前缀和数组后, 我们可以在O(1)的时间复杂度内求出区间和。 对于任意的区间和k， k = sum[j] - sum[i] 模板题:https://leetcode.cn/problems/subarray-sum-equals-k/description/ https://leetcode.cn/problems/subarray-product-less-than-k/description/ https://leetcode.cn/problems/continuous-subarray-sum/description/ https://leetcode.cn/problems/product-of-array-except-self/description/ https://leetcode.cn/problems/minimum-size-subarray-sum/description/ 优先级队列/堆 回溯">
+<meta property="og:locale" content="zh-Hans">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="刷题清单">
+<meta name="twitter:description" content="TODO https://www.acwing.com/file_system/file/content/whole/index/content/1448335/ 一个话题刷完了要录入ANKI 前綴和 一维前缀和的公式：sum[i] = sum[i-1] + arr[i] ; sum是前缀和数组, arr是内容数组。拥有前缀和数组后, 我们可以在O(1)的时间复杂度内求出区间和。 对于任意的区间和k， k = sum[j] - sum[i] 模板题:https://leetcode.cn/problems/subarray-sum-equals-k/description/ https://leetcode.cn/problems/subarray-product-less-than-k/description/ https://leetcode.cn/problems/continuous-subarray-sum/description/ https://leetcode.cn/problems/product-of-array-except-self/description/ https://leetcode.cn/problems/minimum-size-subarray-sum/description/ 优先级队列/堆 回溯">
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://jiujiujiujiujiuaia.github.io"/>
+
+
+
+
+
+  <title>刷题清单 | 三山的编程之旅</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'G-M7QXLLL8YX', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">三山的编程之旅</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+<div id="posts" class="posts-expand">
+  
+  
+
+  
+
+  
+  
+  
+
+  <article class="post post-type- " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://jiujiujiujiujiuaia.github.io/leetcode/2020/07/02/%E5%88%B7%E9%A2%98%E6%B8%85%E5%8D%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="三山">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="assets/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="三山的编程之旅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+          
+          
+            刷题清单
+          
+        </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-02T23:30:09+00:00">
+                2020-07-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/category/#/Leetcode" itemprop="url" rel="index">
+                    <span itemprop="name">Leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+                
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv" id="busuanzi_container_page_pv">
+            本文总阅读量<span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+                
+
+            
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <div class="post-wordcount">
+                  <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                  <span class="post-meta-item-text">字数统计</span>
+                <span title="字数统计">
+                  3603字
+                </span>
+
+                <span class="post-meta-divider">|</span>
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                  <span class="post-meta-item-text">阅读时长</span>
+                <span title="阅读时长">
+                  18分钟
+                </span>
+            </div>
+
+          
+            
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 id="todo">TODO</h2>
+<p>https://www.acwing.com/file_system/file/content/whole/index/content/1448335/
+一个话题刷完了要录入ANKI
+前綴和</p>
+<ul>
+  <li>一维前缀和的公式：sum[i] = sum[i-1] + arr[i] ;</li>
+  <li>sum是前缀和数组, arr是内容数组。拥有前缀和数组后, <strong>我们可以在O(1)的时间复杂度内求出区间和。</strong></li>
+  <li>对于任意的区间和k， k = sum[j] - sum[i]</li>
+  <li>模板题:https://leetcode.cn/problems/subarray-sum-equals-k/description/</li>
+  <li>https://leetcode.cn/problems/subarray-product-less-than-k/description/</li>
+  <li>https://leetcode.cn/problems/continuous-subarray-sum/description/</li>
+  <li>https://leetcode.cn/problems/product-of-array-except-self/description/</li>
+  <li>https://leetcode.cn/problems/minimum-size-subarray-sum/description/
+优先级队列/堆
+回溯</li>
+</ul>
+
+<h2 id="区间问题">区间问题</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>完成时间</th>
+      <th>Type</th>
+      <th>题号</th>
+      <th>题目</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>12.31</td>
+      <td> </td>
+      <td>56</td>
+      <td><a href="https://leetcode.cn/problems/merge-intervals/description/">merge-intervals</a></td>
+    </tr>
+    <tr>
+      <td>1.3</td>
+      <td> </td>
+      <td>57</td>
+      <td><a href="https://leetcode.cn/problems/insert-interval/description/">insert-interval</a></td>
+    </tr>
+    <tr>
+      <td>1.7</td>
+      <td> </td>
+      <td>252</td>
+      <td><a href="https://leetcode.cn/problems/meeting-rooms/description/">meeting-rooms</a></td>
+    </tr>
+    <tr>
+      <td>1.7</td>
+      <td> </td>
+      <td>253</td>
+      <td><a href="https://leetcode.cn/problems/meeting-rooms-ii/description/">meeting-rooms-ii</a></td>
+    </tr>
+    <tr>
+      <td>1.6</td>
+      <td>双指针</td>
+      <td>228</td>
+      <td><a href="https://leetcode.cn/problems/summary-ranges/description/">summary-ranges</a></td>
+    </tr>
+    <tr>
+      <td>12.7</td>
+      <td>随机+区间</td>
+      <td>528</td>
+      <td><a href="https://leetcode.cn/problems/random-pick-with-weight/description/">random-pick-with-weight</a></td>
+    </tr>
+    <tr>
+      <td>1.21</td>
+      <td>wish面試考過</td>
+      <td>436</td>
+      <td><a href="https://leetcode.cn/problems/find-right-interval/description/"></a></td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>398</td>
+      <td><a href="https://leetcode.cn/problems/random-pick-index/description/">random-pick-index</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="数据结构设计题">数据结构设计题</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>完成时间</th>
+      <th>Type</th>
+      <th>题号</th>
+      <th>题目</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>12.7</td>
+      <td> </td>
+      <td>225</td>
+      <td><a href="https://leetcode.cn/problems/implement-stack-using-queues/description/"></a></td>
+    </tr>
+    <tr>
+      <td>12.7</td>
+      <td> </td>
+      <td>232</td>
+      <td><a href="https://leetcode.cn/problems/implement-queue-using-stacks/"></a></td>
+    </tr>
+    <tr>
+      <td>12.30</td>
+      <td> </td>
+      <td>146</td>
+      <td><a href="https://leetcode.cn/problems/lru-cache/description/"></a></td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>335</td>
+      <td><a href="https://leetcode.cn/problems/design-twitter/description/"></a></td>
+    </tr>
+    <tr>
+      <td>1.1</td>
+      <td> </td>
+      <td>535</td>
+      <td><a href="https://leetcode.cn/problems/encode-and-decode-tinyurl/description/"></a></td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>706</td>
+      <td><a href="https://leetcode.cn/problems/design-hashmap/description/"></a></td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>707</td>
+      <td><a href="https://leetcode.cn/problems/design-linked-list/"></a></td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>705</td>
+      <td><a href="https://leetcode.cn/problems/design-hashset/description/"></a></td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>460</td>
+      <td><a href="https://leetcode.cn/problems/lfu-cache/description/"></a></td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="图论">图论</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>完成时间</th>
+      <th>Type</th>
+      <th>题号</th>
+      <th>题目</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1.21</td>
+      <td>遍历图(BFS+DFS)</td>
+      <td>133</td>
+      <td><a href="https://leetcode.cn/problems/clone-graph/"></a></td>
+    </tr>
+    <tr>
+      <td>2.6</td>
+      <td>类似133</td>
+      <td>138</td>
+      <td><a href="https://leetcode.cn/problems/copy-list-with-random-pointer/description/"></a></td>
+    </tr>
+    <tr>
+      <td>2.8</td>
+      <td>并查集模板题</td>
+      <td>547</td>
+      <td><a href="https://leetcode.cn/problems/number-of-provinces/description/"></a></td>
+    </tr>
+    <tr>
+      <td>2.9</td>
+      <td>并查集(矩阵图模拟)</td>
+      <td>130</td>
+      <td><a href="https://leetcode.cn/problems/surrounded-regions/description/"></a></td>
+    </tr>
+    <tr>
+      <td>2.9</td>
+      <td>并查集(矩阵图模拟)</td>
+      <td>200</td>
+      <td><a href="https://leetcode.cn/problems/number-of-islands/description/"></a></td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>并查集</td>
+      <td>695</td>
+      <td><a href="https://leetcode.cn/problems/max-area-of-island/description/"></a></td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>BFS+DFS?</td>
+      <td>417</td>
+      <td><a href="https://leetcode.cn/problems/pacific-atlantic-water-flow/description/"></a></td>
+    </tr>
+    <tr>
+      <td>2.11</td>
+      <td>并查集</td>
+      <td>684</td>
+      <td><a href="https://leetcode.cn/problems/redundant-connection/description/"></a></td>
+    </tr>
+    <tr>
+      <td>1.19</td>
+      <td>拓扑排序</td>
+      <td>207</td>
+      <td><a href="https://leetcode.cn/problems/course-schedule/"></a></td>
+    </tr>
+    <tr>
+      <td>1.19</td>
+      <td>拓扑排序</td>
+      <td>210</td>
+      <td><a href="https://leetcode.cn/problems/course-schedule-ii/description/"></a></td>
+    </tr>
+    <tr>
+      <td>2.11</td>
+      <td>最短路模板题/Dijkstra</td>
+      <td>743</td>
+      <td><a href="https://leetcode.cn/problems/network-delay-time/"></a></td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>并查集</td>
+      <td>305</td>
+      <td><a href="https://leetcode.cn/problems/number-of-islands-ii/description/"></a></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>最短路径问题:</p>
+<ul>
+  <li>Dijkstra不能处理负权图，且主要处理单源最短路；</li>
+  <li>Floyd能处理负权图，主要处理多源最短路问题。</li>
+</ul>
+
+<p>并查集算法：</p>
+<ul>
+  <li>并查集的时间复杂度?(merge的复杂度应该是logn)</li>
+  <li>并查集的初始化（所有点的父亲是自己）</li>
+  <li>并查集的版本 -&gt; 初始版本 -&gt; 路径压缩版本 -&gt; 带size的版本</li>
+  <li>并查集的题目用dfs,了解bfs</li>
+</ul>
+
+<p>并查集数据结构:</p>
+<ul>
+  <li>在树这个数据结构里面，每个节点会记录它的子节点。在并查集里，每个节点会记录它的父节点。</li>
+  <li>并（Union），代表合并</li>
+  <li>查（Find），代表查找</li>
+  <li>集（Set），代表这是一个以字典为基础的数据结构，它的基本功能是合并集合中的元素，查找集合中的元素</li>
+</ul>
+
+<p>并查集应用:</p>
+<ul>
+  <li>求连通分量：依次对每个边的两个顶点进行并查集合并，可以使得每个连通分量的root相同，从而得出每个连通分量。</li>
+  <li>查找环：合并过程中，如果发现一条边的两个顶点已经合并过，说明这两个顶点之前已经通过其他路径合并，再加上这条边，图中就出现了环。</li>
+  <li>求最小生成树：贪心思想，从小到大排序所有边，使用并查集依次合并，并跳过形成环的边，即可得到最小生成树。</li>
+</ul>
+
+<h3 id="拓扑排序">拓扑排序</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>完成时间</th>
+      <th>Type</th>
+      <th>题号</th>
+      <th>题目</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1.19</td>
+      <td> </td>
+      <td>207</td>
+      <td><a href="https://leetcode.cn/problems/course-schedule/"></a></td>
+    </tr>
+    <tr>
+      <td>1.19</td>
+      <td> </td>
+      <td>210</td>
+      <td><a href="https://leetcode.cn/problems/course-schedule-ii/description/"></a></td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>630</td>
+      <td><a href="https://leetcode.cn/problems/course-schedule-iii/description/"></a></td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>2115</td>
+      <td><a href="https://leetcode.cn/problems/find-all-possible-recipes-from-given-supplies/description/"></a></td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="堆的问题">堆的问题</h2>
+
+<p>优先级队列</p>
+
+<p>https://www.hello-algo.com/chapter_heap/heap/</p>
+
+<p>堆其实也没几道 性价比很高 可以优先刷
+502 23 295 358 373 313 378 基础题
+218 很难的题</p>
+
+<h2 id="搜索回溯剪枝">搜索+回溯+剪枝</h2>
+
+<p>一天弄完，先看文章，再看解法，然后总结ANKI</p>
+
+<p>78 77 46(组合是子集的部分问题，排列又可以根据组合的问题改)</p>
+
+<p>39 90 47(变种)</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>完成时间</th>
+      <th>Type</th>
+      <th>题号</th>
+      <th>题目</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>17</td>
+      <td><a href="https://leetcode.cn/problems/letter-combinations-of-a-phone-number/description/"></a></td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>22</td>
+      <td><a href="https://leetcode.cn/problems/generate-parentheses/description/"></a></td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>39</td>
+      <td><a href="https://leetcode.cn/problems/combination-sum/description/"></a></td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>40</td>
+      <td><a href="https://leetcode.cn/problems/combination-sum-ii/description/"></a></td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>216</td>
+      <td><a href="https://leetcode.cn/problems/combination-sum-iii/description/"></a></td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>46</td>
+      <td><a href="https://leetcode.cn/problems/permutations/description/"></a></td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>47</td>
+      <td><a href="https://leetcode.cn/problems/permutations-ii/description/"></a></td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>77</td>
+      <td><a href="https://leetcode.cn/problems/combinations/description/"></a></td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>78</td>
+      <td><a href="https://leetcode.cn/problems/subsets/description/"></a></td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>79</td>
+      <td><a href="https://leetcode.cn/problems/word-search/description/"></a></td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>93</td>
+      <td><a href="https://leetcode.cn/problems/restore-ip-addresses/description/"></a></td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>90</td>
+      <td><a href="https://leetcode.cn/problems/subsets-ii/description/"></a></td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>301</td>
+      <td><a href="https://leetcode.cn/problems/remove-invalid-parentheses/description/"></a></td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>模拟遍历Trie树</td>
+      <td>386</td>
+      <td><a href="https://leetcode.cn/problems/lexicographical-numbers/description/"></a></td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>数独困难</td>
+      <td>37</td>
+      <td><a href="https://leetcode.cn/problems/sudoku-solver/description/"></a></td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>N皇后困难</td>
+      <td>51</td>
+      <td><a href="https://leetcode.cn/problems/n-queens/description/"></a></td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>N皇后困难</td>
+      <td>52</td>
+      <td><a href="https://leetcode.cn/problems/subsets-ii/description/"></a></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>下面这四个属于什么？
+LeetCode127.单词接龙
+LeetCode126.单词接龙Ⅱ（BFS+DFS）
+LeetCode433.最小基因变化
+LeetCode690.员工的重要性（BFS/DFS）</p>
+
+<h2 id="单调栈">单调栈</h2>
+
+<p>LeetCode42.接雨水
+LeetCode84.柱状图中最大的矩形
+LeetCode85.最大矩形（84拓展）
+LeetCode496.下一个更大元素Ⅰ
+LeetCode503.下一个更大元素Ⅱ
+LeetCode739.每日温度</p>
+
+<h2 id="双指针">双指针</h2>
+
+<h3 id="同向双指针">同向双指针</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>完成时间</th>
+      <th>Type</th>
+      <th>题号</th>
+      <th>题目</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1.6</td>
+      <td>基础</td>
+      <td>228</td>
+      <td><a href="https://leetcode.cn/problems/summary-ranges/description/">summary-ranges</a></td>
+    </tr>
+    <tr>
+      <td>1.18</td>
+      <td> </td>
+      <td>26</td>
+      <td><a href="https://leetcode.cn/problems/remove-duplicates-from-sorted-array/description/"></a></td>
+    </tr>
+    <tr>
+      <td>1.18</td>
+      <td> </td>
+      <td>27</td>
+      <td><a href="https://leetcode.cn/problems/remove-element/description/"></a></td>
+    </tr>
+    <tr>
+      <td>1.18</td>
+      <td> </td>
+      <td>80</td>
+      <td><a href="https://leetcode.cn/problems/remove-duplicates-from-sorted-array-ii/description/"></a></td>
+    </tr>
+    <tr>
+      <td>1.18</td>
+      <td> </td>
+      <td>283</td>
+      <td><a href="https://leetcode.cn/problems/move-zeroes/description/"></a></td>
+    </tr>
+    <tr>
+      <td>1.18</td>
+      <td> </td>
+      <td>38</td>
+      <td><a href="https://leetcode.cn/problems/count-and-say/description/"></a></td>
+    </tr>
+    <tr>
+      <td>1.18</td>
+      <td> </td>
+      <td>58</td>
+      <td><a href="https://leetcode.cn/problems/length-of-last-word/description/"></a></td>
+    </tr>
+    <tr>
+      <td>1.18</td>
+      <td> </td>
+      <td>88</td>
+      <td><a href="https://leetcode.cn/problems/merge-sorted-array/description/"></a></td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="滑动窗口">滑动窗口</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>完成时间</th>
+      <th>Type</th>
+      <th>题号</th>
+      <th>题目</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1.18</td>
+      <td>做过golang</td>
+      <td>3</td>
+      <td><a href="https://leetcode.cn/problems/longest-substring-without-repeating-characters/description/"></a></td>
+    </tr>
+    <tr>
+      <td>1.18</td>
+      <td>做过</td>
+      <td>209</td>
+      <td><a href="https://leetcode.cn/problems/minimum-size-subarray-sum/description/"></a></td>
+    </tr>
+    <tr>
+      <td>1.18</td>
+      <td>做过</td>
+      <td>567</td>
+      <td><a href="https://leetcode.cn/problems/permutation-in-string/description/"></a></td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>76</td>
+      <td><a href="https://leetcode.cn/problems/minimum-window-substring/description/"></a></td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>424</td>
+      <td><a href="https://leetcode.cn/problems/longest-repeating-character-replacement/description/"></a></td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>438</td>
+      <td><a href="https://leetcode.cn/problems/find-all-anagrams-in-a-string/description/"></a></td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>做过</td>
+      <td>340</td>
+      <td><a href="https://leetcode.cn/problems/longest-substring-with-at-most-k-distinct-characters/description/"></a></td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>做过</td>
+      <td>713</td>
+      <td><a href="https://leetcode.cn/problems/subarray-product-less-than-k/description/"></a></td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="逆向双指针">逆向双指针</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>完成时间</th>
+      <th>Type</th>
+      <th>题号</th>
+      <th>题目</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td> </td>
+      <td>做过golang</td>
+      <td>1</td>
+      <td><a href="https://leetcode.cn/problems/two-sum/description/"></a></td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>5</td>
+      <td><a href="https://leetcode.cn/problems/longest-palindromic-substring/description/"></a></td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>11</td>
+      <td><a href="https://leetcode.cn/problems/container-with-most-water/description/"></a></td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>做过golang</td>
+      <td>15</td>
+      <td><a href="https://leetcode.cn/problems/3sum/description/"></a></td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>做过golang</td>
+      <td>16</td>
+      <td><a href="https://leetcode.cn/problems/3sum-closest/description/"></a></td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>18</td>
+      <td><a href="https://leetcode.cn/problems/4sum/description/"></a></td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>做过golang</td>
+      <td>167</td>
+      <td><a href="https://leetcode.cn/problems/two-sum-ii-input-array-is-sorted/description/"></a></td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>344</td>
+      <td><a href="https://leetcode.cn/problems/reverse-string/description/"></a></td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>345</td>
+      <td><a href="https://leetcode.cn/problems/reverse-vowels-of-a-string/description/"></a></td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>125</td>
+      <td><a href="https://leetcode.cn/problems/valid-palindrome/description/"></a></td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="tiktok题库">Tiktok题库</h2>
+
+<p>topological sort</p>
+
+<p>https://github.com/hxu296/leetcode-company-wise-problems-2022?tab=readme-ov-file#tiktok</p>
+
+<p>https://leetcode.cn/problems/subdomain-visit-count/description/?company_slug=tiktok-sg</p>
+
+<p>https://leetcode.cn/problems/number-of-islands-ii/description/?company_slug=tiktok-sg</p>
+
+<h2 id="二分搜索">二分搜索</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>完成时间</th>
+      <th>Type</th>
+      <th>题号</th>
+      <th>题目</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1.18</td>
+      <td>基础-做过golang</td>
+      <td>704</td>
+      <td><a href="https://leetcode.cn/problems/binary-search/description/"></a></td>
+    </tr>
+    <tr>
+      <td>1.18</td>
+      <td>进阶-做过golang</td>
+      <td>34</td>
+      <td><a href="https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-array/description/"></a></td>
+    </tr>
+    <tr>
+      <td>1.18</td>
+      <td>进阶-做过golang</td>
+      <td>35</td>
+      <td><a href="https://leetcode.cn/problems/search-insert-position/description/"></a></td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>二维矩阵搜索</td>
+      <td>74</td>
+      <td><a href="https://leetcode.cn/problems/search-a-2d-matrix/description/"></a></td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>二维矩阵搜索变种</td>
+      <td>240</td>
+      <td><a href="https://leetcode.cn/problems/search-a-2d-matrix-ii/description/"></a></td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>二维矩阵搜索</td>
+      <td>33</td>
+      <td><a href="https://leetcode.cn/problems/search-in-rotated-sorted-array/description/"></a></td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>二维矩阵搜索变种</td>
+      <td>81</td>
+      <td><a href="https://leetcode.cn/problems/search-in-rotated-sorted-array-ii/description/"></a></td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>二维矩阵搜索</td>
+      <td>153</td>
+      <td><a href="https://leetcode.cn/problems/find-minimum-in-rotated-sorted-array/description/"></a></td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>二维矩阵搜索变种</td>
+      <td>154</td>
+      <td><a href="https://leetcode.cn/problems/find-minimum-in-rotated-sorted-array-ii/description/"></a></td>
+    </tr>
+    <tr>
+      <td>1.21</td>
+      <td>利用二分搜索优化查询（wish)</td>
+      <td>436</td>
+      <td><a href="https://leetcode.cn/problems/find-right-interval/description/"></a></td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="树">树</h2>
+
+<ul>
+  <li>递归/迭代遍历: 94(basic)/114/115</li>
+  <li>层序遍历: 102(basic)/107/199/103</li>
+  <li>验证题: 98(basic单树)/100(basic单树)/572/101</li>
+  <li>遍历+定义题: 104/226</li>
+  <li>二叉搜索树
+    <ul>
+      <li>700(查找basic)/99</li>
+      <li>230</li>
+      <li>701(插入)</li>
+      <li>450(删除)</li>
+      <li>108/109(树和数组和链表的转换)</li>
+    </ul>
+  </li>
+  <li>公共祖先
+    <ul>
+      <li>235/236</li>
+    </ul>
+  </li>
+  <li>二叉树和数组转换
+    <ul>
+      <li>105/106</li>
+    </ul>
+  </li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>完成时间</th>
+      <th>Type</th>
+      <th>题号</th>
+      <th>题目</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>10.6</td>
+      <td>二叉树</td>
+      <td>104</td>
+      <td><a href="https://leetcode.cn/problems/maximum-depth-of-binary-tree/">Maximum Depth of Binary Tree  </a></td>
+    </tr>
+    <tr>
+      <td>10.6</td>
+      <td>二叉树</td>
+      <td>226</td>
+      <td><a href="https://leetcode.cn/problems/invert-binary-tree/">Invert/Flip Binary Tree  </a></td>
+    </tr>
+    <tr>
+      <td>10.6</td>
+      <td>二叉树</td>
+      <td>100</td>
+      <td><a href="https://leetcode.cn/problems/same-tree/">Same Tree</a></td>
+    </tr>
+    <tr>
+      <td>10.6</td>
+      <td>二叉树</td>
+      <td>124</td>
+      <td><a href="https://leetcode.cn/problems/binary-tree-maximum-path-sum/">Binary Tree Maximum Path</a></td>
+    </tr>
+    <tr>
+      <td>10.20</td>
+      <td>层序遍历</td>
+      <td>102</td>
+      <td><a href="https://leetcode.cn/problems/binary-tree-level-order-traversal/">Binary Tree Level Order Traversal</a></td>
+    </tr>
+    <tr>
+      <td>11.8</td>
+      <td>层序遍历</td>
+      <td>107</td>
+      <td><a href="https://leetcode.cn/problems/binary-tree-level-order-traversal-ii/description/">Binary Tree Level Order Traversal II</a></td>
+    </tr>
+    <tr>
+      <td>11.8</td>
+      <td>公共祖先</td>
+      <td>236</td>
+      <td><a href="https://leetcode.cn/problems/binary-tree-level-order-traversal/">Lowest Common Ancestor of a Binary Tree</a></td>
+    </tr>
+    <tr>
+      <td>11.8</td>
+      <td>层序遍历</td>
+      <td>199</td>
+      <td><a href="https://leetcode.cn/problems/binary-tree-right-side-view/">Binary Tree Right Side View</a></td>
+    </tr>
+    <tr>
+      <td>11.21</td>
+      <td>二叉树</td>
+      <td>572</td>
+      <td><a href="https://leetcode.cn/problems/subtree-of-another-tree/">Subtree of Another Tree</a></td>
+    </tr>
+    <tr>
+      <td>TODO</td>
+      <td>二叉树</td>
+      <td>105</td>
+      <td><a href="https://leetcode.cn/problems/construct-binary-tree-from-preorder-and-inorder-traversal/">Construct Binary Tree from Preorder and Inorder Traversal</a></td>
+    </tr>
+    <tr>
+      <td>TODO</td>
+      <td>二叉树</td>
+      <td>297</td>
+      <td><a href="https://leetcode.cn/problems/serialize-and-deserialize-binary-tree/">Serialize and Deserialize Binary Tree</a></td>
+    </tr>
+    <tr>
+      <td>11.20</td>
+      <td> </td>
+      <td>101</td>
+      <td><a href="https://leetcode.cn/problems/symmetric-tree/">symmetric-tree</a></td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>110</td>
+      <td><a href="https://leetcode.cn/problems/balanced-binary-tree/">balanced-binary-tree</a></td>
+    </tr>
+    <tr>
+      <td>11.19</td>
+      <td>二叉树遍历颜色法</td>
+      <td>94/144/145</td>
+      <td><a href="https://leetcode.cn/problems/binary-tree-inorder-traversal/">binary-tree-inorder-traversal</a></td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>114</td>
+      <td><a href="https://leetcode.cn/problems/flatten-binary-tree-to-linked-list/">flatten-binary-tree-to-linked-list</a></td>
+    </tr>
+    <tr>
+      <td>11.21</td>
+      <td> </td>
+      <td>103</td>
+      <td><a href="https://leetcode.cn/problems/binary-tree-zigzag-level-order-traversal/">binary-tree-zigzag-level-order-traversal</a></td>
+    </tr>
+    <tr>
+      <td>11.12</td>
+      <td>二叉搜索树</td>
+      <td>98</td>
+      <td><a href="https://leetcode.cn/problems/validate-binary-search-tree/">validate-binary-search-tree</a></td>
+    </tr>
+    <tr>
+      <td>11.12</td>
+      <td>二叉搜索树(没用正确解法)</td>
+      <td>99</td>
+      <td><a href="https://leetcode.cn/problems/recover-binary-search-tree/description/">recover-binary-search-tree</a></td>
+    </tr>
+    <tr>
+      <td>11.14</td>
+      <td>二叉搜索树</td>
+      <td>700</td>
+      <td><a href="https://leetcode.cn/problems/search-in-a-binary-search-tree/description/">search-in-a-binary-search-tree</a></td>
+    </tr>
+    <tr>
+      <td>11.15</td>
+      <td>二叉搜索树</td>
+      <td>701</td>
+      <td><a href="https://leetcode.cn/problems/insert-into-a-binary-search-tree/description/">insert-into-a-binary-search-tree</a></td>
+    </tr>
+    <tr>
+      <td>11.16</td>
+      <td>二叉搜索树</td>
+      <td>450</td>
+      <td><a href="https://leetcode.cn/problems/delete-node-in-a-bst/description/">delete-node-in-a-bst</a></td>
+    </tr>
+    <tr>
+      <td>11.17</td>
+      <td>二叉搜索树</td>
+      <td>230</td>
+      <td><a href="https://leetcode.cn/problems/kth-smallest-element-in-a-bst/description/">kth-smallest-element-in-a-bst</a></td>
+    </tr>
+    <tr>
+      <td>TODO</td>
+      <td>二叉搜索树</td>
+      <td>235</td>
+      <td><a href="https://leetcode.cn/problems/lowest-common-ancestor-of-a-binary-search-tree/description/">lowest-common-ancestor-of-a-binary-search-tree</a></td>
+    </tr>
+    <tr>
+      <td>11.18</td>
+      <td>二叉搜索树</td>
+      <td>108</td>
+      <td><a href="https://leetcode.cn/problems/convert-sorted-array-to-binary-search-tree/description/">convert-sorted-array-to-binary-search-tree</a></td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>二叉搜索树</td>
+      <td>109</td>
+      <td><a href="https://leetcode.cn/problems/convert-sorted-list-to-binary-search-tree/">convert-sorted-list-to-binary-search-tree</a></td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>173</td>
+      <td><a href="https://leetcode.cn/problems/binary-search-tree-iterator/description/">binary-search-tree-iterator</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="数组">数组</h2>
+
+<p>下一次刷题:239 139 140</p>
+
+<h3 id="双指针429">双指针(4.29)</h3>
+
+<h4 id="1同向双指针-滑动窗口">(1)同向双指针-滑动窗口</h4>
+<p>RJ：
+228 163 475 481 565 424 滑动窗口
+239 76 30 340 395 159 子字符串+滑窗</p>
+
+<p>数组 <del>209</del> <del>713</del></p>
+
+<p>字符串 <del>3</del> <del>340</del> 567 76</p>
+
+<h4 id="2同向双指针-隔板法">(2)同向双指针-隔板法</h4>
+
+<p><del>27</del> <del>283</del> <del>26</del> <del>80</del> 487</p>
+
+<h4 id="3相向双指针">(3)相向双指针</h4>
+<p><del>581 三指针</del></p>
+
+<p><del>1 167 15 16</del> 相向双指针(三数之和)</p>
+
+<p>11 42 相向双指针(接雨水)</p>
+
+<h3 id="3dp51-x2">3.DP(5.1) x2</h3>
+
+<p><del>线性DP</del></p>
+
+<p><del>背包问题</del></p>
+
+<h3 id="4回溯52-x2">4.回溯(5.2) x2</h3>
+<p>78 77 46(组合是子集的部分问题，排列又可以根据组合的问题改)</p>
+
+<p>39 90 47(变种)</p>
+
+<h3 id="7二分55-x2">7.二分(5.5) x2</h3>
+
+<h3 id="5链表53">5.链表(5.3)</h3>
+
+<h3 id="6排序54">6.排序(5.4)</h3>
+<p>283 冒泡
+287 334 选择排序
+300 插入排序
+88 493归并排序
+215 462 快排
+220 451 164 347 桶排序
+387 383 467 87 567 205 299 274基数排序</p>
+
+<h3 id="8数组区间--二维数组56">8.数组区间 &amp;&amp; 二维数组(5.6)</h3>
+<p>56 57 252 253 435区间问题</p>
+
+<h3 id="后面可以看看top100哪些没刷然后剑指offer57">后面可以看看top100哪些没刷，然后剑指offer(5.7)</h3>
+
+<h3 id="子数组">子数组</h3>
+<p>325 209 238 152 523 548 560(RJ)</p>
+
+<h3 id="其他">其他</h3>
+<p>75 荷兰国旗问题
+436 352 TreeMap
+1 HashMap
+15 259 18求和
+454 HashMap
+189 280 41 交换
+217 575 219 525 447 532 554 599 HashSet
+442 414 448 485 229 277 495 370实现题精选</p>
+
+<p>位运算
+389 136 268 异或
+231 191 190 (n &amp; n-1)
+318 Bitmap</p>
+
+<p>数学题
+7 8 504 基础
+66 67 258 415 43 29 加减乘除
+69 50  367 507 开方
+172 特殊
+412 263 264 413 592实现题
+204 492 573 找规律
+166 综合题
+65 难题</p>
+
+<p>134 169 数学定理
+566 28 54 59 73 531 二维数组
+533 363 HashMap / TreeSet
+36 37 特殊题
+4 难题且非常重要</p>
+
+<p>二分题总结
+35 374 278 34 167 162 349  275 540基础题
+350 哈希表
+528 随机二分
+33 81 153 154 二分旋转题
+354 递增
+315 递减
+419 74 240 302 二维数组二分
+410 难题</p>
+
+<p>链表题
+24 328 61 86 基础
+206 92 25 反转
+237 19 83 203 82 删除
+141 142 链表有环
+148 369 2 160 21 数组
+234 143 综合题
+430 难题</p>
+
+<p>506 3 290 500 249 535哈希表</p>
+
+<p>图形题 我总结出来 最重要的 考的最多的 就这几道
+149 356 点和线
+365 数学定理 469 方向
+587 栈</p>
+
+<p>回溯题我的参考列表是 可以从第一个刷到最后一个
+46 47 31 60排列
+78 90 子集
+77 39 40 216 254组合
+526 582 491 17 320 282 140 401 465 473 实现题
+51 52 488 极难</p>
+
+<p>比如
+46 47 31 60排列
+78 90 子集
+77 39 40 216 254组合
+526 582 491 17 320 282 140 401 465 473 实现题
+51 52 488 极难</p>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+      
+      
+
+      
+      
+        <div class="post-nav" id="post-nav-id">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/leetcode/2020/07/03/%E5%8C%BA%E9%97%B4%E9%97%AE%E9%A2%98/" rel="next" title="区间问题">
+                <i class="fa fa-chevron-left"></i> 区间问题
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/leetcode/2020/06/03/%E5%88%B7%E9%A2%98%E7%A2%B0%E5%88%B0%E5%9B%B0%E9%9A%BE%E6%97%B6%E5%AF%B9%E8%87%AA%E5%B7%B1%E8%AF%B4%E7%9A%84%E5%87%A0%E5%8F%A5%E8%AF%9D/" rel="prev" title="刷题碰到困难时对自己说的几句话">
+                刷题碰到困难时对自己说的几句话 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+      
+
+      
+    </footer>
+  </article>
+
+  <div class="post-spread">
+    
+  </div>
+</div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        
+        
+        
+
+
+
+
+
+
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/assets/images/avatar.gif"
+               alt="三山" />
+          <p class="site-author-name" itemprop="name">三山</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">77</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/">
+                <span class="site-state-item-count">48</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+        
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+
+
+
+
+
+
+
+            
+              <div class="post-toc-content">
+    <ol class=nav>
+      <li class="nav-item nav-level-2"> <a class="nav-link" href="#todo"> <span class="nav-number">1</span> <span class="nav-text">TODO</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#区间问题"> <span class="nav-number">2</span> <span class="nav-text">区间问题</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#数据结构设计题"> <span class="nav-number">3</span> <span class="nav-text">数据结构设计题</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#图论"> <span class="nav-number">4</span> <span class="nav-text">图论</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-3"> <a class="nav-link" href="#拓扑排序"> <span class="nav-number">4.1</span> <span class="nav-text">拓扑排序</span> </a> </li> </ol> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#堆的问题"> <span class="nav-number">5</span> <span class="nav-text">堆的问题</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#搜索回溯剪枝"> <span class="nav-number">6</span> <span class="nav-text">搜索+回溯+剪枝</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#单调栈"> <span class="nav-number">7</span> <span class="nav-text">单调栈</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#双指针"> <span class="nav-number">8</span> <span class="nav-text">双指针</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-3"> <a class="nav-link" href="#同向双指针"> <span class="nav-number">8.1</span> <span class="nav-text">同向双指针</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#滑动窗口"> <span class="nav-number">8.2</span> <span class="nav-text">滑动窗口</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#逆向双指针"> <span class="nav-number">8.3</span> <span class="nav-text">逆向双指针</span> </a> </li> </ol> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#tiktok题库"> <span class="nav-number">9</span> <span class="nav-text">Tiktok题库</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#二分搜索"> <span class="nav-number">10</span> <span class="nav-text">二分搜索</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#树"> <span class="nav-number">11</span> <span class="nav-text">树</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#数组"> <span class="nav-number">12</span> <span class="nav-text">数组</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-3"> <a class="nav-link" href="#双指针429"> <span class="nav-number">12.1</span> <span class="nav-text">双指针(4.29)</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-4"> <a class="nav-link" href="#1同向双指针-滑动窗口"> <span class="nav-number">12.1.1</span> <span class="nav-text">(1)同向双指针-滑动窗口</span> </a> </li> <li class="nav-item nav-level-4"> <a class="nav-link" href="#2同向双指针-隔板法"> <span class="nav-number">12.1.2</span> <span class="nav-text">(2)同向双指针-隔板法</span> </a> </li> <li class="nav-item nav-level-4"> <a class="nav-link" href="#3相向双指针"> <span class="nav-number">12.1.3</span> <span class="nav-text">(3)相向双指针</span> </a> </li> </ol> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#3dp51-x2"> <span class="nav-number">12.2</span> <span class="nav-text">3.DP(5.1) x2</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#4回溯52-x2"> <span class="nav-number">12.3</span> <span class="nav-text">4.回溯(5.2) x2</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#7二分55-x2"> <span class="nav-number">12.4</span> <span class="nav-text">7.二分(5.5) x2</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#5链表53"> <span class="nav-number">12.5</span> <span class="nav-text">5.链表(5.3)</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#6排序54"> <span class="nav-number">12.6</span> <span class="nav-text">6.排序(5.4)</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#8数组区间--二维数组56"> <span class="nav-number">12.7</span> <span class="nav-text">8.数组区间 &amp;&amp; 二维数组(5.6)</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#后面可以看看top100哪些没刷然后剑指offer57"> <span class="nav-number">12.8</span> <span class="nav-text">后面可以看看top100哪些没刷，然后剑指offer(5.7)</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#子数组"> <span class="nav-number">12.9</span> <span class="nav-text">子数组</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#其他"> <span class="nav-number">12.10</span> <span class="nav-text">其他</span> </a> </li> </ol> </li>
+    </ol>
+  </div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">三山</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://jekyllrb.com">Jekyll</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/simpleyyt/jekyll-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+   
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/assets/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  <script type="text/javascript" src="/assets/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/assets/js/src/post-details.js?v=5.1.1"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+    
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
+
+

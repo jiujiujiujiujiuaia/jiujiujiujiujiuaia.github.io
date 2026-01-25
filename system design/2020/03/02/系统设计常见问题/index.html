@@ -1,0 +1,1037 @@
+<!--不算子网站访客统计-->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-M7QXLLL8YX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-M7QXLLL8YX');
+</script>
+
+
+<!doctype html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/assets/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/assets/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/assets/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="三山的编程之旅" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="redis和数据库同步问题">
+<meta name="keywords" content="Jekyll, NexT">
+<meta property="og:type" content="article">
+<meta property="og:title" content="系统设计常见问题">
+<meta property="og:url" content="https://jiujiujiujiujiuaia.github.io/system%20design/2020/03/02/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/">
+<meta property="og:site_name" content="三山的编程之旅">
+<meta property="og:description" content="redis和数据库同步问题">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/redis/20240107174535/img.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/redis/20240107174535/img_1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/SD/20240107204616/img.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/SD/20240107204616/img_1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/SD/20240107204616/img_2.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/SD/20240107204616/img_3.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="系统设计常见问题">
+<meta name="twitter:description" content="redis和数据库同步问题">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/redis/20240107174535/img.png">
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://jiujiujiujiujiuaia.github.io"/>
+
+
+
+
+
+  <title>系统设计常见问题 | 三山的编程之旅</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'G-M7QXLLL8YX', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">三山的编程之旅</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+<div id="posts" class="posts-expand">
+  
+  
+
+  
+
+  
+  
+  
+
+  <article class="post post-type- " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://jiujiujiujiujiuaia.github.io/system%20design/2020/03/02/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="三山">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="assets/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="三山的编程之旅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+          
+          
+            系统设计常见问题
+          
+        </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-02T17:30:09+00:00">
+                2020-03-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/category/#/System%20Design" itemprop="url" rel="index">
+                    <span itemprop="name">System Design</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+                
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv" id="busuanzi_container_page_pv">
+            本文总阅读量<span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+                
+
+            
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <div class="post-wordcount">
+                  <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                  <span class="post-meta-item-text">字数统计</span>
+                <span title="字数统计">
+                  1032字
+                </span>
+
+                <span class="post-meta-divider">|</span>
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                  <span class="post-meta-item-text">阅读时长</span>
+                <span title="阅读时长">
+                  5分钟
+                </span>
+            </div>
+
+          
+            
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 id="redis和数据库同步问题">redis和数据库同步问题</h2>
+
+<h3 id="1缓存穿透cache-aside-or-lazy-loading">1.缓存穿透(cache aside or Lazy Loading)</h3>
+
+<ul>
+  <li>缓存命中直接返回。</li>
+  <li>缓存miss，从DB中查询，写入cache然后返回。</li>
+  <li>应用程序负责更新cache</li>
+</ul>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/redis/20240107174535/img.png" alt="img.png" /></p>
+
+<p>优点：</p>
+<ul>
+  <li>简单灵活,因为应用程序决定一切，这意味着redis和DB的数据结构可以不一样</li>
+  <li>对于热点数据，可以减少数据库的负担。</li>
+  <li>节省资源，只有被请求的数据才会变成缓存中。</li>
+</ul>
+
+<p>缺点：</p>
+<ul>
+  <li>冷启动，缓存是空的，这意味着最初的所有请求都需要访问数据库，直到缓存逐渐建立起来。</li>
+  <li>缓存可能会大量失效，导致加大数据库的访问。</li>
+  <li>如果数据库中的数据被修改，而缓存中的数据还没更新，就会出现数据一致性问题。</li>
+</ul>
+
+<h3 id="2-绕行式写入缓存write-around-caching-strategy">2. 绕行式写入缓存(Write Around Caching Strategy)</h3>
+
+<ul>
+  <li>当应用程序执行写入操作时，数据会直接写入底层数据存储或数据库，而不是立即存储在缓存中。</li>
+  <li>写入时，如果缓存有相应的key，主动使缓存失效利用EXPIRE指令。</li>
+  <li>更新缓存依赖读操作（结合Cache aside）</li>
+</ul>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/redis/20240107174535/img_1.png" alt="img_1.png" /></p>
+
+<p>将#1和#2结合在一起的优缺点，这种适用于读多写少，并且热点数据明显的情况：</p>
+
+<p>优点：</p>
+<ul>
+  <li>通常结合cache aside和Write around策略，保证一致性</li>
+  <li>节省资源，降低非热点数据的写入cache。</li>
+</ul>
+
+<p>缺点：</p>
+<ul>
+  <li>当数据频繁更新和读取时，存储系统会被多次访问，导致缓存操作效率较低。</li>
+  <li>
+    <p>安全问题，故意查询不存在的数据去访问DB，把DB拉垮（布隆过滤器可以100%确定不在集合中的数据，使用布隆过滤器，当不存在该数据时，直接返回）</p>
+  </li>
+  <li>变种:
+    <ul>
+      <li>对一致性要求特别高而对写入性能没那么高: 这个时候同时更新Redis。</li>
+      <li>对写入操作的性能要求特别高: 可以依赖TTL使其过期或者用EXPIRE指令让Redis过期，依赖读取的时候会更新值。</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="3read-through">3.Read-through</h3>
+
+<p>这个和cache side最大的区别使，cache充当应用程序和database的媒介，cache本身负责从底层数据存储或数据库中获取数据。</p>
+
+<p>这种多由PaaS服务提供，如DynamoDB Accelerator(Amazon)，Azure有没有我不知道。</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/SD/20240107204616/img.png" alt="img.png" /></p>
+
+<p>优点:</p>
+<ul>
+  <li>应用程序只需要从缓存中读取，简化了应用程序代码。</li>
+</ul>
+
+<p>缺点:</p>
+<ul>
+  <li>系统不能容忍缓存故障，因为缓存在数据检索过程中起着至关重要的作用。</li>
+  <li>缓存和存储系统必须共享相同的数据模型，限制了处理不同用例的灵活性。</li>
+  <li>需要写入策略解决一致性问题。<strong>例如cache刚刚从storage中读取数据并更新，但是storage再次被更新了。</strong></li>
+</ul>
+
+<h3 id="4write-through">4.Write-Through</h3>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/SD/20240107204616/img_1.png" alt="img_1.png" /></p>
+
+<p>当应用程序执行写入操作时，数据会同时写入缓存和底层数据存储或数据库。这确保了缓存和数据存储之间的数据始终保持一致。</p>
+
+<p>优点：</p>
+<ul>
+  <li>数据一致性：由于数据同时写入缓存和数据存储，因此缓存和数据存储始终包含一致的数据。</li>
+</ul>
+
+<p>缺点：</p>
+<ul>
+  <li>直写会引入额外的写入延迟，因为该操作必须在缓存和存储系统上执行。</li>
+</ul>
+
+<p>#3和#4的结合怪怪的…</p>
+
+<h3 id="5小结">5.小结</h3>
+
+<p>缓存和存储通常是独立的系统，写入顺序无非就是先写入存储，后写入缓存，还是先写入缓存，后写入存储。</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/SD/20240107204616/img_2.png" alt="img_2.png" /></p>
+
+<p>通常来说，数据先写入存储，再写入缓存，这个是最安全的，如果写入缓存失败，那么读的时候直接去DB，数据反正已经持久化了。</p>
+
+<p>反之，缓存有某种数据但是DB没有，这个是负面效果。</p>
+
+<p><img src="https://raw.githubusercontent.com/jiujiujiujiujiuaia/jiujiujiujiujiuaia.github.io/main/pic/SD/20240107204616/img_3.png" alt="img_3.png" /></p>
+
+<h2 id="分片">分片</h2>
+
+<p>https://ddia.qtmuniao.com/#/ch06</p>
+
+<h2 id="常见性能优化思路">常见性能优化思路</h2>
+<p>常见性能优化思路</p>
+
+<h2 id="常见扩展系统的思路">常见扩展系统的思路</h2>
+
+<h2 id="sql和non-sql如何抉择">SQL和Non-SQL如何抉择?</h2>
+
+<h2 id="如何加速数据库查询">如何加速数据库查询</h2>
+
+<h2 id="reference">Reference</h2>
+
+<ul>
+  <li>1.<a href="https://medium.com/@abhirup.acharya009/caching-system-design-fundamentals-226795bd9072">redis sync with database</a></li>
+</ul>
+
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+      
+      
+
+      
+      
+        <div class="post-nav" id="post-nav-id">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/leetcode/2020/06/01/Csharp%E5%B8%B8%E7%94%A8snippets/" rel="next" title="Csharp常用snippets">
+                <i class="fa fa-chevron-left"></i> Csharp常用snippets
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/system%20design/2020/03/02/TinyURL/" rel="prev" title="TinyURL">
+                TinyURL <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+      
+
+      
+    </footer>
+  </article>
+
+  <div class="post-spread">
+    
+  </div>
+</div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        
+        
+        
+
+
+
+
+
+
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/assets/images/avatar.gif"
+               alt="三山" />
+          <p class="site-author-name" itemprop="name">三山</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">77</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/">
+                <span class="site-state-item-count">48</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+        
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+
+
+
+
+
+
+
+            
+              <div class="post-toc-content">
+    <ol class=nav>
+      <li class="nav-item nav-level-2"> <a class="nav-link" href="#redis和数据库同步问题"> <span class="nav-number">1</span> <span class="nav-text">redis和数据库同步问题</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-3"> <a class="nav-link" href="#1缓存穿透cache-aside-or-lazy-loading"> <span class="nav-number">1.1</span> <span class="nav-text">1.缓存穿透(cache aside or Lazy Loading)</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#2-绕行式写入缓存write-around-caching-strategy"> <span class="nav-number">1.2</span> <span class="nav-text">2. 绕行式写入缓存(Write Around Caching Strategy)</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#3read-through"> <span class="nav-number">1.3</span> <span class="nav-text">3.Read-through</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#4write-through"> <span class="nav-number">1.4</span> <span class="nav-text">4.Write-Through</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#5小结"> <span class="nav-number">1.5</span> <span class="nav-text">5.小结</span> </a> </li> </ol> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#分片"> <span class="nav-number">2</span> <span class="nav-text">分片</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#常见性能优化思路"> <span class="nav-number">3</span> <span class="nav-text">常见性能优化思路</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#常见扩展系统的思路"> <span class="nav-number">4</span> <span class="nav-text">常见扩展系统的思路</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#sql和non-sql如何抉择"> <span class="nav-number">5</span> <span class="nav-text">SQL和Non-SQL如何抉择?</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#如何加速数据库查询"> <span class="nav-number">6</span> <span class="nav-text">如何加速数据库查询</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#reference"> <span class="nav-number">7</span> <span class="nav-text">Reference</span> </a> </li>
+    </ol>
+  </div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">三山</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://jekyllrb.com">Jekyll</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/simpleyyt/jekyll-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+   
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/assets/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  <script type="text/javascript" src="/assets/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/assets/js/src/post-details.js?v=5.1.1"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+    
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
+
+
